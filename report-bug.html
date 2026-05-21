@@ -1,0 +1,544 @@
+<!-- report-bug.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Audiophile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
+
+:root{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --card2:#eef0f4;
+    --text:#111827;
+    --muted:#64748b;
+    --accent1:#111827;
+    --accent2:#6366f1;
+    --accent3:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
+
+body.theme-white{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --card2:#eef0f4;
+    --text:#111827;
+    --muted:#64748b;
+    --accent1:#111827;
+    --accent2:#6366f1;
+    --accent3:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
+
+body.theme-musicred{
+    --bg:#ffffff;
+    --card:#f7f7f8;
+    --card2:#eeeeef;
+    --text:#1d1d1f;
+    --muted:#6e6e73;
+    --accent1:#e60023;
+    --accent2:#ff2d55;
+    --accent3:#ff7b92;
+    --border:rgba(0,0,0,0.08);
+}
+
+body{
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    padding:30px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:900;
+    color:var(--text);
+    text-decoration:none;
+}
+
+.logo span{
+    background:linear-gradient(90deg,var(--accent1),var(--accent2),var(--accent3));
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    padding:12px 22px;
+    border-radius:30px;
+    font-weight:800;
+}
+
+.container{
+    max-width:950px;
+    margin:auto;
+}
+
+.hero{
+    background:linear-gradient(
+        135deg,
+        color-mix(in srgb,var(--accent1) 10%,white),
+        color-mix(in srgb,var(--accent2) 10%,white)
+    );
+    border:1px solid var(--border);
+    border-radius:32px;
+    padding:36px;
+    margin-bottom:24px;
+}
+
+.hero h1{
+    font-size:44px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:var(--muted);
+    line-height:1.7;
+}
+
+.form-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:30px;
+    padding:32px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-bottom:18px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    color:var(--muted);
+    font-size:14px;
+    font-weight:800;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    border:1px solid var(--border);
+    background:var(--card2);
+    color:var(--text);
+    padding:15px 16px;
+    border-radius:18px;
+    outline:none;
+    font-size:15px;
+}
+
+.form-group textarea{
+    min-height:150px;
+    resize:vertical;
+    line-height:1.6;
+}
+
+.image-upload{
+    border:2px dashed var(--border);
+    background:var(--card2);
+    border-radius:22px;
+    padding:22px;
+    text-align:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.image-upload:hover{
+    border-color:var(--accent1);
+}
+
+.image-upload input{
+    display:none;
+}
+
+.image-upload h3{
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.image-upload p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.preview-box{
+    display:none;
+    margin-top:18px;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:var(--card2);
+}
+
+.preview-box img{
+    width:100%;
+    max-height:300px;
+    object-fit:cover;
+    display:block;
+}
+
+.remove-img{
+    width:100%;
+    border:none;
+    padding:13px;
+    background:var(--accent1);
+    color:white;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.submit-btn{
+    border:none;
+    width:100%;
+    padding:16px;
+    border-radius:22px;
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:white;
+    font-size:16px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.success{
+    display:none;
+    margin-top:18px;
+    padding:16px;
+    border-radius:18px;
+    background:color-mix(in srgb,var(--accent1) 10%,white);
+    color:var(--text);
+    border:1px solid var(--border);
+    font-weight:800;
+    text-align:center;
+}
+
+.bug-list{
+    margin-top:24px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:24px;
+}
+
+.bug-list h2{
+    font-size:26px;
+    margin-bottom:16px;
+}
+
+.bug-item{
+    background:var(--card2);
+    border:1px solid var(--border);
+    padding:15px;
+    border-radius:18px;
+    margin-bottom:12px;
+}
+
+.bug-item h3{
+    font-size:17px;
+    margin-bottom:6px;
+}
+
+.bug-item p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+}
+
+.bug-img{
+    margin-top:12px;
+    width:100%;
+    max-height:240px;
+    object-fit:cover;
+    border-radius:16px;
+    border:1px solid var(--border);
+}
+
+.empty{
+    color:var(--muted);
+}
+
+@media(max-width:800px){
+    body{
+        padding:18px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+
+    <a href="home.html" class="logo">
+        Audio<span>phile</span>
+    </a>
+
+    <a href="settings.html" class="back-btn">
+        ← Back
+    </a>
+
+</div>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>Report a Bug</h1>
+        <p>
+            Found a problem in Audiophile? Report playback issues, login errors,
+            theme bugs, broken pages, profile issues or UI problems here.
+        </p>
+    </div>
+
+    <div class="form-card">
+
+        <form onsubmit="submitBug(event)">
+
+            <div class="grid">
+
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
+
+            </div>
+
+            <div class="grid">
+
+                <div class="form-group">
+                    <label>Bug Type</label>
+                    <select id="bugType" required>
+                        <option value="">Select bug type</option>
+                        <option>Music not playing</option>
+                        <option>Audio loading issue</option>
+                        <option>Theme not changing</option>
+                        <option>Login or account issue</option>
+                        <option>Profile name/email issue</option>
+                        <option>Playlist/Favorites issue</option>
+                        <option>Page design issue</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Which Page?</label>
+                    <select id="pageName" required>
+                        <option value="">Select page</option>
+                        <option>Home Page</option>
+                        <option>Settings Page</option>
+                        <option>Songs Page</option>
+                        <option>Albums Page</option>
+                        <option>Playlist Page</option>
+                        <option>Login Page</option>
+                        <option>Register Page</option>
+                        <option>Forgot Password Page</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Bug Title</label>
+                <input type="text" id="bugTitle" placeholder="Example: Theme colour not changing in home page" required>
+            </div>
+
+            <div class="form-group">
+                <label>Describe the Bug</label>
+                <textarea id="bugDescription" placeholder="Explain what happened, what you clicked, and what should happen..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Add Bug Screenshot</label>
+
+                <label class="image-upload" for="bugImage">
+                    <h3>Upload Screenshot</h3>
+                    <p>Click here to choose an image from your device</p>
+                    <input type="file" id="bugImage" accept="image/*" onchange="previewImage(event)">
+                </label>
+
+                <div class="preview-box" id="previewBox">
+                    <img id="previewImg" src="">
+                    <button type="button" class="remove-img" onclick="removeImage()">
+                        Remove Image
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Submit Bug Report
+            </button>
+
+            <div class="success" id="successMsg">
+                Bug report saved successfully!
+            </div>
+
+        </form>
+
+    </div>
+
+    <div class="bug-list">
+
+        <h2>Saved Bug Reports</h2>
+
+        <div id="bugReports"></div>
+
+    </div>
+
+</div>
+
+<script>
+let selectedImage = "";
+
+function applyTheme(){
+    let theme = localStorage.getItem("audiophile_theme") || "white";
+
+    document.body.classList.remove("theme-white","theme-musicred");
+    document.body.classList.add("theme-" + theme);
+}
+
+function loadUser(){
+    let name = localStorage.getItem("audiophile_currentUser") || "Liyo Clevert";
+    let email = localStorage.getItem("audiophile_userEmail") || "norbertkingstly@gmail.com";
+
+    document.getElementById("name").value = name;
+    document.getElementById("email").value = email;
+}
+
+function previewImage(event){
+    let file = event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    let reader = new FileReader();
+
+    reader.onload = function(){
+        selectedImage = reader.result;
+
+        document.getElementById("previewImg").src = selectedImage;
+        document.getElementById("previewBox").style.display = "block";
+    };
+
+    reader.readAsDataURL(file);
+}
+
+function removeImage(){
+    selectedImage = "";
+    document.getElementById("bugImage").value = "";
+    document.getElementById("previewImg").src = "";
+    document.getElementById("previewBox").style.display = "none";
+}
+
+function submitBug(event){
+    event.preventDefault();
+
+    let bug = {
+        name:document.getElementById("name").value.trim(),
+        email:document.getElementById("email").value.trim(),
+        bugType:document.getElementById("bugType").value,
+        pageName:document.getElementById("pageName").value,
+        bugTitle:document.getElementById("bugTitle").value.trim(),
+        bugDescription:document.getElementById("bugDescription").value.trim(),
+        image:selectedImage,
+        date:new Date().toLocaleString()
+    };
+
+    let reports = JSON.parse(localStorage.getItem("audiophile_bug_reports")) || [];
+
+    reports.unshift(bug);
+
+    localStorage.setItem("audiophile_bug_reports", JSON.stringify(reports));
+
+    document.getElementById("successMsg").style.display = "block";
+
+    document.getElementById("bugType").value = "";
+    document.getElementById("pageName").value = "";
+    document.getElementById("bugTitle").value = "";
+    document.getElementById("bugDescription").value = "";
+
+    removeImage();
+
+    renderReports();
+
+    setTimeout(function(){
+        document.getElementById("successMsg").style.display = "none";
+    }, 1800);
+}
+
+function renderReports(){
+    let reports = JSON.parse(localStorage.getItem("audiophile_bug_reports")) || [];
+    let box = document.getElementById("bugReports");
+
+    if(reports.length === 0){
+        box.innerHTML = `<p class="empty">No bug reports yet.</p>`;
+        return;
+    }
+
+    box.innerHTML = reports.map(function(report){
+        return `
+            <div class="bug-item">
+                <h3>${report.bugTitle}</h3>
+                <p><b>Type:</b> ${report.bugType}</p>
+                <p><b>Page:</b> ${report.pageName}</p>
+                <p><b>Description:</b> ${report.bugDescription}</p>
+                <p><b>Reported:</b> ${report.date}</p>
+                ${
+                    report.image
+                    ? `<img src="${report.image}" class="bug-img">`
+                    : `<p><b>Screenshot:</b> Not added</p>`
+                }
+            </div>
+        `;
+    }).join("");
+}
+
+applyTheme();
+loadUser();
+renderReports();
+</script>
+
+</body>
+</html>

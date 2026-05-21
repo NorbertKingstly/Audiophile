@@ -1,0 +1,264 @@
+<!-- privacy.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Audiophile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
+
+:root{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --text:#111827;
+    --muted:#64748b;
+
+    --accent1:#e60023;
+    --accent2:#ff2d55;
+    --accent3:#ff7b92;
+
+    --border:rgba(0,0,0,0.08);
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    padding:30px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:900;
+    color:var(--text);
+    text-decoration:none;
+}
+
+.logo span{
+    background:linear-gradient(
+    90deg,
+    var(--accent1),
+    var(--accent2),
+    var(--accent3)
+    );
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+
+    background:linear-gradient(
+    90deg,
+    var(--accent1),
+    var(--accent2)
+    );
+
+    padding:12px 22px;
+
+    border-radius:30px;
+
+    font-weight:800;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+.card{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:30px;
+
+    padding:34px;
+}
+
+.card h1{
+    font-size:42px;
+    margin-bottom:14px;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.8;
+    margin-bottom:18px;
+}
+
+.section{
+    margin-top:28px;
+}
+
+.section h2{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.music-box{
+    margin-top:24px;
+
+    padding:22px;
+
+    border-radius:24px;
+
+    background:linear-gradient(
+    135deg,
+    color-mix(in srgb,var(--accent1) 12%,white),
+    color-mix(in srgb,var(--accent2) 10%,white)
+    );
+}
+
+.music-box h3{
+    margin-bottom:8px;
+}
+
+.music-box p{
+    margin:0;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+
+    <a href="home.html" class="logo">
+        Audio<span>phile</span>
+    </a>
+
+    <a href="settings.html" class="back-btn">
+        ← Back
+    </a>
+
+</div>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>
+            Privacy Policy
+        </h1>
+
+        <p>
+            Audiophile respects your privacy and protects your personal music experience.
+            We only store the details required for login, playback preferences and personalization.
+        </p>
+
+        <div class="section">
+
+            <h2>
+                Music Preferences
+            </h2>
+
+            <p>
+                Your favorite songs, audio quality settings, playlists and recently played tracks
+                are securely stored locally for a smoother listening experience.
+            </p>
+
+        </div>
+
+        <div class="section">
+
+            <h2>
+                Account Information
+            </h2>
+
+            <p>
+                Your profile name and email are used only for account access and personalization.
+                Audiophile never sells your data to third-party advertisers.
+            </p>
+
+        </div>
+
+        <div class="section">
+
+            <h2>
+                Playback Security
+            </h2>
+
+            <p>
+                Streaming activity, player settings and music recommendations are protected
+                to ensure a secure premium listening environment.
+            </p>
+
+        </div>
+
+        <div class="music-box">
+
+            <h3>
+                🎵 Premium Listening Experience
+            </h3>
+
+            <p>
+                Audiophile is designed to deliver smooth, modern and secure music streaming
+                inspired by premium music platforms.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function applyTheme(){
+
+    let theme =
+    localStorage.getItem(
+    "audiophile_theme"
+    ) || "white";
+
+    if(theme === "musicred"){
+
+        document.documentElement.style.setProperty(
+        "--accent1",
+        "#e60023"
+        );
+
+        document.documentElement.style.setProperty(
+        "--accent2",
+        "#ff2d55"
+        );
+
+        document.documentElement.style.setProperty(
+        "--accent3",
+        "#ff7b92"
+        );
+
+    }
+
+}
+
+applyTheme();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!-- Forgot Password -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Audiophile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
+
+:root{
+    --bg:#050505;
+    --card:#111111;
+    --card2:#181818;
+    --text:#ffffff;
+    --muted:#9ca3af;
+    --cyan:#22d3ee;
+    --purple:#8b5cf6;
+    --border:#262626;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+    radial-gradient(circle at top left, rgba(34,211,238,0.18), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(139,92,246,0.18), transparent 35%),
+    var(--bg);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    overflow:hidden;
+    color:white;
+}
+
+.bg-blur1{
+    position:absolute;
+    width:320px;
+    height:320px;
+    background:#22d3ee;
+    filter:blur(140px);
+    opacity:0.12;
+    top:-80px;
+    left:-80px;
+}
+
+.bg-blur2{
+    position:absolute;
+    width:320px;
+    height:320px;
+    background:#8b5cf6;
+    filter:blur(140px);
+    opacity:0.12;
+    bottom:-80px;
+    right:-80px;
+}
+
+.forgot-box{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    max-width:430px;
+
+    background:rgba(17,17,17,0.88);
+
+    border:1px solid var(--border);
+
+    border-radius:30px;
+
+    padding:40px;
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:0 0 40px rgba(34,211,238,0.12);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.logo h1{
+    font-size:42px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.logo span{
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.logo p{
+    margin-top:10px;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.6;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+    color:#d4d4d8;
+}
+
+.form-group input{
+    width:100%;
+    padding:15px 16px;
+    border-radius:16px;
+    border:1px solid var(--border);
+    background:var(--card2);
+    color:white;
+    font-size:15px;
+    outline:none;
+    transition:0.3s;
+}
+
+.form-group input:focus{
+    border-color:var(--cyan);
+    box-shadow:0 0 0 3px rgba(34,211,238,0.12);
+}
+
+.reset-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.reset-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(34,211,238,0.25);
+}
+
+.bottom{
+    margin-top:24px;
+    text-align:center;
+    color:var(--muted);
+    font-size:15px;
+}
+
+.bottom a{
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+}
+
+.bottom a:hover{
+    text-decoration:underline;
+}
+
+.message{
+    margin-top:18px;
+    text-align:center;
+    display:none;
+    font-size:14px;
+    line-height:1.5;
+}
+
+@media(max-width:480px){
+
+    .forgot-box{
+        padding:30px 22px;
+    }
+
+    .logo h1{
+        font-size:34px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg-blur1"></div>
+<div class="bg-blur2"></div>
+
+<div class="forgot-box">
+
+    <div class="logo">
+
+        <h1>Audio<span>phile</span></h1>
+
+        <p>
+            Enter your registered email address to reset your password
+        </p>
+
+    </div>
+
+    <form onsubmit="resetPassword(event)">
+
+        <div class="form-group">
+
+            <label>Email Address</label>
+
+            <input 
+                type="email"
+                id="email"
+                placeholder="Enter your registered email"
+                required
+            >
+
+        </div>
+
+        <button type="submit" class="reset-btn">
+            Send Reset Link
+        </button>
+
+        <p class="message" id="message"></p>
+
+    </form>
+
+    <div class="bottom">
+
+        Back to
+
+        <a href="index.html">
+            Login
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+function resetPassword(event){
+
+    event.preventDefault();
+
+    let email = document.getElementById("email").value.trim();
+
+    let message = document.getElementById("message");
+
+    let users = JSON.parse(
+        localStorage.getItem("audiophile_users")
+    ) || [];
+
+    let existingUser = users.find(user =>
+
+        user.email.toLowerCase() === email.toLowerCase()
+
+    );
+
+    if(existingUser){
+
+        message.style.display = "block";
+
+        message.style.color = "#22d3ee";
+
+        message.innerText =
+        "Password reset link sent successfully!";
+
+    }
+
+    else{
+
+        message.style.display = "block";
+
+        message.style.color = "#ff4d4d";
+
+        message.innerText =
+        "No account found with this email address!";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

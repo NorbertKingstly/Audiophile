@@ -1,0 +1,508 @@
+<!-- settings.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audiophile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
+
+:root{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --card2:#eef0f4;
+    --text:#111827;
+    --muted:#64748b;
+    --accent1:#111827;
+    --accent2:#6366f1;
+    --accent3:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
+
+body.theme-white{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --card2:#eef0f4;
+    --text:#111827;
+    --muted:#64748b;
+    --accent1:#111827;
+    --accent2:#6366f1;
+    --accent3:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
+
+body.theme-musicred{
+    --bg:#ffffff;
+    --card:#f7f7f8;
+    --card2:#eeeeef;
+    --text:#1d1d1f;
+    --muted:#6e6e73;
+    --accent1:#e60023;
+    --accent2:#ff2d55;
+    --accent3:#ff7b92;
+    --border:rgba(0,0,0,0.08);
+}
+
+body{
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    padding:28px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:28px;
+}
+
+.logo{
+    font-size:31px;
+    font-weight:900;
+    text-decoration:none;
+    color:var(--text);
+}
+
+.logo span{
+    background:linear-gradient(90deg,var(--accent1),var(--accent2),var(--accent3));
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:var(--text);
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:11px 20px;
+    border-radius:28px;
+    font-weight:700;
+    font-size:14px;
+}
+
+.settings-box{
+    width:100%;
+    max-width:1050px;
+    margin:auto;
+}
+
+.title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.title h1{
+    font-size:36px;
+}
+
+.title span{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.profile-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:24px;
+    display:flex;
+    gap:18px;
+    margin-bottom:24px;
+    align-items:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.profile-card:hover{
+    transform:translateY(-3px);
+    border-color:var(--accent1);
+}
+
+.profile-circle{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--accent1),var(--accent2));
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:25px;
+    font-weight:900;
+    color:white;
+    flex-shrink:0;
+    overflow:hidden;
+}
+
+.profile-circle img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+.profile-info{
+    width:100%;
+}
+
+.profile-info h2{
+    font-size:24px;
+    margin-bottom:5px;
+}
+
+.profile-info p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.profile-arrow{
+    font-size:30px;
+    color:var(--muted);
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:28px 0 16px;
+}
+
+.section-title h2{
+    font-size:28px;
+}
+
+.section-title span{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.setting-row{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:21px;
+    margin-bottom:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:18px;
+}
+
+.setting-text h3{
+    font-size:20px;
+    margin-bottom:4px;
+}
+
+.setting-text p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.option-group{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.option-btn{
+    border:1px solid var(--border);
+    background:var(--card2);
+    color:var(--text);
+    padding:11px 20px;
+    border-radius:28px;
+    font-weight:800;
+    cursor:pointer;
+    font-size:14px;
+    text-decoration:none;
+}
+
+.option-btn.active{
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:white;
+}
+
+.logout-box{
+    margin-top:34px;
+    text-align:center;
+}
+
+.logout-btn{
+    border:none;
+    padding:15px 48px;
+    border-radius:38px;
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:white;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+@media(max-width:800px){
+    body{padding:18px;}
+
+    .title,
+    .setting-row{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .option-group{
+        justify-content:flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <a href="home.html" class="logo">
+        Audio<span>phile</span>
+    </a>
+
+    <a href="home.html" class="back-btn">
+        ← Back Home
+    </a>
+</div>
+
+<div class="settings-box">
+
+    <div class="title">
+        <h1>Settings</h1>
+        <span>Account & Music Preferences</span>
+    </div>
+
+    <div class="profile-card" onclick="window.location.href='profile.html'">
+        <div class="profile-circle">
+            <span id="profileInitial">L</span>
+            <img id="settingsProfileImage" src="">
+        </div>
+
+        <div class="profile-info">
+            <h2 id="profileName">Liyo clevert</h2>
+            <p>View and edit profile details</p>
+        </div>
+
+        <div class="profile-arrow">›</div>
+    </div>
+
+    <div class="section-title">
+        <h2>Music Settings</h2>
+        <span>Audiophile Player</span>
+    </div>
+
+    <div class="setting-row">
+        <div class="setting-text">
+            <h3>Theme Colour</h3>
+            <p id="themeText">Current theme: White Combo</p>
+        </div>
+
+        <div class="option-group">
+            <button class="option-btn" onclick="setTheme('white')" id="whiteBtn">White Combo</button>
+            <button class="option-btn" onclick="setTheme('musicred')" id="musicredBtn">Music Red</button>
+        </div>
+    </div>
+
+    <div class="setting-row">
+        <div class="setting-text">
+            <h3>Audio Quality</h3>
+            <p id="qualityText">Current quality: High</p>
+        </div>
+
+        <div class="option-group">
+            <button class="option-btn" onclick="setQuality('Low')" id="lowBtn">Low</button>
+            <button class="option-btn" onclick="setQuality('Medium')" id="mediumBtn">Medium</button>
+            <button class="option-btn" onclick="setQuality('High')" id="highBtn">High</button>
+        </div>
+    </div>
+
+    <div class="setting-row">
+        <div class="setting-text">
+            <h3>Music Player</h3>
+            <p>Background playback enabled. No player bar on this page.</p>
+        </div>
+
+        <button class="option-btn active">Enabled</button>
+    </div>
+
+    <div class="section-title">
+        <h2>Support & Legal</h2>
+        <span>Audiophile</span>
+    </div>
+
+    <div class="setting-row">
+        <div class="setting-text">
+            <h3>Privacy Policy</h3>
+            <p>Read how Audiophile protects your data.</p>
+        </div>
+        <a href="privacy.html" class="option-btn">Open</a>
+    </div>
+
+    <div class="setting-row">
+        <div class="setting-text">
+            <h3>Terms & Conditions</h3>
+            <p>Read platform usage rules and conditions.</p>
+        </div>
+        <a href="terms.html" class="option-btn">Open</a>
+    </div>
+
+    <div class="setting-row">
+        <div class="setting-text">
+            <h3>Report Bug</h3>
+            <p>Report playback, theme or account issues.</p>
+        </div>
+        <a href="report-bug.html" class="option-btn">Open</a>
+    </div>
+
+    <div class="logout-box">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+</div>
+
+<audio id="backgroundAudio"></audio>
+
+<script>
+let bgAudio = document.getElementById("backgroundAudio");
+
+function loadProfile(){
+    let currentUser =
+    localStorage.getItem("audiophile_currentUser") || "Liyo clevert";
+
+    let profileImage =
+    localStorage.getItem("audiophile_profileImage") || "";
+
+    document.getElementById("profileName").innerText = currentUser;
+    document.getElementById("profileInitial").innerText =
+    currentUser.charAt(0).toUpperCase();
+
+    if(profileImage !== ""){
+        document.getElementById("settingsProfileImage").src = profileImage;
+        document.getElementById("settingsProfileImage").style.display = "block";
+        document.getElementById("profileInitial").style.display = "none";
+    }
+    else{
+        document.getElementById("settingsProfileImage").src = "";
+        document.getElementById("settingsProfileImage").style.display = "none";
+        document.getElementById("profileInitial").style.display = "block";
+    }
+}
+
+function setTheme(theme){
+    localStorage.setItem("audiophile_theme", theme);
+    applyTheme();
+}
+
+function applyTheme(){
+    let theme = localStorage.getItem("audiophile_theme") || "white";
+
+    document.body.classList.remove("theme-white","theme-musicred");
+    document.body.classList.add("theme-" + theme);
+
+    ["white","musicred"].forEach(function(item){
+        document.getElementById(item + "Btn").classList.remove("active");
+    });
+
+    document.getElementById(theme + "Btn").classList.add("active");
+
+    let themeName = "White Combo";
+
+    if(theme === "musicred"){
+        themeName = "Music Red";
+    }
+
+    document.getElementById("themeText").innerText =
+    "Current theme: " + themeName;
+}
+
+function setQuality(quality){
+    localStorage.setItem("audiophile_quality", quality);
+    applyQuality();
+}
+
+function applyQuality(){
+    let quality = localStorage.getItem("audiophile_quality") || "High";
+
+    document.getElementById("qualityText").innerText =
+    "Current quality: " + quality;
+
+    document.getElementById("lowBtn").classList.remove("active");
+    document.getElementById("mediumBtn").classList.remove("active");
+    document.getElementById("highBtn").classList.remove("active");
+
+    if(quality === "Low"){
+        document.getElementById("lowBtn").classList.add("active");
+    }
+    else if(quality === "Medium"){
+        document.getElementById("mediumBtn").classList.add("active");
+    }
+    else{
+        document.getElementById("highBtn").classList.add("active");
+    }
+}
+
+function startBackgroundMusic(){
+    let savedSrc = localStorage.getItem("globalAudioSrc");
+    let savedTime = parseFloat(localStorage.getItem("globalAudioTime")) || 0;
+    let savedPlaying = localStorage.getItem("globalIsPlaying");
+    let savedVolume = localStorage.getItem("globalVolume") || 0.8;
+
+    if(!savedSrc){
+        return;
+    }
+
+    bgAudio.src = savedSrc;
+    bgAudio.volume = savedVolume;
+
+    bgAudio.addEventListener("loadedmetadata",function(){
+        if(savedTime && savedTime < bgAudio.duration){
+            bgAudio.currentTime = savedTime;
+        }
+
+        if(savedPlaying === "true"){
+            bgAudio.play().catch(function(){
+                console.log("Autoplay blocked. User interaction needed.");
+            });
+        }
+    });
+}
+
+bgAudio.addEventListener("timeupdate",function(){
+    localStorage.setItem("globalAudioTime",bgAudio.currentTime || 0);
+});
+
+bgAudio.addEventListener("play",function(){
+    localStorage.setItem("globalIsPlaying","true");
+});
+
+bgAudio.addEventListener("pause",function(){
+    localStorage.setItem("globalIsPlaying","false");
+});
+
+window.addEventListener("beforeunload",function(){
+    localStorage.setItem("globalAudioSrc",bgAudio.src || localStorage.getItem("globalAudioSrc") || "");
+    localStorage.setItem("globalAudioTime",bgAudio.currentTime || localStorage.getItem("globalAudioTime") || 0);
+});
+
+function logout(){
+    localStorage.removeItem("audiophile_loggedIn");
+    window.location.href = "index.html";
+}
+
+loadProfile();
+applyTheme();
+applyQuality();
+startBackgroundMusic();
+</script>
+
+</body>
+</html>

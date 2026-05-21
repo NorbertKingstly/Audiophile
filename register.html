@@ -1,0 +1,440 @@
+<!-- Create Account -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Audiophile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
+
+:root{
+    --bg:#050505;
+    --card:#111111;
+    --card2:#181818;
+    --text:#ffffff;
+    --muted:#9ca3af;
+    --cyan:#22d3ee;
+    --purple:#8b5cf6;
+    --border:#262626;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+    radial-gradient(circle at top left, rgba(34,211,238,0.18), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(139,92,246,0.18), transparent 35%),
+    var(--bg);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    overflow-y:auto;
+
+    color:white;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#0f0f0f;
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(var(--cyan),var(--purple));
+    border-radius:20px;
+}
+
+.bg-blur1{
+    position:fixed;
+    width:320px;
+    height:320px;
+    background:#22d3ee;
+    filter:blur(140px);
+    opacity:0.12;
+    top:-80px;
+    left:-80px;
+    z-index:0;
+}
+
+.bg-blur2{
+    position:fixed;
+    width:320px;
+    height:320px;
+    background:#8b5cf6;
+    filter:blur(140px);
+    opacity:0.12;
+    bottom:-80px;
+    right:-80px;
+    z-index:0;
+}
+
+.register-box{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    max-width:460px;
+
+    background:rgba(17,17,17,0.88);
+
+    border:1px solid var(--border);
+
+    border-radius:30px;
+
+    padding:40px;
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:0 0 40px rgba(34,211,238,0.12);
+
+    margin:40px 0;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.logo h1{
+    font-size:42px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.logo span{
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.logo p{
+    margin-top:10px;
+    color:var(--muted);
+    font-size:15px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+    color:#d4d4d8;
+}
+
+.form-group input{
+    width:100%;
+    padding:15px 16px;
+    border-radius:16px;
+    border:1px solid var(--border);
+    background:var(--card2);
+    color:white;
+    font-size:15px;
+    outline:none;
+    transition:0.3s;
+}
+
+/* Password Eye White */
+
+input[type="password"]{
+    color:white;
+}
+
+input::-ms-reveal,
+input::-ms-clear{
+    filter:invert(1);
+}
+
+.form-group input:focus{
+    border-color:var(--cyan);
+    box-shadow:0 0 0 3px rgba(34,211,238,0.12);
+}
+
+.note{
+    margin-top:8px;
+    font-size:12px;
+    color:var(--muted);
+}
+
+.create-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+    margin-top:8px;
+}
+
+.create-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(34,211,238,0.25);
+}
+
+.bottom{
+    margin-top:24px;
+    text-align:center;
+    color:var(--muted);
+    font-size:15px;
+}
+
+.bottom a{
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+}
+
+.bottom a:hover{
+    text-decoration:underline;
+}
+
+.message{
+    margin-top:18px;
+    text-align:center;
+    display:none;
+    font-size:14px;
+}
+
+@media(max-width:480px){
+
+    body{
+        padding:16px;
+    }
+
+    .register-box{
+        padding:30px 22px;
+    }
+
+    .logo h1{
+        font-size:34px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg-blur1"></div>
+<div class="bg-blur2"></div>
+
+<div class="register-box">
+
+    <div class="logo">
+
+        <h1>Audio<span>phile</span></h1>
+
+        <p>Create your premium music account</p>
+
+    </div>
+
+    <form onsubmit="createAccount(event)">
+
+        <div class="form-group">
+
+            <label>Full Name</label>
+
+            <input 
+                type="text"
+                id="fullName"
+                placeholder="Enter your full name"
+                required
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Username</label>
+
+            <input 
+                type="text"
+                id="username"
+                placeholder="Choose unique username"
+                required
+            >
+
+            <p class="note">
+                This username cannot be used by anyone else
+            </p>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Email Address</label>
+
+            <input 
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Password</label>
+
+            <input 
+                type="password"
+                id="password"
+                placeholder="Create password"
+                required
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Confirm Password</label>
+
+            <input 
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm password"
+                required
+            >
+
+        </div>
+
+        <button type="submit" class="create-btn">
+            Create Account
+        </button>
+
+        <p class="message" id="message"></p>
+
+    </form>
+
+    <div class="bottom">
+
+        Already have an account?
+
+        <a href="index.html">
+            Login
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+function createAccount(event){
+
+    event.preventDefault();
+
+    let fullName = document.getElementById("fullName").value.trim();
+
+    let username = document.getElementById("username").value.trim();
+
+    let email = document.getElementById("email").value.trim();
+
+    let password = document.getElementById("password").value.trim();
+
+    let confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+    let message = document.getElementById("message");
+
+    let users = JSON.parse(
+        localStorage.getItem("audiophile_users")
+    ) || [];
+
+    if(password !== confirmPassword){
+
+        message.style.display = "block";
+
+        message.style.color = "#ff4d4d";
+
+        message.innerText = "Passwords do not match!";
+
+        return;
+    }
+
+    let existingUser = users.find(user =>
+
+        user.email.toLowerCase() === email.toLowerCase() ||
+
+        user.username.toLowerCase() === username.toLowerCase()
+
+    );
+
+    if(existingUser){
+
+        message.style.display = "block";
+
+        message.style.color = "#ff4d4d";
+
+        message.innerText = "Username or Email already taken!";
+
+        return;
+    }
+
+    let newUser = {
+
+        fullName:fullName,
+        username:username,
+        email:email,
+        password:password
+
+    };
+
+    users.push(newUser);
+
+    localStorage.setItem(
+
+        "audiophile_users",
+
+        JSON.stringify(users)
+
+    );
+
+    message.style.display = "block";
+
+    message.style.color = "#22d3ee";
+
+    message.innerText = "Account created successfully...";
+
+    setTimeout(()=>{
+
+        window.location.href = "index.html";
+
+    },1500);
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1249 @@
+<!-- Home -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Audiophile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
+
+:root{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --card2:#eef0f4;
+    --text:#111827;
+    --muted:#64748b;
+    --cyan:#111827;
+    --purple:#6366f1;
+    --pink:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
+
+body.theme-white{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --card2:#eef0f4;
+    --text:#111827;
+    --muted:#64748b;
+    --cyan:#111827;
+    --purple:#6366f1;
+    --pink:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
+
+body.theme-musicred{
+    --bg:#ffffff;
+    --card:#f7f7f8;
+    --card2:#eeeeef;
+    --text:#1d1d1f;
+    --muted:#6e6e73;
+    --cyan:#e60023;
+    --purple:#ff2d55;
+    --pink:#ff7b92;
+    --border:rgba(0,0,0,0.08);
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    overflow:hidden;
+}
+
+.app{
+    display:grid;
+    grid-template-columns:250px 1fr;
+    height:100vh;
+}
+
+.sidebar{
+    background:var(--card);
+    border-right:1px solid var(--border);
+    padding:28px 20px;
+    overflow-y:auto;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:900;
+    margin-bottom:34px;
+    cursor:pointer;
+    color:var(--text);
+}
+
+.logo span{
+    background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.menu a{
+    color:var(--muted);
+    text-decoration:none;
+    padding:15px 18px;
+    border-radius:18px;
+    font-size:16px;
+    font-weight:700;
+    transition:0.3s;
+}
+
+.menu a.active,
+.menu a:hover{
+    background:linear-gradient(90deg,
+    color-mix(in srgb,var(--cyan) 16%,transparent),
+    color-mix(in srgb,var(--purple) 16%,transparent));
+    color:var(--text);
+}
+
+.main{
+    height:100vh;
+    overflow-y:auto;
+    padding:30px 34px 150px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:18px;
+    margin-bottom:28px;
+}
+
+.search-box{
+    width:70%;
+}
+
+.search-box input{
+    width:100%;
+    padding:17px 24px;
+    border-radius:40px;
+    border:1px solid var(--border);
+    outline:none;
+    background:var(--card);
+    color:var(--text);
+    font-size:15px;
+}
+
+.profile{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:20px;
+    font-weight:900;
+    cursor:pointer;
+    color:white;
+    overflow:hidden;
+}
+
+.profile img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+/* CAROUSEL */
+
+.carousel{
+    position:relative;
+    width:100%;
+    height:420px;
+    border-radius:34px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    margin-bottom:34px;
+    background:#000;
+}
+
+.slide{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:0.6s;
+    padding:0;
+}
+
+.slide.active{
+    opacity:1;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+    border-radius:0;
+    background:#000;
+}
+
+.carousel-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:44px;
+    height:44px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,0.75);
+    color:var(--text);
+    font-size:22px;
+    cursor:pointer;
+    z-index:5;
+    backdrop-filter:blur(10px);
+}
+
+.carousel-btn.prev{
+    left:18px;
+}
+
+.carousel-btn.next{
+    right:18px;
+}
+
+.carousel-btn:hover{
+    background:white;
+}
+
+.dots{
+    position:absolute;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:8px;
+    z-index:5;
+}
+
+.dots span{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.5);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.dots span.active{
+    width:30px;
+    border-radius:20px;
+    background:white;
+}
+
+.section{
+    margin-bottom:40px;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.section-title h2{
+    font-size:34px;
+}
+
+.section-title span{
+    color:var(--muted);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+    gap:18px;
+}
+
+.card{
+    padding:16px;
+    border-radius:28px;
+    background:var(--card);
+    border:1px solid var(--border);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.cover{
+    height:180px;
+    border-radius:22px;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:52px;
+    font-weight:900;
+    margin-bottom:14px;
+    color:white;
+    overflow:hidden;
+    background:var(--card2);
+}
+
+.cover img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+    background:var(--card2);
+    display:block;
+}
+
+.card h3{
+    font-size:18px;
+    margin-bottom:4px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.card p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* PLAYER */
+
+.player{
+    position:fixed;
+    left:250px;
+    right:0;
+    bottom:0;
+    height:118px;
+    background:var(--card);
+    border-top:1px solid var(--border);
+    display:grid;
+    grid-template-columns:1fr 1.5fr 1fr;
+    align-items:center;
+    gap:18px;
+    padding:16px 34px;
+    z-index:99;
+}
+
+.player-info{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    cursor:pointer;
+}
+
+.player-cover{
+    width:64px;
+    height:64px;
+    border-radius:18px;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    font-weight:900;
+    color:white;
+    overflow:hidden;
+    background:var(--card2);
+}
+
+.player-cover img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+    background:var(--card2);
+    display:block;
+}
+
+.player-info p{
+    color:var(--muted);
+}
+
+.controls{
+    text-align:center;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+    margin-bottom:8px;
+}
+
+.buttons button{
+    width:46px;
+    height:46px;
+    border:none;
+    border-radius:50%;
+    background:var(--card2);
+    color:var(--text);
+    cursor:pointer;
+    font-size:16px;
+}
+
+.buttons .play{
+    width:58px;
+    height:58px;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    color:white;
+}
+
+.progress,
+.card-progress{
+    height:6px;
+    background:var(--card2);
+    border-radius:20px;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.progress-fill,
+.card-progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
+}
+
+.time,
+.card-time{
+    display:flex;
+    justify-content:space-between;
+    color:var(--muted);
+    font-size:13px;
+    margin-top:6px;
+}
+
+.volume{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:14px;
+}
+
+.volume input{
+    accent-color:var(--cyan);
+}
+
+/* MUSIC POPUP */
+
+.music-card-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(14px);
+    z-index:9999;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.music-card-overlay.show{
+    display:flex;
+}
+
+.music-card{
+    width:100%;
+    max-width:430px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:34px;
+    padding:24px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.25);
+}
+
+.big-cover{
+    width:100%;
+    height:310px;
+    border-radius:28px;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-size:90px;
+    font-weight:900;
+    overflow:hidden;
+    margin-bottom:22px;
+}
+
+.big-cover img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+    background:var(--card2);
+    display:block;
+}
+
+.music-card h2{
+    font-size:28px;
+    margin-bottom:6px;
+    text-align:center;
+}
+
+.music-card p{
+    color:var(--muted);
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.card-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+    margin:22px 0;
+}
+
+.card-buttons button{
+    width:54px;
+    height:54px;
+    border:none;
+    border-radius:50%;
+    background:var(--card2);
+    color:var(--text);
+    font-size:18px;
+    cursor:pointer;
+}
+
+.card-buttons .big-play{
+    width:70px;
+    height:70px;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    color:white;
+    font-size:24px;
+}
+
+.card-volume{
+    margin-top:20px;
+}
+
+.card-volume span{
+    color:var(--muted);
+    font-weight:800;
+    font-size:14px;
+}
+
+.card-volume input{
+    width:100%;
+    margin-top:10px;
+}
+
+@media(max-width:900px){
+    .app{
+        grid-template-columns:1fr;
+    }
+
+    .sidebar{
+        display:none;
+    }
+
+    .search-box{
+        width:100%;
+    }
+
+    .carousel{
+        height:300px;
+    }
+
+    .slide{
+        padding:12px;
+    }
+
+    .player{
+        left:0;
+        grid-template-columns:1fr;
+        height:auto;
+    }
+
+    .volume{
+        display:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="logo" onclick="window.location.href='home.html'">
+            Audio<span>phile</span>
+        </div>
+
+        <nav class="menu">
+            <a href="home.html" class="active">Home</a>
+            <a href="songs.html">Songs</a>
+            <a href="albums.html">Albums</a>
+            <a href="artists.html">Artists</a>
+            <a href="favorites.html">Favorites</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+
+    </aside>
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div class="search-box">
+                <input id="searchInput" type="text" placeholder="Search songs, albums, artists...">
+            </div>
+
+            <div class="profile" onclick="window.location.href='settings.html'">
+                <span id="homeProfileInitial">L</span>
+                <img id="homeProfileImage" src="">
+            </div>
+
+        </div>
+
+        <section class="carousel">
+
+            <div class="slide active">
+                <img src="../asset/karuppu.jpg" alt="">
+            </div>
+
+            <div class="slide">
+                <img src="../asset/lik.jpg" alt="">
+            </div>
+
+            <div class="slide">
+                <img src="../asset/jananayagan.jpg" alt="">
+            </div>
+
+            <button class="carousel-btn prev" onclick="prevSlide()">‹</button>
+            <button class="carousel-btn next" onclick="nextSlide()">›</button>
+
+            <div class="dots">
+                <span class="active" onclick="showSlide(0)"></span>
+                <span onclick="showSlide(1)"></span>
+                <span onclick="showSlide(2)"></span>
+            </div>
+
+        </section>
+
+        <section class="section" id="songsSection">
+
+            <div class="section-title">
+                <h2>Trending Songs</h2>
+                <span>10 songs • Tap song to play</span>
+            </div>
+
+            <div class="grid" id="songGrid"></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div class="player">
+
+    <div class="player-info" onclick="openMusicCard()">
+
+        <div class="player-cover" id="playerCover">A</div>
+
+        <div>
+            <h4 id="playerTitle">Select a song</h4>
+            <p id="playerArtist">Audiophile</p>
+        </div>
+
+    </div>
+
+    <div class="controls">
+
+        <div class="buttons">
+            <button onclick="prevSong()">⏮</button>
+            <button class="play" id="playBtn" onclick="togglePlay()">▶</button>
+            <button onclick="nextSong()">⏭</button>
+        </div>
+
+        <div class="progress" onclick="setProgress(event)">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="time">
+            <span id="currentTime">0:00</span>
+            <span id="durationTime">0:00</span>
+        </div>
+
+    </div>
+
+    <div class="volume">
+        <h3>Volume</h3>
+        <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+    </div>
+
+</div>
+
+<div class="music-card-overlay" id="musicCardOverlay">
+
+    <div class="music-card">
+
+        <div class="big-cover" id="bigCover">A</div>
+
+        <h2 id="cardSongTitle">Select a song</h2>
+        <p id="cardSongArtist">Audiophile</p>
+
+        <div class="card-buttons">
+            <button onclick="prevSong()">⏮</button>
+            <button class="big-play" id="cardPlayBtn" onclick="togglePlay()">▶</button>
+            <button onclick="nextSong()">⏭</button>
+        </div>
+
+        <div class="card-progress" onclick="setCardProgress(event)">
+            <div class="card-progress-fill" id="cardProgressFill"></div>
+        </div>
+
+        <div class="card-time">
+            <span id="cardCurrentTime">0:00</span>
+            <span id="cardDurationTime">0:00</span>
+        </div>
+
+        <div class="card-volume">
+            <span>Volume</span>
+            <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+        </div>
+
+    </div>
+
+</div>
+
+<audio id="audio"></audio>
+
+<script src="songs.js"></script>
+
+<script>
+
+let currentSongIndex =
+parseInt(localStorage.getItem("currentSongIndex")) || 0;
+
+let isPlaying = false;
+let currentSlide = 0;
+
+let audio = new Audio();
+
+window.globalAudio = audio;
+
+let savedAudio =
+localStorage.getItem("globalAudioSrc");
+
+if(savedAudio){
+    audio.src = savedAudio;
+}
+
+audio.currentTime =
+parseFloat(localStorage.getItem("globalAudioTime")) || 0;
+
+let savedPlaying =
+localStorage.getItem("globalIsPlaying");
+
+if(savedPlaying === "true"){
+    setTimeout(()=>{
+        audio.play();
+        isPlaying = true;
+        updatePlayerUI(getSongs()[currentSongIndex]);
+    },300);
+}
+
+let songGrid = document.getElementById("songGrid");
+
+function applySavedTheme(){
+
+    let theme =
+    localStorage.getItem("audiophile_theme") || "white";
+
+    document.body.classList.remove(
+    "theme-white",
+    "theme-musicred"
+    );
+
+    document.body.classList.add("theme-" + theme);
+}
+
+function loadHomeProfile(){
+
+    let currentUser =
+    localStorage.getItem("audiophile_currentUser")
+    || "Liyo Clevert";
+
+    let profileImage =
+    localStorage.getItem("audiophile_profileImage")
+    || "";
+
+    document.getElementById(
+    "homeProfileInitial"
+    ).innerText =
+    currentUser.charAt(0).toUpperCase();
+
+    if(profileImage !== ""){
+
+        document.getElementById(
+        "homeProfileImage"
+        ).src = profileImage;
+
+        document.getElementById(
+        "homeProfileImage"
+        ).style.display = "block";
+
+        document.getElementById(
+        "homeProfileInitial"
+        ).style.display = "none";
+    }
+
+    else{
+
+        document.getElementById(
+        "homeProfileImage"
+        ).style.display = "none";
+
+        document.getElementById(
+        "homeProfileInitial"
+        ).style.display = "block";
+    }
+}
+
+function showSlide(index){
+
+    let slides =
+    document.querySelectorAll(".slide");
+
+    let dots =
+    document.querySelectorAll(".dots span");
+
+    if(index >= slides.length){
+        currentSlide = 0;
+    }
+
+    else if(index < 0){
+        currentSlide = slides.length - 1;
+    }
+
+    else{
+        currentSlide = index;
+    }
+
+    slides.forEach(slide=>{
+        slide.classList.remove("active");
+    });
+
+    dots.forEach(dot=>{
+        dot.classList.remove("active");
+    });
+
+    slides[currentSlide].classList.add("active");
+    dots[currentSlide].classList.add("active");
+}
+
+function nextSlide(){
+    showSlide(currentSlide + 1);
+}
+
+function prevSlide(){
+    showSlide(currentSlide - 1);
+}
+
+setInterval(nextSlide,5000);
+
+function getSongs(){
+
+    if(typeof songs !== "undefined"
+    && Array.isArray(songs)
+    && songs.length > 0){
+
+        return songs;
+    }
+
+    return [];
+}
+
+function renderSongs(){
+
+    let allSongs = getSongs();
+
+    songGrid.innerHTML =
+    allSongs.slice(0,10).map((song,index)=>{
+
+        return `
+        <div class="card" onclick="playSong(${index})">
+
+            <div class="cover">
+
+                ${
+                    song.cover
+                    ?
+                    `<img src="${song.cover}">`
+                    :
+                    song.title.charAt(0)
+                }
+
+            </div>
+
+            <h3>${song.title}</h3>
+            <p>${song.artist}</p>
+
+        </div>
+        `;
+
+    }).join("");
+}
+
+function updatePlayerUI(song){
+
+    if(!song) return;
+
+    document.getElementById(
+    "playBtn"
+    ).innerText =
+    isPlaying ? "⏸" : "▶";
+
+    document.getElementById(
+    "cardPlayBtn"
+    ).innerText =
+    isPlaying ? "⏸" : "▶";
+
+    document.getElementById(
+    "playerTitle"
+    ).innerText = song.title;
+
+    document.getElementById(
+    "playerArtist"
+    ).innerText = song.artist;
+
+    document.getElementById(
+    "cardSongTitle"
+    ).innerText = song.title;
+
+    document.getElementById(
+    "cardSongArtist"
+    ).innerText =
+    song.artist + " • " + song.album;
+
+    if(song.cover){
+
+        document.getElementById(
+        "playerCover"
+        ).innerHTML =
+        `<img src="${song.cover}">`;
+
+        document.getElementById(
+        "bigCover"
+        ).innerHTML =
+        `<img src="${song.cover}">`;
+    }
+}
+
+function playSong(index){
+
+    let allSongs = getSongs();
+
+    currentSongIndex = index;
+
+    let song = allSongs[index];
+
+    audio.src = song.audio;
+
+    audio.play();
+
+    isPlaying = true;
+
+    localStorage.setItem(
+    "currentSongIndex",
+    currentSongIndex
+    );
+
+    localStorage.setItem(
+    "globalAudioSrc",
+    song.audio
+    );
+
+    localStorage.setItem(
+    "globalIsPlaying",
+    "true"
+    );
+
+    updatePlayerUI(song);
+}
+
+function togglePlay(){
+
+    if(isPlaying){
+
+        audio.pause();
+
+        isPlaying = false;
+
+        localStorage.setItem(
+        "globalIsPlaying",
+        "false"
+        );
+    }
+
+    else{
+
+        audio.play();
+
+        isPlaying = true;
+
+        localStorage.setItem(
+        "globalIsPlaying",
+        "true"
+        );
+    }
+
+    updatePlayerUI(
+    getSongs()[currentSongIndex]
+    );
+}
+
+function nextSong(){
+
+    let allSongs = getSongs();
+
+    currentSongIndex++;
+
+    if(currentSongIndex >= allSongs.length){
+        currentSongIndex = 0;
+    }
+
+    playSong(currentSongIndex);
+}
+
+function prevSong(){
+
+    let allSongs = getSongs();
+
+    currentSongIndex--;
+
+    if(currentSongIndex < 0){
+        currentSongIndex = allSongs.length - 1;
+    }
+
+    playSong(currentSongIndex);
+}
+
+function changeVolume(value){
+    audio.volume = value;
+}
+
+function formatTime(seconds){
+
+    if(isNaN(seconds)){
+        return "0:00";
+    }
+
+    let min =
+    Math.floor(seconds / 60);
+
+    let sec =
+    Math.floor(seconds % 60);
+
+    if(sec < 10){
+        sec = "0" + sec;
+    }
+
+    return min + ":" + sec;
+}
+
+audio.addEventListener(
+"timeupdate",
+function(){
+
+    localStorage.setItem(
+    "globalAudioTime",
+    audio.currentTime
+    );
+
+    let percent =
+    (audio.currentTime / audio.duration) * 100;
+
+    if(isNaN(percent)){
+        percent = 0;
+    }
+
+    document.getElementById(
+    "progressFill"
+    ).style.width =
+    percent + "%";
+
+    document.getElementById(
+    "cardProgressFill"
+    ).style.width =
+    percent + "%";
+
+    document.getElementById(
+    "currentTime"
+    ).innerText =
+    formatTime(audio.currentTime);
+
+    document.getElementById(
+    "durationTime"
+    ).innerText =
+    formatTime(audio.duration);
+
+    document.getElementById(
+    "cardCurrentTime"
+    ).innerText =
+    formatTime(audio.currentTime);
+
+    document.getElementById(
+    "cardDurationTime"
+    ).innerText =
+    formatTime(audio.duration);
+});
+
+audio.addEventListener(
+"ended",
+function(){
+    nextSong();
+});
+
+function setProgress(event){
+
+    if(!audio.duration) return;
+
+    let width =
+    event.currentTarget.clientWidth;
+
+    let clickX = event.offsetX;
+
+    audio.currentTime =
+    (clickX / width) * audio.duration;
+}
+
+function setCardProgress(event){
+
+    if(!audio.duration) return;
+
+    let width =
+    event.currentTarget.clientWidth;
+
+    let clickX = event.offsetX;
+
+    audio.currentTime =
+    (clickX / width) * audio.duration;
+}
+
+function openMusicCard(){
+
+    if(!audio.src) return;
+
+    document.getElementById(
+    "musicCardOverlay"
+    ).classList.add("show");
+}
+
+function closeMusicCard(){
+
+    document.getElementById(
+    "musicCardOverlay"
+    ).classList.remove("show");
+}
+
+document.getElementById(
+"musicCardOverlay"
+).addEventListener("click",function(e){
+
+    if(e.target.id === "musicCardOverlay"){
+        closeMusicCard();
+    }
+});
+
+document.getElementById(
+"searchInput"
+).addEventListener("input",function(){
+
+    let value =
+    this.value.toLowerCase();
+
+    let allSongs = getSongs();
+
+    let filtered =
+    allSongs.filter(song=>{
+
+        return song.title
+        .toLowerCase()
+        .includes(value)
+
+        ||
+
+        song.artist
+        .toLowerCase()
+        .includes(value)
+
+        ||
+
+        song.album
+        .toLowerCase()
+        .includes(value);
+    });
+
+    songGrid.innerHTML =
+    filtered.map(song=>{
+
+        let realIndex =
+        allSongs.indexOf(song);
+
+        return `
+        <div class="card" onclick="playSong(${realIndex})">
+
+            <div class="cover">
+
+                ${
+                    song.cover
+                    ?
+                    `<img src="${song.cover}">`
+                    :
+                    song.title.charAt(0)
+                }
+
+            </div>
+
+            <h3>${song.title}</h3>
+            <p>${song.artist}</p>
+
+        </div>
+        `;
+    }).join("");
+});
+
+applySavedTheme();
+
+loadHomeProfile();
+
+renderSongs();
+
+changeVolume(0.8);
+
+updatePlayerUI(
+getSongs()[currentSongIndex]
+);
+
+</script>
+
+
+</body>
+</html>
