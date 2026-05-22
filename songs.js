@@ -699,7 +699,7 @@ const songs = [
 {
     movie: "Coolie",
     title: "Coolie Disco",
-    artist: "Anirudh Ravichander",
+    artist: "Anirudh Ravidhander",
     album: "Coolie",
     cover: "../asset/Coolie.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179622/Coolie_Disco_a1dasj.mp3"
@@ -1310,7 +1310,7 @@ const songs = [
 {
     movie: "Karuppu",
     title: "Verappa Extended",
-    artist: "Dhibu Ninan Thomas",
+    artist: "Sai Abhyankkar",
     album: "Karuppu",
     cover: "../asset/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179813/Verappa---Extended-MassTamilan.dev_cvyzyt.mp3"
@@ -1319,7 +1319,7 @@ const songs = [
 {
     movie: "Karuppu",
     title: "Karuppa Kooda Va",
-    artist: "Dhibu Ninan Thomas",
+    artist: "Sai Abhyankkar",
     album: "Karuppu",
     cover: "../asset/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179801/Karuppa-Kooda-Va-MassTamilan.dev_rlzotz.mp3"
@@ -1328,7 +1328,7 @@ const songs = [
 {
     movie: "Karuppu",
     title: "Verappa",
-    artist: "Dhibu Ninan Thomas",
+    artist: "Sai Abhyankkar",
     album: "Karuppu",
     cover: "../asset/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179792/Verappa-MassTamilan.dev_stl7re.mp3"
@@ -1337,7 +1337,7 @@ const songs = [
 {
     movie: "Karuppu",
     title: "Raathu Raasan",
-    artist: "Dhibu Ninan Thomas",
+    artist: "Sai Abhyankkar",
     album: "Karuppu",
     cover: "../asset/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179790/Raathu-Raasan-MassTamilan.dev_rkmlak.mp3"
@@ -1346,7 +1346,7 @@ const songs = [
 {
     movie: "Karuppu",
     title: "Naanga Naalu Peru",
-    artist: "Dhibu Ninan Thomas",
+    artist: "Sai Abhyankkar",
     album: "Karuppu",
     cover: "../asset/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179785/Naanga-Naalu-Peru-MassTamilan.dev_tb3kka.mp3"
@@ -1355,7 +1355,7 @@ const songs = [
 {
     movie: "Karuppu",
     title: "God Mode",
-    artist: "Dhibu Ninan Thomas",
+    artist: "Sai Abhyankkar",
     album: "Karuppu",
     cover: "../asset/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179782/God-Mode-MassTamilan.dev_cqmwab.mp3"
