@@ -1,50 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Audiophile - Artists</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Audiophile - Artists</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Shared Styles */
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Outfit',sans-serif; }
+        :root { --bg:#f5f5f7; --card:#ffffff; --text:#111827; --muted:#64748b; --purple:#6366f1; --border:rgba(0,0,0,0.08); }
+        body { background:var(--bg); color:var(--text); overflow:hidden; height:100vh; height:100dvh; }
 
-<style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Outfit',sans-serif; }
-    :root { --bg:#f5f5f7; --card:#ffffff; --card2:#eef0f4; --text:#111827; --muted:#64748b; --purple:#6366f1; --border:rgba(0,0,0,0.08); }
-    body { background:var(--bg); color:var(--text); overflow:hidden; height:100vh; height:100dvh; }
+        .app { display:grid; grid-template-columns:250px 1fr; height:100vh; height:100dvh; }
+        .sidebar { background:var(--card); border-right:1px solid var(--border); padding:28px 20px; }
+        .logo { font-size:32px; font-weight:900; margin-bottom:34px; color:var(--text); }
+        .menu a { color:var(--muted); text-decoration:none; padding:15px 18px; border-radius:18px; font-weight:700; display:flex; align-items:center; gap:14px; }
+        .menu a.active { background:rgba(99, 102, 241, 0.1); color:var(--purple); }
 
-    .app { display:grid; grid-template-columns:250px 1fr; height:100vh; height:100dvh; }
-    .sidebar { background:var(--card); border-right:1px solid var(--border); padding:28px 20px; }
-    .logo { font-size:32px; font-weight:900; margin-bottom:34px; color:var(--text); }
-    .menu { display:flex; flex-direction:column; gap:14px; }
-    .menu a { color:var(--muted); text-decoration:none; padding:15px 18px; border-radius:18px; font-weight:700; display:flex; align-items:center; gap:14px; }
-    .menu a.active { background:rgba(99, 102, 241, 0.1); color:var(--purple); }
-
-    .main { height:100vh; height:100dvh; overflow-y:auto; padding:30px 34px 170px; }
-    
-    /* PLAYER */
-    .player { position:fixed; left:250px; right:0; bottom:0; height:120px; background:var(--card); border-top:1px solid var(--border); display:grid; grid-template-columns:1fr 1.5fr 1fr; align-items:center; padding:16px 34px; z-index:999; }
-    .buttons { display:flex; justify-content:center; align-items:center; gap:20px; }
-    .buttons button { border:none; background:none; cursor:pointer; font-size:22px; color:var(--text); width:40px; height:40px; }
-    .buttons .play { width:55px; height:55px; background:var(--text); color:white; border-radius:50%; font-size: 20px; }
-
-    /* MOBILE RESPONSIVE FIX */
-    @media(max-width:900px){
-        .app { grid-template-columns:1fr; }
-        .sidebar { display:none; }
-        .main { padding:20px 16px 150px; }
+        .main { height:100vh; height:100dvh; overflow-y:auto; padding:30px 34px 170px; }
         
-        .player { left:0; bottom:64px; height:70px; padding:0 15px; grid-template-columns: 1fr auto; }
-        .buttons button { font-size: 20px !important; }
-        .buttons .play { width:45px !important; height:45px !important; font-size: 18px !important; }
-        
-        .mobile-nav { display:flex; position:fixed; bottom:0; width:100%; height:64px; background:var(--card); border-top:1px solid var(--border); justify-content:space-around; align-items:center; z-index:1000; }
-        .mobile-nav-item { display:flex; flex-direction:column; align-items:center; text-decoration:none; color:var(--muted); font-size:11px; gap:4px; }
-        /* FIXED ICON SIZE */
-        .mobile-nav-item i { font-size: 22px !important; display: block; } 
-        .mobile-nav-item.active { color: var(--purple); }
-    }
-</style>
+        /* Mobile Nav (Common Design) */
+        .mobile-nav {
+            display: none; /* Desktop-la hide pannidu */
+            position: fixed;
+            left: 0; right: 0; bottom: 0;
+            height: 64px;
+            background: var(--card);
+            border-top: 1px solid var(--border);
+            z-index: 1000;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        @media(max-width:900px){
+            .app { grid-template-columns:1fr; }
+            .sidebar { display:none; }
+            .main { padding:20px 16px 150px; }
+            
+            /* Mobile Nav Visible */
+            .mobile-nav { display: flex; }
+            .mobile-nav-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-decoration: none;
+                color: var(--muted);
+                font-size: 10px;
+                font-weight: 600;
+                gap: 4px;
+            }
+            .mobile-nav-icon { font-size: 18px; line-height: 1; }
+            .mobile-nav-item.active { color: var(--purple); }
+        }
+    </style>
 </head>
 <body>
 
@@ -63,26 +73,17 @@
     </main>
 </div>
 
-<div class="player">
-    <div class="player-info"><h4>Select Song</h4></div>
-    <div class="buttons">
-        <button onclick="prevSong()"><i class="fa-solid fa-backward-step"></i></button>
-        <button class="play" onclick="togglePlay()"><i class="fa-solid fa-play"></i></button>
-        <button onclick="nextSong()"><i class="fa-solid fa-forward-step"></i></button>
-    </div>
-</div>
-
 <nav class="mobile-nav">
     <a href="home.html" class="mobile-nav-item">
-        <i class="fa-solid fa-house"></i>
+        <span class="mobile-nav-icon"><i class="fa-solid fa-house"></i></span>
         <span>Home</span>
     </a>
     <a href="songs.html" class="mobile-nav-item">
-        <i class="fa-solid fa-music"></i>
+        <span class="mobile-nav-icon"><i class="fa-solid fa-music"></i></span>
         <span>Songs</span>
     </a>
     <a href="artists.html" class="mobile-nav-item active">
-        <i class="fa-solid fa-user-astronaut"></i>
+        <span class="mobile-nav-icon"><i class="fa-solid fa-user-astronaut"></i></span>
         <span>Artists</span>
     </a>
 </nav>
