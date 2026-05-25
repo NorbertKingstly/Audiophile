@@ -896,7 +896,7 @@ body{
 
 <script>
 let currentSongIndex = parseInt(localStorage.getItem("currentSongIndex")) || 0;
-let isPlaying = localStorage.getItem("globalIsPlaying") === "true";
+let isPlaying = localStorage.getItem("globalIsPlaying") === "true"; // LocalStorage state fixed!
 let currentAlbumSongs = [];
 
 let audio = document.getElementById("audio");
@@ -1187,9 +1187,14 @@ function togglePlay(){
     }else{
         audio.play().then(function(){
             isPlaying = true;
+            savePlayerState(); // State save immediate fix
+            updatePlayerUI(allSongs[currentSongIndex]);
         }).catch(function(){
             isPlaying = false;
+            savePlayerState();
+            updatePlayerUI(allSongs[currentSongIndex]);
         });
+        return;
     }
 
     savePlayerState();
