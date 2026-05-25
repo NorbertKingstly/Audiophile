@@ -67,7 +67,7 @@ const songs = [
     title: "Aasa Kooda",
     artist: "Sai Abhyankkar",
     album: "Aasa Kooda",
-    cover: "/image/aasa kooda.jpg",
+    cover: "/image/Aasa Kooda.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179447/Aasa_Kooda_gny2jv.mp3"
 },
 
