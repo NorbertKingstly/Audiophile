@@ -1,7 +1,3 @@
-<!-- ========================= -->
-<!-- terms.html -->
-<!-- ========================= -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -26,11 +21,31 @@
     --card:#ffffff;
     --text:#111827;
     --muted:#64748b;
+    --accent1:#111827;
+    --accent2:#6366f1;
+    --accent3:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
 
+body.theme-white{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --text:#111827;
+    --muted:#64748b;
+    --accent1:#111827;
+    --accent2:#6366f1;
+    --accent3:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
+
+body.theme-musicred{
+    --bg:#ffffff;
+    --card:#f7f7f8;
+    --text:#1d1d1f;
+    --muted:#6e6e73;
     --accent1:#e60023;
     --accent2:#ff2d55;
     --accent3:#ff7b92;
-
     --border:rgba(0,0,0,0.08);
 }
 
@@ -38,6 +53,7 @@ body{
     background:var(--bg);
     color:var(--text);
     padding:30px;
+    transition: background 0.3s, color 0.3s;
 }
 
 .topbar{
@@ -55,16 +71,9 @@ body{
 }
 
 .logo span{
-    background:linear-gradient(
-    90deg,
-    var(--accent1),
-    var(--accent2),
-    var(--accent3)
-    );
-
+    background:linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
     background-clip:text;
     -webkit-background-clip:text;
-
     color:transparent;
     -webkit-text-fill-color:transparent;
 }
@@ -72,18 +81,16 @@ body{
 .back-btn{
     text-decoration:none;
     color:white;
-
-    background:linear-gradient(
-    90deg,
-    var(--accent1),
-    var(--accent2)
-    );
-
+    background:linear-gradient(90deg, var(--accent1), var(--accent2));
     padding:12px 22px;
-
     border-radius:30px;
-
     font-weight:800;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.back-btn:hover{
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
 .container{
@@ -93,12 +100,10 @@ body{
 
 .card{
     background:var(--card);
-
     border:1px solid var(--border);
-
     border-radius:30px;
-
     padding:34px;
+    transition: background 0.3s, border-color 0.3s;
 }
 
 .card h1{
@@ -123,16 +128,14 @@ body{
 
 .highlight{
     margin-top:24px;
-
     padding:22px;
-
     border-radius:24px;
-
     background:linear-gradient(
     135deg,
-    color-mix(in srgb,var(--accent1) 12%,white),
-    color-mix(in srgb,var(--accent2) 10%,white)
+    color-mix(in srgb, var(--accent1) 12%, var(--card)),
+    color-mix(in srgb, var(--accent2) 10%, var(--card))
     );
+    border: 1px solid var(--border);
 }
 
 .highlight h3{
@@ -143,137 +146,72 @@ body{
     margin:0;
 }
 
+@media(max-width: 600px) {
+    body{
+        padding: 20px 16px;
+    }
+    .card{
+        padding: 24px;
+    }
+    .card h1{
+        font-size: 32px;
+    }
+}
 </style>
 </head>
 
 <body>
 
 <div class="topbar">
-
     <a href="home.html" class="logo">
         Audio<span>phile</span>
     </a>
-
     <a href="settings.html" class="back-btn">
         ← Back
     </a>
-
 </div>
 
 <div class="container">
-
     <div class="card">
-
-        <h1>
-            Terms & Conditions
-        </h1>
-
-        <p>
-            By using Audiophile, you agree to follow the platform rules,
-            streaming guidelines and account usage conditions.
-        </p>
+        <h1>Terms & Conditions</h1>
+        <p>By using Audiophile, you agree to follow the platform rules, streaming guidelines and account usage conditions.</p>
 
         <div class="section">
-
-            <h2>
-                Account Usage
-            </h2>
-
-            <p>
-                Users are responsible for maintaining the security of their accounts,
-                passwords and music activity.
-            </p>
-
+            <h2>Account Usage</h2>
+            <p>Users are responsible for maintaining the security of their accounts, saved local preferences, and music activity states across listening routines.</p>
         </div>
 
         <div class="section">
-
-            <h2>
-                Streaming Policy
-            </h2>
-
-            <p>
-                Audiophile provides music playback for personal entertainment only.
-                Redistribution or unauthorized copying of content is prohibited.
-            </p>
-
+            <h2>Streaming Policy</h2>
+            <p>Audiophile provides music playback for personal entertainment only. Redistribution or unauthorized copying of streamed local content assets is strictly prohibited.</p>
         </div>
 
         <div class="section">
-
-            <h2>
-                Community Guidelines
-            </h2>
-
-            <p>
-                Users must avoid abusive behavior, spam or harmful activity while
-                interacting with playlists, artists or community features.
-            </p>
-
+            <h2>Community Guidelines</h2>
+            <p>Users must avoid abusive behavior, spamming automation, or harmful platform operations while configuring customized media structures or interaction panels.</p>
         </div>
 
         <div class="section">
-
-            <h2>
-                Service Availability
-            </h2>
-
-            <p>
-                Audiophile may occasionally update or maintain servers to improve
-                audio quality and platform performance.
-            </p>
-
+            <h2>Service Availability</h2>
+            <p>Audiophile may occasionally update architecture endpoints or local databases to improve high-fidelity processing and platform execution performance metrics.</p>
         </div>
 
         <div class="highlight">
-
-            <h3>
-                🎧 Enjoy Music Responsibly
-            </h3>
-
-            <p>
-                Audiophile is built to create a smooth and premium listening experience
-                inspired by modern music streaming platforms.
-            </p>
-
+            <h3>🎧 Enjoy Music Responsibly</h3>
+            <p>Audiophile is engineered to create a completely seamless, responsive, and high-fidelity local interface layout inspired by modern media streaming applications.</p>
         </div>
-
     </div>
-
 </div>
 
 <script>
-
 function applyTheme(){
-
-    let theme =
-    localStorage.getItem(
-    "audiophile_theme"
-    ) || "white";
-
-    if(theme === "musicred"){
-
-        document.documentElement.style.setProperty(
-        "--accent1",
-        "#e60023"
-        );
-
-        document.documentElement.style.setProperty(
-        "--accent2",
-        "#ff2d55"
-        );
-
-        document.documentElement.style.setProperty(
-        "--accent3",
-        "#ff7b92"
-        );
-
-    }
-
+    let theme = localStorage.getItem("audiophile_theme") || "white";
+    document.body.classList.remove("theme-white", "theme-musicred");
+    document.body.classList.add("theme-" + theme);
 }
 
+// Execute immediately upon compile parse to block flash of unstyled content color flips
 applyTheme();
-
 </script>
 
 </body>
