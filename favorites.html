@@ -1,4 +1,3 @@
-<!-- Favorites -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -163,7 +162,7 @@ body{
 
 .song-row:hover{
     transform:translateY(-3px);
-    border-color:var(--cyan);
+    border-color:var(--purple);
 }
 
 .song-no{
@@ -180,16 +179,15 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
+    color:var(--muted);
     font-weight:900;
 }
 
 .song-cover img{
     width:100%;
     height:100%;
-    object-fit:contain;
+    object-fit:cover;
     object-position:center;
-    background:var(--card2);
     display:block;
 }
 
@@ -261,7 +259,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
+    color:var(--muted);
     font-weight:900;
     overflow:hidden;
 }
@@ -269,9 +267,8 @@ body{
 .player-cover img{
     width:100%;
     height:100%;
-    object-fit:contain;
+    object-fit:cover;
     object-position:center;
-    background:var(--card2);
     display:block;
 }
 
@@ -378,7 +375,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
+    color:var(--muted);
     font-size:90px;
     font-weight:900;
     overflow:hidden;
@@ -388,9 +385,8 @@ body{
 .big-cover img{
     width:100%;
     height:100%;
-    object-fit:contain;
+    object-fit:cover;
     object-position:center;
-    background:var(--card2);
     display:block;
 }
 
@@ -578,6 +574,7 @@ body{
 
 <script>
 let audio = document.getElementById("audio");
+let favoriteList = document.getElementById("favoriteList");
 
 let currentSongIndex = parseInt(localStorage.getItem("currentSongIndex")) || 0;
 let isPlaying = localStorage.getItem("globalIsPlaying") === "true";
@@ -598,6 +595,21 @@ function getFavorites(){
     return JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
 }
 
+// Key fix: Track actual layout state to keep next/prev running inside favorites array list only
+function getCurrentlyRenderedFavs(){
+    let allSongs = getSongs();
+    let value = searchInput.value.toLowerCase();
+    
+    return getFavorites()
+    .map(index => ({song:allSongs[index], index:index}))
+    .filter(item => item.song)
+    .filter(item => 
+        item.song.title.toLowerCase().includes(value) ||
+        item.song.artist.toLowerCase().includes(value) ||
+        item.song.album.toLowerCase().includes(value)
+    );
+}
+
 function savePlayerState(){
     localStorage.setItem("currentSongIndex",currentSongIndex);
     localStorage.setItem("globalAudioSrc",audio.src);
@@ -606,19 +618,11 @@ function savePlayerState(){
 }
 
 function renderFavorites(filteredSongs = null){
-    let allSongs = getSongs();
-
-    let favSongs = getFavorites()
-    .map(index => ({song:allSongs[index], index:index}))
-    .filter(item => item.song);
-
-    if(filteredSongs){
-        favSongs = filteredSongs;
-    }
+    let favSongs = filteredSongs ? filteredSongs : getCurrentlyRenderedFavs();
 
     if(favSongs.length === 0){
         favoriteList.innerHTML =
-        `<div class="empty">No favorite songs yet. Songs page la star click pannunga.</div>`;
+        `<div class="empty">No favorite songs found.</div>`;
         return;
     }
 
@@ -644,7 +648,7 @@ function renderFavorites(filteredSongs = null){
             <div class="song-artist">${item.song.artist}</div>
 
             <div class="song-actions">
-                <button class="play-small" onclick="playSong(${item.index}); event.stopPropagation();">
+                <button class="play-small" onclick="event.stopPropagation(); playSong(${item.index});">
                     ▶ Play
                 </button>
             </div>
@@ -698,7 +702,7 @@ function playSong(index){
         isPlaying = false;
         savePlayerState();
         updatePlayerUI(song);
-        alert("Song play agala. Play button again click pannunga.");
+        alert("Play dynamically blocked. Click play control button manually.");
     });
 }
 
@@ -713,8 +717,14 @@ function togglePlay(){
         isPlaying = false;
     }
     else{
-        audio.play();
-        isPlaying = true;
+        audio.play().then(() => {
+            isPlaying = true;
+            savePlayerState();
+            updatePlayerUI(getSongs()[currentSongIndex]);
+        }).catch(() => {
+            isPlaying = false;
+        });
+        return;
     }
 
     savePlayerState();
@@ -722,23 +732,32 @@ function togglePlay(){
 }
 
 function nextSong(){
-    currentSongIndex++;
+    let currentFavs = getCurrentlyRenderedFavs();
+    if(currentFavs.length === 0) return;
 
-    if(currentSongIndex >= getSongs().length){
-        currentSongIndex = 0;
+    let currentMatchIndex = currentFavs.findIndex(item => item.index === currentSongIndex);
+    
+    // Fallback logic if current playing song isn't in current viewport list
+    if(currentMatchIndex === -1){
+        playSong(currentFavs[0].index);
+    } else {
+        let nextFavIndex = (currentMatchIndex + 1) % currentFavs.length;
+        playSong(currentFavs[nextFavIndex].index);
     }
-
-    playSong(currentSongIndex);
 }
 
 function prevSong(){
-    currentSongIndex--;
+    let currentFavs = getCurrentlyRenderedFavs();
+    if(currentFavs.length === 0) return;
 
-    if(currentSongIndex < 0){
-        currentSongIndex = getSongs().length - 1;
+    let currentMatchIndex = currentFavs.findIndex(item => item.index === currentSongIndex);
+
+    if(currentMatchIndex === -1){
+        playSong(currentFavs[currentFavs.length - 1].index);
+    } else {
+        let prevFavIndex = (currentMatchIndex - 1 + currentFavs.length) % currentFavs.length;
+        playSong(currentFavs[prevFavIndex].index);
     }
-
-    playSong(currentSongIndex);
 }
 
 function changeVolume(value){
@@ -816,25 +835,14 @@ musicCardOverlay.addEventListener("click",function(e){
 });
 
 searchInput.addEventListener("input",function(){
-    let value = this.value.toLowerCase();
-    let allSongs = getSongs();
-
-    let favSongs = getFavorites()
-    .map(index => ({song:allSongs[index], index:index}))
-    .filter(item => item.song)
-    .filter(item =>
-        item.song.title.toLowerCase().includes(value) ||
-        item.song.artist.toLowerCase().includes(value) ||
-        item.song.album.toLowerCase().includes(value)
-    );
-
-    renderFavorites(favSongs);
+    renderFavorites();
 });
 
 window.addEventListener("beforeunload",function(){
     savePlayerState();
 });
 
+// Initial setups
 renderFavorites();
 
 let savedVolume = localStorage.getItem("globalVolume") || 0.8;
