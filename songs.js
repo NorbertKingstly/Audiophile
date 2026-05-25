@@ -1839,7 +1839,7 @@ const songs = [
     title: "Sithira Puthiri",
     artist: "Sai Abhyankkar",
     album: "Sithira Puthiri",
-    cover: "/image_asset/Sithira Puthiri.jpg",
+    cover: "/image_asset/Sithira Puthiri.png",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179899/Sithira-Puthiri-MassTamilan.dev_tarbel.mp3"
 },
 
