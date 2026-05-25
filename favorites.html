@@ -595,7 +595,6 @@ function getFavorites(){
     return JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
 }
 
-// Key fix: Track actual layout state to keep next/prev running inside favorites array list only
 function getCurrentlyRenderedFavs(){
     let allSongs = getSongs();
     let value = searchInput.value.toLowerCase();
@@ -628,7 +627,7 @@ function renderFavorites(filteredSongs = null){
 
     favoriteList.innerHTML =
     favSongs.map((item,displayIndex)=>`
-        <div class="song-row" onclick="playSong(${item.index})">
+        <div class="song-row" onclick="playSong(${item.index}, event)">
 
             <div class="song-no">${displayIndex + 1}</div>
 
@@ -648,7 +647,7 @@ function renderFavorites(filteredSongs = null){
             <div class="song-artist">${item.song.artist}</div>
 
             <div class="song-actions">
-                <button class="play-small" onclick="event.stopPropagation(); playSong(${item.index});">
+                <button class="play-small" onclick="playSong(${item.index}, event)">
                     ▶ Play
                 </button>
             </div>
@@ -679,7 +678,11 @@ function updatePlayerUI(song){
     }
 }
 
-function playSong(index){
+function playSong(index, event){
+    if(event) {
+        event.stopPropagation();
+    }
+    
     let allSongs = getSongs();
 
     if(!allSongs[index]) return;
@@ -737,7 +740,6 @@ function nextSong(){
 
     let currentMatchIndex = currentFavs.findIndex(item => item.index === currentSongIndex);
     
-    // Fallback logic if current playing song isn't in current viewport list
     if(currentMatchIndex === -1){
         playSong(currentFavs[0].index);
     } else {
