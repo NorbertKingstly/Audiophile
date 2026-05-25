@@ -115,7 +115,7 @@ body{
     color:var(--text);
 }
 
-/* MOBILE BOTTOM NAVIGATION BAR (HIDDEN ON LAPTOP) */
+/* MOBILE NAV BAR (DESKTOP HIDDEN) */
 .mobile-nav {
     display: none;
 }
@@ -473,7 +473,7 @@ body{
     accent-color:var(--cyan);
 }
 
-/* MUSIC POPUP */
+/* MUSIC POPUP OVERLAY */
 .music-card-overlay{
     position:fixed;
     inset:0;
@@ -584,17 +584,17 @@ body{
     margin-top:10px;
 }
 
-/* MOBILE RESPONSIVE DESIGN INTERPOLATION */
+/* MOBILE MEDIA QUERY RESPONSIVENESS */
 @media(max-width:900px){
     .app{
         grid-template-columns:1fr;
     }
     .sidebar{
-        display:none; /* Laptop section side layer clean off */
+        display:none;
     }
     .main{
-        /* Padding matches layout structure safely to avoid clipping issues */
-        padding: 20px 16px 320px !important; 
+        /* Safe protection mapping space from bottom elements */
+        padding: 20px 16px 200px !important; 
     }
     .topbar{
         gap: 12px;
@@ -650,66 +650,84 @@ body{
         font-size: 12px;
     }
     
-    /* Mobile Player Bar Elevation Positioning */
+    /* ADJUSTED Slim Compact Mobile Music Player Bar */
     .player{
         left:0 !important;
         right:0 !important;
-        bottom:76px !important; /* Raised up exactly to let the bottom menu sit below safely */
-        grid-template-columns: 1fr;
-        height: auto;
-        padding: 12px 20px 14px !important;
-        box-shadow: 0 -8px 25px rgba(0,0,0,0.08);
+        bottom:64px !important; /* Adjusted to stack nicely with slim nav */
+        grid-template-columns: 1.2fr 1fr; /* Flex layout splitting info and action buttons */
+        height: 68px !important; /* Fixed slim height */
+        padding: 8px 16px !important;
+        box-shadow: 0 -6px 20px rgba(0,0,0,0.06);
         gap: 10px;
         background: var(--card) !important;
         border-top: 1px solid var(--border);
+        align-items: center;
     }
     .player-info {
         display: flex !important;
         align-items: center !important;
         width: 100% !important;
         min-width: 0 !important;
+        gap: 10px;
     }
     .player-details {
         min-width: 0 !important;
         flex: 1 !important;
     }
-    .player-details h4, .player-details p {
+    .player-details h4 {
+        font-size: 14px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    .player-details p {
+        font-size: 12px !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
     }
     .player-cover {
-        width: 48px;
-        height: 48px;
-        border-radius: 10px;
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 8px !important;
+        font-size: 18px !important;
     }
+    
+    /* Shifted inline layout handles inside compact container */
     .controls {
         width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
     }
     .buttons {
-        gap: 20px;
-        margin-bottom: 8px;
+        gap: 12px !important;
+        margin-bottom: 0px !important;
     }
     .buttons button {
-        width: 38px;
-        height: 38px;
+        display: none; /* Hide next/prev tracks on narrow bar to optimize clean ui */
     }
-    .buttons .play {
-        width: 46px;
-        height: 46px;
+    .buttons button.play {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        width: 42px !important;
+        height: 42px !important;
+        font-size: 14px !important;
     }
-    .volume{
-        display:none;
+    .progress, .time, .volume {
+        display: none !important; /* Hidden from bar container, fully accessible via popup open */
     }
 
-    /* FIX: MOBILE BOTTOM SECTIONS SELECTION BAR ACTIVE */
+    /* SLIM COMPACT STANDARD CHAR MOBILE NAVIGATION BAR */
     .mobile-nav {
         display: flex;
         position: fixed;
         left: 0;
         right: 0;
         bottom: 0;
-        height: 76px;
+        height: 64px;
         background: var(--card);
         border-top: 1px solid var(--border);
         z-index: 1000;
@@ -723,9 +741,9 @@ body{
         align-items: center;
         text-decoration: none;
         color: var(--muted);
-        font-size: 11px;
-        font-weight: 700;
-        gap: 4px;
+        font-size: 10px;
+        font-weight: 600;
+        gap: 1px;
         width: 16%;
         text-align: center;
     }
@@ -734,6 +752,7 @@ body{
     }
     .mobile-nav-icon {
         font-size: 20px;
+        line-height: 1;
     }
 }
 </style>
@@ -832,27 +851,27 @@ body{
 
 <nav class="mobile-nav">
     <a href="home.html" class="mobile-nav-item active">
-        <span class="mobile-nav-icon">🏠</span>
+        <span class="mobile-nav-icon">⌂</span>
         <span>Home</span>
     </a>
     <a href="songs.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon">🎵</span>
+        <span class="mobile-nav-icon">♫</span>
         <span>Songs</span>
     </a>
     <a href="albums.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon">📀</span>
+        <span class="mobile-nav-icon">◎</span>
         <span>Albums</span>
     </a>
     <a href="artists.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon">👨‍🎤</span>
+        <span class="mobile-nav-icon">👤</span>
         <span>Artists</span>
     </a>
     <a href="favorites.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon">❤️</span>
+        <span class="mobile-nav-icon">♥</span>
         <span>Favorites</span>
     </a>
     <a href="settings.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon">⚙️</span>
+        <span class="mobile-nav-icon">⚙</span>
         <span>Settings</span>
     </a>
 </nav>
