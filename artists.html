@@ -184,7 +184,6 @@ h2{
     cursor:pointer;
     transition:0.3s;
     position: relative;
-    text-align: center;
 }
 
 .card:hover{
@@ -192,29 +191,25 @@ h2{
     box-shadow:0 12px 30px rgba(0,0,0,0.05);
 }
 
-/* Fixed circular layout structure for artist images */
 .cover{
-    width: 140px;
-    height: 140px;
-    aspect-ratio: 1;
-    background: linear-gradient(135deg, var(--purple), var(--pink));
-    border-radius: 50% !important;
-    margin: 0 auto 14px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 44px;
-    font-weight: 900;
-    color: white;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    width:100%;
+    aspect-ratio:1;
+    background:linear-gradient(135deg, var(--purple), var(--pink));
+    border-radius:50%; /* Rounded profile for pure Artist mode */
+    margin-bottom:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:48px;
+    font-weight:900;
+    color:white;
+    overflow:hidden;
 }
 
 .cover img{
     width:100%;
     height:100%;
     object-fit:cover;
-    border-radius: 50% !important;
 }
 
 .card h3{
@@ -224,6 +219,7 @@ h2{
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+    text-align:center;
 }
 
 .card p{
@@ -232,6 +228,7 @@ h2{
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+    text-align:center;
 }
 
 .back-btn{
@@ -278,7 +275,6 @@ h2{
 .player-details{
     min-width: 0;
     flex: 1;
-    text-align: left;
 }
 
 .player-details h4{
@@ -597,11 +593,7 @@ h2{
         gap: 16px;
     }
     .card { padding: 12px; border-radius: 18px; }
-    .cover { 
-        width: 100px;
-        height: 100px;
-        font-size: 32px; 
-    }
+    .cover { font-size: 36px; }
 }
 </style>
 </head>
@@ -723,7 +715,7 @@ function getArtists(){
             if(!artistsMap[song.artist]){
                 artistsMap[song.artist] = {
                     name: song.artist,
-                    cover: song.artistCover || ""
+                    cover: song.artistCover || "" // Target exclusive Artist profile picture if present
                 };
             }
         }
@@ -742,6 +734,7 @@ function renderArtists(artistsList){
 
     artistGrid.innerHTML = artistsList.map(function(artist){
         let fallbackLetter = artist.name.charAt(0).toUpperCase();
+        // Fixed: If specific artist cover isn't found, load pure initials to avoid displaying movie poster cards
         let coverContent = artist.cover ? `<img src="${artist.cover}" alt="">` : fallbackLetter;
         return `
         <div class="card" onclick="openArtist('${artist.name.replace(/'/g, "\\'")}')">
@@ -771,9 +764,9 @@ function openArtist(artistName){
         let coverContent = song.cover ? `<img src="${song.cover}" alt="">` : fallbackLetter;
         return `
         <div class="card" onclick="playSong(${allSongsIndex})">
-            <div class="cover" style="border-radius:18px !important;">${coverContent}</div>
-            <h3>${song.title || 'Untitled'}</h3>
-            <p>${song.album || 'Single'}</p>
+            <div class="cover" style="border-radius:18px;">${coverContent}</div>
+            <h3 style="text-align:left;">${song.title || 'Untitled'}</h3>
+            <p style="text-align:left;">${song.album || 'Single'}</p>
         </div>
         `;
     }).join('');
