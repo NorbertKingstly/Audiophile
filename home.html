@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Audiophile</title>
 
@@ -56,12 +56,16 @@ body{
     background:var(--bg);
     color:var(--text);
     overflow:hidden;
+    /* 🌟 FIX: Mobile browser toolbar height discrepancies handled */
+    height: 100vh;
+    height: 100dvh;
 }
 
 .app{
     display:grid;
     grid-template-columns:250px 1fr;
     height:100vh;
+    height:100dvh;
 }
 
 .sidebar{
@@ -113,8 +117,11 @@ body{
 
 .main{
     height:100vh;
+    height:100dvh;
     overflow-y:auto;
-    padding:30px 34px 150px;
+    -webkit-overflow-scrolling: touch;
+    /* 🌟 FIX: Added adequate bottom padding so bottom grid row isn't blocked by the player element */
+    padding:30px 34px 170px;
 }
 
 .topbar{
@@ -338,6 +345,8 @@ body{
     gap:18px;
     padding:16px 34px;
     z-index:99;
+    /* 🌟 FIX: Soft bottom protection layout for modern device overlays */
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
 }
 
 .player-info{
@@ -546,6 +555,7 @@ body{
     margin-top:10px;
 }
 
+/* 🌟 EXTENSIVE MOBILE RESPONSIVE ENGINE RE-PADDINGS */
 @media(max-width:900px){
     .app{
         grid-template-columns:1fr;
@@ -553,19 +563,93 @@ body{
     .sidebar{
         display:none;
     }
+    .main{
+        /* 🌟 FIX: Clear padding setup to stop any overflow overlapping actions over the player bar */
+        padding: 20px 16px 180px;
+    }
+    .topbar{
+        gap: 12px;
+        margin-bottom: 20px;
+    }
     .search-box{
-        width:100%;
+        width:calc(100% - 64px);
+    }
+    .search-box input{
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+    .profile{
+        width: 52px;
+        height: 52px;
     }
     .carousel{
-        height:300px;
+        height:210px;
+        border-radius: 24px;
+        margin-bottom: 24px;
     }
-    .slide{
-        padding:12px;
+    .slide img {
+        object-fit: cover;
+    }
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+    .section-title h2{
+        font-size: 24px;
+    }
+    .section-title span{
+        font-size: 13px;
+    }
+    .grid{
+        grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+        gap: 12px;
+    }
+    .card{
+        padding: 12px;
+        border-radius: 20px;
+    }
+    .cover{
+        height: 130px;
+        border-radius: 14px;
+        font-size: 36px;
+    }
+    .card h3{
+        font-size: 15px;
+    }
+    .card p{
+        font-size: 12px;
     }
     .player{
         left:0;
-        grid-template-columns:1fr;
-        height:auto;
+        grid-template-columns: 1fr;
+        height: auto;
+        padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px));
+        box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+    }
+    .player-info {
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 4px;
+    }
+    .player-cover {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+    }
+    .controls {
+        width: 100%;
+    }
+    .buttons {
+        gap: 16px;
+    }
+    .buttons button {
+        width: 40px;
+        height: 40px;
+    }
+    .buttons .play {
+        width: 50px;
+        height: 50px;
     }
     .volume{
         display:none;
@@ -713,7 +797,6 @@ if(savedAudio){
 
 audio.currentTime = parseFloat(localStorage.getItem("globalAudioTime")) || 0;
 
-// Fixed Carousel Timer Overlaps
 function startCarouselRoutine() {
     stopCarouselRoutine();
     carouselTimer = setInterval(nextSlide, 5000);
@@ -814,7 +897,6 @@ function playSong(index){
 
     audio.src = song.audio;
     
-    // Safety handle browser autoplay rejections
     audio.play().then(() => {
         isPlaying = true;
         localStorage.setItem("globalIsPlaying", "true");
@@ -837,7 +919,6 @@ function togglePlay(){
         localStorage.setItem("globalIsPlaying", "false");
     }
     else{
-        // Fallback checks for empty track queues
         if(!audio.src && allSongs[currentSongIndex]) {
             audio.src = allSongs[currentSongIndex].audio;
         }
@@ -874,140 +955,4 @@ function formatTime(seconds){
     }
     let min = Math.floor(seconds / 60);
     let sec = Math.floor(seconds % 60);
-    return min + ":" + (sec < 10 ? "0" + sec : sec);
-}
-
-// Fixed Safe Lifecycle DOM Mount Execution
-document.addEventListener("DOMContentLoaded", () => {
-    applySavedTheme();
-    loadHomeProfile();
-    renderSongs();
-    changeVolume(0.8);
-    startCarouselRoutine();
-
-    let allSongs = getSongs();
-    if(allSongs.length > 0 && allSongs[currentSongIndex]) {
-        updatePlayerUI(allSongs[currentSongIndex]);
-    }
-
-    let savedPlaying = localStorage.getItem("globalIsPlaying");
-    if(savedPlaying === "true"){
-        setTimeout(() => {
-            audio.play().then(() => {
-                isPlaying = true;
-                if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
-            }).catch(e => {
-                // Catching expected native silent blocks on refresh actions cleanly
-                console.log("Browser blocked refresh auto-resume. Awaiting user click handler.");
-                isPlaying = false;
-                localStorage.setItem("globalIsPlaying", "false");
-                if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
-            });
-        }, 300);
-    }
-});
-
-function applySavedTheme(){
-    let theme = localStorage.getItem("audiophile_theme") || "white";
-    document.body.classList.remove("theme-white", "theme-musicred");
-    document.body.classList.add("theme-" + theme);
-}
-
-function loadHomeProfile(){
-    let currentUser = localStorage.getItem("audiophile_currentUser") || "Liyo Clevert";
-    let profileImage = localStorage.getItem("audiophile_profileImage") || "";
-
-    document.getElementById("homeProfileInitial").innerText = currentUser.charAt(0).toUpperCase();
-
-    if(profileImage !== ""){
-        document.getElementById("homeProfileImage").src = profileImage;
-        document.getElementById("homeProfileImage").style.display = "block";
-        document.getElementById("homeProfileInitial").style.display = "none";
-    }
-    else{
-        document.getElementById("homeProfileImage").style.display = "none";
-        document.getElementById("homeProfileInitial").style.display = "block";
-    }
-}
-
-audio.addEventListener("timeupdate", function(){
-    if(!audio.duration) return;
-    localStorage.setItem("globalAudioTime", audio.currentTime);
-
-    let percent = (audio.currentTime / audio.duration) * 100;
-    if(isNaN(percent)) percent = 0;
-
-    document.getElementById("progressFill").style.width = percent + "%";
-    document.getElementById("cardProgressFill").style.width = percent + "%";
-
-    let currentFormatted = formatTime(audio.currentTime);
-    let durationFormatted = formatTime(audio.duration);
-
-    document.getElementById("currentTime").innerText = currentFormatted;
-    document.getElementById("durationTime").innerText = durationFormatted;
-    document.getElementById("cardCurrentTime").innerText = currentFormatted;
-    document.getElementById("cardDurationTime").innerText = durationFormatted;
-});
-
-audio.addEventListener("ended", function(){
-    nextSong();
-});
-
-function setProgress(event){
-    if(!audio.duration) return;
-    let width = event.currentTarget.clientWidth;
-    let clickX = event.offsetX;
-    audio.currentTime = (clickX / width) * audio.duration;
-}
-
-function setCardProgress(event){
-    if(!audio.duration) return;
-    let width = event.currentTarget.clientWidth;
-    let clickX = event.offsetX;
-    audio.currentTime = (clickX / width) * audio.duration;
-}
-
-function openMusicCard(){
-    if(!audio.src) return;
-    document.getElementById("musicCardOverlay").classList.add("show");
-}
-
-function closeMusicCard(){
-    document.getElementById("musicCardOverlay").classList.remove("show");
-}
-
-document.getElementById("musicCardOverlay").addEventListener("click", function(e){
-    if(e.target.id === "musicCardOverlay"){
-        closeMusicCard();
-    }
-});
-
-// Clean Live Filter Engine
-document.getElementById("searchInput").addEventListener("input", function(){
-    let value = this.value.toLowerCase();
-    let allSongs = getSongs();
-    let songGrid = document.getElementById("songGrid");
-
-    let filtered = allSongs.filter(song => {
-        return song.title.toLowerCase().includes(value) ||
-               song.artist.toLowerCase().includes(value) ||
-               (song.album && song.album.toLowerCase().includes(value));
-    });
-
-    songGrid.innerHTML = filtered.map(song => {
-        let realIndex = allSongs.indexOf(song);
-        return `
-        <div class="card" onclick="playSong(${realIndex})">
-            <div class="cover">
-                ${song.cover ? `<img src="${song.cover}" alt="">` : song.title.charAt(0)}
-            </div>
-            <h3>${song.title}</h3>
-            <p>${song.artist}</p>
-        </div>
-        `;
-    }).join("");
-});
-</script>
-
-</body>
-</html>
+    return min + ":" + (sec
