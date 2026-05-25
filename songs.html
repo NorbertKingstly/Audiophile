@@ -1,11 +1,10 @@
-<!-- Songs.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Audiophile</title>
+<title>Audiophile - Songs</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -221,7 +220,7 @@ body{
 
 .song-row:hover{
     transform:translateY(-3px);
-    border-color:var(--cyan);
+    border-color:var(--purple);
 }
 
 .song-no{
@@ -233,8 +232,8 @@ body{
     width:54px;
     height:54px;
     border-radius:14px;
-    background:linear-gradient(135deg,var(--cyan),var(--purple));
-    color:white;
+    background:var(--card2);
+    color:var(--text);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -242,15 +241,13 @@ body{
     font-size:22px;
     overflow:hidden;
     flex-shrink:0;
-    background:var(--card2);
 }
 
 .song-cover img{
     width:100%;
     height:100%;
-    object-fit:contain;
+    object-fit:cover;
     object-position:center;
-    background:var(--card2);
     display:block;
 }
 
@@ -282,11 +279,16 @@ body{
     font-weight:900;
     cursor:pointer;
     font-size:13px;
+    transition: 0.2s;
 }
 
 .play-small{
     background:linear-gradient(90deg,var(--cyan),var(--purple));
     color:white;
+}
+
+.play-small:hover{
+    opacity: 0.9;
 }
 
 .fav-small{
@@ -322,11 +324,11 @@ body{
     width:58px;
     height:58px;
     border-radius:16px;
-    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    background:var(--card2);
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
+    color:var(--text);
     font-weight:900;
     overflow:hidden;
     flex-shrink:0;
@@ -335,9 +337,8 @@ body{
 .player-cover img{
     width:100%;
     height:100%;
-    object-fit:contain;
+    object-fit:cover;
     object-position:center;
-    background:var(--card2);
     display:block;
 }
 
@@ -370,6 +371,11 @@ body{
     color:var(--text);
     font-size:15px;
     cursor:pointer;
+    transition: 0.2s;
+}
+
+.buttons button:hover{
+    transform: scale(1.05);
 }
 
 .buttons .play{
@@ -384,6 +390,7 @@ body{
     border-radius:20px;
     overflow:hidden;
     cursor:pointer;
+    position: relative;
 }
 
 .progress-fill,
@@ -450,11 +457,11 @@ body{
     width:100%;
     height:280px;
     border-radius:24px;
-    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    background:var(--card2);
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
+    color:var(--text);
     font-size:80px;
     font-weight:900;
     overflow:hidden;
@@ -464,9 +471,8 @@ body{
 .big-cover img{
     width:100%;
     height:100%;
-    object-fit:contain;
+    object-fit:cover;
     object-position:center;
-    background:var(--card2);
     display:block;
 }
 
@@ -500,6 +506,11 @@ body{
     color:var(--text);
     font-size:17px;
     cursor:pointer;
+    transition: 0.2s;
+}
+
+.card-buttons button:hover{
+    transform: scale(1.05);
 }
 
 .card-buttons .big-play{
@@ -566,6 +577,7 @@ body{
         left:0;
         grid-template-columns:1fr;
         height:auto;
+        gap: 12px;
     }
 
     .volume{
@@ -580,11 +592,9 @@ body{
 <div class="app">
 
     <aside class="sidebar">
-
         <div class="logo" onclick="window.location.href='home.html'">
             Audio<span>phile</span>
         </div>
-
         <nav class="menu">
             <a href="home.html">Home</a>
             <a href="songs.html" class="active">Songs</a>
@@ -593,28 +603,23 @@ body{
             <a href="favorites.html">Favorites</a>
             <a href="settings.html">Settings</a>
         </nav>
-
     </aside>
 
     <main class="main">
-
         <div class="topbar">
-
             <div class="search-box">
                 <input id="searchInput" type="text" placeholder="Search songs, albums, artists...">
             </div>
-
             <div class="profile" onclick="window.location.href='settings.html'">
-                <span id="homeProfileInitial">L</span>
-                <img id="homeProfileImage" src="">
+                <span id="homeProfileInitial">G</span>
+                <img id="homeProfileImage" src="" alt="Profile Target">
             </div>
-
         </div>
 
         <section class="page-title">
             <small>ALL SONGS</small>
             <h1>Songs</h1>
-            <p>Song list la cover image added.</p>
+            <p>Your curated audio library with custom artwork views.</p>
         </section>
 
         <div class="list-head">
@@ -627,26 +632,20 @@ body{
         </div>
 
         <div class="song-list" id="songList"></div>
-
     </main>
 
 </div>
 
 <div class="player">
-
     <div class="player-info" onclick="openMusicCard()">
-
-        <div class="player-cover" id="playerCover">A</div>
-
+        <div class="player-cover" id="playerCover">-</div>
         <div>
             <h4 id="playerTitle">Select a song</h4>
             <p id="playerArtist">Audiophile</p>
         </div>
-
     </div>
 
     <div class="controls">
-
         <div class="buttons">
             <button onclick="prevSong()">⏮</button>
             <button class="play" id="playBtn" onclick="togglePlay()">▶</button>
@@ -661,24 +660,18 @@ body{
             <span id="currentTime">0:00</span>
             <span id="durationTime">0:00</span>
         </div>
-
     </div>
 
     <div class="volume">
         <h3>Volume</h3>
-        <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+        <input id="globalVolumeSlider" type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
     </div>
-
 </div>
 
 <div class="music-card-overlay" id="musicCardOverlay">
-
     <div class="music-card">
-
-        <div class="big-cover" id="bigCover">A</div>
-
+        <div class="big-cover" id="bigCover">-</div>
         <h2 id="cardSongTitle">Select a song</h2>
-
         <p id="cardSongArtist">Audiophile</p>
 
         <div class="card-buttons">
@@ -698,11 +691,9 @@ body{
 
         <div class="card-volume">
             <span>Volume</span>
-            <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+            <input id="popupVolumeSlider" type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
         </div>
-
     </div>
-
 </div>
 
 <audio id="audio"></audio>
@@ -732,18 +723,21 @@ function applySavedTheme(){
 }
 
 function loadHomeProfile(){
-    let currentUser = localStorage.getItem("audiophile_currentUser") || "Liyo Clevert";
+    let currentUser = localStorage.getItem("audiophile_currentUser") || "Guest User";
     let profileImage = localStorage.getItem("audiophile_profileImage") || "";
 
-    homeProfileInitial.innerText = currentUser.charAt(0).toUpperCase();
+    let initialEl = document.getElementById("homeProfileInitial");
+    let imageEl = document.getElementById("homeProfileImage");
+
+    initialEl.innerText = currentUser.charAt(0).toUpperCase();
 
     if(profileImage){
-        homeProfileImage.src = profileImage;
-        homeProfileImage.style.display = "block";
-        homeProfileInitial.style.display = "none";
+        imageEl.src = profileImage;
+        imageEl.style.display = "block";
+        initialEl.style.display = "none";
     }else{
-        homeProfileImage.style.display = "none";
-        homeProfileInitial.style.display = "block";
+        imageEl.style.display = "none";
+        initialEl.style.display = "block";
     }
 }
 
@@ -765,7 +759,6 @@ function getCurrentList(){
 
 function toggleFavorite(index,event){
     event.stopPropagation();
-
     let favorites = getFavorites();
 
     if(favorites.includes(index)){
@@ -784,7 +777,7 @@ function renderSongs(songArray){
     currentList = songArray;
 
     if(songArray.length === 0){
-        songList.innerHTML = "<p>No songs found</p>";
+        songList.innerHTML = "<p style='padding: 20px; color: var(--muted);'>No songs found matching search.</p>";
         return;
     }
 
@@ -808,14 +801,13 @@ function renderSongs(songArray){
                 <h3>${song.title}</h3>
             </div>
 
-            <div class="song-artist">${song.artist}</div>
-            <div class="song-album">${song.album}</div>
+            <div class="song-artist">${song.artist || 'Unknown Artist'}</div>
+            <div class="song-album">${song.album || 'Single'}</div>
 
             <div class="song-actions">
                 <button class="play-small" onclick="playSong(${realIndex}); event.stopPropagation();">
                     ▶ Play
                 </button>
-
                 <button class="fav-small" onclick="toggleFavorite(${realIndex},event)">
                     ${isFav ? "★" : "☆"}
                 </button>
@@ -827,38 +819,40 @@ function renderSongs(songArray){
 function updatePlayerUI(song){
     if(!song) return;
 
-    playBtn.innerText = isPlaying ? "⏸" : "▶";
-    cardPlayBtn.innerText = isPlaying ? "⏸" : "▶";
+    document.getElementById("playBtn").innerText = isPlaying ? "⏸" : "▶";
+    document.getElementById("cardPlayBtn").innerText = isPlaying ? "⏸" : "▶";
 
-    playerTitle.innerText = song.title;
-    playerArtist.innerText = song.artist;
+    document.getElementById("playerTitle").innerText = song.title;
+    document.getElementById("playerArtist").innerText = song.artist || 'Unknown Artist';
 
-    cardSongTitle.innerText = song.title;
-    cardSongArtist.innerText = song.artist + " • " + song.album;
+    document.getElementById("cardSongTitle").innerText = song.title;
+    document.getElementById("cardSongArtist").innerText = (song.artist || 'Unknown Artist') + " • " + (song.album || 'Single');
+
+    let pCover = document.getElementById("playerCover");
+    let bCover = document.getElementById("bigCover");
 
     if(song.cover){
-        playerCover.innerHTML = `<img src="${song.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${song.title.charAt(0)}';">`;
-        bigCover.innerHTML = `<img src="${song.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${song.title.charAt(0)}';">`;
+        pCover.innerHTML = `<img src="${song.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${song.title.charAt(0)}';">`;
+        bCover.innerHTML = `<img src="${song.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${song.title.charAt(0)}';">`;
     }else{
-        playerCover.innerText = song.title.charAt(0);
-        bigCover.innerText = song.title.charAt(0);
+        pCover.innerText = song.title.charAt(0);
+        bCover.innerText = song.title.charAt(0);
     }
 }
 
 function savePlayerState(){
     localStorage.setItem("currentSongIndex",currentSongIndex);
-    localStorage.setItem("globalAudioSrc",audio.src);
+    if(audio.src) localStorage.setItem("globalAudioSrc",audio.src);
     localStorage.setItem("globalAudioTime",audio.currentTime || 0);
     localStorage.setItem("globalIsPlaying",isPlaying ? "true" : "false");
 }
 
 function playSong(index){
     let allSongs = getSongs();
-
     if(!allSongs[index]) return;
 
     if(!allSongs[index].audio){
-        alert("Song audio URL missing in songs.js");
+        alert("Audio source endpoint configuration is missing.");
         return;
     }
 
@@ -888,8 +882,16 @@ function togglePlay(){
         audio.pause();
         isPlaying = false;
     }else{
-        audio.play();
-        isPlaying = true;
+        audio.play().then(() => {
+            isPlaying = true;
+            savePlayerState();
+            updatePlayerUI(getSongs()[currentSongIndex]);
+        }).catch(() => {
+            isPlaying = false;
+            savePlayerState();
+            updatePlayerUI(getSongs()[currentSongIndex]);
+        });
+        return;
     }
 
     savePlayerState();
@@ -898,41 +900,39 @@ function togglePlay(){
 
 function nextSong(){
     let allSongs = getSongs();
-
+    if(!allSongs.length) return;
     currentSongIndex++;
-
     if(currentSongIndex >= allSongs.length){
         currentSongIndex = 0;
     }
-
     playSong(currentSongIndex);
 }
 
 function prevSong(){
     let allSongs = getSongs();
-
+    if(!allSongs.length) return;
     currentSongIndex--;
-
     if(currentSongIndex < 0){
         currentSongIndex = allSongs.length - 1;
     }
-
     playSong(currentSongIndex);
 }
 
 function changeVolume(value){
     audio.volume = value;
     localStorage.setItem("globalVolume",value);
+    
+    let vol1 = document.getElementById("globalVolumeSlider");
+    let vol2 = document.getElementById("popupVolumeSlider");
+    if(vol1) vol1.value = value;
+    if(vol2) vol2.value = value;
 }
 
 function formatTime(seconds){
     if(isNaN(seconds)) return "0:00";
-
     let min = Math.floor(seconds / 60);
     let sec = Math.floor(seconds % 60);
-
     if(sec < 10) sec = "0" + sec;
-
     return min + ":" + sec;
 }
 
@@ -940,17 +940,16 @@ audio.addEventListener("timeupdate",function(){
     localStorage.setItem("globalAudioTime",audio.currentTime || 0);
 
     let percent = (audio.currentTime / audio.duration) * 100;
-
     if(isNaN(percent)) percent = 0;
 
-    progressFill.style.width = percent + "%";
-    cardProgressFill.style.width = percent + "%";
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("cardProgressFill").style.width = percent + "%";
 
-    currentTime.innerText = formatTime(audio.currentTime);
-    durationTime.innerText = formatTime(audio.duration);
+    document.getElementById("currentTime").innerText = formatTime(audio.currentTime);
+    document.getElementById("durationTime").innerText = formatTime(audio.duration);
 
-    cardCurrentTime.innerText = formatTime(audio.currentTime);
-    cardDurationTime.innerText = formatTime(audio.duration);
+    document.getElementById("cardCurrentTime").innerText = formatTime(audio.currentTime);
+    document.getElementById("cardDurationTime").innerText = formatTime(audio.duration);
 });
 
 audio.addEventListener("ended",function(){
@@ -959,47 +958,46 @@ audio.addEventListener("ended",function(){
 
 function setProgress(event){
     if(!audio.duration) return;
-
     let width = event.currentTarget.clientWidth;
     let clickX = event.offsetX;
-
     audio.currentTime = (clickX / width) * audio.duration;
     savePlayerState();
 }
 
 function setCardProgress(event){
     if(!audio.duration) return;
-
     let width = event.currentTarget.clientWidth;
     let clickX = event.offsetX;
-
     audio.currentTime = (clickX / width) * audio.duration;
     savePlayerState();
 }
 
 function openMusicCard(){
     if(!audio.src) return;
-    musicCardOverlay.classList.add("show");
+    document.getElementById("musicCardOverlay").classList.add("show");
 }
 
 function closeMusicCard(){
-    musicCardOverlay.classList.remove("show");
+    document.getElementById("musicCardOverlay").classList.remove("show");
 }
 
-musicCardOverlay.addEventListener("click",function(e){
+document.getElementById("musicCardOverlay").addEventListener("click",function(e){
     if(e.target.id === "musicCardOverlay"){
         closeMusicCard();
     }
 });
 
-searchInput.addEventListener("input",function(){
+document.getElementById("searchInput").addEventListener("input",function(){
     let value = this.value.toLowerCase();
 
     let filtered = getSongs().filter(function(song){
-        return song.title.toLowerCase().includes(value)
-        || song.artist.toLowerCase().includes(value)
-        || song.album.toLowerCase().includes(value)
-        || song.movie.toLowerCase().includes(value);
+        // Optional fallback safely isolates undefined properties protecting the runtime compilation loop
+        let titleMatch = (song.title || "").toLowerCase().includes(value);
+        let artistMatch = (song.artist || "").toLowerCase().includes(value);
+        let albumMatch = (song.album || "").toLowerCase().includes(value);
+        let movieMatch = (song.movie || "").toLowerCase().includes(value);
+
+        return titleMatch || artistMatch || albumMatch || movieMatch;
     });
 
     renderSongs(filtered);
@@ -1011,20 +1009,26 @@ window.addEventListener("beforeunload",function(){
 
 applySavedTheme();
 loadHomeProfile();
-renderSongs(getSongs());
+
+let allAvailableSongs = getSongs();
+renderSongs(allAvailableSongs);
 
 let savedVolume = localStorage.getItem("globalVolume") || 0.8;
 changeVolume(savedVolume);
 
-updatePlayerUI(getSongs()[currentSongIndex]);
+if(allAvailableSongs.length > 0) {
+    updatePlayerUI(allAvailableSongs[currentSongIndex]);
+}
 
 if(savedSrc && isPlaying){
     setTimeout(function(){
         audio.play().then(function(){
             isPlaying = true;
+            savePlayerState();
             updatePlayerUI(getSongs()[currentSongIndex]);
         }).catch(function(){
             isPlaying = false;
+            savePlayerState();
             updatePlayerUI(getSongs()[currentSongIndex]);
         });
     },300);
