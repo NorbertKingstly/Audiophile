@@ -1,5 +1,3 @@
-<!-- FIXED FAVORITES PAGE -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Outfit',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
 
 :root{
     --bg:#f5f5f7;
@@ -33,7 +25,7 @@
 body{
     background:var(--bg);
     color:var(--text);
-    overflow-x:hidden;
+    overflow:hidden;
 }
 
 .app{
@@ -98,9 +90,7 @@ body{
     margin-bottom:28px;
 }
 
-.search-box{
-    width:100%;
-}
+.search-box{width:100%;}
 
 .search-box input{
     width:100%;
@@ -167,7 +157,7 @@ body{
     gap:16px;
     align-items:center;
     cursor:pointer;
-    transition:0.25s ease;
+    transition:0.3s;
 }
 
 .song-row:hover{
@@ -266,23 +256,26 @@ body{
     height:64px;
     border-radius:18px;
     background:var(--card2);
-    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
     color:var(--muted);
     font-weight:900;
+    overflow:hidden;
 }
 
 .player-cover img{
     width:100%;
     height:100%;
     object-fit:cover;
+    object-position:center;
+    display:block;
 }
 
-.controls{
-    text-align:center;
-}
+.player-info h4{font-size:17px;}
+.player-info p{color:var(--muted);font-size:14px;}
+
+.controls{text-align:center;}
 
 .buttons{
     display:flex;
@@ -297,6 +290,8 @@ body{
     border:none;
     border-radius:50%;
     background:var(--card2);
+    color:var(--text);
+    font-size:16px;
     cursor:pointer;
 }
 
@@ -325,23 +320,26 @@ body{
 .card-time{
     display:flex;
     justify-content:space-between;
-    font-size:12px;
     color:var(--muted);
+    font-size:12px;
     margin-top:6px;
 }
 
 .volume{
     display:flex;
     align-items:center;
-    justify-content:flex-end;
     gap:12px;
+    justify-content:flex-end;
 }
 
-.volume input{
-    width:130px;
+.volume h3{
+    font-size:14px;
+    color:var(--muted);
 }
 
-/* MUSIC CARD */
+.volume input{width:130px;}
+
+/* POPUP */
 
 .music-card-overlay{
     position:fixed;
@@ -363,8 +361,10 @@ body{
     width:100%;
     max-width:430px;
     background:var(--card);
+    border:1px solid var(--border);
     border-radius:34px;
     padding:24px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.25);
 }
 
 .big-cover{
@@ -372,10 +372,13 @@ body{
     height:310px;
     border-radius:28px;
     background:var(--card2);
-    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
+    color:var(--muted);
+    font-size:90px;
+    font-weight:900;
+    overflow:hidden;
     margin-bottom:22px;
 }
 
@@ -383,21 +386,26 @@ body{
     width:100%;
     height:100%;
     object-fit:cover;
+    object-position:center;
+    display:block;
 }
 
 .music-card h2{
+    font-size:28px;
+    margin-bottom:6px;
     text-align:center;
-    margin-bottom:8px;
 }
 
 .music-card p{
-    text-align:center;
     color:var(--muted);
+    text-align:center;
+    margin-bottom:20px;
 }
 
 .card-buttons{
     display:flex;
     justify-content:center;
+    align-items:center;
     gap:18px;
     margin:22px 0;
 }
@@ -408,18 +416,27 @@ body{
     border:none;
     border-radius:50%;
     background:var(--card2);
+    color:var(--text);
+    font-size:18px;
     cursor:pointer;
 }
 
-.big-play{
-    width:70px !important;
-    height:70px !important;
-    background:linear-gradient(90deg,var(--cyan),var(--purple)) !important;
+.card-buttons .big-play{
+    width:70px;
+    height:70px;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
     color:white;
+    font-size:24px;
 }
 
 .card-volume{
     margin-top:20px;
+}
+
+.card-volume span{
+    color:var(--muted);
+    font-weight:800;
+    font-size:14px;
 }
 
 .card-volume input{
@@ -427,126 +444,164 @@ body{
     margin-top:10px;
 }
 
-.mobile-nav{
-    display:none;
-}
-
 @media(max-width:900px){
-
-    .app{
-        grid-template-columns:1fr;
-    }
-
-    .sidebar{
-        display:none;
-    }
-
-    .main{
-        padding:20px 16px 230px;
-    }
-
-    .song-row{
-        grid-template-columns:40px 62px 1fr;
-    }
-
-    .song-artist{
-        display:none;
-    }
-
-    .song-actions{
-        grid-column:3;
-    }
-
-    .player{
-        left:0;
-        right:0;
-        bottom:64px;
-        height:78px;
-        padding:10px 16px;
-        grid-template-columns:1fr auto;
-    }
-
-    .player-cover{
-        width:48px;
-        height:48px;
-        border-radius:12px;
-    }
-
-    .player-info h4{
-        font-size:14px;
-    }
-
-    .player-info p{
-        font-size:12px;
-    }
-
-    .buttons button{
-        display:none;
-    }
-
-    .buttons .play{
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        width:44px;
-        height:44px;
-    }
-
-    .progress,
-    .time,
-    .volume{
-        display:none;
-    }
-
-    .mobile-nav{
-        display:flex;
-        position:fixed;
-        left:0;
-        right:0;
-        bottom:0;
-        height:64px;
-        background:var(--card);
-        border-top:1px solid var(--border);
-        justify-content:space-around;
-        align-items:center;
-        z-index:1000;
-    }
-
-    .mobile-nav-item{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        text-decoration:none;
-        color:var(--muted);
-        font-size:10px;
-        font-weight:700;
-        flex:1;
-        gap:3px;
-    }
-
-    .mobile-nav-item.active{
-        color:var(--purple);
-    }
-
+    .app{grid-template-columns:1fr;}
+    .sidebar{display:none;}
+    .main{padding:24px 18px 180px;}
+    .song-row{grid-template-columns:40px 62px 1fr;}
+    .song-artist{display:none;}
+    .song-actions{grid-column:3;justify-content:flex-start;}
+    .player{left:0;grid-template-columns:1fr;height:auto;}
+    .volume{display:none;}
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- KEEP YOUR EXISTING HTML BODY SAME -->
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="logo" onclick="window.location.href='home.html'">
+            Audio<span>phile</span>
+        </div>
+
+        <nav class="menu">
+            <a href="home.html">Home</a>
+            <a href="songs.html">Songs</a>
+            <a href="albums.html">Albums</a>
+            <a href="artists.html">Artists</a>
+            <a href="favorites.html" class="active">Favorites</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+    </aside>
+
+    <main class="main">
+
+        <div class="topbar">
+            <div class="search-box">
+                <input id="searchInput" type="text" placeholder="Search favorite songs...">
+            </div>
+
+            <div class="profile" onclick="window.location.href='settings.html'">
+                <span id="profileInitial">L</span>
+            </div>
+        </div>
+
+        <section class="page-title">
+            <small>YOUR LIKED SONGS</small>
+            <h1>Favorites</h1>
+            <p>Favorite songs inga show aagum. Song click panna play aagum.</p>
+        </section>
+
+        <div class="song-list" id="favoriteList"></div>
+
+    </main>
+
+</div>
+
+<div class="player">
+
+    <div class="player-info" onclick="openMusicCard()">
+        <div class="player-cover" id="playerCover">A</div>
+
+        <div>
+            <h4 id="playerTitle">Select a song</h4>
+            <p id="playerArtist">Audiophile</p>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="buttons">
+            <button onclick="prevSong()">⏮</button>
+            <button class="play" id="playBtn" onclick="togglePlay()">▶</button>
+            <button onclick="nextSong()">⏭</button>
+        </div>
+
+        <div class="progress" onclick="setProgress(event)">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="time">
+            <span id="currentTime">0:00</span>
+            <span id="durationTime">0:00</span>
+        </div>
+    </div>
+
+    <div class="volume">
+        <h3>Volume</h3>
+        <input id="volumeRange" type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+    </div>
+
+</div>
+
+<div class="music-card-overlay" id="musicCardOverlay">
+
+    <div class="music-card">
+
+        <div class="big-cover" id="bigCover">A</div>
+
+        <h2 id="cardSongTitle">Select a song</h2>
+        <p id="cardSongArtist">Audiophile</p>
+
+        <div class="card-buttons">
+            <button onclick="prevSong()">⏮</button>
+            <button class="big-play" id="cardPlayBtn" onclick="togglePlay()">▶</button>
+            <button onclick="nextSong()">⏭</button>
+        </div>
+
+        <div class="card-progress" onclick="setCardProgress(event)">
+            <div class="card-progress-fill" id="cardProgressFill"></div>
+        </div>
+
+        <div class="card-time">
+            <span id="cardCurrentTime">0:00</span>
+            <span id="cardDurationTime">0:00</span>
+        </div>
+
+        <div class="card-volume">
+            <span>Volume</span>
+            <input id="cardVolumeRange" type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+        </div>
+
+    </div>
+
+</div>
 
 <audio id="audio"></audio>
 
 <script src="songs.js"></script>
 
 <script>
-
 let audio = document.getElementById("audio");
 let favoriteList = document.getElementById("favoriteList");
 let searchInput = document.getElementById("searchInput");
+
+let playBtn = document.getElementById("playBtn");
+let cardPlayBtn = document.getElementById("cardPlayBtn");
+
+let playerTitle = document.getElementById("playerTitle");
+let playerArtist = document.getElementById("playerArtist");
+
+let cardSongTitle = document.getElementById("cardSongTitle");
+let cardSongArtist = document.getElementById("cardSongArtist");
+
+let playerCover = document.getElementById("playerCover");
+let bigCover = document.getElementById("bigCover");
+
+let progressFill = document.getElementById("progressFill");
+let cardProgressFill = document.getElementById("cardProgressFill");
+
+let currentTime = document.getElementById("currentTime");
+let durationTime = document.getElementById("durationTime");
+
+let cardCurrentTime = document.getElementById("cardCurrentTime");
+let cardDurationTime = document.getElementById("cardDurationTime");
+
+let volumeRange = document.getElementById("volumeRange");
+let cardVolumeRange = document.getElementById("cardVolumeRange");
+
+let musicCardOverlay = document.getElementById("musicCardOverlay");
 
 let currentSongIndex = parseInt(localStorage.getItem("currentSongIndex")) || 0;
 let isPlaying = localStorage.getItem("globalIsPlaying") === "true";
@@ -556,14 +611,11 @@ let savedTime = parseFloat(localStorage.getItem("globalAudioTime")) || 0;
 
 if(savedSrc){
     audio.src = savedSrc;
-
-    audio.addEventListener("loadedmetadata",function(){
-        audio.currentTime = savedTime;
-    });
+    audio.currentTime = savedTime;
 }
 
 function getSongs(){
-    return typeof songs !== "undefined" ? songs : [];
+    return typeof songs !== "undefined" && Array.isArray(songs) ? songs : [];
 }
 
 function getFavorites(){
@@ -571,15 +623,11 @@ function getFavorites(){
 }
 
 function getCurrentlyRenderedFavs(){
-
     let allSongs = getSongs();
     let value = searchInput.value.toLowerCase();
 
     return getFavorites()
-    .map(index => ({
-        song:allSongs[index],
-        index:index
-    }))
+    .map(index => ({song:allSongs[index], index:index}))
     .filter(item => item.song)
     .filter(item =>
         item.song.title.toLowerCase().includes(value) ||
@@ -589,73 +637,53 @@ function getCurrentlyRenderedFavs(){
 }
 
 function savePlayerState(){
-
     localStorage.setItem("currentSongIndex",currentSongIndex);
     localStorage.setItem("globalAudioSrc",audio.src);
     localStorage.setItem("globalAudioTime",audio.currentTime || 0);
-    localStorage.setItem("globalIsPlaying",isPlaying);
+    localStorage.setItem("globalIsPlaying",isPlaying ? "true" : "false");
 }
 
-function renderFavorites(){
-
-    let favSongs = getCurrentlyRenderedFavs();
+function renderFavorites(filteredSongs = null){
+    let favSongs = filteredSongs ? filteredSongs : getCurrentlyRenderedFavs();
 
     if(favSongs.length === 0){
-
-        favoriteList.innerHTML = `
-        <div class="empty">
-            No favorite songs found.
-        </div>
-        `;
-
+        favoriteList.innerHTML =
+        `<div class="empty">No favorite songs found.</div>`;
         return;
     }
 
-    favoriteList.innerHTML = favSongs.map((item,displayIndex)=>`
+    favoriteList.innerHTML =
+    favSongs.map((item,displayIndex)=>`
+        <div class="song-row" onclick="playSong(${item.index}, event)">
 
-    <div class="song-row" onclick="playSong(${item.index},event)">
+            <div class="song-no">${displayIndex + 1}</div>
 
-        <div class="song-no">${displayIndex + 1}</div>
+            <div class="song-cover">
+                ${
+                    item.song.cover
+                    ? `<img src="${item.song.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${item.song.title.charAt(0)}';">`
+                    : item.song.title.charAt(0)
+                }
+            </div>
 
-        <div class="song-cover">
+            <div class="song-title">
+                <h3>${item.song.title}</h3>
+                <p>${item.song.album}</p>
+            </div>
 
-            ${
-                item.song.cover
-                ?
+            <div class="song-artist">${item.song.artist}</div>
 
-                `<img src="${item.song.cover}"
-                onerror="this.remove();this.parentElement.innerHTML='${item.song.title.charAt(0)}';">`
-
-                :
-
-                item.song.title.charAt(0)
-            }
+            <div class="song-actions">
+                <button class="play-small" onclick="playSong(${item.index}, event)">
+                    ▶ Play
+                </button>
+            </div>
 
         </div>
-
-        <div class="song-title">
-            <h3>${item.song.title}</h3>
-            <p>${item.song.album}</p>
-        </div>
-
-        <div class="song-artist">
-            ${item.song.artist}
-        </div>
-
-        <div class="song-actions">
-            <button class="play-small"
-            onclick="playSong(${item.index},event)">
-            ▶ Play
-            </button>
-        </div>
-
-    </div>
-
     `).join("");
 }
 
 function updatePlayerUI(song){
-
     if(!song) return;
 
     playBtn.innerText = isPlaying ? "⏸" : "▶";
@@ -668,58 +696,54 @@ function updatePlayerUI(song){
     cardSongArtist.innerText = song.artist + " • " + song.album;
 
     if(song.cover){
+        playerCover.innerHTML = `<img src="${song.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${song.title.charAt(0)}';">`;
 
-        playerCover.innerHTML = `
-        <img src="${song.cover}"
-        onerror="this.remove();this.parentElement.innerHTML='${song.title.charAt(0)}';">
-        `;
-
-        bigCover.innerHTML = `
-        <img src="${song.cover}"
-        onerror="this.remove();this.parentElement.innerHTML='${song.title.charAt(0)}';">
-        `;
+        bigCover.innerHTML = `<img src="${song.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${song.title.charAt(0)}';">`;
     }
     else{
-
         playerCover.innerText = song.title.charAt(0);
         bigCover.innerText = song.title.charAt(0);
     }
 }
 
-function playSong(index,event){
+function playSong(index, event){
 
-    if(event) event.stopPropagation();
+    if(event){
+        event.stopPropagation();
+    }
 
     let allSongs = getSongs();
 
     if(!allSongs[index]) return;
 
-    let song = allSongs[index];
-
-    if(!song.audio){
-        alert("Audio URL missing");
+    if(!allSongs[index].audio){
+        alert("Song audio URL missing in songs.js");
         return;
     }
 
     currentSongIndex = index;
 
+    let song = allSongs[currentSongIndex];
+
     audio.src = song.audio;
 
-    audio.play()
-    .then(()=>{
+    audio.play().then(function(){
 
         isPlaying = true;
 
         savePlayerState();
+
         updatePlayerUI(song);
 
-    })
-    .catch(()=>{
+    }).catch(function(){
 
         isPlaying = false;
 
         savePlayerState();
+
         updatePlayerUI(song);
+
+        alert("Play dynamically blocked. Click play control button manually.");
 
     });
 }
@@ -727,7 +751,6 @@ function playSong(index,event){
 function togglePlay(){
 
     if(!audio.src){
-
         playSong(currentSongIndex);
         return;
     }
@@ -735,23 +758,31 @@ function togglePlay(){
     if(isPlaying){
 
         audio.pause();
+
         isPlaying = false;
+
     }
     else{
 
-        audio.play()
-        .then(()=>{
+        audio.play().then(function(){
 
             isPlaying = true;
 
             savePlayerState();
+
             updatePlayerUI(getSongs()[currentSongIndex]);
+
+        }).catch(function(){
+
+            isPlaying = false;
+
         });
 
         return;
     }
 
     savePlayerState();
+
     updatePlayerUI(getSongs()[currentSongIndex]);
 }
 
@@ -761,16 +792,21 @@ function nextSong(){
 
     if(currentFavs.length === 0) return;
 
-    let currentMatchIndex = currentFavs.findIndex(
-        item => item.index === currentSongIndex
-    );
+    let currentMatchIndex =
+    currentFavs.findIndex(item => item.index === currentSongIndex);
 
-    let nextIndex =
-    currentMatchIndex === -1
-    ? 0
-    : (currentMatchIndex + 1) % currentFavs.length;
+    if(currentMatchIndex === -1){
 
-    playSong(currentFavs[nextIndex].index);
+        playSong(currentFavs[0].index);
+
+    }
+    else{
+
+        let nextFavIndex =
+        (currentMatchIndex + 1) % currentFavs.length;
+
+        playSong(currentFavs[nextFavIndex].index);
+    }
 }
 
 function prevSong(){
@@ -779,16 +815,21 @@ function prevSong(){
 
     if(currentFavs.length === 0) return;
 
-    let currentMatchIndex = currentFavs.findIndex(
-        item => item.index === currentSongIndex
-    );
+    let currentMatchIndex =
+    currentFavs.findIndex(item => item.index === currentSongIndex);
 
-    let prevIndex =
-    currentMatchIndex === -1
-    ? currentFavs.length - 1
-    : (currentMatchIndex - 1 + currentFavs.length) % currentFavs.length;
+    if(currentMatchIndex === -1){
 
-    playSong(currentFavs[prevIndex].index);
+        playSong(currentFavs[currentFavs.length - 1].index);
+
+    }
+    else{
+
+        let prevFavIndex =
+        (currentMatchIndex - 1 + currentFavs.length) % currentFavs.length;
+
+        playSong(currentFavs[prevFavIndex].index);
+    }
 }
 
 function changeVolume(value){
@@ -796,6 +837,7 @@ function changeVolume(value){
     audio.volume = value;
 
     volumeRange.value = value;
+
     cardVolumeRange.value = value;
 
     localStorage.setItem("globalVolume",value);
@@ -806,9 +848,12 @@ function formatTime(seconds){
     if(isNaN(seconds)) return "0:00";
 
     let min = Math.floor(seconds / 60);
+
     let sec = Math.floor(seconds % 60);
 
-    if(sec < 10) sec = "0" + sec;
+    if(sec < 10){
+        sec = "0" + sec;
+    }
 
     return min + ":" + sec;
 }
@@ -823,21 +868,27 @@ audio.addEventListener("timeupdate",function(){
     let percent =
     (audio.currentTime / audio.duration) * 100;
 
-    if(isNaN(percent)) percent = 0;
+    if(isNaN(percent)){
+        percent = 0;
+    }
 
     progressFill.style.width = percent + "%";
     cardProgressFill.style.width = percent + "%";
 
-    currentTime.innerText = formatTime(audio.currentTime);
-    durationTime.innerText = formatTime(audio.duration);
+    currentTime.innerText =
+    formatTime(audio.currentTime);
 
-    cardCurrentTime.innerText = formatTime(audio.currentTime);
-    cardDurationTime.innerText = formatTime(audio.duration);
+    durationTime.innerText =
+    formatTime(audio.duration);
+
+    cardCurrentTime.innerText =
+    formatTime(audio.currentTime);
+
+    cardDurationTime.innerText =
+    formatTime(audio.duration);
 });
 
 audio.addEventListener("ended",function(){
-
-    isPlaying = false;
     nextSong();
 });
 
@@ -846,10 +897,13 @@ function setProgress(event){
     if(!audio.duration) return;
 
     let width = event.currentTarget.clientWidth;
+
     let clickX = event.offsetX;
 
     audio.currentTime =
     (clickX / width) * audio.duration;
+
+    savePlayerState();
 }
 
 function setCardProgress(event){
@@ -857,10 +911,13 @@ function setCardProgress(event){
     if(!audio.duration) return;
 
     let width = event.currentTarget.clientWidth;
+
     let clickX = event.offsetX;
 
     audio.currentTime =
     (clickX / width) * audio.duration;
+
+    savePlayerState();
 }
 
 function openMusicCard(){
@@ -878,6 +935,7 @@ function closeMusicCard(){
 musicCardOverlay.addEventListener("click",function(e){
 
     if(e.target.id === "musicCardOverlay"){
+
         closeMusicCard();
     }
 });
@@ -905,22 +963,22 @@ if(savedSrc && isPlaying){
 
     setTimeout(function(){
 
-        audio.play()
-        .then(()=>{
+        audio.play().then(function(){
 
             isPlaying = true;
+
             updatePlayerUI(getSongs()[currentSongIndex]);
 
-        })
-        .catch(()=>{
+        }).catch(function(){
 
             isPlaying = false;
+
             updatePlayerUI(getSongs()[currentSongIndex]);
+
         });
 
     },300);
 }
-
 </script>
 
 </body>
