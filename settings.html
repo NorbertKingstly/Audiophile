@@ -380,11 +380,16 @@ body{
 
 <audio id="backgroundAudio"></audio>
 
+<script src="songs.js"></script>
+
 <script>
 let bgAudio = document.getElementById("backgroundAudio");
 
+function getSongs(){
+    return typeof songs !== "undefined" && Array.isArray(songs) ? songs : [];
+}
+
 function loadProfile(){
-    // Dynamic user tracking with absolute fallbacks to secure multi-tenant identity integrity
     let currentUser = localStorage.getItem("audiophile_currentUser") || "Guest User";
     let profileImage = localStorage.getItem("audiophile_profileImage") || "";
 
@@ -484,6 +489,24 @@ bgAudio.addEventListener("pause", function(){
     localStorage.setItem("globalIsPlaying", "false");
 });
 
+bgAudio.addEventListener("ended", function(){
+    let allSongs = getSongs();
+    if(allSongs.length === 0) return;
+
+    let currentSongIndex = parseInt(localStorage.getItem("currentSongIndex")) || 0;
+    let nextIndex = (currentSongIndex + 1) % allSongs.length;
+    
+    if(allSongs[nextIndex] && allSongs[nextIndex].audio){
+        localStorage.setItem("currentSongIndex", nextIndex);
+        bgAudio.src = allSongs[nextIndex].audio;
+        bgAudio.play().then(() => {
+            localStorage.setItem("globalAudioSrc", bgAudio.src);
+            localStorage.setItem("globalAudioTime", 0);
+            localStorage.setItem("globalIsPlaying", "true");
+        }).catch(err => console.log("Playback error:", err));
+    }
+});
+
 window.addEventListener("beforeunload", function(){
     if (bgAudio.src) {
         localStorage.setItem("globalAudioSrc", bgAudio.src);
@@ -492,11 +515,7 @@ window.addEventListener("beforeunload", function(){
 });
 
 function logout(){
-    // Explicit clean-wipe termination sequence
-    localStorage.removeItem("audiophile_loggedIn");
-    localStorage.removeItem("audiophile_currentUser");
-    localStorage.removeItem("audiophile_userEmail");
-    localStorage.removeItem("audiophile_profileImage");
+    localStorage.clear(); // Clear all player sessions completely on logout
     window.location.href = "index.html";
 }
 
