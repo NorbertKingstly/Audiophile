@@ -22,10 +22,29 @@
     --border:rgba(0,0,0,0.08);
 }
 
+/* Theme Mappings */
+body.theme-white {
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --card2:#eef0f4;
+    --text:#111827;
+    --muted:#64748b;
+}
+
+body.theme-musicred {
+    --bg:#1a0f0f;
+    --card:#2a1818;
+    --card2:#3a2222;
+    --text:#f9fafb;
+    --muted:#fda4af;
+    --purple:#ef4444;
+}
+
 body{
     background:var(--bg);
     color:var(--text);
     overflow:hidden;
+    transition: background 0.3s, color 0.3s;
 }
 
 .app{
@@ -162,7 +181,7 @@ body{
 }
 
 .page-title small{
-    color:var(--cyan);
+    color:var(--purple);
     font-weight:900;
     letter-spacing:1px;
 }
@@ -594,7 +613,7 @@ body{
 
             <div class="profile" onclick="window.location.href='settings.html'">
                 <span id="homeProfileInitial">L</span>
-                <img id="homeProfileImage" src="">
+                <img id="homeProfileImage" src="" alt="Profile Image">
             </div>
         </div>
 
@@ -692,9 +711,36 @@ body{
 
 <script>
 let audio = document.getElementById("audio");
+let searchInput = document.getElementById("searchInput");
+let artistGrid = document.getElementById("artistGrid");
+let songList = document.getElementById("songList");
+let backBtn = document.getElementById("backBtn");
+let heroSmall = document.getElementById("heroSmall");
+let heroTitle = document.getElementById("heroTitle");
+let heroText = document.getElementById("heroText");
+let artistHeroCover = document.getElementById("artistHeroCover");
+let playerTitle = document.getElementById("playerTitle");
+let playerArtist = document.getElementById("playerArtist");
+let playerCover = document.getElementById("playerCover");
+let popupTitle = document.getElementById("popupTitle");
+let popupArtist = document.getElementById("popupArtist");
+let popupCover = document.getElementById("popupCover");
+let playBtn = document.getElementById("playBtn");
+let popupPlayBtn = document.getElementById("popupPlayBtn");
+let progressFill = document.getElementById("progressFill");
+let popupProgressFill = document.getElementById("popupProgressFill");
+let currentTime = document.getElementById("currentTime");
+let durationTime = document.getElementById("durationTime");
+let popupCurrentTime = document.getElementById("popupCurrentTime");
+let popupDurationTime = document.getElementById("popupDurationTime");
+let volumeRange = document.getElementById("volumeRange");
+let popupVolumeRange = document.getElementById("popupVolumeRange");
+let homeProfileInitial = document.getElementById("homeProfileInitial");
+let homeProfileImage = document.getElementById("homeProfileImage");
+let musicPopup = document.getElementById("musicPopup");
 
 let currentSongIndex = parseInt(localStorage.getItem("currentSongIndex")) || 0;
-let isPlaying = localStorage.getItem("globalIsPlaying") === "true";
+let isPlaying = false; // Initialized false to prevent early state conflicts
 
 const artistImages = {
     "A.R. Rahman":"/image/AR Rahman.jpg",
@@ -759,7 +805,6 @@ function saveFavorites(favorites){
 
 function toggleFavorite(index,event){
     event.stopPropagation();
-
     let favorites = getFavorites();
 
     if(favorites.includes(index)){
@@ -824,7 +869,6 @@ function renderArtists(list){
                     : artist.artist.charAt(0)
                 }
             </div>
-
             <h3>${artist.artist}</h3>
             <p>${artist.songs.length} Songs</p>
         </div>
@@ -845,7 +889,6 @@ function openArtist(encodedName){
     heroText.innerText = filtered.length + " songs available.";
 
     artistHeroCover.style.display = "flex";
-
     let artistImg = getArtistImage(name,filtered[0]?.cover);
 
     if(artistImg){
@@ -861,9 +904,7 @@ function openArtist(encodedName){
 
         return `
         <div class="song-row" onclick="playSong(${realIndex})">
-
             <div class="song-no">${index + 1}</div>
-
             <div class="song-cover">
                 ${
                     song.cover
@@ -871,30 +912,24 @@ function openArtist(encodedName){
                     : song.title.charAt(0)
                 }
             </div>
-
             <div class="song-title">
                 <h3>${song.title}</h3>
                 <p>${song.album}</p>
             </div>
-
             <div class="song-actions">
                 <button class="play-small" onclick="playSong(${realIndex}); event.stopPropagation();">
                     ▶ Play
                 </button>
-
                 <button class="fav-small" onclick="toggleFavorite(${realIndex},event)">
                     ${isFav ? "★" : "☆"}
                 </button>
             </div>
-
         </div>`;
     }).join("");
 }
 
 function showArtists(){
-    // Reset search input on backward navigation to prevent stale views
     searchInput.value = "";
-    
     artistGrid.style.display = "grid";
     songList.style.display = "none";
     backBtn.style.display = "none";
@@ -910,7 +945,6 @@ function showArtists(){
 
 function playSong(index){
     let allSongs = getSongs();
-
     if(!allSongs[index]) return;
 
     if(!allSongs[index].audio){
@@ -920,7 +954,6 @@ function playSong(index){
 
     currentSongIndex = index;
     let song = allSongs[currentSongIndex];
-
     audio.src = song.audio;
 
     audio.play().then(()=>{
@@ -931,7 +964,7 @@ function playSong(index){
         isPlaying = false;
         savePlayerState();
         updatePlayerUI(song);
-        alert("Song play agala. Play button once more click pannunga.");
+        alert("Audio engine context busy. Click Play once again.");
     });
 }
 
@@ -962,21 +995,17 @@ function togglePlay(){
 
 function nextSong(){
     currentSongIndex++;
-
     if(currentSongIndex >= getSongs().length){
         currentSongIndex = 0;
     }
-
     playSong(currentSongIndex);
 }
 
 function prevSong(){
     currentSongIndex--;
-
     if(currentSongIndex < 0){
         currentSongIndex = getSongs().length - 1;
     }
-
     playSong(currentSongIndex);
 }
 
@@ -988,21 +1017,18 @@ function changeVolume(value){
 }
 
 function formatTime(seconds){
-    if(isNaN(seconds)) return "0:00";
-
+    if(isNaN(seconds) || !isFinite(seconds)) return "0:00";
     let min = Math.floor(seconds / 60);
     let sec = Math.floor(seconds % 60);
-
     if(sec < 10) sec = "0" + sec;
-
     return min + ":" + sec;
 }
 
 audio.addEventListener("timeupdate",()=>{
+    if (!audio.duration) return;
     localStorage.setItem("globalAudioTime",audio.currentTime || 0);
 
     let percent = (audio.currentTime / audio.duration) * 100;
-
     if(isNaN(percent)) percent = 0;
 
     progressFill.style.width = percent + "%";
@@ -1020,21 +1046,17 @@ audio.addEventListener("ended",()=>{
 });
 
 function setProgress(event){
-    if(!audio.duration) return;
-
+    if(!audio.duration || isNaN(audio.duration)) return;
     let width = event.currentTarget.clientWidth;
     let clickX = event.offsetX;
-
     audio.currentTime = (clickX / width) * audio.duration;
     savePlayerState();
 }
 
 function setPopupProgress(event){
-    if(!audio.duration) return;
-
+    if(!audio.duration || isNaN(audio.duration)) return;
     let width = event.currentTarget.clientWidth;
     let clickX = event.offsetX;
-
     audio.currentTime = (clickX / width) * audio.duration;
     savePlayerState();
 }
@@ -1052,12 +1074,16 @@ musicPopup.addEventListener("click",function(e){
 
 searchInput.addEventListener("input",function(){
     let value = this.value.toLowerCase();
+    
+    // Fall back to primary dashboard context if the user searches while inside inner views
+    if(artistGrid.style.display === "none") {
+        showArtists();
+        searchInput.value = value;
+    }
 
-    // Prevent deep nested song filters that confuse rendering configurations
     let filtered = getSongs().filter(song =>
         song.artist.toLowerCase().includes(value)
     );
-
     renderArtists(filtered);
 });
 
@@ -1065,25 +1091,25 @@ window.addEventListener("beforeunload",()=>{
     savePlayerState();
 });
 
+// Initialization Order Execution
 applySavedTheme();
 loadHomeProfile();
 renderArtists(getSongs());
 
 let savedVolume = localStorage.getItem("globalVolume") || 0.8;
 changeVolume(savedVolume);
-
 updatePlayerUI(getSongs()[currentSongIndex]);
 
-if(savedSrc && isPlaying){
-    setTimeout(()=>{
-        audio.play().then(()=>{
-            isPlaying = true;
-            updatePlayerUI(getSongs()[currentSongIndex]);
-        }).catch(()=>{
-            isPlaying = false;
-            updatePlayerUI(getSongs()[currentSongIndex]);
-        });
-    },300);
+// Checking conditions safely for autoplay setups
+if(savedSrc && localStorage.getItem("globalIsPlaying") === "true"){
+    window.addEventListener('click', () => {
+        if(!isPlaying) {
+             audio.play().then(()=>{
+                 isPlaying = true;
+                 updatePlayerUI(getSongs()[currentSongIndex]);
+             }).catch(()=>{});
+        }
+    }, { once: true });
 }
 </script>
 
