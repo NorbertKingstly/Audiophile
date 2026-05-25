@@ -1321,7 +1321,7 @@ const songs = [
     title: "Karuppa Kooda Va",
     artist: "Sai Abhyankkar",
     album: "Karuppu",
-    cover: "/image/Karuppu.jpg",
+    cover: "/image/Karuppu.webp",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179801/Karuppa-Kooda-Va-MassTamilan.dev_rlzotz.mp3"
 },
 
@@ -1330,7 +1330,7 @@ const songs = [
     title: "Verappa",
     artist: "Sai Abhyankkar",
     album: "Karuppu",
-    cover: "/image/Karuppu.jpg",
+    cover: "/image/Karuppu.webp",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179792/Verappa-MassTamilan.dev_stl7re.mp3"
 },
 
@@ -1339,7 +1339,7 @@ const songs = [
     title: "Raathu Raasan",
     artist: "Sai Abhyankkar",
     album: "Karuppu",
-    cover: "/image/Karuppu.jpg",
+    cover: "/image/Karuppu.webp",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179790/Raathu-Raasan-MassTamilan.dev_rkmlak.mp3"
 },
 
@@ -1348,7 +1348,7 @@ const songs = [
     title: "Naanga Naalu Peru",
     artist: "Sai Abhyankkar",
     album: "Karuppu",
-    cover: "/image/Karuppu.jpg",
+    cover: "/image/Karuppu.webp",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179785/Naanga-Naalu-Peru-MassTamilan.dev_tb3kka.mp3"
 },
 
@@ -1357,7 +1357,7 @@ const songs = [
     title: "God Mode",
     artist: "Sai Abhyankkar",
     album: "Karuppu",
-    cover: "/image/Karuppu.jpg",
+    cover: "/image/Karuppu.webp",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179782/God-Mode-MassTamilan.dev_cqmwab.mp3"
 },
 
