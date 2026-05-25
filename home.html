@@ -1,4 +1,3 @@
-<!-- Home -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -164,7 +163,6 @@ body{
 }
 
 /* CAROUSEL */
-
 .carousel{
     position:relative;
     width:100%;
@@ -326,7 +324,6 @@ body{
 }
 
 /* PLAYER */
-
 .player{
     position:fixed;
     left:250px;
@@ -445,7 +442,6 @@ body{
 }
 
 /* MUSIC POPUP */
-
 .music-card-overlay{
     position:fixed;
     inset:0;
@@ -554,29 +550,23 @@ body{
     .app{
         grid-template-columns:1fr;
     }
-
     .sidebar{
         display:none;
     }
-
     .search-box{
         width:100%;
     }
-
     .carousel{
         height:300px;
     }
-
     .slide{
         padding:12px;
     }
-
     .player{
         left:0;
         grid-template-columns:1fr;
         height:auto;
     }
-
     .volume{
         display:none;
     }
@@ -589,11 +579,9 @@ body{
 <div class="app">
 
     <aside class="sidebar">
-
         <div class="logo" onclick="window.location.href='home.html'">
             Audio<span>phile</span>
         </div>
-
         <nav class="menu">
             <a href="home.html" class="active">Home</a>
             <a href="songs.html">Songs</a>
@@ -602,109 +590,84 @@ body{
             <a href="favorites.html">Favorites</a>
             <a href="settings.html">Settings</a>
         </nav>
-
     </aside>
 
     <main class="main">
-
         <div class="topbar">
-
             <div class="search-box">
                 <input id="searchInput" type="text" placeholder="Search songs, albums, artists...">
             </div>
-
             <div class="profile" onclick="window.location.href='settings.html'">
                 <span id="homeProfileInitial">L</span>
-                <img id="homeProfileImage" src="">
+                <img id="homeProfileImage" src="" alt="Profile">
             </div>
-
         </div>
 
         <section class="carousel">
-
             <div class="slide active">
-                <img src="image/kp1.png" alt="">
+                <img src="image/kp1.png" alt="Slide 1">
             </div>
-
             <div class="slide">
-                <img src="image/lik.jpg" alt="">
+                <img src="image/lik.jpg" alt="Slide 2">
             </div>
-
             <div class="slide">
-                <img src="image/jananayagan.jpg" alt="">
+                <img src="image/jananayagan.jpg" alt="Slide 3">
             </div>
 
             <button class="carousel-btn prev" onclick="prevSlide()">‹</button>
             <button class="carousel-btn next" onclick="nextSlide()">›</button>
 
             <div class="dots">
-                <span class="active" onclick="showSlide(0)"></span>
-                <span onclick="showSlide(1)"></span>
-                <span onclick="showSlide(2)"></span>
+                <span class="active" onclick="manualSlide(0)"></span>
+                <span onclick="manualSlide(1)"></span>
+                <span onclick="manualSlide(2)"></span>
             </div>
-
         </section>
 
         <section class="section" id="songsSection">
-
             <div class="section-title">
                 <h2>Trending Songs</h2>
                 <span>10 songs • Tap song to play</span>
             </div>
-
             <div class="grid" id="songGrid"></div>
-
         </section>
-
     </main>
 
 </div>
 
 <div class="player">
-
     <div class="player-info" onclick="openMusicCard()">
-
         <div class="player-cover" id="playerCover">A</div>
-
         <div>
             <h4 id="playerTitle">Select a song</h4>
             <p id="playerArtist">Audiophile</p>
         </div>
-
     </div>
 
     <div class="controls">
-
         <div class="buttons">
             <button onclick="prevSong()">⏮</button>
             <button class="play" id="playBtn" onclick="togglePlay()">▶</button>
             <button onclick="nextSong()">⏭</button>
         </div>
-
         <div class="progress" onclick="setProgress(event)">
             <div class="progress-fill" id="progressFill"></div>
         </div>
-
         <div class="time">
             <span id="currentTime">0:00</span>
             <span id="durationTime">0:00</span>
         </div>
-
     </div>
 
     <div class="volume">
         <h3>Volume</h3>
         <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
     </div>
-
 </div>
 
 <div class="music-card-overlay" id="musicCardOverlay">
-
     <div class="music-card">
-
         <div class="big-cover" id="bigCover">A</div>
-
         <h2 id="cardSongTitle">Select a song</h2>
         <p id="cardSongArtist">Audiophile</p>
 
@@ -727,9 +690,7 @@ body{
             <span>Volume</span>
             <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
         </div>
-
     </div>
-
 </div>
 
 <audio id="audio"></audio>
@@ -737,125 +698,51 @@ body{
 <script src="songs.js"></script>
 
 <script>
-
-let currentSongIndex =
-parseInt(localStorage.getItem("currentSongIndex")) || 0;
-
+let currentSongIndex = parseInt(localStorage.getItem("currentSongIndex")) || 0;
 let isPlaying = false;
 let currentSlide = 0;
+let carouselTimer = null;
 
 let audio = new Audio();
-
 window.globalAudio = audio;
 
-let savedAudio =
-localStorage.getItem("globalAudioSrc");
-
+let savedAudio = localStorage.getItem("globalAudioSrc");
 if(savedAudio){
     audio.src = savedAudio;
 }
 
-audio.currentTime =
-parseFloat(localStorage.getItem("globalAudioTime")) || 0;
+audio.currentTime = parseFloat(localStorage.getItem("globalAudioTime")) || 0;
 
-let savedPlaying =
-localStorage.getItem("globalIsPlaying");
-
-if(savedPlaying === "true"){
-    setTimeout(()=>{
-        audio.play();
-        isPlaying = true;
-        updatePlayerUI(getSongs()[currentSongIndex]);
-    },300);
+// Fixed Carousel Timer Overlaps
+function startCarouselRoutine() {
+    stopCarouselRoutine();
+    carouselTimer = setInterval(nextSlide, 5000);
 }
 
-let songGrid = document.getElementById("songGrid");
-
-function applySavedTheme(){
-
-    let theme =
-    localStorage.getItem("audiophile_theme") || "white";
-
-    document.body.classList.remove(
-    "theme-white",
-    "theme-musicred"
-    );
-
-    document.body.classList.add("theme-" + theme);
-}
-
-function loadHomeProfile(){
-
-    let currentUser =
-    localStorage.getItem("audiophile_currentUser")
-    || "Liyo Clevert";
-
-    let profileImage =
-    localStorage.getItem("audiophile_profileImage")
-    || "";
-
-    document.getElementById(
-    "homeProfileInitial"
-    ).innerText =
-    currentUser.charAt(0).toUpperCase();
-
-    if(profileImage !== ""){
-
-        document.getElementById(
-        "homeProfileImage"
-        ).src = profileImage;
-
-        document.getElementById(
-        "homeProfileImage"
-        ).style.display = "block";
-
-        document.getElementById(
-        "homeProfileInitial"
-        ).style.display = "none";
-    }
-
-    else{
-
-        document.getElementById(
-        "homeProfileImage"
-        ).style.display = "none";
-
-        document.getElementById(
-        "homeProfileInitial"
-        ).style.display = "block";
-    }
+function stopCarouselRoutine() {
+    if(carouselTimer) clearInterval(carouselTimer);
 }
 
 function showSlide(index){
-
-    let slides =
-    document.querySelectorAll(".slide");
-
-    let dots =
-    document.querySelectorAll(".dots span");
+    let slides = document.querySelectorAll(".slide");
+    let dots = document.querySelectorAll(".dots span");
+    if(slides.length === 0) return;
 
     if(index >= slides.length){
         currentSlide = 0;
     }
-
     else if(index < 0){
         currentSlide = slides.length - 1;
     }
-
     else{
         currentSlide = index;
     }
 
-    slides.forEach(slide=>{
-        slide.classList.remove("active");
-    });
-
-    dots.forEach(dot=>{
-        dot.classList.remove("active");
-    });
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.remove("active"));
 
     slides[currentSlide].classList.add("active");
-    dots[currentSlide].classList.add("active");
+    if(dots[currentSlide]) dots[currentSlide].classList.add("active");
 }
 
 function nextSlide(){
@@ -863,185 +750,117 @@ function nextSlide(){
 }
 
 function prevSlide(){
+    stopCarouselRoutine();
     showSlide(currentSlide - 1);
+    startCarouselRoutine();
 }
 
-setInterval(nextSlide,5000);
+function manualSlide(index) {
+    stopCarouselRoutine();
+    showSlide(index);
+    startCarouselRoutine();
+}
 
 function getSongs(){
-
-    if(typeof songs !== "undefined"
-    && Array.isArray(songs)
-    && songs.length > 0){
-
+    if(typeof songs !== "undefined" && Array.isArray(songs) && songs.length > 0){
         return songs;
     }
-
     return [];
 }
 
 function renderSongs(){
-
+    let songGrid = document.getElementById("songGrid");
+    if(!songGrid) return;
     let allSongs = getSongs();
 
-    songGrid.innerHTML =
-    allSongs.slice(0,10).map((song,index)=>{
-
+    songGrid.innerHTML = allSongs.slice(0,10).map((song, index) => {
         return `
         <div class="card" onclick="playSong(${index})">
-
             <div class="cover">
-
-                ${
-                    song.cover
-                    ?
-                    `<img src="${song.cover}">`
-                    :
-                    song.title.charAt(0)
-                }
-
+                ${song.cover ? `<img src="${song.cover}" alt="">` : song.title.charAt(0)}
             </div>
-
             <h3>${song.title}</h3>
             <p>${song.artist}</p>
-
         </div>
         `;
-
     }).join("");
 }
 
 function updatePlayerUI(song){
-
     if(!song) return;
 
-    document.getElementById(
-    "playBtn"
-    ).innerText =
-    isPlaying ? "⏸" : "▶";
-
-    document.getElementById(
-    "cardPlayBtn"
-    ).innerText =
-    isPlaying ? "⏸" : "▶";
-
-    document.getElementById(
-    "playerTitle"
-    ).innerText = song.title;
-
-    document.getElementById(
-    "playerArtist"
-    ).innerText = song.artist;
-
-    document.getElementById(
-    "cardSongTitle"
-    ).innerText = song.title;
-
-    document.getElementById(
-    "cardSongArtist"
-    ).innerText =
-    song.artist + " • " + song.album;
+    document.getElementById("playBtn").innerText = isPlaying ? "⏸" : "▶";
+    document.getElementById("cardPlayBtn").innerText = isPlaying ? "⏸" : "▶";
+    document.getElementById("playerTitle").innerText = song.title;
+    document.getElementById("playerArtist").innerText = song.artist;
+    document.getElementById("cardSongTitle").innerText = song.title;
+    document.getElementById("cardSongArtist").innerText = song.artist + (song.album ? " • " + song.album : "");
 
     if(song.cover){
-
-        document.getElementById(
-        "playerCover"
-        ).innerHTML =
-        `<img src="${song.cover}">`;
-
-        document.getElementById(
-        "bigCover"
-        ).innerHTML =
-        `<img src="${song.cover}">`;
+        document.getElementById("playerCover").innerHTML = `<img src="${song.cover}" alt="">`;
+        document.getElementById("bigCover").innerHTML = `<img src="${song.cover}" alt="">`;
+    } else {
+        document.getElementById("playerCover").innerText = song.title.charAt(0);
+        document.getElementById("bigCover").innerText = song.title.charAt(0);
     }
 }
 
 function playSong(index){
-
     let allSongs = getSongs();
+    if(index < 0 || index >= allSongs.length) return;
 
     currentSongIndex = index;
-
     let song = allSongs[index];
 
     audio.src = song.audio;
+    
+    // Safety handle browser autoplay rejections
+    audio.play().then(() => {
+        isPlaying = true;
+        localStorage.setItem("globalIsPlaying", "true");
+        updatePlayerUI(song);
+    }).catch(err => {
+        console.log("Autoplay context deferred until user interact gesture:", err);
+    });
 
-    audio.play();
-
-    isPlaying = true;
-
-    localStorage.setItem(
-    "currentSongIndex",
-    currentSongIndex
-    );
-
-    localStorage.setItem(
-    "globalAudioSrc",
-    song.audio
-    );
-
-    localStorage.setItem(
-    "globalIsPlaying",
-    "true"
-    );
-
-    updatePlayerUI(song);
+    localStorage.setItem("currentSongIndex", currentSongIndex);
+    localStorage.setItem("globalAudioSrc", song.audio);
 }
 
 function togglePlay(){
+    let allSongs = getSongs();
+    if(allSongs.length === 0) return;
 
     if(isPlaying){
-
         audio.pause();
-
         isPlaying = false;
-
-        localStorage.setItem(
-        "globalIsPlaying",
-        "false"
-        );
+        localStorage.setItem("globalIsPlaying", "false");
     }
-
     else{
-
-        audio.play();
-
-        isPlaying = true;
-
-        localStorage.setItem(
-        "globalIsPlaying",
-        "true"
-        );
+        // Fallback checks for empty track queues
+        if(!audio.src && allSongs[currentSongIndex]) {
+            audio.src = allSongs[currentSongIndex].audio;
+        }
+        audio.play().then(() => {
+            isPlaying = true;
+            localStorage.setItem("globalIsPlaying", "true");
+        }).catch(err => console.log("Playback interaction error:", err));
     }
 
-    updatePlayerUI(
-    getSongs()[currentSongIndex]
-    );
+    updatePlayerUI(allSongs[currentSongIndex]);
 }
 
 function nextSong(){
-
     let allSongs = getSongs();
-
-    currentSongIndex++;
-
-    if(currentSongIndex >= allSongs.length){
-        currentSongIndex = 0;
-    }
-
+    if(allSongs.length === 0) return;
+    currentSongIndex = (currentSongIndex + 1) >= allSongs.length ? 0 : currentSongIndex + 1;
     playSong(currentSongIndex);
 }
 
 function prevSong(){
-
     let allSongs = getSongs();
-
-    currentSongIndex--;
-
-    if(currentSongIndex < 0){
-        currentSongIndex = allSongs.length - 1;
-    }
-
+    if(allSongs.length === 0) return;
+    currentSongIndex = (currentSongIndex - 1) < 0 ? allSongs.length - 1 : currentSongIndex - 1;
     playSong(currentSongIndex);
 }
 
@@ -1050,200 +869,145 @@ function changeVolume(value){
 }
 
 function formatTime(seconds){
-
-    if(isNaN(seconds)){
+    if(isNaN(seconds) || !isFinite(seconds)){
         return "0:00";
     }
-
-    let min =
-    Math.floor(seconds / 60);
-
-    let sec =
-    Math.floor(seconds % 60);
-
-    if(sec < 10){
-        sec = "0" + sec;
-    }
-
-    return min + ":" + sec;
+    let min = Math.floor(seconds / 60);
+    let sec = Math.floor(seconds % 60);
+    return min + ":" + (sec < 10 ? "0" + sec : sec);
 }
 
-audio.addEventListener(
-"timeupdate",
-function(){
+// Fixed Safe Lifecycle DOM Mount Execution
+document.addEventListener("DOMContentLoaded", () => {
+    applySavedTheme();
+    loadHomeProfile();
+    renderSongs();
+    changeVolume(0.8);
+    startCarouselRoutine();
 
-    localStorage.setItem(
-    "globalAudioTime",
-    audio.currentTime
-    );
-
-    let percent =
-    (audio.currentTime / audio.duration) * 100;
-
-    if(isNaN(percent)){
-        percent = 0;
+    let allSongs = getSongs();
+    if(allSongs.length > 0 && allSongs[currentSongIndex]) {
+        updatePlayerUI(allSongs[currentSongIndex]);
     }
 
-    document.getElementById(
-    "progressFill"
-    ).style.width =
-    percent + "%";
-
-    document.getElementById(
-    "cardProgressFill"
-    ).style.width =
-    percent + "%";
-
-    document.getElementById(
-    "currentTime"
-    ).innerText =
-    formatTime(audio.currentTime);
-
-    document.getElementById(
-    "durationTime"
-    ).innerText =
-    formatTime(audio.duration);
-
-    document.getElementById(
-    "cardCurrentTime"
-    ).innerText =
-    formatTime(audio.currentTime);
-
-    document.getElementById(
-    "cardDurationTime"
-    ).innerText =
-    formatTime(audio.duration);
+    let savedPlaying = localStorage.getItem("globalIsPlaying");
+    if(savedPlaying === "true"){
+        setTimeout(() => {
+            audio.play().then(() => {
+                isPlaying = true;
+                if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
+            }).catch(e => {
+                // Catching expected native silent blocks on refresh actions cleanly
+                console.log("Browser blocked refresh auto-resume. Awaiting user click handler.");
+                isPlaying = false;
+                localStorage.setItem("globalIsPlaying", "false");
+                if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
+            });
+        }, 300);
+    }
 });
 
-audio.addEventListener(
-"ended",
-function(){
+function applySavedTheme(){
+    let theme = localStorage.getItem("audiophile_theme") || "white";
+    document.body.classList.remove("theme-white", "theme-musicred");
+    document.body.classList.add("theme-" + theme);
+}
+
+function loadHomeProfile(){
+    let currentUser = localStorage.getItem("audiophile_currentUser") || "Liyo Clevert";
+    let profileImage = localStorage.getItem("audiophile_profileImage") || "";
+
+    document.getElementById("homeProfileInitial").innerText = currentUser.charAt(0).toUpperCase();
+
+    if(profileImage !== ""){
+        document.getElementById("homeProfileImage").src = profileImage;
+        document.getElementById("homeProfileImage").style.display = "block";
+        document.getElementById("homeProfileInitial").style.display = "none";
+    }
+    else{
+        document.getElementById("homeProfileImage").style.display = "none";
+        document.getElementById("homeProfileInitial").style.display = "block";
+    }
+}
+
+audio.addEventListener("timeupdate", function(){
+    if(!audio.duration) return;
+    localStorage.setItem("globalAudioTime", audio.currentTime);
+
+    let percent = (audio.currentTime / audio.duration) * 100;
+    if(isNaN(percent)) percent = 0;
+
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("cardProgressFill").style.width = percent + "%";
+
+    let currentFormatted = formatTime(audio.currentTime);
+    let durationFormatted = formatTime(audio.duration);
+
+    document.getElementById("currentTime").innerText = currentFormatted;
+    document.getElementById("durationTime").innerText = durationFormatted;
+    document.getElementById("cardCurrentTime").innerText = currentFormatted;
+    document.getElementById("cardDurationTime").innerText = durationFormatted;
+});
+
+audio.addEventListener("ended", function(){
     nextSong();
 });
 
 function setProgress(event){
-
     if(!audio.duration) return;
-
-    let width =
-    event.currentTarget.clientWidth;
-
+    let width = event.currentTarget.clientWidth;
     let clickX = event.offsetX;
-
-    audio.currentTime =
-    (clickX / width) * audio.duration;
+    audio.currentTime = (clickX / width) * audio.duration;
 }
 
 function setCardProgress(event){
-
     if(!audio.duration) return;
-
-    let width =
-    event.currentTarget.clientWidth;
-
+    let width = event.currentTarget.clientWidth;
     let clickX = event.offsetX;
-
-    audio.currentTime =
-    (clickX / width) * audio.duration;
+    audio.currentTime = (clickX / width) * audio.duration;
 }
 
 function openMusicCard(){
-
     if(!audio.src) return;
-
-    document.getElementById(
-    "musicCardOverlay"
-    ).classList.add("show");
+    document.getElementById("musicCardOverlay").classList.add("show");
 }
 
 function closeMusicCard(){
-
-    document.getElementById(
-    "musicCardOverlay"
-    ).classList.remove("show");
+    document.getElementById("musicCardOverlay").classList.remove("show");
 }
 
-document.getElementById(
-"musicCardOverlay"
-).addEventListener("click",function(e){
-
+document.getElementById("musicCardOverlay").addEventListener("click", function(e){
     if(e.target.id === "musicCardOverlay"){
         closeMusicCard();
     }
 });
 
-document.getElementById(
-"searchInput"
-).addEventListener("input",function(){
-
-    let value =
-    this.value.toLowerCase();
-
+// Clean Live Filter Engine
+document.getElementById("searchInput").addEventListener("input", function(){
+    let value = this.value.toLowerCase();
     let allSongs = getSongs();
+    let songGrid = document.getElementById("songGrid");
 
-    let filtered =
-    allSongs.filter(song=>{
-
-        return song.title
-        .toLowerCase()
-        .includes(value)
-
-        ||
-
-        song.artist
-        .toLowerCase()
-        .includes(value)
-
-        ||
-
-        song.album
-        .toLowerCase()
-        .includes(value);
+    let filtered = allSongs.filter(song => {
+        return song.title.toLowerCase().includes(value) ||
+               song.artist.toLowerCase().includes(value) ||
+               (song.album && song.album.toLowerCase().includes(value));
     });
 
-    songGrid.innerHTML =
-    filtered.map(song=>{
-
-        let realIndex =
-        allSongs.indexOf(song);
-
+    songGrid.innerHTML = filtered.map(song => {
+        let realIndex = allSongs.indexOf(song);
         return `
         <div class="card" onclick="playSong(${realIndex})">
-
             <div class="cover">
-
-                ${
-                    song.cover
-                    ?
-                    `<img src="${song.cover}">`
-                    :
-                    song.title.charAt(0)
-                }
-
+                ${song.cover ? `<img src="${song.cover}" alt="">` : song.title.charAt(0)}
             </div>
-
             <h3>${song.title}</h3>
             <p>${song.artist}</p>
-
         </div>
         `;
     }).join("");
 });
-
-applySavedTheme();
-
-loadHomeProfile();
-
-renderSongs();
-
-changeVolume(0.8);
-
-updatePlayerUI(
-getSongs()[currentSongIndex]
-);
-
 </script>
-
 
 </body>
 </html>
