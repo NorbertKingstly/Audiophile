@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Audiophile - Artists</title>
+<title>Audiophile</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -164,6 +164,7 @@ body{
     display:none;
 }
 
+/* ARTISTS PAGE CONTENT STYLES */
 h2{
     font-size:28px;
     font-weight:800;
@@ -183,8 +184,6 @@ h2{
     padding:18px;
     cursor:pointer;
     transition:0.3s;
-    position: relative;
-    text-align: center;
 }
 
 .card:hover{
@@ -192,29 +191,25 @@ h2{
     box-shadow:0 12px 30px rgba(0,0,0,0.05);
 }
 
-/* Fixed circular layout structure for artist images */
 .cover{
-    width: 140px;
-    height: 140px;
-    aspect-ratio: 1;
-    background: linear-gradient(135deg, var(--purple), var(--pink));
-    border-radius: 50% !important;
-    margin: 0 auto 14px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 44px;
-    font-weight: 900;
-    color: white;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    width:100%;
+    aspect-ratio:1;
+    background:var(--card2);
+    border-radius:50%; /* Rounded Circular Cover for Artists */
+    margin-bottom:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:48px;
+    font-weight:900;
+    color:white;
+    overflow:hidden;
 }
 
 .cover img{
     width:100%;
     height:100%;
     object-fit:cover;
-    border-radius: 50% !important;
 }
 
 .card h3{
@@ -224,6 +219,7 @@ h2{
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+    text-align:center;
 }
 
 .card p{
@@ -232,8 +228,10 @@ h2{
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+    text-align:center;
 }
 
+/* BACK BUTTON FOR SONGS VIEW */
 .back-btn{
     background:var(--card2);
     color:var(--text);
@@ -278,7 +276,6 @@ h2{
 .player-details{
     min-width: 0;
     flex: 1;
-    text-align: left;
 }
 
 .player-details h4{
@@ -383,6 +380,7 @@ h2{
     accent-color:var(--cyan);
 }
 
+/* MOBILE NAV */
 .mobile-nav {
     display: none;
 }
@@ -544,6 +542,17 @@ h2{
         min-width: 0 !important;
         flex: 1 !important;
     }
+    .player-details h4, .player-details p {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    .player-details h4 {
+        font-size: 14px !important;
+    }
+    .player-details p {
+        font-size: 12px !important;
+    }
     .player-cover {
         width: 44px !important;
         height: 44px !important;
@@ -556,8 +565,13 @@ h2{
         justify-content: flex-end;
         align-items: center;
     }
-    .buttons gap: 12px !important;
-    .buttons button { display: none; }
+    .buttons {
+        gap: 12px !important;
+        margin-bottom: 0px !important;
+    }
+    .buttons button {
+        display: none;
+    }
     .buttons button.play {
         display: flex !important;
         justify-content: center;
@@ -566,7 +580,9 @@ h2{
         height: 42px !important;
         font-size: 14px !important;
     }
-    .progress, .time, .volume { display: none !important; }
+    .progress, .time, .volume {
+        display: none !important;
+    }
     .mobile-nav {
         display: flex;
         position: fixed;
@@ -579,6 +595,7 @@ h2{
         z-index: 1000;
         justify-content: space-around;
         align-items: center;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
     }
     .mobile-nav-item {
         display: flex;
@@ -590,17 +607,31 @@ h2{
         font-weight: 600;
         gap: 4px;
         width: 16%;
+        text-align: center;
     }
-    .mobile-nav-item.active { color: var(--purple); }
+    .mobile-nav-item.active {
+        color: var(--purple);
+    }
+    .mobile-nav-icon {
+        font-size: 18px;
+        line-height: 1;
+    }
     .grid {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 16px;
     }
-    .card { padding: 12px; border-radius: 18px; }
-    .cover { 
-        width: 100px;
-        height: 100px;
-        font-size: 32px; 
+    .card {
+        padding: 12px;
+        border-radius: 18px;
+    }
+    .cover {
+        font-size: 36px;
+    }
+    .card h3 {
+        font-size: 14px;
+    }
+    .card p {
+        font-size: 12px;
     }
 }
 </style>
@@ -609,7 +640,9 @@ h2{
 
 <div class="app">
     <aside class="sidebar">
-        <div class="logo" onclick="window.location.href='home.html'">Audio<span>phile</span></div>
+        <div class="logo" onclick="window.location.href='home.html'">
+            Audio<span>phile</span>
+        </div>
         <nav class="menu">
             <a href="home.html">Home</a>
             <a href="songs.html">Songs</a>
@@ -631,7 +664,10 @@ h2{
             </div>
         </div>
 
-        <div id="artistTitleContainer"><h2>Artists</h2></div>
+        <div id="artistTitleContainer">
+            <h2>Artists</h2>
+        </div>
+
         <div id="backBtnContainer" style="display:none;">
             <button class="back-btn" onclick="showArtistsGrid()"><i class="fa-solid fa-arrow-left"></i> Back to Artists</button>
         </div>
@@ -657,7 +693,10 @@ h2{
         <div class="progress" onclick="setProgress(event)">
             <div class="progress-fill" id="progressFill"></div>
         </div>
-        <div class="time"><span id="currentTime">0:00</span><span id="durationTime">0:00</span></div>
+        <div class="time">
+            <span id="currentTime">0:00</span>
+            <span id="durationTime">0:00</span>
+        </div>
     </div>
     <div class="volume">
         <h3>Volume</h3>
@@ -666,12 +705,24 @@ h2{
 </div>
 
 <nav class="mobile-nav">
-    <a href="home.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-house"></i></span><span>Home</span></a>
-    <a href="songs.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-music"></i></span><span>Songs</span></a>
-    <a href="albums.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-compact-disc"></i></span><span>Albums</span></a>
-    <a href="artists.html" class="mobile-nav-item active"><span class="mobile-nav-icon"><i class="fa-solid fa-user-astronaut"></i></span><span>Artists</span></a>
-    <a href="favorites.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-heart"></i></span><span>Favorites</span></a>
-    <a href="settings.html" class="mobile-nav-item"><span class="mobile-nav-icon"><i class="fa-solid fa-gear"></i></span><span>Settings</span></a>
+    <a href="home.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-house"></i></span><span>Home</span>
+    </a>
+    <a href="songs.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-music"></i></span><span>Songs</span>
+    </a>
+    <a href="albums.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-compact-disc"></i></span><span>Albums</span>
+    </a>
+    <a href="artists.html" class="mobile-nav-item active">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-user-astronaut"></i></span><span>Artists</span>
+    </a>
+    <a href="favorites.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-heart"></i></span><span>Favorites</span>
+    </a>
+    <a href="settings.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-gear"></i></span><span>Settings</span>
+    </a>
 </nav>
 
 <div class="music-card-overlay" id="musicCardOverlay">
@@ -684,15 +735,25 @@ h2{
             <button class="big-play" id="cardPlayBtn" onclick="togglePlay()">▶</button>
             <button onclick="nextSong()">⏭</button>
         </div>
-        <div class="card-progress" onclick="setCardProgress(event)"><div class="card-progress-fill" id="cardProgressFill"></div></div>
-        <div class="card-time"><span id="cardCurrentTime">0:00</span><span id="cardDurationTime">0:00</span></div>
-        <div class="card-volume"><span>Volume</span><input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)"></div>
+        <div class="card-progress" onclick="setCardProgress(event)">
+            <div class="card-progress-fill" id="cardProgressFill"></div>
+        </div>
+        <div class="card-time">
+            <span id="cardCurrentTime">0:00</span>
+            <span id="cardDurationTime">0:00</span>
+        </div>
+        <div class="card-volume">
+            <span>Volume</span>
+            <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+        </div>
     </div>
 </div>
 
 <audio id="audio"></audio>
+
 <script src="songs.js"></script>
 <script>
+/* CORE COOKIE LOCALSTORAGE ENGINE OPERATIONS MANAGEMENT CODE */
 let currentSongIndex = parseInt(localStorage.getItem("currentSongIndex")) || 0;
 let isPlaying = localStorage.getItem("globalIsPlaying") === "true";
 let savedSrc = localStorage.getItem("globalAudioSrc");
@@ -712,18 +773,22 @@ let backBtnContainer = document.getElementById("backBtnContainer");
 let currentArtistSongs = [];
 
 function getSongs(){
-    return (typeof songs !== "undefined" && Array.isArray(songs)) ? songs : [];
+    if(typeof songs !== "undefined" && Array.isArray(songs) && songs.length > 0){
+        return songs;
+    }
+    return [];
 }
 
 function getArtists(){
     let allSongs = getSongs();
     let artistsMap = {};
+    
     allSongs.forEach(function(song){
         if(song.artist){
             if(!artistsMap[song.artist]){
                 artistsMap[song.artist] = {
                     name: song.artist,
-                    cover: song.artistCover || ""
+                    cover: song.cover || "" // Uses track cover or falls back to initials
                 };
             }
         }
@@ -755,25 +820,28 @@ function renderArtists(artistsList){
 
 function openArtist(artistName){
     let allSongs = getSongs();
-    currentArtistSongs = allSongs.filter(function(song){ return song.artist === artistName; });
+    currentArtistSongs = allSongs.filter(function(song){
+        return song.artist === artistName;
+    });
 
     artistTitleContainer.innerHTML = `<h2>${artistName}</h2>`;
     backBtnContainer.style.display = "block";
 
     if(currentArtistSongs.length === 0){
-        artistGrid.innerHTML = "<p style='padding:20px; color:var(--muted);'>No tracks found.</p>";
+        artistGrid.innerHTML = "<p style='padding:20px; color:var(--muted);'>No tracks found for this artist.</p>";
         return;
     }
 
+    // Displays matching tracks by clicked artist inside a regular square layout context grid
     artistGrid.innerHTML = currentArtistSongs.map(function(song){
         let allSongsIndex = allSongs.indexOf(song);
         let fallbackLetter = song.title ? song.title.charAt(0).toUpperCase() : "S";
         let coverContent = song.cover ? `<img src="${song.cover}" alt="">` : fallbackLetter;
         return `
         <div class="card" onclick="playSong(${allSongsIndex})">
-            <div class="cover" style="border-radius:18px !important;">${coverContent}</div>
-            <h3>${song.title || 'Untitled'}</h3>
-            <p>${song.album || 'Single'}</p>
+            <div class="cover" style="border-radius:18px;">${coverContent}</div>
+            <h3 style="text-align:left;">${song.title || 'Untitled'}</h3>
+            <p style="text-align:left;">${song.album || 'Single'}</p>
         </div>
         `;
     }).join('');
@@ -787,17 +855,29 @@ function showArtistsGrid(){
 function updatePlayerUI(song){
     let playBtn = document.getElementById("playBtn");
     let cardPlayBtn = document.getElementById("cardPlayBtn");
-    if(isPlaying){ playBtn.innerText = "⏸"; cardPlayBtn.innerText = "⏸"; } 
-    else { playBtn.innerText = "▶"; cardPlayBtn.innerText = "▶"; }
+    
+    if(isPlaying){
+        playBtn.innerText = "⏸";
+        cardPlayBtn.innerText = "⏸";
+    } else {
+        playBtn.innerText = "▶";
+        cardPlayBtn.innerText = "▶";
+    }
 
     if(!song){
         document.getElementById("playerTitle").innerText = "Select a song";
         document.getElementById("playerArtist").innerText = "Audiophile";
+        document.getElementById("cardSongTitle").innerText = "Select a song";
+        document.getElementById("cardSongArtist").innerText = "Audiophile";
+        document.getElementById("playerCover").innerText = "A";
+        document.getElementById("bigCover").innerText = "A";
         return;
     }
+
     document.getElementById("playerTitle").innerText = song.title || "Untitled Track";
     let subStr = (song.artist || "Unknown Artist") + (song.album ? " • " + song.album : "");
     document.getElementById("playerArtist").innerText = subStr;
+
     document.getElementById("cardSongTitle").innerText = song.title || "Untitled Track";
     document.getElementById("cardSongArtist").innerText = subStr;
 
@@ -814,14 +894,17 @@ function updatePlayerUI(song){
 function playSong(index){
     let allSongs = getSongs();
     if(index < 0 || index >= allSongs.length) return;
+
     currentSongIndex = index;
     let song = allSongs[index];
     audio.src = song.audio;
+    
     audio.play().then(function(){
         isPlaying = true;
         savePlayerState();
         updatePlayerUI(song);
     }).catch(function(err){
+        console.log("Playback blocked:", err);
         isPlaying = false;
         updatePlayerUI(song);
     });
@@ -830,10 +913,21 @@ function playSong(index){
 function togglePlay(){
     let allSongs = getSongs();
     if(allSongs.length === 0) return;
-    if(isPlaying){ audio.pause(); isPlaying = false; } 
-    else {
-        if(!audio.src && allSongs[currentSongIndex]) audio.src = allSongs[currentSongIndex].audio;
-        audio.play().then(function(){ isPlaying = true; savePlayerState(); updatePlayerUI(allSongs[currentSongIndex]); });
+
+    if(isPlaying){
+        audio.pause();
+        isPlaying = false;
+    } else {
+        if(!audio.src && allSongs[currentSongIndex]){
+            audio.src = allSongs[currentSongIndex].audio;
+        }
+        audio.play().then(function(){
+            isPlaying = true;
+            savePlayerState();
+            updatePlayerUI(allSongs[currentSongIndex]);
+        }).catch(function(e){
+            console.log(e);
+        });
     }
     savePlayerState();
     updatePlayerUI(allSongs[currentSongIndex]);
@@ -856,12 +950,14 @@ function prevSong(){
 function changeVolume(val){
     audio.volume = val;
     localStorage.setItem("globalVolume", val);
-    document.querySelectorAll("input[type='range']").forEach(function(r){ r.value = val; });
+    let ranges = document.querySelectorAll("input[type='range']");
+    ranges.forEach(function(r){ r.value = val; });
 }
 
 function formatTime(secs){
     if(isNaN(secs) || !isFinite(secs)) return "0:00";
-    let m = Math.floor(secs / 60), s = Math.floor(secs % 60);
+    let m = Math.floor(secs / 60);
+    let s = Math.floor(secs % 60);
     return m + ":" + (s < 10 ? "0" + s : s);
 }
 
@@ -878,21 +974,49 @@ audio.addEventListener("timeupdate", function(){
     if(!audio.duration) return;
     localStorage.setItem("globalAudioTime", audio.currentTime);
     let pct = (audio.currentTime / audio.duration) * 100;
+    
     document.getElementById("progressFill").style.width = pct + "%";
     document.getElementById("cardProgressFill").style.width = pct + "%";
-    document.getElementById("currentTime").innerText = formatTime(audio.currentTime);
-    document.getElementById("durationTime").innerText = formatTime(audio.duration);
-    document.getElementById("cardCurrentTime").innerText = formatTime(audio.currentTime);
-    document.getElementById("cardDurationTime").innerText = formatTime(audio.duration);
+
+    let curFormat = formatTime(audio.currentTime);
+    let durFormat = formatTime(audio.duration);
+
+    document.getElementById("currentTime").innerText = curFormat;
+    document.getElementById("durationTime").innerText = durFormat;
+    document.getElementById("cardCurrentTime").innerText = curFormat;
+    document.getElementById("cardDurationTime").innerText = durFormat;
 });
 
-audio.addEventListener("ended", function(){ nextSong(); });
-function setProgress(e){ if(audio.duration) audio.currentTime = (e.offsetX / e.currentTarget.clientWidth) * audio.duration; }
-function setCardProgress(e){ if(audio.duration) audio.currentTime = (e.offsetX / e.currentTarget.clientWidth) * audio.duration; }
-function openMusicCard(){ if(audio.src) document.getElementById("musicCardOverlay").classList.add("show"); }
-function closeMusicCard(){ document.getElementById("musicCardOverlay").classList.remove("show"); }
+audio.addEventListener("ended", function(){
+    nextSong();
+});
 
-document.getElementById("musicCardOverlay").addEventListener("click", function(e){ if(e.target.id === "musicCardOverlay") closeMusicCard(); });
+function setProgress(e){
+    if(!audio.duration) return;
+    let w = e.currentTarget.clientWidth;
+    audio.currentTime = (e.offsetX / w) * audio.duration;
+}
+
+function setCardProgress(e){
+    if(!audio.duration) return;
+    let w = e.currentTarget.clientWidth;
+    audio.currentTime = (e.offsetX / w) * audio.duration;
+}
+
+function openMusicCard(){
+    if(!audio.src) return;
+    document.getElementById("musicCardOverlay").classList.add("show");
+}
+
+function closeMusicCard(){
+    document.getElementById("musicCardOverlay").classList.remove("show");
+}
+
+document.getElementById("musicCardOverlay").addEventListener("click", function(e){
+    if(e.target.id === "musicCardOverlay"){
+        closeMusicCard();
+    }
+});
 
 function applySavedTheme(){
     let theme = localStorage.getItem("audiophile_theme") || "white";
@@ -901,25 +1025,85 @@ function applySavedTheme(){
 }
 
 function loadHomeProfile(){
-    let user = localStorage.getItem("audiophile_currentUser") || "Guest";
+    let user = localStorage.getItem("audiophile_currentUser") || "Liyo Clevert";
     let imgData = localStorage.getItem("audiophile_profileImage") || "";
     document.getElementById("homeProfileInitial").innerText = user.charAt(0).toUpperCase();
-    if(imgData) { document.getElementById("homeProfileImage").src = imgData; document.getElementById("homeProfileImage").style.display="block"; document.getElementById("homeProfileInitial").style.display="none"; }
+    
+    let pImg = document.getElementById("homeProfileImage");
+    let pInit = document.getElementById("homeProfileInitial");
+    if(imgData !== ""){
+        pImg.src = imgData;
+        pImg.style.display = "block";
+        pInit.style.display = "none";
+    } else {
+        pImg.style.display = "none";
+        pInit.style.display = "block";
+    }
 }
 
 document.getElementById("searchInput").addEventListener("input", function(){
     let value = this.value.toLowerCase();
-    if(backBtnContainer.style.display === "none"){
-        let filteredArtists = getArtists().filter(function(a){ return a.name.toLowerCase().includes(value); });
+
+    if(artistGrid.style.display !== "none" && backBtnContainer.style.display === "none"){
+        let filteredArtists = getArtists().filter(function(artist){
+            return artist.name.toLowerCase().includes(value);
+        });
         renderArtists(filteredArtists);
+    } else {
+        let filteredSongs = currentArtistSongs.filter(function(song){
+            return (song.title && song.title.toLowerCase().includes(value)) || (song.album && song.album.toLowerCase().includes(value));
+        });
+        
+        if(filteredSongs.length === 0){
+            artistGrid.innerHTML = "<p style='padding:20px; color:var(--muted);'>No matching songs found.</p>";
+            return;
+        }
+        let allSongs = getSongs();
+        artistGrid.innerHTML = filteredSongs.map(function(song){
+            let allSongsIndex = allSongs.indexOf(song);
+            let fallbackLetter = song.title ? song.title.charAt(0).toUpperCase() : "S";
+            let coverContent = song.cover ? `<img src="${song.cover}" alt="">` : fallbackLetter;
+            return `
+            <div class="card" onclick="playSong(${allSongsIndex})">
+                <div class="cover" style="border-radius:18px;">${coverContent}</div>
+                <h3 style="text-align:left;">${song.title || 'Untitled'}</h3>
+                <p style="text-align:left;">${song.album || 'Single'}</p>
+            </div>
+            `;
+        }).join('');
     }
 });
 
+window.addEventListener("beforeunload", function(){
+    savePlayerState();
+});
+
+// Run Initialization Engines
 applySavedTheme();
 loadHomeProfile();
 renderArtists(getArtists());
-changeVolume(localStorage.getItem("globalVolume") || 0.8);
-if(getSongs().length > 0) updatePlayerUI(getSongs()[currentSongIndex]);
+
+let savedVolume = localStorage.getItem("globalVolume") || 0.8;
+changeVolume(savedVolume);
+
+let globalSongsList = getSongs();
+if(globalSongsList.length > 0 && globalSongsList[currentSongIndex]) {
+    updatePlayerUI(globalSongsList[currentSongIndex]);
+} else {
+    updatePlayerUI(null);
+}
+
+if(savedSrc && isPlaying && globalSongsList.length > 0){
+    setTimeout(function(){
+        audio.play().then(function(){
+            isPlaying = true;
+            updatePlayerUI(globalSongsList[currentSongIndex]);
+        }).catch(function(){
+            isPlaying = false;
+            updatePlayerUI(globalSongsList[currentSongIndex]);
+        });
+    }, 300);
+}
 </script>
 </body>
 </html>
