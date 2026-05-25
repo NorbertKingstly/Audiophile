@@ -1,11 +1,10 @@
-<!-- report-bug.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Audiophile</title>
+<title>Audiophile - Report a Bug</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -89,6 +88,12 @@ body{
     padding:12px 22px;
     border-radius:30px;
     font-weight:800;
+    transition: 0.2s;
+}
+
+.back-btn:hover{
+    box-shadow: 0 4px 12px var(--border);
+    transform: translateY(-1px);
 }
 
 .container{
@@ -164,6 +169,7 @@ body{
 }
 
 .image-upload{
+    display: block;
     border:2px dashed var(--border);
     background:var(--card2);
     border-radius:22px;
@@ -174,7 +180,7 @@ body{
 }
 
 .image-upload:hover{
-    border-color:var(--accent1);
+    border-color:var(--accent2);
 }
 
 .image-upload input{
@@ -227,6 +233,12 @@ body{
     font-size:16px;
     font-weight:900;
     cursor:pointer;
+    transition: 0.2s;
+}
+
+.submit-btn:hover{
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
 }
 
 .success{
@@ -234,7 +246,7 @@ body{
     margin-top:18px;
     padding:16px;
     border-radius:18px;
-    background:color-mix(in srgb,var(--accent1) 10%,white);
+    background:rgba(34,211,238,0.1);
     color:var(--text);
     border:1px solid var(--border);
     font-weight:800;
@@ -257,20 +269,23 @@ body{
 .bug-item{
     background:var(--card2);
     border:1px solid var(--border);
-    padding:15px;
+    padding:20px;
     border-radius:18px;
-    margin-bottom:12px;
+    margin-bottom:14px;
+    position: relative;
 }
 
 .bug-item h3{
     font-size:17px;
-    margin-bottom:6px;
+    margin-bottom:8px;
+    padding-right: 80px;
 }
 
 .bug-item p{
     color:var(--muted);
     font-size:14px;
     line-height:1.5;
+    margin-bottom: 4px;
 }
 
 .bug-img{
@@ -282,6 +297,26 @@ body{
     border:1px solid var(--border);
 }
 
+.delete-report-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.delete-report-btn:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
 .empty{
     color:var(--muted);
 }
@@ -290,11 +325,9 @@ body{
     body{
         padding:18px;
     }
-
     .grid{
         grid-template-columns:1fr;
     }
-
     .hero h1{
         font-size:34px;
     }
@@ -305,19 +338,15 @@ body{
 <body>
 
 <div class="topbar">
-
     <a href="home.html" class="logo">
         Audio<span>phile</span>
     </a>
-
     <a href="settings.html" class="back-btn">
         ← Back
     </a>
-
 </div>
 
 <div class="container">
-
     <div class="hero">
         <h1>Report a Bug</h1>
         <p>
@@ -327,25 +356,19 @@ body{
     </div>
 
     <div class="form-card">
-
         <form onsubmit="submitBug(event)">
-
             <div class="grid">
-
                 <div class="form-group">
                     <label>Your Name</label>
-                    <input type="text" id="name" required>
+                    <input type="text" id="name" disabled style="opacity:0.6; cursor:not-allowed;">
                 </div>
-
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" disabled style="opacity:0.6; cursor:not-allowed;">
                 </div>
-
             </div>
 
             <div class="grid">
-
                 <div class="form-group">
                     <label>Bug Type</label>
                     <select id="bugType" required>
@@ -376,7 +399,6 @@ body{
                         <option>Other</option>
                     </select>
                 </div>
-
             </div>
 
             <div class="form-group">
@@ -391,7 +413,6 @@ body{
 
             <div class="form-group">
                 <label>Add Bug Screenshot</label>
-
                 <label class="image-upload" for="bugImage">
                     <h3>Upload Screenshot</h3>
                     <p>Click here to choose an image from your device</p>
@@ -399,7 +420,7 @@ body{
                 </label>
 
                 <div class="preview-box" id="previewBox">
-                    <img id="previewImg" src="">
+                    <img id="previewImg" src="" alt="Screenshot preview">
                     <button type="button" class="remove-img" onclick="removeImage()">
                         Remove Image
                     </button>
@@ -413,55 +434,41 @@ body{
             <div class="success" id="successMsg">
                 Bug report saved successfully!
             </div>
-
         </form>
-
     </div>
 
     <div class="bug-list">
-
         <h2>Saved Bug Reports</h2>
-
         <div id="bugReports"></div>
-
     </div>
-
 </div>
 
 <script>
 let selectedImage = "";
+let sessionEmail = localStorage.getItem("audiophile_userEmail") || "norbertkingstly@gmail.com";
 
 function applyTheme(){
     let theme = localStorage.getItem("audiophile_theme") || "white";
-
     document.body.classList.remove("theme-white","theme-musicred");
     document.body.classList.add("theme-" + theme);
 }
 
 function loadUser(){
     let name = localStorage.getItem("audiophile_currentUser") || "Liyo Clevert";
-    let email = localStorage.getItem("audiophile_userEmail") || "norbertkingstly@gmail.com";
-
     document.getElementById("name").value = name;
-    document.getElementById("email").value = email;
+    document.getElementById("email").value = sessionEmail;
 }
 
 function previewImage(event){
     let file = event.target.files[0];
-
-    if(!file){
-        return;
-    }
+    if(!file) return;
 
     let reader = new FileReader();
-
     reader.onload = function(){
         selectedImage = reader.result;
-
         document.getElementById("previewImg").src = selectedImage;
         document.getElementById("previewBox").style.display = "block";
     };
-
     reader.readAsDataURL(file);
 }
 
@@ -476,20 +483,20 @@ function submitBug(event){
     event.preventDefault();
 
     let bug = {
-        name:document.getElementById("name").value.trim(),
-        email:document.getElementById("email").value.trim(),
-        bugType:document.getElementById("bugType").value,
-        pageName:document.getElementById("pageName").value,
-        bugTitle:document.getElementById("bugTitle").value.trim(),
-        bugDescription:document.getElementById("bugDescription").value.trim(),
-        image:selectedImage,
-        date:new Date().toLocaleString()
+        id: "bug_" + Date.now(), // Unique structural identity descriptor for precise target array removal
+        userAccountRef: sessionEmail.toLowerCase(), // Secure identity association key
+        name: document.getElementById("name").value.trim(),
+        email: sessionEmail.trim(),
+        bugType: document.getElementById("bugType").value,
+        pageName: document.getElementById("pageName").value,
+        bugTitle: document.getElementById("bugTitle").value.trim(),
+        bugDescription: document.getElementById("bugDescription").value.trim(),
+        image: selectedImage,
+        date: new Date().toLocaleString()
     };
 
     let reports = JSON.parse(localStorage.getItem("audiophile_bug_reports")) || [];
-
     reports.unshift(bug);
-
     localStorage.setItem("audiophile_bug_reports", JSON.stringify(reports));
 
     document.getElementById("successMsg").style.display = "block";
@@ -500,7 +507,6 @@ function submitBug(event){
     document.getElementById("bugDescription").value = "";
 
     removeImage();
-
     renderReports();
 
     setTimeout(function(){
@@ -508,18 +514,32 @@ function submitBug(event){
     }, 1800);
 }
 
+function deleteReport(bugId) {
+    if(!confirm("Are you sure you want to remove this bug report?")) return;
+    
+    let reports = JSON.parse(localStorage.getItem("audiophile_bug_reports")) || [];
+    reports = reports.filter(r => r.id !== bugId);
+    localStorage.setItem("audiophile_bug_reports", JSON.stringify(reports));
+    
+    renderReports();
+}
+
 function renderReports(){
     let reports = JSON.parse(localStorage.getItem("audiophile_bug_reports")) || [];
     let box = document.getElementById("bugReports");
 
-    if(reports.length === 0){
-        box.innerHTML = `<p class="empty">No bug reports yet.</p>`;
+    // Secure multi-tenant scoping barrier isolation filter
+    let accountFilteredReports = reports.filter(r => r.userAccountRef === sessionEmail.toLowerCase());
+
+    if(accountFilteredReports.length === 0){
+        box.innerHTML = `<p class="empty">No bug reports saved yet for this account context.</p>`;
         return;
     }
 
-    box.innerHTML = reports.map(function(report){
+    box.innerHTML = accountFilteredReports.map(function(report){
         return `
             <div class="bug-item">
+                <button class="delete-report-btn" onclick="deleteReport('${report.id}')">Delete</button>
                 <h3>${report.bugTitle}</h3>
                 <p><b>Type:</b> ${report.bugType}</p>
                 <p><b>Page:</b> ${report.pageName}</p>
@@ -527,7 +547,7 @@ function renderReports(){
                 <p><b>Reported:</b> ${report.date}</p>
                 ${
                     report.image
-                    ? `<img src="${report.image}" class="bug-img">`
+                    ? `<img src="${report.image}" class="bug-img" alt="Bug asset view">`
                     : `<p><b>Screenshot:</b> Not added</p>`
                 }
             </div>
