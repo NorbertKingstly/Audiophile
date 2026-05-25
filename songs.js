@@ -9,7 +9,7 @@ const songs = [
     title: "Punnagaiye",
     artist: "A.R. Rahman",
     album: "24",
-    cover: "../asset/24.jpg",
+    cover: "/image_asset/24.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179487/Punnagaiye_hg02a3.mp3"
 },
 
@@ -18,7 +18,7 @@ const songs = [
     title: "Kaalam Yen Kadhali",
     artist: "A.R. Rahman",
     album: "24",
-    cover: "../asset/24.jpg",
+    cover: "/image_asset/24.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179466/Kaalam-Yen-Kadhali_alnric.mp3"
 },
 
@@ -27,7 +27,7 @@ const songs = [
     title: "Mei Nigara",
     artist: "A.R. Rahman",
     album: "24",
-    cover: "../asset/24.jpg",
+    cover: "/image_asset/24.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179464/Mei-Nigara_p3bg9p.mp3"
 },
 
@@ -36,7 +36,7 @@ const songs = [
     title: "Aararo",
     artist: "A.R. Rahman",
     album: "24",
-    cover: "../asset/24.jpg",
+    cover: "/image_asset/24.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179463/Aararo_vvuain.mp3"
 },
 
@@ -45,7 +45,7 @@ const songs = [
     title: "Naan Un",
     artist: "A.R. Rahman",
     album: "24",
-    cover: "../asset/24.jpg",
+    cover: "/image_asset/24.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179462/Naan-Un_soazlr.mp3"
 },
 
@@ -54,7 +54,7 @@ const songs = [
     title: "My Twin Brother",
     artist: "A.R. Rahman",
     album: "24",
-    cover: "../asset/24.jpg",
+    cover: "/image_asset/24.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179456/My-Twin-Brother_frhffn.mp3"
 },
 
