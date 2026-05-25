@@ -1,11 +1,11 @@
-<!-- FAVORITES PAGE FIXED FULL CODE -->
+<!-- FIXED FAVORITES PAGE -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audiophile - Favorites</title>
+<title>Audiophile</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -33,7 +33,7 @@
 body{
     background:var(--bg);
     color:var(--text);
-    overflow:hidden;
+    overflow-x:hidden;
 }
 
 .app{
@@ -76,7 +76,6 @@ body{
     border-radius:18px;
     font-size:16px;
     font-weight:700;
-    transition:.3s;
 }
 
 .menu a.active,
@@ -118,22 +117,15 @@ body{
     width:60px;
     height:60px;
     border-radius:50%;
-    overflow:hidden;
-    flex-shrink:0;
-    cursor:pointer;
     background:linear-gradient(135deg,var(--cyan),var(--purple));
-    color:white;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
+    color:white;
     font-weight:900;
-}
-
-.profile img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:none;
+    overflow:hidden;
+    cursor:pointer;
+    flex-shrink:0;
 }
 
 .page-title{
@@ -151,8 +143,8 @@ body{
 }
 
 .page-title h1{
-    font-size:50px;
-    margin:12px 0;
+    font-size:48px;
+    margin:10px 0;
 }
 
 .page-title p{
@@ -162,20 +154,20 @@ body{
 .song-list{
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:12px;
 }
 
 .song-row{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:24px;
-    padding:16px 20px;
+    border-radius:22px;
+    padding:14px 18px;
     display:grid;
-    grid-template-columns:55px 64px 1fr 160px;
+    grid-template-columns:55px 70px 1.5fr 1fr 120px;
     gap:16px;
     align-items:center;
     cursor:pointer;
-    transition:.3s;
+    transition:0.25s ease;
 }
 
 .song-row:hover{
@@ -189,48 +181,46 @@ body{
 }
 
 .song-cover{
-    width:58px;
-    height:58px;
+    width:62px;
+    height:62px;
     border-radius:16px;
     background:var(--card2);
     overflow:hidden;
     display:flex;
-    align-items:center;
     justify-content:center;
-    color:white;
+    align-items:center;
+    color:var(--muted);
     font-weight:900;
 }
 
 .song-cover img{
     width:100%;
     height:100%;
-    object-fit:contain;
-    background:var(--card2);
+    object-fit:cover;
+    object-position:center;
     display:block;
 }
 
 .song-title h3{
     font-size:18px;
-    margin-bottom:4px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-.song-title p{
+.song-title p,
+.song-artist{
     color:var(--muted);
     font-size:14px;
 }
 
-.song-actions{
-    display:flex;
-    justify-content:flex-end;
-    gap:10px;
-}
-
 .song-actions button{
     border:none;
-    padding:10px 16px;
-    border-radius:14px;
-    font-weight:800;
+    padding:10px 13px;
+    border-radius:15px;
+    font-weight:900;
     cursor:pointer;
+    font-size:13px;
 }
 
 .play-small{
@@ -238,22 +228,15 @@ body{
     color:white;
 }
 
-.remove-fav{
-    background:#fee2e2;
-    color:#dc2626;
-}
-
 .empty{
     background:var(--card);
     border:1px solid var(--border);
     border-radius:28px;
     padding:34px;
-    text-align:center;
     color:var(--muted);
+    text-align:center;
     font-weight:800;
 }
-
-/* PLAYER */
 
 .player{
     position:fixed;
@@ -282,25 +265,19 @@ body{
     width:64px;
     height:64px;
     border-radius:18px;
-    overflow:hidden;
     background:var(--card2);
+    overflow:hidden;
     display:flex;
-    align-items:center;
     justify-content:center;
-    color:white;
+    align-items:center;
+    color:var(--muted);
     font-weight:900;
 }
 
 .player-cover img{
     width:100%;
     height:100%;
-    object-fit:contain;
-    background:var(--card2);
-    display:block;
-}
-
-.player-info p{
-    color:var(--muted);
+    object-fit:cover;
 }
 
 .controls{
@@ -315,13 +292,12 @@ body{
 }
 
 .buttons button{
-    width:44px;
-    height:44px;
+    width:42px;
+    height:42px;
     border:none;
     border-radius:50%;
     background:var(--card2);
     cursor:pointer;
-    color:var(--text);
 }
 
 .buttons .play{
@@ -329,7 +305,8 @@ body{
     color:white;
 }
 
-.progress{
+.progress,
+.card-progress{
     height:7px;
     background:var(--card2);
     border-radius:20px;
@@ -337,13 +314,15 @@ body{
     cursor:pointer;
 }
 
-.progress-fill{
+.progress-fill,
+.card-progress-fill{
     width:0%;
     height:100%;
     background:linear-gradient(90deg,var(--cyan),var(--purple));
 }
 
-.time{
+.time,
+.card-time{
     display:flex;
     justify-content:space-between;
     font-size:12px;
@@ -353,8 +332,8 @@ body{
 
 .volume{
     display:flex;
-    justify-content:flex-end;
     align-items:center;
+    justify-content:flex-end;
     gap:12px;
 }
 
@@ -362,75 +341,68 @@ body{
     width:130px;
 }
 
-/* POPUP */
+/* MUSIC CARD */
 
-.music-popup{
+.music-card-overlay{
     position:fixed;
     inset:0;
     background:rgba(0,0,0,0.45);
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(14px);
+    z-index:9999;
     display:none;
     justify-content:center;
     align-items:center;
-    z-index:9999;
     padding:20px;
 }
 
-.music-popup.show{
+.music-card-overlay.show{
     display:flex;
 }
 
-.popup-card{
+.music-card{
     width:100%;
     max-width:430px;
     background:var(--card);
     border-radius:34px;
     padding:24px;
-    border:1px solid var(--border);
 }
 
-.popup-cover{
+.big-cover{
     width:100%;
     height:310px;
     border-radius:28px;
-    overflow:hidden;
     background:var(--card2);
+    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
-    font-size:80px;
-    font-weight:900;
-    margin-bottom:20px;
+    margin-bottom:22px;
 }
 
-.popup-cover img{
+.big-cover img{
     width:100%;
     height:100%;
-    object-fit:contain;
-    background:var(--card2);
+    object-fit:cover;
 }
 
-.popup-card h2{
+.music-card h2{
     text-align:center;
-    margin-bottom:6px;
-    font-size:28px;
+    margin-bottom:8px;
 }
 
-.popup-card p{
+.music-card p{
     text-align:center;
     color:var(--muted);
-    margin-bottom:18px;
 }
 
-.popup-buttons{
+.card-buttons{
     display:flex;
     justify-content:center;
     gap:18px;
     margin:22px 0;
 }
 
-.popup-buttons button{
+.card-buttons button{
     width:54px;
     height:54px;
     border:none;
@@ -439,42 +411,24 @@ body{
     cursor:pointer;
 }
 
-.popup-buttons .popup-play{
-    width:70px;
-    height:70px;
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
+.big-play{
+    width:70px !important;
+    height:70px !important;
+    background:linear-gradient(90deg,var(--cyan),var(--purple)) !important;
     color:white;
 }
 
-.popup-progress{
-    height:7px;
-    background:var(--card2);
-    border-radius:20px;
-    overflow:hidden;
-    cursor:pointer;
+.card-volume{
+    margin-top:20px;
 }
 
-.popup-progress-fill{
-    height:100%;
-    width:0%;
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
-}
-
-.popup-time{
-    display:flex;
-    justify-content:space-between;
-    color:var(--muted);
-    font-size:12px;
-    margin-top:6px;
-}
-
-.popup-volume{
-    margin-top:18px;
-}
-
-.popup-volume input{
+.card-volume input{
     width:100%;
     margin-top:10px;
+}
+
+.mobile-nav{
+    display:none;
 }
 
 @media(max-width:900px){
@@ -488,28 +442,93 @@ body{
     }
 
     .main{
-        padding:22px 18px 180px;
+        padding:20px 16px 230px;
     }
 
     .song-row{
-        grid-template-columns:42px 58px 1fr;
-        padding:14px;
+        grid-template-columns:40px 62px 1fr;
+    }
+
+    .song-artist{
+        display:none;
     }
 
     .song-actions{
         grid-column:3;
-        justify-content:flex-start;
     }
 
     .player{
         left:0;
-        grid-template-columns:1fr;
-        height:auto;
+        right:0;
+        bottom:64px;
+        height:78px;
+        padding:10px 16px;
+        grid-template-columns:1fr auto;
     }
 
+    .player-cover{
+        width:48px;
+        height:48px;
+        border-radius:12px;
+    }
+
+    .player-info h4{
+        font-size:14px;
+    }
+
+    .player-info p{
+        font-size:12px;
+    }
+
+    .buttons button{
+        display:none;
+    }
+
+    .buttons .play{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:44px;
+        height:44px;
+    }
+
+    .progress,
+    .time,
     .volume{
         display:none;
     }
+
+    .mobile-nav{
+        display:flex;
+        position:fixed;
+        left:0;
+        right:0;
+        bottom:0;
+        height:64px;
+        background:var(--card);
+        border-top:1px solid var(--border);
+        justify-content:space-around;
+        align-items:center;
+        z-index:1000;
+    }
+
+    .mobile-nav-item{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        text-decoration:none;
+        color:var(--muted);
+        font-size:10px;
+        font-weight:700;
+        flex:1;
+        gap:3px;
+    }
+
+    .mobile-nav-item.active{
+        color:var(--purple);
+    }
+
 }
 
 </style>
@@ -517,127 +536,7 @@ body{
 
 <body>
 
-<div class="app">
-
-<aside class="sidebar">
-
-<div class="logo" onclick="window.location.href='home.html'">
-Audio<span>phile</span>
-</div>
-
-<nav class="menu">
-<a href="home.html">Home</a>
-<a href="songs.html">Songs</a>
-<a href="albums.html">Albums</a>
-<a href="artists.html">Artists</a>
-<a href="favorites.html" class="active">Favorites</a>
-<a href="settings.html">Settings</a>
-</nav>
-
-</aside>
-
-<main class="main">
-
-<div class="topbar">
-
-<div class="search-box">
-<input type="text" id="searchInput" placeholder="Search favorite songs...">
-</div>
-
-<div class="profile" onclick="window.location.href='settings.html'">
-<span id="profileInitial">L</span>
-<img id="profileImage" src="">
-</div>
-
-</div>
-
-<section class="page-title">
-<small>YOUR FAVORITE SONGS</small>
-<h1>Favorites</h1>
-<p>Your liked songs collection.</p>
-</section>
-
-<div class="song-list" id="favoriteList"></div>
-
-</main>
-
-</div>
-
-<!-- PLAYER -->
-
-<div class="player">
-
-<div class="player-info" onclick="openPopup()">
-
-<div class="player-cover" id="playerCover">A</div>
-
-<div>
-<h4 id="playerTitle">Select a song</h4>
-<p id="playerArtist">Audiophile</p>
-</div>
-
-</div>
-
-<div class="controls">
-
-<div class="buttons">
-<button onclick="prevSong()">⏮</button>
-<button class="play" id="playBtn" onclick="togglePlay()">▶</button>
-<button onclick="nextSong()">⏭</button>
-</div>
-
-<div class="progress" onclick="setProgress(event)">
-<div class="progress-fill" id="progressFill"></div>
-</div>
-
-<div class="time">
-<span id="currentTime">0:00</span>
-<span id="durationTime">0:00</span>
-</div>
-
-</div>
-
-<div class="volume">
-<span>Volume</span>
-<input id="volumeRange" type="range" min="0" max="1" step="0.01" value="0.8">
-</div>
-
-</div>
-
-<!-- POPUP -->
-
-<div class="music-popup" id="musicPopup">
-
-<div class="popup-card">
-
-<div class="popup-cover" id="popupCover">A</div>
-
-<h2 id="popupTitle">Select a song</h2>
-<p id="popupArtist">Audiophile</p>
-
-<div class="popup-buttons">
-<button onclick="prevSong()">⏮</button>
-<button class="popup-play" id="popupPlayBtn" onclick="togglePlay()">▶</button>
-<button onclick="nextSong()">⏭</button>
-</div>
-
-<div class="popup-progress" onclick="setPopupProgress(event)">
-<div class="popup-progress-fill" id="popupProgressFill"></div>
-</div>
-
-<div class="popup-time">
-<span id="popupCurrentTime">0:00</span>
-<span id="popupDurationTime">0:00</span>
-</div>
-
-<div class="popup-volume">
-<span>Volume</span>
-<input id="popupVolumeRange" type="range" min="0" max="1" step="0.01" value="0.8">
-</div>
-
-</div>
-
-</div>
+<!-- KEEP YOUR EXISTING HTML BODY SAME -->
 
 <audio id="audio"></audio>
 
@@ -646,9 +545,10 @@ Audio<span>phile</span>
 <script>
 
 let audio = document.getElementById("audio");
+let favoriteList = document.getElementById("favoriteList");
+let searchInput = document.getElementById("searchInput");
 
 let currentSongIndex = parseInt(localStorage.getItem("currentSongIndex")) || 0;
-
 let isPlaying = localStorage.getItem("globalIsPlaying") === "true";
 
 let savedSrc = localStorage.getItem("globalAudioSrc");
@@ -656,7 +556,10 @@ let savedTime = parseFloat(localStorage.getItem("globalAudioTime")) || 0;
 
 if(savedSrc){
     audio.src = savedSrc;
-    audio.currentTime = savedTime;
+
+    audio.addEventListener("loadedmetadata",function(){
+        audio.currentTime = savedTime;
+    });
 }
 
 function getSongs(){
@@ -667,79 +570,83 @@ function getFavorites(){
     return JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
 }
 
-function loadProfile(){
+function getCurrentlyRenderedFavs(){
 
-    let currentUser =
-    localStorage.getItem("audiophile_currentUser") || "Liyo";
+    let allSongs = getSongs();
+    let value = searchInput.value.toLowerCase();
 
-    let profileImg =
-    localStorage.getItem("audiophile_profileImage") || "";
+    return getFavorites()
+    .map(index => ({
+        song:allSongs[index],
+        index:index
+    }))
+    .filter(item => item.song)
+    .filter(item =>
+        item.song.title.toLowerCase().includes(value) ||
+        item.song.artist.toLowerCase().includes(value) ||
+        item.song.album.toLowerCase().includes(value)
+    );
+}
 
-    profileInitial.innerText =
-    currentUser.charAt(0).toUpperCase();
+function savePlayerState(){
 
-    if(profileImg){
-
-        profileImage.src = profileImg;
-        profileImage.style.display = "block";
-        profileInitial.style.display = "none";
-    }
+    localStorage.setItem("currentSongIndex",currentSongIndex);
+    localStorage.setItem("globalAudioSrc",audio.src);
+    localStorage.setItem("globalAudioTime",audio.currentTime || 0);
+    localStorage.setItem("globalIsPlaying",isPlaying);
 }
 
 function renderFavorites(){
 
-    let favorites = getFavorites();
+    let favSongs = getCurrentlyRenderedFavs();
 
-    let allSongs = getSongs();
+    if(favSongs.length === 0){
 
-    let value = searchInput.value.toLowerCase();
-
-    let filtered = favorites
-    .map(index => ({song:allSongs[index],index:index}))
-    .filter(item => item.song)
-    .filter(item =>
-        item.song.title.toLowerCase().includes(value) ||
-        item.song.artist.toLowerCase().includes(value)
-    );
-
-    if(filtered.length === 0){
-
-        favoriteList.innerHTML =
-        `<div class="empty">No favorite songs found.</div>`;
+        favoriteList.innerHTML = `
+        <div class="empty">
+            No favorite songs found.
+        </div>
+        `;
 
         return;
     }
 
-    favoriteList.innerHTML = filtered.map((item,index)=>`
+    favoriteList.innerHTML = favSongs.map((item,displayIndex)=>`
 
-    <div class="song-row" onclick="playSong(${item.index})">
+    <div class="song-row" onclick="playSong(${item.index},event)">
 
-        <div class="song-no">${index + 1}</div>
+        <div class="song-no">${displayIndex + 1}</div>
 
         <div class="song-cover">
-        ${
-            item.song.cover
-            ? `<img src="${item.song.cover}">`
-            : item.song.title.charAt(0)
-        }
+
+            ${
+                item.song.cover
+                ?
+
+                `<img src="${item.song.cover}"
+                onerror="this.remove();this.parentElement.innerHTML='${item.song.title.charAt(0)}';">`
+
+                :
+
+                item.song.title.charAt(0)
+            }
+
         </div>
 
         <div class="song-title">
             <h3>${item.song.title}</h3>
-            <p>${item.song.artist}</p>
+            <p>${item.song.album}</p>
+        </div>
+
+        <div class="song-artist">
+            ${item.song.artist}
         </div>
 
         <div class="song-actions">
-
-            <button class="play-small">
+            <button class="play-small"
+            onclick="playSong(${item.index},event)">
             ▶ Play
             </button>
-
-            <button class="remove-fav"
-            onclick="removeFavorite(${item.index},event)">
-            ✕
-            </button>
-
         </div>
 
     </div>
@@ -747,46 +654,80 @@ function renderFavorites(){
     `).join("");
 }
 
-function removeFavorite(index,event){
+function updatePlayerUI(song){
 
-    event.stopPropagation();
+    if(!song) return;
 
-    let favorites = getFavorites();
+    playBtn.innerText = isPlaying ? "⏸" : "▶";
+    cardPlayBtn.innerText = isPlaying ? "⏸" : "▶";
 
-    favorites = favorites.filter(item => item !== index);
+    playerTitle.innerText = song.title;
+    playerArtist.innerText = song.artist;
 
-    localStorage.setItem(
-        "audiophile_favorites",
-        JSON.stringify(favorites)
-    );
+    cardSongTitle.innerText = song.title;
+    cardSongArtist.innerText = song.artist + " • " + song.album;
 
-    renderFavorites();
+    if(song.cover){
+
+        playerCover.innerHTML = `
+        <img src="${song.cover}"
+        onerror="this.remove();this.parentElement.innerHTML='${song.title.charAt(0)}';">
+        `;
+
+        bigCover.innerHTML = `
+        <img src="${song.cover}"
+        onerror="this.remove();this.parentElement.innerHTML='${song.title.charAt(0)}';">
+        `;
+    }
+    else{
+
+        playerCover.innerText = song.title.charAt(0);
+        bigCover.innerText = song.title.charAt(0);
+    }
 }
 
-function playSong(index){
+function playSong(index,event){
+
+    if(event) event.stopPropagation();
 
     let allSongs = getSongs();
 
+    if(!allSongs[index]) return;
+
     let song = allSongs[index];
 
-    if(!song) return;
+    if(!song.audio){
+        alert("Audio URL missing");
+        return;
+    }
 
     currentSongIndex = index;
 
     audio.src = song.audio;
 
-    audio.play();
+    audio.play()
+    .then(()=>{
 
-    isPlaying = true;
+        isPlaying = true;
 
-    updatePlayerUI(song);
+        savePlayerState();
+        updatePlayerUI(song);
 
-    saveState();
+    })
+    .catch(()=>{
+
+        isPlaying = false;
+
+        savePlayerState();
+        updatePlayerUI(song);
+
+    });
 }
 
 function togglePlay(){
 
     if(!audio.src){
+
         playSong(currentSongIndex);
         return;
     }
@@ -798,75 +739,56 @@ function togglePlay(){
     }
     else{
 
-        audio.play();
-        isPlaying = true;
+        audio.play()
+        .then(()=>{
+
+            isPlaying = true;
+
+            savePlayerState();
+            updatePlayerUI(getSongs()[currentSongIndex]);
+        });
+
+        return;
     }
 
+    savePlayerState();
     updatePlayerUI(getSongs()[currentSongIndex]);
-
-    saveState();
 }
 
 function nextSong(){
 
-    currentSongIndex++;
+    let currentFavs = getCurrentlyRenderedFavs();
 
-    if(currentSongIndex >= getSongs().length){
-        currentSongIndex = 0;
-    }
+    if(currentFavs.length === 0) return;
 
-    playSong(currentSongIndex);
+    let currentMatchIndex = currentFavs.findIndex(
+        item => item.index === currentSongIndex
+    );
+
+    let nextIndex =
+    currentMatchIndex === -1
+    ? 0
+    : (currentMatchIndex + 1) % currentFavs.length;
+
+    playSong(currentFavs[nextIndex].index);
 }
 
 function prevSong(){
 
-    currentSongIndex--;
+    let currentFavs = getCurrentlyRenderedFavs();
 
-    if(currentSongIndex < 0){
-        currentSongIndex = getSongs().length - 1;
-    }
+    if(currentFavs.length === 0) return;
 
-    playSong(currentSongIndex);
-}
-
-function updatePlayerUI(song){
-
-    if(!song) return;
-
-    playerTitle.innerText = song.title;
-    playerArtist.innerText = song.artist;
-
-    popupTitle.innerText = song.title;
-    popupArtist.innerText = song.artist;
-
-    playBtn.innerText = isPlaying ? "⏸" : "▶";
-    popupPlayBtn.innerText = isPlaying ? "⏸" : "▶";
-
-    if(song.cover){
-
-        playerCover.innerHTML =
-        `<img src="${song.cover}">`;
-
-        popupCover.innerHTML =
-        `<img src="${song.cover}">`;
-    }
-}
-
-function saveState(){
-
-    localStorage.setItem("currentSongIndex",currentSongIndex);
-
-    localStorage.setItem("globalAudioSrc",audio.src);
-
-    localStorage.setItem(
-        "globalAudioTime",
-        audio.currentTime
+    let currentMatchIndex = currentFavs.findIndex(
+        item => item.index === currentSongIndex
     );
 
-    localStorage.setItem(
-        "globalIsPlaying",
-        isPlaying
-    );
+    let prevIndex =
+    currentMatchIndex === -1
+    ? currentFavs.length - 1
+    : (currentMatchIndex - 1 + currentFavs.length) % currentFavs.length;
+
+    playSong(currentFavs[prevIndex].index);
 }
 
 function changeVolume(value){
@@ -874,105 +796,101 @@ function changeVolume(value){
     audio.volume = value;
 
     volumeRange.value = value;
-
-    popupVolumeRange.value = value;
+    cardVolumeRange.value = value;
 
     localStorage.setItem("globalVolume",value);
 }
-
-volumeRange.addEventListener("input",e=>{
-    changeVolume(e.target.value);
-});
-
-popupVolumeRange.addEventListener("input",e=>{
-    changeVolume(e.target.value);
-});
 
 function formatTime(seconds){
 
     if(isNaN(seconds)) return "0:00";
 
     let min = Math.floor(seconds / 60);
-
     let sec = Math.floor(seconds % 60);
 
-    if(sec < 10){
-        sec = "0" + sec;
-    }
+    if(sec < 10) sec = "0" + sec;
 
     return min + ":" + sec;
 }
 
-audio.addEventListener("timeupdate",()=>{
+audio.addEventListener("timeupdate",function(){
+
+    localStorage.setItem(
+        "globalAudioTime",
+        audio.currentTime || 0
+    );
 
     let percent =
     (audio.currentTime / audio.duration) * 100;
 
-    if(isNaN(percent)){
-        percent = 0;
-    }
+    if(isNaN(percent)) percent = 0;
 
     progressFill.style.width = percent + "%";
-    popupProgressFill.style.width = percent + "%";
+    cardProgressFill.style.width = percent + "%";
 
-    currentTime.innerText =
-    formatTime(audio.currentTime);
+    currentTime.innerText = formatTime(audio.currentTime);
+    durationTime.innerText = formatTime(audio.duration);
 
-    durationTime.innerText =
-    formatTime(audio.duration);
-
-    popupCurrentTime.innerText =
-    formatTime(audio.currentTime);
-
-    popupDurationTime.innerText =
-    formatTime(audio.duration);
-
-    saveState();
+    cardCurrentTime.innerText = formatTime(audio.currentTime);
+    cardDurationTime.innerText = formatTime(audio.duration);
 });
 
-audio.addEventListener("ended",()=>{
+audio.addEventListener("ended",function(){
+
+    isPlaying = false;
     nextSong();
 });
 
 function setProgress(event){
 
-    let width = event.currentTarget.clientWidth;
+    if(!audio.duration) return;
 
+    let width = event.currentTarget.clientWidth;
     let clickX = event.offsetX;
 
     audio.currentTime =
     (clickX / width) * audio.duration;
 }
 
-function setPopupProgress(event){
+function setCardProgress(event){
+
+    if(!audio.duration) return;
 
     let width = event.currentTarget.clientWidth;
-
     let clickX = event.offsetX;
 
     audio.currentTime =
     (clickX / width) * audio.duration;
 }
 
-function openPopup(){
+function openMusicCard(){
 
     if(!audio.src) return;
 
-    musicPopup.classList.add("show");
+    musicCardOverlay.classList.add("show");
 }
 
-musicPopup.addEventListener("click",(e)=>{
+function closeMusicCard(){
 
-    if(e.target.id === "musicPopup"){
-        musicPopup.classList.remove("show");
+    musicCardOverlay.classList.remove("show");
+}
+
+musicCardOverlay.addEventListener("click",function(e){
+
+    if(e.target.id === "musicCardOverlay"){
+        closeMusicCard();
     }
 });
 
-searchInput.addEventListener("input",()=>{
+searchInput.addEventListener("input",function(){
+
     renderFavorites();
 });
 
-loadProfile();
+window.addEventListener("beforeunload",function(){
+
+    savePlayerState();
+});
 
 renderFavorites();
 
@@ -985,15 +903,20 @@ updatePlayerUI(getSongs()[currentSongIndex]);
 
 if(savedSrc && isPlaying){
 
-    setTimeout(()=>{
+    setTimeout(function(){
 
-        audio.play();
+        audio.play()
+        .then(()=>{
 
-        isPlaying = true;
+            isPlaying = true;
+            updatePlayerUI(getSongs()[currentSongIndex]);
 
-        updatePlayerUI(
-            getSongs()[currentSongIndex]
-        );
+        })
+        .catch(()=>{
+
+            isPlaying = false;
+            updatePlayerUI(getSongs()[currentSongIndex]);
+        });
 
     },300);
 }
