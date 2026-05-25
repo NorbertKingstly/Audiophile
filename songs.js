@@ -9,7 +9,7 @@ const songs = [
     title: "Punnagaiye",
     artist: "A.R. Rahman",
     album: "24",
-    cover: "/image_asset/24.jpg",
+    cover: "/image/24.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179487/Punnagaiye_hg02a3.mp3"
 },
 
@@ -18,7 +18,7 @@ const songs = [
     title: "Kaalam Yen Kadhali",
     artist: "A.R. Rahman",
     album: "24",
-    cover: "/image_asset/24.jpg",
+    cover: "/image/24.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179466/Kaalam-Yen-Kadhali_alnric.mp3"
 },
 
@@ -27,7 +27,7 @@ const songs = [
     title: "Mei Nigara",
     artist: "A.R. Rahman",
     album: "24",
-    cover: "/image_asset/24.jpg",
+    cover: "/image/24.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179464/Mei-Nigara_p3bg9p.mp3"
 },
 
@@ -36,7 +36,7 @@ const songs = [
     title: "Aararo",
     artist: "A.R. Rahman",
     album: "24",
-    cover: "/image_asset/24.jpg",
+    cover: "/image/24.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179463/Aararo_vvuain.mp3"
 },
 
@@ -45,7 +45,7 @@ const songs = [
     title: "Naan Un",
     artist: "A.R. Rahman",
     album: "24",
-    cover: "/image_asset/24.jpg",
+    cover: "/image/24.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179462/Naan-Un_soazlr.mp3"
 },
 
@@ -54,7 +54,7 @@ const songs = [
     title: "My Twin Brother",
     artist: "A.R. Rahman",
     album: "24",
-    cover: "/image_asset/24.jpg",
+    cover: "/image/24.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179456/My-Twin-Brother_frhffn.mp3"
 },
 
@@ -67,7 +67,7 @@ const songs = [
     title: "Aasa Kooda",
     artist: "Sai Abhyankkar",
     album: "Aasa Kooda",
-    cover: "/image_asset/Aasa_kooda.jpg",
+    cover: "/image/aasa kooda.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179447/Aasa_Kooda_gny2jv.mp3"
 },
 
@@ -80,7 +80,7 @@ const songs = [
     title: "Sanda Kozhi",
     artist: "A.R. Rahman",
     album: "Aaytha Ezhuthu",
-    cover: "/image_asset/Aaytha Ezhuthu.jpg",
+    cover: "/image/Aaytha Ezhuthu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179489/Sanda-Kozhi_aebm5m.mp3"
 },
 
@@ -89,7 +89,7 @@ const songs = [
     title: "Jana Gana Mana",
     artist: "A.R. Rahman",
     album: "Aaytha Ezhuthu",
-    cover: "/image_asset/Aaytha Ezhuthu.jpg",
+    cover: "/image/Aaytha Ezhuthu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179484/Jana-Gana-Mana_k3fpsb.mp3"
 },
 
@@ -98,7 +98,7 @@ const songs = [
     title: "Yakkai Thiri",
     artist: "A.R. Rahman",
     album: "Aaytha Ezhuthu",
-    cover: "/image_asset/Aaytha Ezhuthu.jpg",
+    cover: "/image/Aaytha Ezhuthu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179483/Yakkai-Thiri_zekgno.mp3"
 },
 
@@ -107,7 +107,7 @@ const songs = [
     title: "Hey Goodbye Nanba",
     artist: "A.R. Rahman",
     album: "Aaytha Ezhuthu",
-    cover: "/image_asset/Aaytha Ezhuthu.jpg",
+    cover: "/image/Aaytha Ezhuthu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179475/Hey-Goodbye-Nanba_uxzpep.mp3"
 },
 
@@ -116,7 +116,7 @@ const songs = [
     title: "Nenjam Ellam Kadhal",
     artist: "A.R. Rahman",
     album: "Aaytha Ezhuthu",
-    cover: "/image_asset/Aaytha Ezhuthu.jpg",
+    cover: "/image/Aaytha Ezhuthu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179474/Nenjam-Ellam-Kadhal_dp7wmj.mp3"
 },
 
@@ -125,7 +125,7 @@ const songs = [
     title: "Dol Dol",
     artist: "A.R. Rahman",
     album: "Aaytha Ezhuthu",
-    cover: "/image_asset/Aaytha Ezhuthu.jpg",
+    cover: "/image/Aaytha Ezhuthu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179461/Dol-Dol_vwibk1.mp3"
 },
 
@@ -138,7 +138,7 @@ const songs = [
     title: "September Madham",
     artist: "A.R. Rahman",
     album: "Alaipayuthey",
-    cover: "/image_asset/Alaipayuthey.jpg",
+    cover: "/image/Alaipayuthey.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179522/September-Madham_s0fpig.mp3"
 },
 
@@ -147,7 +147,7 @@ const songs = [
     title: "Yaro Yarodi",
     artist: "A.R. Rahman",
     album: "Alaipayuthey",
-    cover: "/image_asset/Alaipayuthey.jpg",
+    cover: "/image/Alaipayuthey.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179519/Yaro-Yarodi_s5xlxg.mp3"
 },
 
@@ -156,7 +156,7 @@ const songs = [
     title: "Snehidhane",
     artist: "A.R. Rahman",
     album: "Alaipayuthey",
-    cover: "/image_asset/Alaipayuthey.jpg",
+    cover: "/image/Alaipayuthey.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179508/Snehidhane_kb3hgt.mp3"
 },
 
@@ -165,7 +165,7 @@ const songs = [
     title: "Pachchai Nirame",
     artist: "A.R. Rahman",
     album: "Alaipayuthey",
-    cover: "/image_asset/Alaipayuthey.jpg",
+    cover: "/image/Alaipayuthey.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179502/Pachchai-Nirame_qvit4c.mp3"
 },
 
@@ -174,7 +174,7 @@ const songs = [
     title: "Evano Oruvan Vasikiran",
     artist: "A.R. Rahman",
     album: "Alaipayuthey",
-    cover: "/image_asset/Alaipayuthey.jpg",
+    cover: "/image/Alaipayuthey.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179498/Evano-Oruvan-Vasikiran_uhjybu.mp3"
 },
 
@@ -183,7 +183,7 @@ const songs = [
     title: "Kadhal Sadugudu",
     artist: "A.R. Rahman",
     album: "Alaipayuthey",
-    cover: "/image_asset/Alaipayuthey.jpg",
+    cover: "/image/Alaipayuthey.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179498/Kadhal-Sadugudu_nljg2s.mp3"
 },
 
@@ -192,7 +192,7 @@ const songs = [
     title: "Mangalyam Tantunanena",
     artist: "A.R. Rahman",
     album: "Alaipayuthey",
-    cover: "/image_asset/Alaipayuthey.jpg",
+    cover: "/image/Alaipayuthey.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179492/Mangalyam-Tantunanena_areqpc.mp3"
 },
 
@@ -201,7 +201,7 @@ const songs = [
     title: "Endrendrum Punnagai",
     artist: "A.R. Rahman",
     album: "Alaipayuthey",
-    cover: "/image_asset/Alaipayuthey.jpg",
+    cover: "/image/Alaipayuthey.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179487/Endrendrum-Punnagai_dvbdxi.mp3"
 },
 
@@ -210,7 +210,7 @@ const songs = [
     title: "Alaipayuthey Kanna",
     artist: "A.R. Rahman",
     album: "Alaipayuthey",
-    cover: "/image_asset/Alaipayuthey.jpg",
+    cover: "/image/Alaipayuthey.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179482/Alaipayuthey-Kanna_rqtvjs.mp3"
 },
 
@@ -223,7 +223,7 @@ const songs = [
     title: "Vaane Vaane",
     artist: "G.V.Prakash Kumar",
     album: "Amaran",
-    cover: "/image_asset/Amaran.jpg",
+    cover: "/image/Amaran.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179533/Vaane_Vaane_c6zqka.mp3"
 },
 
@@ -232,7 +232,7 @@ const songs = [
     title: "Vennilavu Saaral",
     artist: "G.V.Prakash Kumar",
     album: "Amaran",
-    cover: "/image_asset/Amaran.jpg",
+    cover: "/image/Amaran.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179521/Vennilavu_Saaral_lt6es1.mp3"
 },
 
@@ -241,7 +241,7 @@ const songs = [
     title: "Uyirey",
     artist: "G.V.Prakash Kumar",
     album: "Amaran",
-    cover: "/image_asset/Amaran.jpg",
+    cover: "/image/Amaran.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179514/Uyirey_tvg49h.mp3"
 },
 
@@ -250,7 +250,7 @@ const songs = [
     title: "Hey Minnale",
     artist: "G.V.Prakash Kumar",
     album: "Amaran",
-    cover: "/image_asset/Amaran.jpg",
+    cover: "/image/Amaran.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179513/Hey_Minnale_yx3ev8.mp3"
 },
 
@@ -259,7 +259,7 @@ const songs = [
     title: "Kanave",
     artist: "G.V.Prakash Kumar",
     album: "Amaran",
-    cover: "/image_asset/Amaran.jpg",
+    cover: "/image/Amaran.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179513/Kanave_eyzbga.mp3"
 },
 
@@ -268,7 +268,7 @@ const songs = [
     title: "Sai Pallavi's Intro",
     artist: "G.V.Prakash Kumar",
     album: "Amaran",
-    cover: "/image_asset/Amaran.jpg",
+    cover: "/image/Amaran.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179509/Sai_Pallavi_s_Intro_qzhyct.mp3"
 },
 
@@ -277,7 +277,7 @@ const songs = [
     title: "Por Veeran Azadi",
     artist: "G.V.Prakash Kumar",
     album: "Amaran",
-    cover: "/image_asset/Amaran.jpg",
+    cover: "/image/Amaran.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179507/Por_Veeran_Azadi_xxtjax.mp3"
 },
 
@@ -286,7 +286,7 @@ const songs = [
     title: "Amara",
     artist: "G.V.Prakash Kumar",
     album: "Amaran",
-    cover: "/image_asset/Amaran.jpg",
+    cover: "/image/Amaran.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179502/Amara_hc4l1p.mp3"
 },
 
@@ -299,7 +299,7 @@ const songs = [
     title: "Pachigalam Paravaigalam",
     artist: "G.V.Prakash Kumar",
     album: "Bachelor",
-    cover: "/image_asset/Bachelor.jpg",
+    cover: "/image/Bachelor.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179563/Pachigalam-Paravaigalam-MassTamilan.fm_zgsdxv.mp3"
 },
 
@@ -308,7 +308,7 @@ const songs = [
     title: "Miss You Baby",
     artist: "G.V.Prakash Kumar",
     album: "Bachelor",
-    cover: "/image_asset/Bachelor.jpg",
+    cover: "/image/Bachelor.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179538/Miss-You-Baby-MassTamilan.fm_idgkbr.mp3"
 },
 
@@ -317,7 +317,7 @@ const songs = [
     title: "Adiye",
     artist: "G.V.Prakash Kumar",
     album: "Bachelor",
-    cover: "/image_asset/Bachelor.jpg",
+    cover: "/image/Bachelor.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179533/Adiye-MassTamilan.fm_hkinn5.mp3"
 },
 
@@ -326,7 +326,7 @@ const songs = [
     title: "Kaadhal Kanmani",
     artist: "G.V.Prakash Kumar",
     album: "Bachelor",
-    cover: "/image_asset/Bachelor.jpg",
+    cover: "/image/Bachelor.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179529/Kaadhal-Kanmani-MassTamilan.fm_vhvwzi.mp3"
 },
 
@@ -335,7 +335,7 @@ const songs = [
     title: "Life Of Bachelor",
     artist: "G.V.Prakash Kumar",
     album: "Bachelor",
-    cover: "/image_asset/Bachelor.jpg",
+    cover: "/image/Bachelor.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179527/Life-Of-Bachelor-MassTamilan.fm_zissdx.mp3"
 },
 
@@ -344,7 +344,7 @@ const songs = [
     title: "Kavan",
     artist: "G.V.Prakash Kumar",
     album: "Bachelor",
-    cover: "/image_asset/Bachelor.jpg",
+    cover: "/image/Bachelor.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179526/Kavan-MassTamilan.fm_wrer3k.mp3"
 },
 
@@ -357,7 +357,7 @@ const songs = [
     title: "Jolly O Gymkhana",
     artist: "Anirudh Ravichander",
     album: "Beast",
-    cover: "/image_asset/Beast.jpg",
+    cover: "/image/Beast.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179558/Jolly-O-Gymkhana-MassTamilan.so_rwb8py.mp3"
 },
 
@@ -366,7 +366,7 @@ const songs = [
     title: "Beast Mode",
     artist: "Anirudh Ravichander",
     album: "Beast",
-    cover: "/image_asset/Beast.jpg",
+    cover: "/image/Beast.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179555/Beast-Mode-MassTamilan.so_jmy3m3.mp3"
 },
 
@@ -375,7 +375,7 @@ const songs = [
     title: "Pooja Hegde Announcement Theme",
     artist: "Anirudh Ravichander",
     album: "Beast",
-    cover: "/image_asset/Beast.jpg",
+    cover: "/image/Beast.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179538/Pooja-Hegde-Announcement-Theme-MassTamilan.so_dgwsih.mp3"
 },
 
@@ -384,7 +384,7 @@ const songs = [
     title: "Arabic Kuthu",
     artist: "Anirudh Ravichander",
     album: "Beast",
-    cover: "/image_asset/Beast.jpg",
+    cover: "/image/Beast.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179536/Arabic-Kuthu---Halamithi-Habibo-MassTamilan.so_kezdup.mp3"
 },
 
@@ -393,7 +393,7 @@ const songs = [
     title: "Beast Announcement Theme",
     artist: "Anirudh Ravichander",
     album: "Beast",
-    cover: "/image_asset/Beast.jpg",
+    cover: "/image/Beast.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179534/Beast-Announcement-Theme-MassTamilan.so_rk0kng.mp3"
 },
 
@@ -406,7 +406,7 @@ const songs = [
     title: "Girlfriend",
     artist: "A.R. Rahman",
     album: "Boys",
-    cover: "/image_asset/Boys.jpg",
+    cover: "/image/Boys.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179601/Girlfriend_ertmar.mp3"
 },
 
@@ -415,7 +415,7 @@ const songs = [
     title: "Secret Of Succes",
     artist: "A.R. Rahman",
     album: "Boys",
-    cover: "/image_asset/Boys.jpg",
+    cover: "/image/Boys.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179593/Secret-Of-Succes_cckhu1.mp3"
 },
 
@@ -424,7 +424,7 @@ const songs = [
     title: "Break The Rules",
     artist: "A.R. Rahman",
     album: "Boys",
-    cover: "/image_asset/Boys.jpg",
+    cover: "/image/Boys.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179580/Break-The-Rules_zl7y3u.mp3"
 },
 
@@ -433,7 +433,7 @@ const songs = [
     title: "Boom Boom",
     artist: "A.R. Rahman",
     album: "Boys",
-    cover: "/image_asset/Boys.jpg",
+    cover: "/image/Boys.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179579/Boom-Boom_duf8iy.mp3"
 },
 
@@ -442,7 +442,7 @@ const songs = [
     title: "Please Sir",
     artist: "A.R. Rahman",
     album: "Boys",
-    cover: "/image_asset/Boys.jpg",
+    cover: "/image/Boys.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179571/Please-Sir_gbeytl.mp3"
 },
 
@@ -451,7 +451,7 @@ const songs = [
     title: "Dating",
     artist: "A.R. Rahman",
     album: "Boys",
-    cover: "/image_asset/Boys.jpg",
+    cover: "/image/Boys.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179569/Dating_ixtbi7.mp3"
 },
 
@@ -460,7 +460,7 @@ const songs = [
     title: "Ale Ale",
     artist: "A.R. Rahman",
     album: "Boys",
-    cover: "/image_asset/Boys.jpg",
+    cover: "/image/Boys.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179566/Ale-Ale_s8tezr.mp3"
 },
 
@@ -473,7 +473,7 @@ const songs = [
     title: "Yaaro Yarukkul Love",
     artist: "Yuvan Shankar Raja",
     album: "Chennai 600028",
-    cover: "/image_asset/Chennai 28.jpg",
+    cover: "/image/Chennai 28.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179608/Yaaro-Yarukkul-Love_lcyza9.mp3"
 },
 
@@ -482,7 +482,7 @@ const songs = [
     title: "Yaaro Friendship",
     artist: "Yuvan Shankar Raja",
     album: "Chennai 600028",
-    cover: "/image_asset/Chennai 28.jpg",
+    cover: "/image/Chennai 28.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179602/Yaaro-Friendship_h9teew.mp3"
 },
 
@@ -491,7 +491,7 @@ const songs = [
     title: "Un Paarvai Mele Pattal",
     artist: "Yuvan Shankar Raja",
     album: "Chennai 600028",
-    cover: "/image_asset/Chennai 28.jpg",
+    cover: "/image/Chennai 28.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179602/Un-Paarvai-Mele-Pattal_eignoq.mp3"
 },
 
@@ -500,7 +500,7 @@ const songs = [
     title: "Ulla Vaa World Cup",
     artist: "Yuvan Shankar Raja",
     album: "Chennai 600028",
-    cover: "/image_asset/Chennai 28.jpg",
+    cover: "/image/Chennai 28.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179593/Ulla-Vaa-World-Cup_tgjao6.mp3"
 },
 
@@ -509,7 +509,7 @@ const songs = [
     title: "Saroja Saman Nikalo",
     artist: "Yuvan Shankar Raja",
     album: "Chennai 600028",
-    cover: "/image_asset/Chennai 28.jpg",
+    cover: "/image/Chennai 28.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179592/Saroja-Saman-Nikalo_xv9sec.mp3"
 },
 
@@ -518,7 +518,7 @@ const songs = [
     title: "Oh Oh Ennammo",
     artist: "Yuvan Shankar Raja",
     album: "Chennai 600028",
-    cover: "/image_asset/Chennai 28.jpg",
+    cover: "/image/Chennai 28.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179586/Oh-Oh-Ennammo_rrjend.mp3"
 },
 
@@ -527,7 +527,7 @@ const songs = [
     title: "Jalsa Remix",
     artist: "Yuvan Shankar Raja",
     album: "Chennai 600028",
-    cover: "/image_asset/Chennai 28.jpg",
+    cover: "/image/Chennai 28.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179583/Jalsa-Remix_atc1m3.mp3"
 },
 
@@ -536,7 +536,7 @@ const songs = [
     title: "Jalsa Pannungada",
     artist: "Yuvan Shankar Raja",
     album: "Chennai 600028",
-    cover: "/image_asset/Chennai 28.jpg",
+    cover: "/image/Chennai 28.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179577/Jalsa-Pannungada_bzgw7r.mp3"
 },
 
@@ -549,7 +549,7 @@ const songs = [
     title: "Unakku Thaan",
     artist: "Dhibu Ninan Thomas",
     album: "Chithha",
-    cover: "/image_asset/Chithha.jpg",
+    cover: "/image/Chithha.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179613/Unakku-Thaan-MassTamilan.dev_lzwfxg.mp3"
 },
 
@@ -558,7 +558,7 @@ const songs = [
     title: "Theera Swasame",
     artist: "Dhibu Ninan Thomas",
     album: "Chithha",
-    cover: "/image_asset/Chithha.jpg",
+    cover: "/image/Chithha.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179609/Theera-Swasame-MassTamilan.dev_thsmti.mp3"
 },
 
@@ -567,7 +567,7 @@ const songs = [
     title: "Kangal Edho",
     artist: "Dhibu Ninan Thomas",
     album: "Chithha",
-    cover: "/image_asset/Chithha.jpg",
+    cover: "/image/Chithha.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179606/Kangal-Edho-MassTamilan.dev_iwizev.mp3"
 },
 
@@ -576,7 +576,7 @@ const songs = [
     title: "Show Me The Way",
     artist: "Dhibu Ninan Thomas",
     album: "Chithha",
-    cover: "/image_asset/Chithha.jpg",
+    cover: "/image/Chithha.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179598/Show-Me-The-Way-MassTamilan.dev_ysqzn0.mp3"
 },
 
@@ -589,7 +589,7 @@ const songs = [
     title: "Uyir Urugudhey",
     artist: "A.R. Rahman",
     album: "Cobra",
-    cover: "/image_asset/Cobra.jpg",
+    cover: "/image/Cobra.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179628/Uyir-Urugudhey-MassTamilan.dev_cvilhg.mp3"
 },
 
@@ -598,7 +598,7 @@ const songs = [
     title: "Yele Ilanchingamey",
     artist: "A.R. Rahman",
     album: "Cobra",
-    cover: "/image_asset/Cobra.jpg",
+    cover: "/image/Cobra.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179621/Yele-Ilanchingamey-MassTamilan.dev_x2e8vg.mp3"
 },
 
@@ -607,7 +607,7 @@ const songs = [
     title: "Tharangini",
     artist: "A.R. Rahman",
     album: "Cobra",
-    cover: "/image_asset/Cobra.jpg",
+    cover: "/image/Cobra.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179619/Tharangini-MassTamilan.dev_dqy5e7.mp3"
 },
 
@@ -616,7 +616,7 @@ const songs = [
     title: "Adheeraa",
     artist: "A.R. Rahman",
     album: "Cobra",
-    cover: "/image_asset/Cobra.jpg",
+    cover: "/image/Cobra.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179617/Adheeraa-MassTamilan.dev_jish1e.mp3"
 },
 
@@ -625,7 +625,7 @@ const songs = [
     title: "Thumbi Thullal",
     artist: "A.R. Rahman",
     album: "Cobra",
-    cover: "/image_asset/Cobra.jpg",
+    cover: "/image/Cobra.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179617/Thumbi-Thullal-MassTamilan.dev_ckgt0z.mp3"
 },
 
@@ -638,7 +638,7 @@ const songs = [
     title: "Uyirnaadi Nanbane",
     artist: "Anirudh Ravichander",
     album: "Coolie",
-    cover: "/image_asset/Coolie.jpg",
+    cover: "/image/Coolie.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179646/Uyirnaadi_Nanbane_wwn28x.mp3"
 },
 
@@ -647,7 +647,7 @@ const songs = [
     title: "I Am The Danger",
     artist: "Anirudh Ravichander",
     album: "Coolie",
-    cover: "/image_asset/Coolie.jpg",
+    cover: "/image/Coolie.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179638/I_Am_The_Danger_nnp9tc.mp3"
 },
 
@@ -656,7 +656,7 @@ const songs = [
     title: "Monica",
     artist: "Anirudh Ravichander",
     album: "Coolie",
-    cover: "/image_asset/Coolie.jpg",
+    cover: "/image/Coolie.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179638/Monica_tzy8rp.mp3"
 },
 
@@ -665,7 +665,7 @@ const songs = [
     title: "Kokki",
     artist: "Anirudh Ravichander",
     album: "Coolie",
-    cover: "/image_asset/Coolie.jpg",
+    cover: "/image/Coolie.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179635/Kokki_j1sx6h.mp3"
 },
 
@@ -674,7 +674,7 @@ const songs = [
     title: "Powerhouse",
     artist: "Anirudh Ravichander",
     album: "Coolie",
-    cover: "/image_asset/Coolie.jpg",
+    cover: "/image/Coolie.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179629/Powerhouse_cldqvv.mp3"
 },
 
@@ -683,7 +683,7 @@ const songs = [
     title: "Chikitu",
     artist: "Anirudh Ravichander",
     album: "Coolie",
-    cover: "/image_asset/Coolie.jpg",
+    cover: "/image/Coolie.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179628/Chikitu_jvkv7t.mp3"
 },
 
@@ -692,7 +692,7 @@ const songs = [
     title: "Powerhouse Vibe",
     artist: "Anirudh Ravichander",
     album: "Coolie",
-    cover: "/image_asset/Coolie.jpg",
+    cover: "/image/Coolie.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179624/Powerhouse-Vibe-MassTamilan.dev_mxtpkl.mp3"
 },
 
@@ -701,7 +701,7 @@ const songs = [
     title: "Coolie Disco",
     artist: "Anirudh Ravichander",
     album: "Coolie",
-    cover: "/image_asset/Coolie.jpg",
+    cover: "/image/Coolie.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179622/Coolie_Disco_a1dasj.mp3"
 },
 
@@ -710,7 +710,7 @@ const songs = [
     title: "Chikitu Vibe",
     artist: "Anirudh Ravichander",
     album: "Coolie",
-    cover: "/image_asset/Coolie.jpg",
+    cover: "/image/Coolie.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179618/Chikitu-Vibe-MassTamilan.dev_z6dw4d.mp3"
 },
 
@@ -723,7 +723,7 @@ const songs = [
     title: "Raga of Revenge",
     artist: "Anirudh Ravichander",
     album: "DC",
-    cover: "/image_asset/DC.jpg",
+    cover: "/image/DC.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179640/Raga_of_Revenge_hf3non.mp3"
 },
 
@@ -732,7 +732,7 @@ const songs = [
     title: "Ain't Nobody",
     artist: "Anirudh Ravichander",
     album: "DC",
-    cover: "/image_asset/DC.jpg",
+    cover: "/image/DC.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179635/Ain_t_Nobody_hxwcls.mp3"
 },
 
@@ -741,7 +741,7 @@ const songs = [
     title: "Bloody Valentine",
     artist: "Anirudh Ravichander",
     album: "DC",
-    cover: "/image_asset/DC.jpg",
+    cover: "/image/DC.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179634/Bloody_Valentine_ujev3t.mp3"
 },
 
@@ -754,7 +754,7 @@ const songs = [
     title: "Private Party",
     artist: "Anirudh Ravichander",
     album: "Don",
-    cover: "/image_asset/Don.jpg",
+    cover: "/image/Don.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179654/Private-Party-MassTamilan.dev_gm21nb.mp3"
 },
 
@@ -763,7 +763,7 @@ const songs = [
     title: "Jalabulajangu",
     artist: "Anirudh Ravichander",
     album: "Don",
-    cover: "/image_asset/Don.jpg",
+    cover: "/image/Don.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179650/Jalabulajangu-MassTamilan.dev_st8dfh.mp3"
 },
 
@@ -772,7 +772,7 @@ const songs = [
     title: "Bae",
     artist: "Anirudh Ravichander",
     album: "Don",
-    cover: "/image_asset/Don.jpg",
+    cover: "/image/Don.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179648/Bae-MassTamilan.dev_hxniat.mp3"
 },
 
@@ -781,7 +781,7 @@ const songs = [
     title: "Mudhal Naayagan",
     artist: "Anirudh Ravichander",
     album: "Don",
-    cover: "/image_asset/Don.jpg",
+    cover: "/image/Don.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179647/Mudhal-Naayagan-MassTamilan.dev_dmmf9b.mp3"
 },
 
@@ -794,7 +794,7 @@ const songs = [
     title: "Kannukulla Reprise",
     artist: "Sai Abhyankkar",
     album: "Dude",
-    cover: "/image_asset/Dude.jpg",
+    cover: "/image/Dude.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179669/Kannukulla_Reprise_zt8nux.mp3"
 },
 
@@ -803,7 +803,7 @@ const songs = [
     title: "Kannukulla",
     artist: "Sai Abhyankkar",
     album: "Dude",
-    cover: "/image_asset/Dude.jpg",
+    cover: "/image/Dude.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179668/Kannukulla_g1g2eh.mp3"
 },
 
@@ -812,7 +812,7 @@ const songs = [
     title: "Yumabaibesa",
     artist: "Sai Abhyankkar",
     album: "Dude",
-    cover: "/image_asset/Dude.jpg",
+    cover: "/image/Dude.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179666/Yumabaibesa_ybrsmd.mp3"
 },
 
@@ -821,7 +821,7 @@ const songs = [
     title: "Dude Trailer Blast Theme",
     artist: "Sai Abhyankkar",
     album: "Dude",
-    cover: "/image_asset/Dude.jpg",
+    cover: "/image/Dude.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179664/Dude_Trailer_Blast_Theme_yzfkky.mp3"
 },
 
@@ -830,7 +830,7 @@ const songs = [
     title: "Singari",
     artist: "Sai Abhyankkar",
     album: "Dude",
-    cover: "/image_asset/Dude.jpg",
+    cover: "/image/Dude.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179663/Singari_vtmt0t.mp3"
 },
 
@@ -839,7 +839,7 @@ const songs = [
     title: "Oorum Blood",
     artist: "Sai Abhyankkar",
     album: "Dude",
-    cover: "/image_asset/Dude.jpg",
+    cover: "/image/Dude.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179660/Oorum_Blood_ll1brj.mp3"
 },
 
@@ -848,7 +848,7 @@ const songs = [
     title: "Nallaru Po",
     artist: "Sai Abhyankkar",
     album: "Dude",
-    cover: "/image_asset/Dude.jpg",
+    cover: "/image/Dude.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179660/Nallaru_Po_d4tiq4.mp3"
 },
 
@@ -857,7 +857,7 @@ const songs = [
     title: "Oorum Blood Unplugged",
     artist: "Sai Abhyankkar",
     album: "Dude",
-    cover: "/image_asset/Dude.jpg",
+    cover: "/image/Dude.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179652/Oorum_Blood_Unplugged_eccugd.mp3"
 },
 
@@ -866,7 +866,7 @@ const songs = [
     title: "Blud Is On His Way",
     artist: "Sai Abhyankkar",
     album: "Dude",
-    cover: "/image_asset/Dude.jpg",
+    cover: "/image/Dude.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179646/Blud_Is_On_His_Way_fxujfw.mp3"
 },
 
@@ -879,7 +879,7 @@ const songs = [
     title: "Kanmani",
     artist: "D Imman",
     album: "Gemini Ganeshanum Suruli Raajanum",
-    cover: "/image_asset/Gemini Ganeshanum Suruli Raajanum.jpg",
+    cover: "/image/Gemini Ganeshanum Suruli Raajanum.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179695/Kanmani-MassTamilan.com_wxszzk.mp3"
 },
 
@@ -888,7 +888,7 @@ const songs = [
     title: "Vennila Thangachi",
     artist: "D Imman",
     album: "Gemini Ganeshanum Suruli Raajanum",
-    cover: "/image_asset/Gemini Ganeshanum Suruli Raajanum.jpg",
+    cover: "/image/Gemini Ganeshanum Suruli Raajanum.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179688/Vennila-Thangachi-MassTamilan.com_q8he2t.mp3"
 },
 
@@ -897,7 +897,7 @@ const songs = [
     title: "Thambi Cutingu",
     artist: "D Imman",
     album: "Gemini Ganeshanum Suruli Raajanum",
-    cover: "/image_asset/Gemini Ganeshanum Suruli Raajanum.jpg",
+    cover: "/image/Gemini Ganeshanum Suruli Raajanum.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179686/Thambi-Cuttingu-MassTamilan.com_lj0ggy.mp3"
 },
 
@@ -906,7 +906,7 @@ const songs = [
     title: "Ammukuttiye",
     artist: "D Imman",
     album: "Gemini Ganeshanum Suruli Raajanum",
-    cover: "/image_asset/Gemini Ganeshanum Suruli Raajanum.jpg",
+    cover: "/image/Gemini Ganeshanum Suruli Raajanum.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179682/Ammukuttiye-MassTamilan.com_ixzhha.mp3"
 },
 
@@ -915,7 +915,7 @@ const songs = [
     title: "Aahaa Aahaa",
     artist: "D Imman",
     album: "Gemini Ganeshanum Suruli Raajanum",
-    cover: "/image_asset/Gemini Ganeshanum Suruli Raajanum.jpg",
+    cover: "/image/Gemini Ganeshanum Suruli Raajanum.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179673/Aahaa-Aahaa-MassTamilan.com_jvi84w.mp3"
 },
 
@@ -928,7 +928,7 @@ const songs = [
     title: "Whistle Podu",
     artist: "Yuvan Shankar Raja",
     album: "GOAT",
-    cover: "/image_asset/The Greatest of All Time(goat).jpg",
+    cover: "/image/The Greatest of All Time(goat).jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179701/Whistle_Podu_og63tq.mp3"
 },
 
@@ -937,7 +937,7 @@ const songs = [
     title: "Spark",
     artist: "Yuvan Shankar Raja",
     album: "GOAT",
-    cover: "/image_asset/The Greatest of All Time(goat).jpg",
+    cover: "/image/The Greatest of All Time(goat).jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179697/Spark_iqo1ig.mp3"
 },
 
@@ -946,7 +946,7 @@ const songs = [
     title: "Matta",
     artist: "Yuvan Shankar Raja",
     album: "GOAT",
-    cover: "/image_asset/The Greatest of All Time(goat).jpg",
+    cover: "/image/The Greatest of All Time(goat).jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179693/Matta_kasuqo.mp3"
 },
 
@@ -955,7 +955,7 @@ const songs = [
     title: "Chinna Chinna Kangal",
     artist: "Yuvan Shankar Raja",
     album: "GOAT",
-    cover: "/image_asset/The Greatest of All Time(goat).jpg",
+    cover: "/image/The Greatest of All Time(goat).jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179690/Chinna_Chinna_Kangal_xozmp4.mp3"
 },
 
@@ -968,7 +968,7 @@ const songs = [
     title: "Theipirai",
     artist: "Santhosh Narayanan",
     album: "Jagame Thandhiram",
-    cover: "/image_asset/JagameThandhiram.jpg",
+    cover: "/image/JagameThandhiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179727/Theipirai-MassTamilan.fm_vcp4xm.mp3"
 },
 
@@ -977,7 +977,7 @@ const songs = [
     title: "Rakita Rakita Rakita",
     artist: "Santhosh Narayanan",
     album: "Jagame Thandhiram",
-    cover: "/image_asset/JagameThandhiram.jpg",
+    cover: "/image/JagameThandhiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179717/Rakita-Rakita-Rakita-MassTamilan.fm_gqshjx.mp3"
 },
 
@@ -986,7 +986,7 @@ const songs = [
     title: "Theengu Thaakka",
     artist: "Santhosh Narayanan",
     album: "Jagame Thandhiram",
-    cover: "/image_asset/JagameThandhiram.jpg",
+    cover: "/image/JagameThandhiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179715/Theengu-Thaakka-MassTamilan.fm_dbppt2.mp3"
 },
 
@@ -995,7 +995,7 @@ const songs = [
     title: "Naan Dhaan Da",
     artist: "Santhosh Narayanan",
     album: "Jagame Thandhiram",
-    cover: "/image_asset/JagameThandhiram.jpg",
+    cover: "/image/JagameThandhiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179711/Naan-Dhaan-Da-Mass-MassTamilan.fm_nlrgha.mp3"
 },
 
@@ -1004,7 +1004,7 @@ const songs = [
     title: "Nethu",
     artist: "Santhosh Narayanan",
     album: "Jagame Thandhiram",
-    cover: "/image_asset/JagameThandhiram.jpg",
+    cover: "/image/JagameThandhiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179710/Nethu-MassTamilan.fm_exxpni.mp3"
 },
 
@@ -1013,7 +1013,7 @@ const songs = [
     title: "Kalarey Kalarvasam",
     artist: "Santhosh Narayanan",
     album: "Jagame Thandhiram",
-    cover: "/image_asset/JagameThandhiram.jpg",
+    cover: "/image/JagameThandhiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179710/Kalarey-Kalarvasam-MassTamilan.fm_iw8cq6.mp3"
 },
 
@@ -1022,7 +1022,7 @@ const songs = [
     title: "Aala Ola",
     artist: "Santhosh Narayanan",
     album: "Jagame Thandhiram",
-    cover: "/image_asset/JagameThandhiram.jpg",
+    cover: "/image/JagameThandhiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179708/Aala-Ola-MassTamilan.fm_hai3ak.mp3"
 },
 
@@ -1031,7 +1031,7 @@ const songs = [
     title: "Suruli",
     artist: "Santhosh Narayanan",
     album: "Jagame Thandhiram",
-    cover: "/image_asset/JagameThandhiram.jpg",
+    cover: "/image/JagameThandhiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179708/Suruli-MassTamilan.fm_djm64j.mp3"
 },
 
@@ -1040,7 +1040,7 @@ const songs = [
     title: "Bujji",
     artist: "Santhosh Narayanan",
     album: "Jagame Thandhiram",
-    cover: "/image_asset/JagameThandhiram.jpg",
+    cover: "/image/JagameThandhiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179702/Bujji-MassTamilan.fm_ytrmpq.mp3"
 },
 
@@ -1049,7 +1049,7 @@ const songs = [
     title: "London Street",
     artist: "Santhosh Narayanan",
     album: "Jagame Thandhiram",
-    cover: "/image_asset/JagameThandhiram.jpg",
+    cover: "/image/JagameThandhiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179701/London-Street-MassTamilan.fm_zaltiz.mp3"
 },
 
@@ -1058,7 +1058,7 @@ const songs = [
     title: "Barotta Master",
     artist: "Santhosh Narayanan",
     album: "Jagame Thandhiram",
-    cover: "/image_asset/JagameThandhiram.jpg",
+    cover: "/image/JagameThandhiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179700/Barotta-Master-MassTamilan.fm_gkfnhg.mp3"
 },
 
@@ -1071,7 +1071,7 @@ const songs = [
     title: "Rathamaarey",
     artist: "Anirudh Ravichander",
     album: "Jailer",
-    cover: "/image_asset/Jailer.jpg",
+    cover: "/image/Jailer.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179734/Rathamaarey-MassTamilan.dev_h5omhl.mp3"
 },
 
@@ -1080,7 +1080,7 @@ const songs = [
     title: "Kaavaalaa",
     artist: "Anirudh Ravichander",
     album: "Jailer",
-    cover: "/image_asset/Jailer.jpg",
+    cover: "/image/Jailer.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179732/Kaavaalaa-MassTamilan.dev_zwrkps.mp3"
 },
 
@@ -1089,7 +1089,7 @@ const songs = [
     title: "Jujubee",
     artist: "Anirudh Ravichander",
     album: "Jailer",
-    cover: "/image_asset/Jailer.jpg",
+    cover: "/image/Jailer.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179732/Jujubee-MassTamilan.dev_tpae5u.mp3"
 },
 
@@ -1098,7 +1098,7 @@ const songs = [
     title: "Muthuvel Pandian Theme",
     artist: "Anirudh Ravichander",
     album: "Jailer",
-    cover: "/image_asset/Jailer.jpg",
+    cover: "/image/Jailer.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179722/Muthuvel-Pandian-Theme-_Instrumental_-MassTamilan.dev_eno0tv.mp3"
 },
 
@@ -1107,7 +1107,7 @@ const songs = [
     title: "Hukum Thalaivar Alappara",
     artist: "Anirudh Ravichander",
     album: "Jailer",
-    cover: "/image_asset/Jailer.jpg",
+    cover: "/image/Jailer.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179720/Hukum---Thalaivar-Alappara-MassTamilan.dev_axwymi.mp3"
 },
 
@@ -1116,7 +1116,7 @@ const songs = [
     title: "Jailer Theme",
     artist: "Anirudh Ravichander",
     album: "Jailer",
-    cover: "/image_asset/Jailer.jpg",
+    cover: "/image/Jailer.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179718/Jailer-Theme-_Instrumental_-MassTamilan.dev_oywmot.mp3"
 },
 
@@ -1125,7 +1125,7 @@ const songs = [
     title: "Alappara Theme",
     artist: "Anirudh Ravichander",
     album: "Jailer",
-    cover: "/image_asset/Jailer.jpg",
+    cover: "/image/Jailer.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179716/Alappara-Theme-_Instrumental_-MassTamilan.dev_cccbd5.mp3"
 },
 
@@ -1134,7 +1134,7 @@ const songs = [
     title: "Jailer Drill Theme",
     artist: "Anirudh Ravichander",
     album: "Jailer",
-    cover: "/image_asset/Jailer.jpg",
+    cover: "/image/Jailer.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179714/Jailer-Drill-Theme-_Instrumental_-MassTamilan.dev_z8bkwj.mp3"
 },
 
@@ -1147,7 +1147,7 @@ const songs = [
     title: "Thalapathy Kacheri",
     artist: "Anirudh Ravichander",
     album: "Jana Nayagan",
-    cover: "/image_asset/Jana Nayagan.jpg",
+    cover: "/image/Jana Nayagan.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179753/Thalapathy_Kacheri_z4qyuw.mp3"
 },
 
@@ -1156,7 +1156,7 @@ const songs = [
     title: "Raavana Mavandaa",
     artist: "Anirudh Ravichander",
     album: "Jana Nayagan",
-    cover: "/image_asset/Jana Nayagan.jpg",
+    cover: "/image/Jana Nayagan.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179733/Raavana-Mavandaa-MassTamilan.dev_mvizmd.mp3"
 },
 
@@ -1165,7 +1165,7 @@ const songs = [
     title: "Chella Magale",
     artist: "Anirudh Ravichander",
     album: "Jana Nayagan",
-    cover: "/image_asset/Jana Nayagan.jpg",
+    cover: "/image/Jana Nayagan.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179732/Chella-Magale-MassTamilan.dev_uiy1pz.mp3"
 },
 
@@ -1174,7 +1174,7 @@ const songs = [
     title: "Oru Pere Varalaaru",
     artist: "Anirudh Ravichander",
     album: "Jana Nayagan",
-    cover: "/image_asset/Jana Nayagan.jpg",
+    cover: "/image/Jana Nayagan.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179732/Oru-Pere-Varalaaru-MassTamilan.dev_mshrtb.mp3"
 },
 
@@ -1187,7 +1187,7 @@ const songs = [
     title: "Vandha Edam",
     artist: "Anirudh Ravichander",
     album: "Jawan",
-    cover: "/image_asset/Jawan.jpg",
+    cover: "/image/Jawan.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179762/Vandha-Edam-MassTamilan.dev_xbkarb.mp3"
 },
 
@@ -1196,7 +1196,7 @@ const songs = [
     title: "Aararaari Raaro",
     artist: "Anirudh Ravichander",
     album: "Jawan",
-    cover: "/image_asset/Jawan.jpg",
+    cover: "/image/Jawan.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179753/Aararaari-Raaro-MassTamilan.dev_wafdjc.mp3"
 },
 
@@ -1205,7 +1205,7 @@ const songs = [
     title: "Pattasa",
     artist: "Anirudh Ravichander",
     album: "Jawan",
-    cover: "/image_asset/Jawan.jpg",
+    cover: "/image/Jawan.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179745/Pattasa-MassTamilan.dev_lnnfpj.mp3"
 },
 
@@ -1214,7 +1214,7 @@ const songs = [
     title: "Jawan Title Track",
     artist: "Anirudh Ravichander",
     album: "Jawan",
-    cover: "/image_asset/Jawan.jpg",
+    cover: "/image/Jawan.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179743/Jawan-Title-Track-MassTamilan.dev_faxbwv.mp3"
 },
 
@@ -1223,7 +1223,7 @@ const songs = [
     title: "Not Ramaiya Vastavaiya",
     artist: "Anirudh Ravichander",
     album: "Jawan",
-    cover: "/image_asset/Jawan.jpg",
+    cover: "/image/Jawan.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179742/Not-Ramaiya-Vastavaiya-MassTamilan.dev_pktmpo.mp3"
 },
 
@@ -1232,7 +1232,7 @@ const songs = [
     title: "Hayyoda",
     artist: "Anirudh Ravichander",
     album: "Jawan",
-    cover: "/image_asset/Jawan.jpg",
+    cover: "/image/Jawan.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179740/Hayyoda-MassTamilan.dev_l9mwjx.mp3"
 },
 
@@ -1245,7 +1245,7 @@ const songs = [
     title: "Oyyaram",
     artist: "Santhosh Narayanan",
     album: "Jigarthanda DoubleX",
-    cover: "/image_asset/JigarthandaDoubleX.jpg",
+    cover: "/image/JigarthandaDoubleX.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179766/Oyyaram-MassTamilan.dev_lgpkhz.mp3"
 },
 
@@ -1254,7 +1254,7 @@ const songs = [
     title: "Theekuchi",
     artist: "Santhosh Narayanan",
     album: "Jigarthanda DoubleX",
-    cover: "/image_asset/JigarthandaDoubleX.jpg",
+    cover: "/image/JigarthandaDoubleX.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179760/Theekuchi-MassTamilan.dev_wxk1q8.mp3"
 },
 
@@ -1263,7 +1263,7 @@ const songs = [
     title: "Makkal",
     artist: "Santhosh Narayanan",
     album: "Jigarthanda DoubleX",
-    cover: "/image_asset/JigarthandaDoubleX.jpg",
+    cover: "/image/JigarthandaDoubleX.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179755/Makkal-MassTamilan.dev_azcn7w.mp3"
 },
 
@@ -1272,7 +1272,7 @@ const songs = [
     title: "Maamadurai",
     artist: "Santhosh Narayanan",
     album: "Jigarthanda DoubleX",
-    cover: "/image_asset/JigarthandaDoubleX.jpg",
+    cover: "/image/JigarthandaDoubleX.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179752/Maamadurai-MassTamilan.dev_fln5rb.mp3"
 },
 
@@ -1281,7 +1281,7 @@ const songs = [
     title: "Kokkarako",
     artist: "Santhosh Narayanan",
     album: "Jigarthanda DoubleX",
-    cover: "/image_asset/JigarthandaDoubleX.jpg",
+    cover: "/image/JigarthandaDoubleX.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179751/Kokkarako-MassTamilan.dev_z1zixy.mp3"
 },
 
@@ -1290,7 +1290,7 @@ const songs = [
     title: "Flute Speaks",
     artist: "Santhosh Narayanan",
     album: "Jigarthanda DoubleX",
-    cover: "/image_asset/JigarthandaDoubleX.jpg",
+    cover: "/image/JigarthandaDoubleX.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179749/Flute-speaks-MassTamilan.dev_en84cm.mp3"
 },
 
@@ -1299,7 +1299,7 @@ const songs = [
     title: "Cinema",
     artist: "Santhosh Narayanan",
     album: "Jigarthanda DoubleX",
-    cover: "/image_asset/JigarthandaDoubleX.jpg",
+    cover: "/image/JigarthandaDoubleX.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179745/Cinema-MassTamilan.dev_r8nyqv.mp3"
 },
 
@@ -1310,54 +1310,54 @@ const songs = [
 {
     movie: "Karuppu",
     title: "Verappa Extended",
-    artist: "Dhibu Ninan Thomas",
+    artist: "Sai Abhyankkar",
     album: "Karuppu",
-    cover: "/image_asset/Karuppu.jpg",
+    cover: "/image/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179813/Verappa---Extended-MassTamilan.dev_cvyzyt.mp3"
 },
 
 {
     movie: "Karuppu",
     title: "Karuppa Kooda Va",
-    artist: "Dhibu Ninan Thomas",
+    artist: "Sai Abhyankkar",
     album: "Karuppu",
-    cover: "/image_asset/Karuppu.jpg",
+    cover: "/image/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179801/Karuppa-Kooda-Va-MassTamilan.dev_rlzotz.mp3"
 },
 
 {
     movie: "Karuppu",
     title: "Verappa",
-    artist: "Dhibu Ninan Thomas",
+    artist: "Sai Abhyankkar",
     album: "Karuppu",
-    cover: "/image_asset/Karuppu.jpg",
+    cover: "/image/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179792/Verappa-MassTamilan.dev_stl7re.mp3"
 },
 
 {
     movie: "Karuppu",
     title: "Raathu Raasan",
-    artist: "Dhibu Ninan Thomas",
+    artist: "Sai Abhyankkar",
     album: "Karuppu",
-    cover: "/image_asset/Karuppu.jpg",
+    cover: "/image/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179790/Raathu-Raasan-MassTamilan.dev_rkmlak.mp3"
 },
 
 {
     movie: "Karuppu",
     title: "Naanga Naalu Peru",
-    artist: "Dhibu Ninan Thomas",
+    artist: "Sai Abhyankkar",
     album: "Karuppu",
-    cover: "/image_asset/Karuppu.jpg",
+    cover: "/image/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179785/Naanga-Naalu-Peru-MassTamilan.dev_tb3kka.mp3"
 },
 
 {
     movie: "Karuppu",
     title: "God Mode",
-    artist: "Dhibu Ninan Thomas",
+    artist: "Sai Abhyankkar",
     album: "Karuppu",
-    cover: "/image_asset/Karuppu.jpg",
+    cover: "/image/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179782/God-Mode-MassTamilan.dev_cqmwab.mp3"
 },
 
@@ -1370,7 +1370,7 @@ const songs = [
     title: "Katchi Sera",
     artist: "Sai Abhyankkar",
     album: "Katchi Sera",
-    cover: "/image_asset/KatchiSera.jpg",
+    cover: "/image/KatchiSera.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179798/Katchi_Sera_mloyrf.mp3"
 },
 
@@ -1383,7 +1383,7 @@ const songs = [
     title: "Villain Yaaru",
     artist: "Anirudh Ravichander",
     album: "Leo",
-    cover: "/image_asset/Leo.jpg",
+    cover: "/image/Leo.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179821/Villain-Yaaru-MassTamilan.dev_exnztr.mp3"
 },
 
@@ -1392,7 +1392,7 @@ const songs = [
     title: "Anbenum",
     artist: "Anirudh Ravichander",
     album: "Leo",
-    cover: "/image_asset/Leo.jpg",
+    cover: "/image/Leo.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179819/Anbenum-MassTamilan.dev_qllp5d.mp3"
 },
 
@@ -1401,7 +1401,7 @@ const songs = [
     title: "Naa Ready",
     artist: "Anirudh Ravichander",
     album: "Leo",
-    cover: "/image_asset/Leo.jpg",
+    cover: "/image/Leo.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179819/Naa-Ready-MassTamilan.dev_xemeeb.mp3"
 },
 
@@ -1410,7 +1410,7 @@ const songs = [
     title: "Ratata",
     artist: "Anirudh Ravichander",
     album: "Leo",
-    cover: "/image_asset/Leo.jpg",
+    cover: "/image/Leo.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179818/Ratata-MassTamilan.dev_bew3ip.mp3"
 },
 
@@ -1419,7 +1419,7 @@ const songs = [
     title: "Lokiverse 2.0",
     artist: "Anirudh Ravichander",
     album: "Leo",
-    cover: "/image_asset/Leo.jpg",
+    cover: "/image/Leo.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179815/Lokiverse-2.0-MassTamilan.dev_x9zbsm.mp3"
 },
 
@@ -1428,7 +1428,7 @@ const songs = [
     title: "Ordinary Person",
     artist: "Anirudh Ravichander",
     album: "Leo",
-    cover: "/image_asset/Leo.jpg",
+    cover: "/image/Leo.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179813/Ordinary-Person-MassTamilan.dev_uakwru.mp3"
 },
 
@@ -1437,7 +1437,7 @@ const songs = [
     title: "Leo Das Entry",
     artist: "Anirudh Ravichander",
     album: "Leo",
-    cover: "/image_asset/Leo.jpg",
+    cover: "/image/Leo.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179812/Leo-Das-Entry-MassTamilan.dev_ojrrhb.mp3"
 },
 
@@ -1446,7 +1446,7 @@ const songs = [
     title: "I'm Scared",
     artist: "Anirudh Ravichander",
     album: "Leo",
-    cover: "/image_asset/Leo.jpg",
+    cover: "/image/Leo.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179808/I_m-Scared-MassTamilan.dev_jnx3n7.mp3"
 },
 
@@ -1455,7 +1455,7 @@ const songs = [
     title: "Glimpse of Harold Das",
     artist: "Anirudh Ravichander",
     album: "Leo",
-    cover: "/image_asset/Leo.jpg",
+    cover: "/image/Leo.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179806/Glimpse-of-Harold-Das-MassTamilan.dev_z6wkli.mp3"
 },
 
@@ -1464,7 +1464,7 @@ const songs = [
     title: "Bloody Sweet",
     artist: "Anirudh Ravichander",
     album: "Leo",
-    cover: "/image_asset/Leo.jpg",
+    cover: "/image/Leo.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179806/Bloody-Sweet-MassTamilan.dev_thneaz.mp3"
 },
 
@@ -1473,7 +1473,7 @@ const songs = [
     title: "Glimpse of Antony Das",
     artist: "Anirudh Ravichander",
     album: "Leo",
-    cover: "/image_asset/Leo.jpg",
+    cover: "/image/Leo.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179803/Glimpse-of-Antony-Das-MassTamilan.dev_rjc462.mp3"
 },
 
@@ -1482,7 +1482,7 @@ const songs = [
     title: "Badass",
     artist: "Anirudh Ravichander",
     album: "Leo",
-    cover: "/image_asset/Leo.jpg",
+    cover: "/image/Leo.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179801/Badass-MassTamilan.dev_h4vdx1.mp3"
 },
 
@@ -1495,7 +1495,7 @@ const songs = [
     title: "Pattuma",
     artist: "Anirudh Ravichander",
     album: "Love Insurance Kompany",
-    cover: "/image_asset/Love Insurance Kompany.jpg",
+    cover: "/image/Love Insurance Kompany.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179848/Pattuma_t56u6u.mp3"
 },
 
@@ -1504,7 +1504,7 @@ const songs = [
     title: "Pookattum",
     artist: "Anirudh Ravichander",
     album: "Love Insurance Kompany",
-    cover: "/image_asset/Love Insurance Kompany.jpg",
+    cover: "/image/Love Insurance Kompany.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179837/Pookattum_n7zumq.mp3"
 },
 
@@ -1513,7 +1513,7 @@ const songs = [
     title: "Dheema",
     artist: "Anirudh Ravichander",
     album: "Love Insurance Kompany",
-    cover: "/image_asset/Love Insurance Kompany.jpg",
+    cover: "/image/Love Insurance Kompany.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179833/Dheema_nsqijp.mp3"
 },
 
@@ -1522,7 +1522,7 @@ const songs = [
     title: "Adaavadi",
     artist: "Anirudh Ravichander",
     album: "Love Insurance Kompany",
-    cover: "/image_asset/Love Insurance Kompany.jpg",
+    cover: "/image/Love Insurance Kompany.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179829/Adaavadi_wckryw.mp3"
 },
 
@@ -1531,7 +1531,7 @@ const songs = [
     title: "Enakenna Yaarum Illaye",
     artist: "Anirudh Ravichander",
     album: "Love Insurance Kompany",
-    cover: "/image_asset/Love Insurance Kompany.jpg",
+    cover: "/image/Love Insurance Kompany.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179826/Enakenna_Yaarum_Illaye_aherif.mp3"
 },
 
@@ -1540,7 +1540,7 @@ const songs = [
     title: "Dheema Vocals Only",
     artist: "Anirudh Ravichander",
     album: "Love Insurance Kompany",
-    cover: "/image_asset/Love Insurance Kompany.jpg",
+    cover: "/image/Love Insurance Kompany.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179823/Dheema_Vocals_Only_ajgxzs.mp3"
 },
 
@@ -1553,7 +1553,7 @@ const songs = [
     title: "Vazhiyiraen",
     artist: "Anirudh Ravichander",
     album: "Madharaasi",
-    cover: "/image_asset/Madharasi.jpg",
+    cover: "/image/Madharasi.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179865/Vazhiyiraen_e8jmdw.mp3"
 },
 
@@ -1562,7 +1562,7 @@ const songs = [
     title: "Thangapoovey",
     artist: "Anirudh Ravichander",
     album: "Madharaasi",
-    cover: "/image_asset/Madharasi.jpg",
+    cover: "/image/Madharasi.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179853/Thangapoovey_fb21zu.mp3"
 },
 
@@ -1571,7 +1571,7 @@ const songs = [
     title: "Usara Uruvi",
     artist: "Anirudh Ravichander",
     album: "Madharaasi",
-    cover: "/image_asset/Madharasi.jpg",
+    cover: "/image/Madharasi.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179848/Usara_Uruvi_wvsdey.mp3"
 },
 
@@ -1580,7 +1580,7 @@ const songs = [
     title: "Unadhu Enadhu",
     artist: "Anirudh Ravichander",
     album: "Madharaasi",
-    cover: "/image_asset/Madharasi.jpg",
+    cover: "/image/Madharasi.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179847/Unadhu_Enadhu_qthpr0.mp3"
 },
 
@@ -1589,7 +1589,7 @@ const songs = [
     title: "Salambala",
     artist: "Anirudh Ravichander",
     album: "Madharaasi",
-    cover: "/image_asset/Madharasi.jpg",
+    cover: "/image/Madharasi.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179837/Salambala_def611.mp3"
 },
 
@@ -1598,7 +1598,7 @@ const songs = [
     title: "Mudinja Thodra",
     artist: "Anirudh Ravichander",
     album: "Madharaasi",
-    cover: "/image_asset/Madharasi.jpg",
+    cover: "/image/Madharasi.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179836/Mudinja_Thodra_cihjsg.mp3"
 },
 
@@ -1607,7 +1607,7 @@ const songs = [
     title: "Madharaasi Theme",
     artist: "Anirudh Ravichander",
     album: "Madharaasi",
-    cover: "/image_asset/Madharasi.jpg",
+    cover: "/image/Madharasi.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179836/Madharaasi_Theme_mlc4ql.mp3"
 },
 
@@ -1616,7 +1616,7 @@ const songs = [
     title: "Madharaasi Flow",
     artist: "Anirudh Ravichander",
     album: "Madharaasi",
-    cover: "/image_asset/Madharasi.jpg",
+    cover: "/image/Madharasi.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179830/Madharaasi_Flow_lpfcwv.mp3"
 },
 
@@ -1625,7 +1625,7 @@ const songs = [
     title: "Animal Instinct",
     artist: "Anirudh Ravichander",
     album: "Madharaasi",
-    cover: "/image_asset/Madharasi.jpg",
+    cover: "/image/Madharasi.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179828/Animal_Instinct_izu7w6.mp3"
 },
 
@@ -1638,7 +1638,7 @@ const songs = [
     title: "Vaathi Coming",
     artist: "Anirudh Ravichander",
     album: "Master",
-    cover: "/image_asset/Master.jpg",
+    cover: "/image/Master.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179879/Vaathi-Coming-MassTamilan.io_opjeqx.mp3"
 },
 
@@ -1647,7 +1647,7 @@ const songs = [
     title: "Vaathi Raid",
     artist: "Anirudh Ravichander",
     album: "Master",
-    cover: "/image_asset/Master.jpg",
+    cover: "/image/Master.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179878/Vaathi-Raid-MassTamilan.io_jwn2nb.mp3"
 },
 
@@ -1656,7 +1656,7 @@ const songs = [
     title: "Vaathi Kabaddi",
     artist: "Anirudh Ravichander",
     album: "Master",
-    cover: "/image_asset/Master.jpg",
+    cover: "/image/Master.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179877/Vaathi-Kabaddi-MassTamilan.io_p8orve.mp3"
 },
 
@@ -1665,7 +1665,7 @@ const songs = [
     title: "Oru Kutti Katha",
     artist: "Anirudh Ravichander",
     album: "Master",
-    cover: "/image_asset/Master.jpg",
+    cover: "/image/Master.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179872/Oru-Kutti-Katha-MassTamilan.io_fksn9i.mp3"
 },
 
@@ -1674,7 +1674,7 @@ const songs = [
     title: "Quit Pannuda",
     artist: "Anirudh Ravichander",
     album: "Master",
-    cover: "/image_asset/Master.jpg",
+    cover: "/image/Master.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179870/Quit-Pannuda-MassTamilan.io_y36ylx.mp3"
 },
 
@@ -1683,7 +1683,7 @@ const songs = [
     title: "Polakatum Para Para",
     artist: "Anirudh Ravichander",
     album: "Master",
-    cover: "/image_asset/Master.jpg",
+    cover: "/image/Master.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179862/Polakatum-Para-Para-MassTamilan.io_k2vfwg.mp3"
 },
 
@@ -1692,7 +1692,7 @@ const songs = [
     title: "Pona Pogattum",
     artist: "Anirudh Ravichander",
     album: "Master",
-    cover: "/image_asset/Master.jpg",
+    cover: "/image/Master.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179860/Pona-Pogattum-MassTamilan.io_hertvc.mp3"
 },
 
@@ -1701,7 +1701,7 @@ const songs = [
     title: "Kutti Story",
     artist: "Anirudh Ravichander",
     album: "Master",
-    cover: "/image_asset/Master.jpg",
+    cover: "/image/Master.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179857/Kutti-Story-MassTamilan.io_r9cqxl.mp3"
 },
 
@@ -1710,7 +1710,7 @@ const songs = [
     title: "Master the Blaster",
     artist: "Anirudh Ravichander",
     album: "Master",
-    cover: "/image_asset/Master.jpg",
+    cover: "/image/Master.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179853/Master-the-Blaster-MassTamilan.io_sdgmeo.mp3"
 },
 
@@ -1719,7 +1719,7 @@ const songs = [
     title: "Beat of Master",
     artist: "Anirudh Ravichander",
     album: "Master",
-    cover: "/image_asset/Master.jpg",
+    cover: "/image/Master.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179847/Beat-of-Master-_Instrumental_-MassTamilan.io_a9v8df.mp3"
 },
 
@@ -1728,7 +1728,7 @@ const songs = [
     title: "Andha Kanna Paathaakaa",
     artist: "Anirudh Ravichander",
     album: "Master",
-    cover: "/image_asset/Master.jpg",
+    cover: "/image/Master.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179844/Andha-Kanna-Paathaakaa-MassTamilan.io_hmihm6.mp3"
 },
 
@@ -1741,7 +1741,7 @@ const songs = [
     title: "Unkoodave Porakkanum Brother Version",
     artist: "D Imman",
     album: "Namma Veettu Pillai",
-    cover: "/image_asset/Namma Veettu Pillai.jpg",
+    cover: "/image/Namma Veettu Pillai.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179900/Unkoodave-Porakkanum-_Brother_s-Version_-MassTamilan.fm_fmv0yj.mp3"
 },
 
@@ -1750,7 +1750,7 @@ const songs = [
     title: "Unkoodave Porakkanum Sister Version",
     artist: "D Imman",
     album: "Namma Veettu Pillai",
-    cover: "/image_asset/Namma Veettu Pillai.jpg",
+    cover: "/image/Namma Veettu Pillai.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179894/Unkoodave-Porakkanum-_Sister_s-Version_-MassTamilan.fm_hbeiue.mp3"
 },
 
@@ -1759,7 +1759,7 @@ const songs = [
     title: "Namma Veettu Pillai Theme",
     artist: "D Imman",
     album: "Namma Veettu Pillai",
-    cover: "/image_asset/Namma Veettu Pillai.jpg",
+    cover: "/image/Namma Veettu Pillai.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179891/Namma-Veettu-Pillai-_Theme_-MassTamilan.fm_pbsonp.mp3"
 },
 
@@ -1768,7 +1768,7 @@ const songs = [
     title: "Yenga Annan",
     artist: "D Imman",
     album: "Namma Veettu Pillai",
-    cover: "/image_asset/Namma Veettu Pillai.jpg",
+    cover: "/image/Namma Veettu Pillai.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179891/Yenga-Annan-MassTamilan.fm_q7vgwm.mp3"
 },
 
@@ -1777,7 +1777,7 @@ const songs = [
     title: "Yenakkaagave Poranthavaley",
     artist: "D Imman",
     album: "Namma Veettu Pillai",
-    cover: "/image_asset/Namma Veettu Pillai.jpg",
+    cover: "/image/Namma Veettu Pillai.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179887/Yenakkaagave-Poranthavaley-MassTamilan.fm_eohuo2.mp3"
 },
 
@@ -1786,7 +1786,7 @@ const songs = [
     title: "Mailaanji",
     artist: "D Imman",
     album: "Namma Veettu Pillai",
-    cover: "/image_asset/Namma Veettu Pillai.jpg",
+    cover: "/image/Namma Veettu Pillai.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179884/Mailaanji-MassTamilan.fm_r8oy2o.mp3"
 },
 
@@ -1795,7 +1795,7 @@ const songs = [
     title: "Jigiri Dosthu",
     artist: "D Imman",
     album: "Namma Veettu Pillai",
-    cover: "/image_asset/Namma Veettu Pillai.jpg",
+    cover: "/image/Namma Veettu Pillai.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179881/Jigiri-Dosthu-MassTamilan.fm_yui4m8.mp3"
 },
 
@@ -1804,7 +1804,7 @@ const songs = [
     title: "Gaandakannazhagi",
     artist: "D Imman",
     album: "Namma Veettu Pillai",
-    cover: "/image_asset/Namma Veettu Pillai.jpg",
+    cover: "/image/Namma Veettu Pillai.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179880/Gaandakannazhagi-MassTamilan.fm_aobdsa.mp3"
 },
 
@@ -1817,7 +1817,7 @@ const songs = [
     title: "Pavazha Malli",
     artist: "Sai Abhyankkar",
     album: "Pavazha Malli",
-    cover: "/image_asset/PavazhaMalli.jpg",
+    cover: "/image/PavazhaMalli.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179900/Pavazha_Malli_uwfdsc.mp3"
 },
 
@@ -1826,7 +1826,7 @@ const songs = [
     title: "Pavazha Malli Unplugged",
     artist: "Sai Abhyankkar",
     album: "Pavazha Malli",
-    cover: "/image_asset/PavazhaMalli.jpg",
+    cover: "/image/PavazhaMalli.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179889/Pavazha_Malli_Unplugged_posg63.mp3"
 },
 
@@ -1839,7 +1839,7 @@ const songs = [
     title: "Sithira Puthiri",
     artist: "Sai Abhyankkar",
     album: "Sithira Puthiri",
-    cover: "/image_asset/Sithira_Puthiri.png",
+    cover: "/image/Sithira Puthiri.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179899/Sithira-Puthiri-MassTamilan.dev_tarbel.mp3"
 },
 
@@ -1852,7 +1852,7 @@ const songs = [
     title: "June Pona",
     artist: "Harris Jayaraj",
     album: "Unnale Unnale",
-    cover: "/image_asset/Unnale Unnale.jpg",
+    cover: "/image/Unnale Unnale.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179927/June-Pona_bwpvqj.mp3"
 },
 
@@ -1861,7 +1861,7 @@ const songs = [
     title: "Unnaale Unnaale",
     artist: "Harris Jayaraj",
     album: "Unnale Unnale",
-    cover: "/image_asset/Unnale Unnale.jpg",
+    cover: "/image/Unnale Unnale.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179920/Unnaale-Unnaale_spq2il.mp3"
 },
 
@@ -1870,7 +1870,7 @@ const songs = [
     title: "Mudhal Naal Indru",
     artist: "Harris Jayaraj",
     album: "Unnale Unnale",
-    cover: "/image_asset/Unnale Unnale.jpg",
+    cover: "/image/Unnale Unnale.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179918/Mudhal-Naal-Indru_el33qi.mp3"
 },
 
@@ -1879,7 +1879,7 @@ const songs = [
     title: "Vaigasi Nilavae",
     artist: "Harris Jayaraj",
     album: "Unnale Unnale",
-    cover: "/image_asset/Unnale Unnale.jpg",
+    cover: "/image/Unnale Unnale.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179909/Vaigasi-Nilavae_lfgl3d.mp3"
 },
 
@@ -1888,7 +1888,7 @@ const songs = [
     title: "Siru Siru Uravugal",
     artist: "Harris Jayaraj",
     album: "Unnale Unnale",
-    cover: "/image_asset/Unnale Unnale.jpg",
+    cover: "/image/Unnale Unnale.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179904/Siru-Siru-Uravugal_nh0u5i.mp3"
 },
 
@@ -1897,7 +1897,7 @@ const songs = [
     title: "Ilamai Ullasam",
     artist: "Harris Jayaraj",
     album: "Unnale Unnale",
-    cover: "/image_asset/Unnale Unnale.jpg",
+    cover: "/image/Unnale Unnale.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179903/Ilamai-Ullasam_u1hm4y.mp3"
 },
 
@@ -1906,12 +1906,12 @@ const songs = [
     title: "Hello Miss Imasaiyea",
     artist: "Harris Jayaraj",
     album: "Unnale Unnale",
-    cover: "/image_asset/Unnale Unnale.jpg",
+    cover: "/image/Unnale Unnale.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179900/Hello-Miss-Imasaiyea_znor5i.mp3"
 },
 
 /* ========================= */
-/* /image_asset/Vaaranam Aayiram.jpg*/
+/* Vaaranam Aayiram */
 /* ========================= */
 
 {
@@ -1919,7 +1919,7 @@ const songs = [
     title: "Nenjukkul Peidhidum",
     artist: "Harris Jayaraj",
     album: "Vaaranam Aayiram",
-    cover: "/image_asset/Vaaranam Aayiram.jpg",
+    cover: "/image/Vaaranam Aayiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179945/Nenjukkul-Peidhidum-MassTamilan.com_tkagtz.mp3"
 },
 
@@ -1928,7 +1928,7 @@ const songs = [
     title: "Yethi Yethi",
     artist: "Harris Jayaraj",
     album: "Vaaranam Aayiram",
-    cover: "/image_asset/Vaaranam Aayiram.jpg",
+    cover: "/image/Vaaranam Aayiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179944/Yethi-Yethi-MassTamilan.com_aunrss.mp3"
 },
 
@@ -1937,7 +1937,7 @@ const songs = [
     title: "Mundhinam Parthene",
     artist: "Harris Jayaraj",
     album: "Vaaranam Aayiram",
-    cover: "/image_asset/Vaaranam Aayiram.jpg",
+    cover: "/image/Vaaranam Aayiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179936/Mundhinam-Parthene-MassTamilan.com_vv8rkd.mp3"
 },
 
@@ -1946,7 +1946,7 @@ const songs = [
     title: "Oh Shanthi Shanthi",
     artist: "Harris Jayaraj",
     album: "Vaaranam Aayiram",
-    cover: "/image_asset/Vaaranam Aayiram.jpg",
+    cover: "/image/Vaaranam Aayiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179935/Oh-Shanthi-Shanthi-MassTamilan.com_fcmzxd.mp3"
 },
 
@@ -1955,7 +1955,7 @@ const songs = [
     title: "Adiyae Kolluthey",
     artist: "Harris Jayaraj",
     album: "Vaaranam Aayiram",
-    cover: "/image_asset/Vaaranam Aayiram.jpg",
+    cover: "/image/Vaaranam Aayiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179928/Adiyae-Kolluthey-MassTamilan.com_lrsuxd.mp3"
 },
 
@@ -1964,7 +1964,7 @@ const songs = [
     title: "Ragasiyam",
     artist: "Harris Jayaraj",
     album: "Vaaranam Aayiram",
-    cover: "/image_asset/Vaaranam Aayiram.jpg",
+    cover: "/image/Vaaranam Aayiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179925/Ragasiyam-MassTamilan.com_vdk1zz.mp3"
 },
 
@@ -1973,7 +1973,7 @@ const songs = [
     title: "Ava Enna Enna",
     artist: "Harris Jayaraj",
     album: "Vaaranam Aayiram",
-    cover: "/image_asset/Vaaranam Aayiram.jpg",
+    cover: "/image/Vaaranam Aayiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179921/Ava-Enna-Enna-MassTamilan.com_bzi10k.mp3"
 },
 
@@ -1982,7 +1982,7 @@ const songs = [
     title: "Annul Maelae",
     artist: "Harris Jayaraj",
     album: "Vaaranam Aayiram",
-    cover: "/image_asset/Vaaranam Aayiram.jpg",
+    cover: "/image/Vaaranam Aayiram.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179920/Annul-Maelae-MassTamilan.com_b2yhbk.mp3"
 },
 
@@ -1995,7 +1995,7 @@ const songs = [
     title: "Vizhi Veekura",
     artist: "Sai Abhyankkar",
     album: "Vizhi Veekura",
-    cover: "/image_asset/Vizhi Veekura.jpg",
+    cover: "/image/Vizhi Veekura.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179936/Vizhi_Veekura_vffp1y.mp3"
 },
 
@@ -2008,7 +2008,7 @@ const songs = [
     title: "Ponmaaney",
     artist: "G.V.Prakash Kumar",
     album: "Youth",
-    cover: "/image_asset/Youth.jpg",
+    cover: "/image/Youth.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179969/Ponmaaney_pmifda.mp3"
 },
 
@@ -2017,7 +2017,7 @@ const songs = [
     title: "Poga Poga",
     artist: "G.V.Prakash Kumar",
     album: "Youth",
-    cover: "/image_asset/Youth.jpg",
+    cover: "/image/Youth.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179953/Poga_Poga_eeirji.mp3"
 },
 
@@ -2026,7 +2026,7 @@ const songs = [
     title: "Paranthene Penne",
     artist: "G.V.Prakash Kumar",
     album: "Youth",
-    cover: "/image_asset/Youth.jpg",
+    cover: "/image/Youth.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179949/Paranthene_Penne_fexgo5.mp3"
 },
 
@@ -2035,7 +2035,7 @@ const songs = [
     title: "Jilpanso",
     artist: "G.V.Prakash Kumar",
     album: "Youth",
-    cover: "/image_asset/Youth.jpg",
+    cover: "/image/Youth.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179947/Jilpanso_jigme8.mp3"
 },
 
@@ -2044,7 +2044,7 @@ const songs = [
     title: "Thanga Magan",
     artist: "G.V.Prakash Kumar",
     album: "Youth",
-    cover: "/image_asset/Youth.jpg",
+    cover: "/image/Youth.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179947/Thanga_Magan_nbnslv.mp3"
 },
 
@@ -2053,7 +2053,7 @@ const songs = [
     title: "Mutta Kalakki",
     artist: "G.V.Prakash Kumar",
     album: "Youth",
-    cover: "/image_asset/Youth.jpg",
+    cover: "/image/Youth.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179944/Mutta_Kalakki_fnknf9.mp3"
 },
 
@@ -2062,7 +2062,7 @@ const songs = [
     title: "Loveah Sollitalea",
     artist: "G.V.Prakash Kumar",
     album: "Youth",
-    cover: "/image_asset/Youth.jpg",
+    cover: "/image/Youth.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179943/Loveah_Sollitalea_r4z2ol.mp3"
 },
 
@@ -2071,7 +2071,7 @@ const songs = [
     title: "Alapuzha Sandhayila",
     artist: "G.V.Prakash Kumar",
     album: "Youth",
-    cover: "/image_asset/Youth.jpg",
+    cover: "/image/Youth.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179941/Alapuzha_Sandhayila_mjw5rq.mp3"
 },
 
@@ -2080,7 +2080,7 @@ const songs = [
     title: "Aasa Pulla",
     artist: "G.V.Prakash Kumar",
     album: "Youth",
-    cover: "/image_asset/Youth.jpg",
+    cover: "/image/Youth.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179935/Aasa_Pulla_jjhyie.mp3"
 },
 
@@ -2093,7 +2093,7 @@ const songs = [
         title: "Mini Maharani",
         artist: "Vishnu Vijay",
         album: "Premalu",
-        cover: "/image_asset/Premalu.jpg",
+        cover: "/image/Premalu.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287968/Mini_Maharani_l06aff.mp3"
     },
 
@@ -2102,7 +2102,7 @@ const songs = [
         title: "Welcome To Hyderabad",
         artist: "Vishnu Vijay",
         album: "Premalu",
-        cover: "/image_asset/Premalu.jpg",
+        cover: "/image/Premalu.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287955/Welcome_To_Hyderabad_ldac7d.mp3"
     },
 
@@ -2111,7 +2111,7 @@ const songs = [
         title: "Kutty Kudiye",
         artist: "Vishnu Vijay",
         album: "Premalu",
-        cover: "/image_asset/Premalu.jpg",
+        cover: "/image/Premalu.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287953/Kutty_Kudiye_dv3cdj.mp3"
     },
 
@@ -2120,7 +2120,7 @@ const songs = [
         title: "Telangana Bommalu",
         artist: "Vishnu Vijay",
         album: "Premalu",
-        cover: "/image_asset/Premalu.jpg",
+        cover: "/image/Premalu.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287952/Telangana_Bommalu_o74p81.mp3"
     },
 
@@ -2135,7 +2135,7 @@ const songs = [
         title: "Illuminati",
         artist: "Sushin Shyam",
         album: "Aavesham",
-        cover: "/image_asset/Aavesham.jpg",
+        cover: "/image/Aavesham.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287993/Illuminati_n6utqq.mp3"
     },
 
@@ -2144,7 +2144,7 @@ const songs = [
         title: "Adholokam",
         artist: "Sushin Shyam",
         album: "Aavesham",
-        cover: "/image_asset/Aavesham.jpg",
+        cover: "/image/Aavesham.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287991/Adholokam_t6dax0.mp3"
     },
 
@@ -2153,7 +2153,7 @@ const songs = [
         title: "Thurupu Cheetu",
         artist: "Sushin Shyam",
         album: "Aavesham",
-        cover: "/image_asset/Aavesham.jpg",
+        cover: "/image/Aavesham.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287990/Thurupu_Cheetu_dsvg8h.mp3"
     },
 
@@ -2162,7 +2162,7 @@ const songs = [
         title: "Odimaga",
         artist: "Sushin Shyam",
         album: "Aavesham",
-        cover: "/image_asset/Aavesham.jpg",
+        cover: "/image/Aavesham.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287989/Odimaga_lbcvhh.mp3"
     },
 
@@ -2171,7 +2171,7 @@ const songs = [
         title: "Mathapithakkale",
         artist: "Sushin Shyam",
         album: "Aavesham",
-        cover: "/image_asset/Aavesham.jpg",
+        cover: "/image/Aavesham.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287985/Mathapithakkale_a6qhue.mp3"
     },
 
@@ -2180,7 +2180,7 @@ const songs = [
         title: "Armadham",
         artist: "Sushin Shyam",
         album: "Aavesham",
-        cover: "/image_asset/Aavesham.jpg",
+        cover: "/image/Aavesham.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287983/Armadham_xr76mg.mp3"
     },
 
@@ -2189,7 +2189,7 @@ const songs = [
         title: "Jaada",
         artist: "Sushin Shyam",
         album: "Aavesham",
-        cover: "/image_asset/Aavesham.jpg",
+        cover: "/image/Aavesham.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287982/Jaada_ick8em.mp3"
     },
 
@@ -2198,7 +2198,7 @@ const songs = [
         title: "The Last Dance",
         artist: "Sushin Shyam",
         album: "Aavesham",
-        cover: "/image_asset/Aavesham.jpg",
+        cover: "/image/Aavesham.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287980/The_Last_Dance_wzosya.mp3"
     },
 
@@ -2207,7 +2207,7 @@ const songs = [
         title: "Galatta",
         artist: "Sushin Shyam",
         album: "Aavesham",
-        cover: "/image_asset/Aavesham.jpg",
+        cover: "/image/Aavesham.jpg",
         audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779287978/Galatta_kujaf2.mp3"
     }
 ];
