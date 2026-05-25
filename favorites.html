@@ -9,7 +9,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
 
 :root{
     --bg:#f5f5f7;
@@ -53,6 +58,7 @@ body{
     color:transparent;
 }
 
+/* MENU */
 .menu{
     display:flex;
     flex-direction:column;
@@ -88,7 +94,7 @@ body{
 
 .search-box input{
     width:100%;
-    padding:16px 22px;
+    padding:16px 20px;
     border-radius:40px;
     border:1px solid var(--border);
 }
@@ -132,10 +138,6 @@ body{
     cursor:pointer;
 }
 
-.song-row:hover{
-    border-color:var(--purple);
-}
-
 .song-cover{
     width:60px;
     height:60px;
@@ -143,23 +145,14 @@ body{
     overflow:hidden;
     background:var(--card2);
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
 }
 
 .song-cover img{
     width:100%;
     height:100%;
     object-fit:cover;
-}
-
-.song-actions button{
-    border:none;
-    padding:10px 12px;
-    border-radius:12px;
-    background:linear-gradient(90deg,#111827,#6366f1);
-    color:white;
-    cursor:pointer;
 }
 
 /* PLAYER */
@@ -177,29 +170,28 @@ body{
     padding:16px 30px;
 }
 
-.player-info{
-    display:flex;
-    gap:14px;
-    cursor:pointer;
-}
-
-.player-cover{
-    width:60px;
-    height:60px;
-    border-radius:14px;
-    overflow:hidden;
-    background:var(--card2);
-}
-
-.player-cover img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
 /* MOBILE NAV */
 .mobile-nav{
     display:none;
+}
+
+.mobile-nav-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    color:var(--muted);
+    text-decoration:none;
+    gap:4px;
+}
+
+.mobile-nav-item i{
+    font-size:18px;
+}
+
+.mobile-nav-item.active{
+    color:var(--purple);
 }
 
 @media(max-width:900px){
@@ -225,17 +217,6 @@ body{
         align-items:center;
         z-index:999;
     }
-
-    .mobile-nav a{
-        text-decoration:none;
-        color:var(--muted);
-        font-size:12px;
-        text-align:center;
-    }
-
-    .mobile-nav a.active{
-        color:var(--purple);
-    }
 }
 </style>
 </head>
@@ -244,8 +225,12 @@ body{
 
 <div class="app">
 
+<!-- SIDEBAR -->
 <aside class="sidebar">
-    <div class="logo" onclick="location.href='home.html'">Audio<span>phile</span></div>
+    <div class="logo" onclick="location.href='home.html'">
+        Audio<span>phile</span>
+    </div>
+
     <nav class="menu">
         <a href="home.html">Home</a>
         <a href="songs.html">Songs</a>
@@ -256,12 +241,14 @@ body{
     </nav>
 </aside>
 
+<!-- MAIN -->
 <main class="main">
 
 <div class="topbar">
     <div class="search-box">
         <input id="searchInput" placeholder="Search favorites...">
     </div>
+
     <div class="profile">F</div>
 </div>
 
@@ -276,31 +263,45 @@ body{
 
 <!-- PLAYER -->
 <div class="player">
-    <div class="player-info" onclick="openMusicCard()">
-        <div class="player-cover" id="playerCover"></div>
-        <div>
-            <h4 id="playerTitle">Select song</h4>
-            <p id="playerArtist">Audiophile</p>
-        </div>
-    </div>
-
-    <div>
-        <button onclick="prevSong()">⏮</button>
-        <button onclick="togglePlay()" id="playBtn">▶</button>
-        <button onclick="nextSong()">⏭</button>
-    </div>
-
-    <input type="range" min="0" max="1" step="0.01" oninput="changeVolume(this.value)">
+    <div onclick="openMusicCard()">Now Playing</div>
+    <button onclick="prevSong()">⏮</button>
+    <button onclick="togglePlay()" id="playBtn">▶</button>
+    <button onclick="nextSong()">⏭</button>
 </div>
 
-<!-- MOBILE NAV -->
+<!-- MOBILE NAV (FIXED ICONS) -->
 <nav class="mobile-nav">
-    <a href="home.html"><i class="fa fa-home"></i><br>Home</a>
-    <a href="songs.html"><i class="fa fa-music"></i><br>Songs</a>
-    <a href="albums.html"><i class="fa fa-compact-disc"></i><br>Albums</a>
-    <a href="artists.html"><i class="fa fa-user"></i><br>Artists</a>
-    <a href="favorites.html" class="active"><i class="fa fa-heart"></i><br>Fav</a>
-    <a href="settings.html"><i class="fa fa-gear"></i><br>Settings</a>
+
+    <a href="home.html" class="mobile-nav-item">
+        <i class="fa-solid fa-house"></i>
+        Home
+    </a>
+
+    <a href="songs.html" class="mobile-nav-item">
+        <i class="fa-solid fa-music"></i>
+        Songs
+    </a>
+
+    <a href="albums.html" class="mobile-nav-item">
+        <i class="fa-solid fa-compact-disc"></i>
+        Albums
+    </a>
+
+    <a href="artists.html" class="mobile-nav-item">
+        <i class="fa-solid fa-user-astronaut"></i>
+        Artists
+    </a>
+
+    <a href="favorites.html" class="mobile-nav-item active">
+        <i class="fa-solid fa-heart"></i>
+        Fav
+    </a>
+
+    <a href="settings.html" class="mobile-nav-item">
+        <i class="fa-solid fa-gear"></i>
+        Settings
+    </a>
+
 </nav>
 
 <audio id="audio"></audio>
@@ -312,29 +313,27 @@ let audio=document.getElementById("audio");
 let favoriteList=document.getElementById("favoriteList");
 let searchInput=document.getElementById("searchInput");
 
-let songsData = typeof songs!=="undefined"?songs:[];
+let songsData=typeof songs!=="undefined"?songs:[];
 
 function getFavorites(){
     return JSON.parse(localStorage.getItem("audiophile_favorites"))||[];
 }
 
 function render(){
-    let favs=getFavorites();
     let q=searchInput.value.toLowerCase();
 
-    let list=favs.map(i=>({song:songsData[i],index:i}))
+    let favs=getFavorites()
+    .map(i=>({song:songsData[i],index:i}))
     .filter(x=>x.song)
     .filter(x=>x.song.title.toLowerCase().includes(q));
 
-    favoriteList.innerHTML=list.map(x=>`
+    favoriteList.innerHTML=favs.map(x=>`
         <div class="song-row" onclick="playSong(${x.index})">
             <div>${x.index+1}</div>
             <div class="song-cover">${x.song.cover?`<img src="${x.song.cover}">`:"🎵"}</div>
             <div>${x.song.title}</div>
             <div>${x.song.artist||""}</div>
-            <div class="song-actions">
-                <button onclick="event.stopPropagation();playSong(${x.index})">Play</button>
-            </div>
+            <div><button onclick="event.stopPropagation();playSong(${x.index})">Play</button></div>
         </div>
     `).join("")||"<p>No Favorites</p>";
 }
@@ -343,8 +342,6 @@ function playSong(i){
     let s=songsData[i];
     audio.src=s.audio;
     audio.play();
-    playerTitle.innerText=s.title;
-    playerArtist.innerText=s.artist;
 }
 
 function togglePlay(){
@@ -354,7 +351,6 @@ function togglePlay(){
 
 function nextSong(){}
 function prevSong(){}
-function changeVolume(v){audio.volume=v;}
 
 searchInput.addEventListener("input",render);
 
