@@ -3,260 +3,154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audiophile - Favorites</title>
+<title>Favorites - Audiophile</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Outfit',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
 
 :root{
     --bg:#f5f5f7;
-    --card:#fff;
-    --card2:#eef0f4;
+    --card:#ffffff;
     --text:#111827;
     --muted:#64748b;
     --border:rgba(0,0,0,0.08);
-    --cyan:#111827;
-    --purple:#6366f1;
+    --grad:linear-gradient(90deg,#111827,#6366f1,#22d3ee);
 }
 
 body{
     background:var(--bg);
     color:var(--text);
+    overflow-x:hidden;
 }
 
-/* APP */
+/* layout */
 .app{
     display:grid;
     grid-template-columns:250px 1fr;
-    min-height:100vh;
+    height:100vh;
 }
 
-/* SIDEBAR */
+/* sidebar */
 .sidebar{
     background:var(--card);
     border-right:1px solid var(--border);
-    padding:28px 20px;
+    padding:24px;
 }
 
 .logo{
-    font-size:30px;
+    font-size:28px;
     font-weight:900;
     margin-bottom:30px;
-    cursor:pointer;
 }
 
-.logo span{
-    color:transparent;
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
-    -webkit-background-clip:text;
-}
-
-.menu{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
+.logo span{background:var(--grad); -webkit-background-clip:text;color:transparent;}
 
 .menu a{
+    display:block;
+    padding:14px;
+    margin:8px 0;
     text-decoration:none;
     color:var(--muted);
     font-weight:700;
-    padding:12px 14px;
     border-radius:14px;
 }
 
 .menu a:hover,
 .menu a.active{
-    background:rgba(99,102,241,0.12);
+    background:#eef2ff;
     color:var(--text);
 }
 
-/* MAIN */
+/* main */
 .main{
     padding:24px;
+    overflow-y:auto;
 }
 
-/* TOPBAR */
-.topbar{
-    display:flex;
-    gap:12px;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.search-box input{
-    width:100%;
-    padding:14px 18px;
-    border-radius:30px;
-    border:1px solid var(--border);
-    outline:none;
-}
-
-/* PROFILE ICON */
-.profile{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:linear-gradient(135deg,var(--cyan),var(--purple));
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    font-weight:900;
-}
-
-/* TITLE */
-.page-title{
-    background:#fff;
-    border:1px solid var(--border);
-    padding:24px;
-    border-radius:20px;
-    margin-bottom:20px;
-}
-
-.page-title h1{
-    font-size:32px;
-}
-
-/* SONG LIST */
-.song-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
+/* song list */
 .song-row{
     display:grid;
-    grid-template-columns:60px 60px 1fr 1fr auto;
-    gap:10px;
-    align-items:center;
+    grid-template-columns:50px 60px 1fr 120px;
+    gap:12px;
     padding:12px;
-    background:var(--card);
     border:1px solid var(--border);
     border-radius:16px;
-}
-
-.song-cover{
-    width:55px;
-    height:55px;
-    border-radius:12px;
-    background:var(--card2);
-    overflow:hidden;
-    display:flex;
+    margin-bottom:10px;
     align-items:center;
-    justify-content:center;
-}
-
-.song-cover img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.song-title h3{
-    font-size:16px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.song-artist{
-    color:var(--muted);
-    font-size:13px;
-}
-
-/* BUTTON */
-.play-small{
-    padding:8px 12px;
-    border:none;
-    border-radius:12px;
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
-    color:#fff;
-    font-weight:800;
     cursor:pointer;
 }
 
-/* EMPTY */
-.empty{
-    text-align:center;
-    padding:30px;
-    color:var(--muted);
-    font-weight:700;
+.song-cover{
+    width:55px;height:55px;border-radius:12px;
+    background:#eee;
+    overflow:hidden;
 }
 
-/* MOBILE NAV (HOME STYLE FIX) */
-.mobile-nav{
-    display:none;
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    height:65px;
-    background:#fff;
-    border-top:1px solid var(--border);
-    justify-content:space-around;
-    align-items:center;
+.song-cover img{width:100%;height:100%;object-fit:cover;}
+
+.song-actions button{
+    padding:8px 12px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
 }
 
-.mobile-nav a{
-    text-decoration:none;
-    font-size:12px;
-    color:var(--muted);
-    font-weight:700;
+.play-btn{
+    background:#6366f1;
+    color:white;
 }
 
-.mobile-nav a.active{
-    color:var(--text);
-}
-
-/* PLAYER FIX */
+/* PLAYER BAR (IMPORTANT FIX) */
 .player{
     position:fixed;
+    bottom:0;
     left:250px;
     right:0;
-    bottom:0;
     height:90px;
-    background:#fff;
+    background:white;
     border-top:1px solid var(--border);
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:10px 20px;
+    z-index:999;
 }
 
-/* RESPONSIVE FIX */
+.player-info{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.player-cover{
+    width:50px;height:50px;
+    border-radius:10px;
+    background:#ddd;
+    overflow:hidden;
+}
+
+.player-cover img{width:100%;height:100%;object-fit:cover;}
+
+.controls button{
+    padding:10px;
+    border:none;
+    border-radius:50%;
+    margin:0 5px;
+    cursor:pointer;
+}
+
+.play-main{
+    background:#6366f1;
+    color:white;
+}
+
+/* mobile */
 @media(max-width:900px){
-    .app{
-        grid-template-columns:1fr;
-    }
-
-    .sidebar{
-        display:none;
-    }
-
-    .mobile-nav{
-        display:flex;
-    }
-
-    .player{
-        left:0;
-    }
-
-    .song-row{
-        grid-template-columns:50px 1fr auto;
-    }
-
-    .song-artist{
-        display:none;
-    }
+    .app{grid-template-columns:1fr;}
+    .sidebar{display:none;}
+    .player{left:0;}
 }
 </style>
 </head>
@@ -265,122 +159,127 @@ body{
 
 <div class="app">
 
-    <aside class="sidebar">
-        <div class="logo">Audio<span>phile</span></div>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+    <div class="logo">Audio<span>phile</span></div>
 
-        <nav class="menu">
-            <a href="home.html">Home</a>
-            <a href="songs.html">Songs</a>
-            <a href="albums.html">Albums</a>
-            <a href="artists.html">Artists</a>
-            <a href="favorites.html" class="active">Favorites</a>
-            <a href="settings.html">Settings</a>
-        </nav>
-    </aside>
+    <div class="menu">
+        <a href="home.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="albums.html">Albums</a>
+        <a href="artists.html">Artists</a>
+        <a href="favorites.html" class="active">Favorites</a>
+        <a href="settings.html">Settings</a>
+    </div>
+</aside>
 
-    <main class="main">
-
-        <div class="topbar">
-            <div class="search-box">
-                <input id="searchInput" placeholder="Search favorites...">
-            </div>
-
-            <div class="profile">
-                A
-            </div>
-        </div>
-
-        <div class="page-title">
-            <h1>Favorites</h1>
-        </div>
-
-        <div class="song-list" id="favoriteList"></div>
-
-    </main>
+<!-- MAIN -->
+<main class="main">
+    <h2>Favorites</h2>
+    <div id="favList"></div>
+</main>
 
 </div>
 
-<!-- MOBILE NAV FIXED ICON STYLE -->
-<nav class="mobile-nav">
-    <a href="home.html">Home</a>
-    <a href="songs.html">Songs</a>
-    <a href="albums.html">Albums</a>
-    <a href="artists.html">Artists</a>
-    <a href="favorites.html" class="active">Favs</a>
-</nav>
+<!-- PLAYER BAR -->
+<div class="player">
+    <div class="player-info">
+        <div class="player-cover" id="pCover">A</div>
+        <div>
+            <div id="pTitle">No song</div>
+            <small id="pArtist">---</small>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="prev()">⏮</button>
+        <button class="play-main" id="playBtn" onclick="toggle()">▶</button>
+        <button onclick="next()">⏭</button>
+    </div>
+
+    <audio id="audio"></audio>
+</div>
 
 <script src="songs.js"></script>
 
 <script>
-let favoriteList = document.getElementById("favoriteList");
-let searchInput = document.getElementById("searchInput");
+let audio=document.getElementById("audio");
+let favList=document.getElementById("favList");
 
-function getSongs(){
-    return typeof songs !== "undefined" ? songs : [];
-}
+let playBtn=document.getElementById("playBtn");
+let pTitle=document.getElementById("pTitle");
+let pArtist=document.getElementById("pArtist");
+let pCover=document.getElementById("pCover");
 
-function getFavorites(){
-    return JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
-}
+let songsData = typeof songs !== "undefined" ? songs : [];
+let favs = JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
 
-function renderFavorites(){
+let current=0;
+let isPlaying=false;
 
-    let favs = getFavorites();
-    let allSongs = getSongs();
-    let value = searchInput.value.toLowerCase();
-
-    let list = favs
-    .map(i => ({song:allSongs[i], index:i}))
-    .filter(x => x.song)
-    .filter(x =>
-        x.song.title.toLowerCase().includes(value) ||
-        x.song.artist.toLowerCase().includes(value)
-    );
-
-    if(list.length === 0){
-        favoriteList.innerHTML = `<div class="empty">No Favorites Found</div>`;
-        return;
-    }
-
-    favoriteList.innerHTML = list.map((item,idx)=>`
+/* render */
+function render(){
+    favList.innerHTML=favs.map(i=>{
+        let s=songsData[i];
+        if(!s) return "";
+        return `
         <div class="song-row">
-
-            <div>${idx+1}</div>
-
+            <div>${i+1}</div>
             <div class="song-cover">
-                ${item.song.cover 
-                ? `<img src="${item.song.cover}">`
-                : item.song.title[0]}
+                ${s.cover ? `<img src="${s.cover}">` : "A"}
             </div>
-
-            <div class="song-title">
-                <h3>${item.song.title}</h3>
-                <div class="song-artist">${item.song.artist}</div>
+            <div>
+                <b>${s.title}</b><br>
+                <small>${s.artist}</small>
             </div>
-
-            <button class="play-small" onclick="playSong(${item.index})">▶</button>
-
-        </div>
-    `).join("");
+            <div class="song-actions">
+                <button class="play-btn" onclick="play(${i})">Play</button>
+            </div>
+        </div>`;
+    }).join("");
 }
 
-function playSong(i){
-    let allSongs = getSongs();
-    let audio = document.getElementById("audio");
-
-    if(!audio){
-        audio = document.createElement("audio");
-        audio.id="audio";
-        document.body.appendChild(audio);
-    }
-
-    audio.src = allSongs[i].audio;
+/* play */
+function play(i){
+    current=i;
+    let s=songsData[i];
+    audio.src=s.audio;
     audio.play();
+
+    pTitle.innerText=s.title;
+    pArtist.innerText=s.artist;
+    pCover.innerHTML=s.cover?`<img src="${s.cover}">`:"A";
+
+    playBtn.innerText="⏸";
+    isPlaying=true;
 }
 
-searchInput.addEventListener("input",renderFavorites);
+/* controls */
+function toggle(){
+    if(audio.paused){
+        audio.play();
+        playBtn.innerText="⏸";
+    }else{
+        audio.pause();
+        playBtn.innerText="▶";
+    }
+}
 
-renderFavorites();
+function next(){
+    if(favs.length===0) return;
+    let idx=favs.indexOf(current);
+    let n=favs[(idx+1)%favs.length];
+    play(n);
+}
+
+function prev(){
+    if(favs.length===0) return;
+    let idx=favs.indexOf(current);
+    let p=favs[(idx-1+favs.length)%favs.length];
+    play(p);
+}
+
+render();
 </script>
 
 </body>
