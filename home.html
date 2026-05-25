@@ -67,6 +67,7 @@ body{
     height:100dvh;
 }
 
+/* DESKTOP SIDEBAR */
 .sidebar{
     background:var(--card);
     border-right:1px solid var(--border);
@@ -114,12 +115,17 @@ body{
     color:var(--text);
 }
 
+/* MOBILE BOTTOM NAVIGATION BAR (HIDDEN ON LAPTOP) */
+.mobile-nav {
+    display: none;
+}
+
 .main{
     height:100vh;
     height:100dvh;
     overflow-y:auto;
     -webkit-overflow-scrolling: touch;
-    padding:30px 34px 190px;
+    padding:30px 34px 170px;
 }
 
 .topbar{
@@ -328,7 +334,7 @@ body{
     font-size:14px;
 }
 
-/* PLAYER */
+/* LAPTOP PLAYER BAR */
 .player{
     position:fixed;
     left:250px;
@@ -342,8 +348,7 @@ body{
     align-items:center;
     gap:18px;
     padding:16px 34px;
-    z-index:99;
-    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    z-index:999;
 }
 
 .player-info{
@@ -352,6 +357,7 @@ body{
     gap:14px;
     cursor:pointer;
     min-width: 0;
+    width: 100%;
 }
 
 .player-details{
@@ -361,6 +367,7 @@ body{
 
 .player-details h4{
     font-size: 16px;
+    font-weight: 700;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -577,15 +584,17 @@ body{
     margin-top:10px;
 }
 
+/* MOBILE RESPONSIVE DESIGN INTERPOLATION */
 @media(max-width:900px){
     .app{
         grid-template-columns:1fr;
     }
     .sidebar{
-        display:none;
+        display:none; /* Laptop section side layer clean off */
     }
     .main{
-        padding: 20px 16px 210px;
+        /* Padding matches layout structure safely to avoid clipping issues */
+        padding: 20px 16px 320px !important; 
     }
     .topbar{
         gap: 12px;
@@ -640,41 +649,91 @@ body{
     .card p{
         font-size: 12px;
     }
+    
+    /* Mobile Player Bar Elevation Positioning */
     .player{
-        left:0;
+        left:0 !important;
+        right:0 !important;
+        bottom:76px !important; /* Raised up exactly to let the bottom menu sit below safely */
         grid-template-columns: 1fr;
         height: auto;
-        padding: 16px 20px calc(16px + env(safe-area-inset-bottom, 0px));
-        box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
-        gap: 12px;
+        padding: 12px 20px 14px !important;
+        box-shadow: 0 -8px 25px rgba(0,0,0,0.08);
+        gap: 10px;
+        background: var(--card) !important;
+        border-top: 1px solid var(--border);
     }
     .player-info {
-        justify-content: flex-start;
-        text-align: left;
-        margin-bottom: 2px;
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+    .player-details {
+        min-width: 0 !important;
+        flex: 1 !important;
+    }
+    .player-details h4, .player-details p {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
     .player-cover {
-        width: 52px;
-        height: 52px;
-        border-radius: 12px;
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
     }
     .controls {
         width: 100%;
     }
     .buttons {
-        gap: 16px;
-        margin-bottom: 12px;
+        gap: 20px;
+        margin-bottom: 8px;
     }
     .buttons button {
-        width: 42px;
-        height: 42px;
+        width: 38px;
+        height: 38px;
     }
     .buttons .play {
-        width: 52px;
-        height: 52px;
+        width: 46px;
+        height: 46px;
     }
     .volume{
         display:none;
+    }
+
+    /* FIX: MOBILE BOTTOM SECTIONS SELECTION BAR ACTIVE */
+    .mobile-nav {
+        display: flex;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 76px;
+        background: var(--card);
+        border-top: 1px solid var(--border);
+        z-index: 1000;
+        justify-content: space-around;
+        align-items: center;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        gap: 4px;
+        width: 16%;
+        text-align: center;
+    }
+    .mobile-nav-item.active {
+        color: var(--purple);
+    }
+    .mobile-nav-icon {
+        font-size: 20px;
     }
 }
 </style>
@@ -770,6 +829,33 @@ body{
         <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
     </div>
 </div>
+
+<nav class="mobile-nav">
+    <a href="home.html" class="mobile-nav-item active">
+        <span class="mobile-nav-icon">🏠</span>
+        <span>Home</span>
+    </a>
+    <a href="songs.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">🎵</span>
+        <span>Songs</span>
+    </a>
+    <a href="albums.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">📀</span>
+        <span>Albums</span>
+    </a>
+    <a href="artists.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">👨‍🎤</span>
+        <span>Artists</span>
+    </a>
+    <a href="favorites.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">❤️</span>
+        <span>Favorites</span>
+    </a>
+    <a href="settings.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">⚙️</span>
+        <span>Settings</span>
+    </a>
+</nav>
 
 <div class="music-card-overlay" id="musicCardOverlay">
     <div class="music-card">
@@ -884,7 +970,6 @@ function renderSongs(){
     }
 
     songGrid.innerHTML = allSongs.slice(0,10).map((song, index) => {
-        // Fix: Render artist name cleanly or fallback smoothly
         let artistDisplay = song.artist || "Unknown Artist";
         return `
         <div class="card" onclick="playSong(${index})">
@@ -905,7 +990,6 @@ function updatePlayerUI(song){
     document.getElementById("cardPlayBtn").innerText = isPlaying ? "⏸" : "▶";
     document.getElementById("playerTitle").innerText = song.title || "Untitled Track";
     
-    // Fix: Dynamic presentation for track information string variables mapping
     let artistStr = song.artist || "Unknown Artist";
     let albumStr = song.album ? " • " + song.album : "";
     let fullSubtitle = artistStr + albumStr;
@@ -938,7 +1022,7 @@ function playSong(index){
         localStorage.setItem("globalIsPlaying", "true");
         updatePlayerUI(song);
     }).catch(err => {
-        console.log("Autoplay context deferred until user interact gesture:", err);
+        console.log("Autoplay context deferred:", err);
         isPlaying = false;
         updatePlayerUI(song);
     });
@@ -963,7 +1047,7 @@ function togglePlay(){
         audio.play().then(() => {
             isPlaying = true;
             localStorage.setItem("globalIsPlaying", "true");
-        }).catch(err => console.log("Playback interaction error:", err));
+        }).catch(err => console.log("Playback error:", err));
     }
 
     updatePlayerUI(allSongs[currentSongIndex]);
@@ -1015,7 +1099,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 isPlaying = true;
                 if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
             }).catch(e => {
-                console.log("Browser blocked resume action context setup clean.");
                 isPlaying = false;
                 localStorage.setItem("globalIsPlaying", "false");
                 if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
