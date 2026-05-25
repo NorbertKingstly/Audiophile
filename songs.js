@@ -1312,7 +1312,7 @@ const songs = [
     title: "Verappa Extended",
     artist: "Sai Abhyankkar",
     album: "Karuppu",
-    cover: "../asset/Karuppu.jpg",
+    cover: "image_asset/Karuppu.jpg",
     audio: "https://res.cloudinary.com/dsyoqfsj4/video/upload/v1779179813/Verappa---Extended-MassTamilan.dev_cvyzyt.mp3"
 },
 
