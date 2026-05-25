@@ -3,18 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Artists - Audiophile</title>
+<title>Audiophile - Artists</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Outfit',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
 
 :root{
     --bg:#f5f5f7;
@@ -22,9 +16,8 @@
     --card2:#eef0f4;
     --text:#111827;
     --muted:#64748b;
-    --purple:#6366f1;
-    --cyan:#111827;
     --border:rgba(0,0,0,0.08);
+    --purple:#6366f1;
 }
 
 body{
@@ -39,7 +32,7 @@ body{
     height:100vh;
 }
 
-/* SIDEBAR */
+/* sidebar */
 .sidebar{
     background:var(--card);
     border-right:1px solid var(--border);
@@ -52,16 +45,14 @@ body{
     margin-bottom:30px;
 }
 
-.logo span{
-    color:var(--purple);
-}
+.logo span{color:var(--purple);}
 
 .menu a{
     display:block;
     padding:14px;
     text-decoration:none;
     color:var(--muted);
-    border-radius:14px;
+    border-radius:12px;
 }
 
 .menu a:hover,.menu a.active{
@@ -69,16 +60,10 @@ body{
     color:var(--text);
 }
 
-/* MAIN */
+/* main */
 .main{
     overflow-y:auto;
     padding:25px;
-}
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:20px;
 }
 
 .search-box input{
@@ -89,11 +74,12 @@ body{
     outline:none;
 }
 
-/* ARTIST GRID */
+/* artist grid */
 .artist-grid{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
     gap:18px;
+    margin-top:20px;
 }
 
 .card{
@@ -102,10 +88,11 @@ body{
     border-radius:20px;
     padding:15px;
     cursor:pointer;
+    transition:0.3s;
 }
 
 .card:hover{
-    transform:translateY(-4px);
+    transform:translateY(-5px);
 }
 
 .cover{
@@ -119,38 +106,29 @@ body{
     overflow:hidden;
 }
 
+/* 🔥 FIXED IMAGE HANDLING */
 .cover img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-.card h3{
-    margin-top:10px;
-}
-
-/* SONG LIST */
+/* song list */
 .song-list{
     display:none;
     flex-direction:column;
     gap:12px;
+    margin-top:20px;
 }
 
 .song-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
     padding:14px;
     background:var(--card);
     border-radius:16px;
     border:1px solid var(--border);
-    cursor:pointer;
-}
-
-.song-left{
     display:flex;
-    gap:12px;
-    align-items:center;
+    justify-content:space-between;
+    cursor:pointer;
 }
 
 .song-cover{
@@ -159,77 +137,17 @@ body{
     border-radius:12px;
     overflow:hidden;
     background:var(--card2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
+/* 🔥 FIX ICON FALLBACK */
 .song-cover img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
-
-/* PLAYER BAR (SAME STYLE AS HOME) */
-.player{
-    position:fixed;
-    left:250px;
-    right:0;
-    bottom:0;
-    height:90px;
-    background:var(--card);
-    border-top:1px solid var(--border);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:10px 20px;
-}
-
-.player-info{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.player-cover{
-    width:55px;
-    height:55px;
-    border-radius:12px;
-    background:var(--card2);
-    overflow:hidden;
-}
-
-.player-cover img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.controls button{
-    border:none;
-    background:var(--card2);
-    width:40px;
-    height:40px;
-    border-radius:50%;
-}
-
-.controls .play{
-    background:var(--purple);
-    color:white;
-}
-
-.progress{
-    height:5px;
-    background:var(--card2);
-    border-radius:10px;
-    overflow:hidden;
-    cursor:pointer;
-    width:200px;
-}
-
-.progress-fill{
-    height:100%;
-    width:0%;
-    background:var(--purple);
-}
-
 </style>
 </head>
 
@@ -240,51 +158,25 @@ body{
 <!-- SIDEBAR -->
 <aside class="sidebar">
 <div class="logo">Audio<span>phile</span></div>
-<div class="menu">
+<nav class="menu">
 <a href="home.html">Home</a>
 <a href="songs.html">Songs</a>
 <a class="active">Artists</a>
 <a href="favorites.html">Favorites</a>
-</div>
+</nav>
 </aside>
 
 <!-- MAIN -->
 <main class="main">
 
-<div class="topbar">
 <div class="search-box">
-<input id="search" placeholder="Search artists...">
-</div>
+<input id="searchInput" placeholder="Search artists...">
 </div>
 
 <div id="artistGrid" class="artist-grid"></div>
 <div id="songList" class="song-list"></div>
 
 </main>
-
-</div>
-
-<!-- PLAYER -->
-<div class="player">
-
-<div class="player-info">
-<div class="player-cover" id="cover"></div>
-<div>
-<h4 id="title">Select song</h4>
-<p id="artist">-</p>
-</div>
-</div>
-
-<div class="controls">
-<button onclick="prev()">⏮</button>
-<button class="play" onclick="toggle()">▶</button>
-<button onclick="next()">⏭</button>
-</div>
-
-<div class="progress" onclick="seek(event)">
-<div class="progress-fill" id="bar"></div>
-</div>
-
 </div>
 
 <audio id="audio"></audio>
@@ -294,20 +186,26 @@ body{
 <script>
 let audio=document.getElementById("audio");
 let index=0;
-let playing=false;
 
 function getSongs(){
 return songs || [];
 }
 
-function render(){
+/* 🔥 ARTIST IMAGE SAFE RENDER */
+function renderArtists(){
 let artists=[...new Set(getSongs().map(s=>s.artist))];
 
 document.getElementById("artistGrid").innerHTML=
 artists.map(a=>`
 <div class="card" onclick="openArtist('${a}')">
-<div class="cover">${a[0]}</div>
+
+<div class="cover">
+<img src="/image/${a}.jpg"
+onerror="this.style.display='none';this.parentElement.innerHTML='🎵';">
+</div>
+
 <h3>${a}</h3>
+
 </div>
 `).join("");
 }
@@ -321,48 +219,25 @@ document.getElementById("songList").style.display="flex";
 document.getElementById("songList").innerHTML=
 list.map((s,i)=>`
 <div class="song-row" onclick="play(${getSongs().indexOf(s)})">
-<div class="song-left">
-<div class="song-cover"><img src="${s.cover||''}"></div>
+<div class="song-cover">
+<img src="${s.cover}"
+onerror="this.style.display='none';this.parentElement.innerHTML='🎵';">
+</div>
 <div>
 <h4>${s.title}</h4>
 <p>${s.artist}</p>
-</div>
 </div>
 </div>
 `).join("");
 }
 
 function play(i){
-let s=getSongs()[i];
-index=i;
-audio.src=s.audio;
+audio.src=getSongs()[i].audio;
 audio.play();
-document.getElementById("title").innerText=s.title;
-document.getElementById("artist").innerText=s.artist;
-document.getElementById("cover").innerHTML=`<img src="${s.cover}">`;
-playing=true;
+index=i;
 }
 
-function toggle(){
-if(playing){audio.pause();playing=false;}
-else{audio.play();playing=true;}
-}
-
-function next(){
-index=(index+1)%getSongs().length;
-play(index);
-}
-
-function prev(){
-index=(index-1+getSongs().length)%getSongs().length;
-play(index);
-}
-
-function seek(e){
-audio.currentTime=(e.offsetX/e.target.clientWidth)*audio.duration;
-}
-
-render();
+renderArtists();
 </script>
 
 </body>
