@@ -56,7 +56,6 @@ body{
     background:var(--bg);
     color:var(--text);
     overflow:hidden;
-    /* 🌟 FIX: Mobile browser toolbar height discrepancies handled */
     height: 100vh;
     height: 100dvh;
 }
@@ -120,8 +119,7 @@ body{
     height:100dvh;
     overflow-y:auto;
     -webkit-overflow-scrolling: touch;
-    /* 🌟 FIX: Added adequate bottom padding so bottom grid row isn't blocked by the player element */
-    padding:30px 34px 170px;
+    padding:30px 34px 190px;
 }
 
 .topbar{
@@ -336,7 +334,7 @@ body{
     left:250px;
     right:0;
     bottom:0;
-    height:118px;
+    height:128px;
     background:var(--card);
     border-top:1px solid var(--border);
     display:grid;
@@ -345,7 +343,6 @@ body{
     gap:18px;
     padding:16px 34px;
     z-index:99;
-    /* 🌟 FIX: Soft bottom protection layout for modern device overlays */
     padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
 }
 
@@ -354,6 +351,28 @@ body{
     align-items:center;
     gap:14px;
     cursor:pointer;
+    min-width: 0;
+}
+
+.player-details{
+    min-width: 0;
+    flex: 1;
+}
+
+.player-details h4{
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2px;
+}
+
+.player-details p{
+    font-size: 14px;
+    color:var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .player-cover{
@@ -369,6 +388,7 @@ body{
     color:white;
     overflow:hidden;
     background:var(--card2);
+    flex-shrink: 0;
 }
 
 .player-cover img{
@@ -378,10 +398,6 @@ body{
     object-position:center;
     background:var(--card2);
     display:block;
-}
-
-.player-info p{
-    color:var(--muted);
 }
 
 .controls{
@@ -502,15 +518,21 @@ body{
 }
 
 .music-card h2{
-    font-size:28px;
+    font-size:26px;
     margin-bottom:6px;
     text-align:center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .music-card p{
     color:var(--muted);
     text-align:center;
     margin-bottom:20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-buttons{
@@ -555,7 +577,6 @@ body{
     margin-top:10px;
 }
 
-/* 🌟 EXTENSIVE MOBILE RESPONSIVE ENGINE RE-PADDINGS */
 @media(max-width:900px){
     .app{
         grid-template-columns:1fr;
@@ -564,8 +585,7 @@ body{
         display:none;
     }
     .main{
-        /* 🌟 FIX: Clear padding setup to stop any overflow overlapping actions over the player bar */
-        padding: 20px 16px 180px;
+        padding: 20px 16px 210px;
     }
     .topbar{
         gap: 12px;
@@ -624,17 +644,18 @@ body{
         left:0;
         grid-template-columns: 1fr;
         height: auto;
-        padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px));
+        padding: 16px 20px calc(16px + env(safe-area-inset-bottom, 0px));
         box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+        gap: 12px;
     }
     .player-info {
-        justify-content: center;
-        text-align: center;
-        margin-bottom: 4px;
+        justify-content: flex-start;
+        text-align: left;
+        margin-bottom: 2px;
     }
     .player-cover {
-        width: 48px;
-        height: 48px;
+        width: 52px;
+        height: 52px;
         border-radius: 12px;
     }
     .controls {
@@ -642,14 +663,15 @@ body{
     }
     .buttons {
         gap: 16px;
+        margin-bottom: 12px;
     }
     .buttons button {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
     }
     .buttons .play {
-        width: 50px;
-        height: 50px;
+        width: 52px;
+        height: 52px;
     }
     .volume{
         display:none;
@@ -722,7 +744,7 @@ body{
 <div class="player">
     <div class="player-info" onclick="openMusicCard()">
         <div class="player-cover" id="playerCover">A</div>
-        <div>
+        <div class="player-details">
             <h4 id="playerTitle">Select a song</h4>
             <p id="playerArtist">Audiophile</p>
         </div>
@@ -856,14 +878,21 @@ function renderSongs(){
     if(!songGrid) return;
     let allSongs = getSongs();
 
+    if(allSongs.length === 0) {
+        songGrid.innerHTML = `<p style="padding: 20px; color: var(--muted);">No songs found inside database array.</p>`;
+        return;
+    }
+
     songGrid.innerHTML = allSongs.slice(0,10).map((song, index) => {
+        // Fix: Render artist name cleanly or fallback smoothly
+        let artistDisplay = song.artist || "Unknown Artist";
         return `
         <div class="card" onclick="playSong(${index})">
             <div class="cover">
-                ${song.cover ? `<img src="${song.cover}" alt="">` : song.title.charAt(0)}
+                ${song.cover ? `<img src="${song.cover}" alt="">` : (song.title ? song.title.charAt(0) : 'S')}
             </div>
-            <h3>${song.title}</h3>
-            <p>${song.artist}</p>
+            <h3>${song.title || "Untitled Track"}</h3>
+            <p>${artistDisplay}</p>
         </div>
         `;
     }).join("");
@@ -874,17 +903,24 @@ function updatePlayerUI(song){
 
     document.getElementById("playBtn").innerText = isPlaying ? "⏸" : "▶";
     document.getElementById("cardPlayBtn").innerText = isPlaying ? "⏸" : "▶";
-    document.getElementById("playerTitle").innerText = song.title;
-    document.getElementById("playerArtist").innerText = song.artist;
-    document.getElementById("cardSongTitle").innerText = song.title;
-    document.getElementById("cardSongArtist").innerText = song.artist + (song.album ? " • " + song.album : "");
+    document.getElementById("playerTitle").innerText = song.title || "Untitled Track";
+    
+    // Fix: Dynamic presentation for track information string variables mapping
+    let artistStr = song.artist || "Unknown Artist";
+    let albumStr = song.album ? " • " + song.album : "";
+    let fullSubtitle = artistStr + albumStr;
+
+    document.getElementById("playerArtist").innerText = fullSubtitle;
+    document.getElementById("cardSongTitle").innerText = song.title || "Untitled Track";
+    document.getElementById("cardSongArtist").innerText = fullSubtitle;
 
     if(song.cover){
         document.getElementById("playerCover").innerHTML = `<img src="${song.cover}" alt="">`;
         document.getElementById("bigCover").innerHTML = `<img src="${song.cover}" alt="">`;
     } else {
-        document.getElementById("playerCover").innerText = song.title.charAt(0);
-        document.getElementById("bigCover").innerText = song.title.charAt(0);
+        let fallbackLetter = song.title ? song.title.charAt(0) : "A";
+        document.getElementById("playerCover").innerText = fallbackLetter;
+        document.getElementById("bigCover").innerText = fallbackLetter;
     }
 }
 
@@ -903,6 +939,8 @@ function playSong(index){
         updatePlayerUI(song);
     }).catch(err => {
         console.log("Autoplay context deferred until user interact gesture:", err);
+        isPlaying = false;
+        updatePlayerUI(song);
     });
 
     localStorage.setItem("currentSongIndex", currentSongIndex);
@@ -955,4 +993,138 @@ function formatTime(seconds){
     }
     let min = Math.floor(seconds / 60);
     let sec = Math.floor(seconds % 60);
-    return min + ":" + (sec
+    return min + ":" + (sec < 10 ? "0" + sec : sec);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    applySavedTheme();
+    loadHomeProfile();
+    renderSongs();
+    changeVolume(0.8);
+    startCarouselRoutine();
+
+    let allSongs = getSongs();
+    if(allSongs.length > 0 && allSongs[currentSongIndex]) {
+        updatePlayerUI(allSongs[currentSongIndex]);
+    }
+
+    let savedPlaying = localStorage.getItem("globalIsPlaying");
+    if(savedPlaying === "true"){
+        setTimeout(() => {
+            audio.play().then(() => {
+                isPlaying = true;
+                if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
+            }).catch(e => {
+                console.log("Browser blocked resume action context setup clean.");
+                isPlaying = false;
+                localStorage.setItem("globalIsPlaying", "false");
+                if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
+            });
+        }, 300);
+    }
+});
+
+function applySavedTheme(){
+    let theme = localStorage.getItem("audiophile_theme") || "white";
+    document.body.classList.remove("theme-white", "theme-musicred");
+    document.body.classList.add("theme-" + theme);
+}
+
+function loadHomeProfile(){
+    let currentUser = localStorage.getItem("audiophile_currentUser") || "Liyo Clevert";
+    let profileImage = localStorage.getItem("audiophile_profileImage") || "";
+
+    document.getElementById("homeProfileInitial").innerText = currentUser.charAt(0).toUpperCase();
+
+    if(profileImage !== ""){
+        document.getElementById("homeProfileImage").src = profileImage;
+        document.getElementById("homeProfileImage").style.display = "block";
+        document.getElementById("homeProfileInitial").style.display = "none";
+    }
+    else{
+        document.getElementById("homeProfileImage").style.display = "none";
+        document.getElementById("homeProfileInitial").style.display = "block";
+    }
+}
+
+audio.addEventListener("timeupdate", function(){
+    if(!audio.duration) return;
+    localStorage.setItem("globalAudioTime", audio.currentTime);
+
+    let percent = (audio.currentTime / audio.duration) * 100;
+    if(isNaN(percent)) percent = 0;
+
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("cardProgressFill").style.width = percent + "%";
+
+    let currentFormatted = formatTime(audio.currentTime);
+    let durationFormatted = formatTime(audio.duration);
+
+    document.getElementById("currentTime").innerText = currentFormatted;
+    document.getElementById("durationTime").innerText = durationFormatted;
+    document.getElementById("cardCurrentTime").innerText = currentFormatted;
+    document.getElementById("cardDurationTime").innerText = durationFormatted;
+});
+
+audio.addEventListener("ended", function(){
+    nextSong();
+});
+
+function setProgress(event){
+    if(!audio.duration) return;
+    let width = event.currentTarget.clientWidth;
+    let clickX = event.offsetX;
+    audio.currentTime = (clickX / width) * audio.duration;
+}
+
+function setCardProgress(event){
+    if(!audio.duration) return;
+    let width = event.currentTarget.clientWidth;
+    let clickX = event.offsetX;
+    audio.currentTime = (clickX / width) * audio.duration;
+}
+
+function openMusicCard(){
+    if(!audio.src) return;
+    document.getElementById("musicCardOverlay").classList.add("show");
+}
+
+function closeMusicCard(){
+    document.getElementById("musicCardOverlay").classList.remove("show");
+}
+
+document.getElementById("musicCardOverlay").addEventListener("click", function(e){
+    if(e.target.id === "musicCardOverlay"){
+        closeMusicCard();
+    }
+});
+
+document.getElementById("searchInput").addEventListener("input", function(){
+    let value = this.value.toLowerCase();
+    let allSongs = getSongs();
+    let songGrid = document.getElementById("songGrid");
+
+    let filtered = allSongs.filter(song => {
+        return (song.title && song.title.toLowerCase().includes(value)) ||
+               (song.artist && song.artist.toLowerCase().includes(value)) ||
+               (song.album && song.album.toLowerCase().includes(value));
+    });
+
+    songGrid.innerHTML = filtered.map(song => {
+        let realIndex = allSongs.indexOf(song);
+        let artistDisplay = song.artist || "Unknown Artist";
+        return `
+        <div class="card" onclick="playSong(${realIndex})">
+            <div class="cover">
+                ${song.cover ? `<img src="${song.cover}" alt="">` : (song.title ? song.title.charAt(0) : 'S')}
+            </div>
+            <h3>${song.title || "Untitled Track"}</h3>
+            <p>${artistDisplay}</p>
+        </div>
+        `;
+    }).join("");
+});
+</script>
+
+</body>
+</html>
