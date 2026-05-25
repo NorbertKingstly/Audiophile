@@ -593,7 +593,6 @@ body{
         display:none;
     }
     .main{
-        /* Safe protection mapping space from bottom elements */
         padding: 20px 16px 200px !important; 
     }
     .topbar{
@@ -650,13 +649,13 @@ body{
         font-size: 12px;
     }
     
-    /* ADJUSTED Slim Compact Mobile Music Player Bar */
+    /* Slim Compact Mobile Music Player Bar Layout */
     .player{
         left:0 !important;
         right:0 !important;
-        bottom:64px !important; /* Adjusted to stack nicely with slim nav */
-        grid-template-columns: 1.2fr 1fr; /* Flex layout splitting info and action buttons */
-        height: 68px !important; /* Fixed slim height */
+        bottom:64px !important; 
+        grid-template-columns: 1.2fr 1fr; 
+        height: 68px !important; 
         padding: 8px 16px !important;
         box-shadow: 0 -6px 20px rgba(0,0,0,0.06);
         gap: 10px;
@@ -694,7 +693,6 @@ body{
         font-size: 18px !important;
     }
     
-    /* Shifted inline layout handles inside compact container */
     .controls {
         width: 100%;
         display: flex;
@@ -706,7 +704,7 @@ body{
         margin-bottom: 0px !important;
     }
     .buttons button {
-        display: none; /* Hide next/prev tracks on narrow bar to optimize clean ui */
+        display: none; 
     }
     .buttons button.play {
         display: flex !important;
@@ -717,10 +715,10 @@ body{
         font-size: 14px !important;
     }
     .progress, .time, .volume {
-        display: none !important; /* Hidden from bar container, fully accessible via popup open */
+        display: none !important; 
     }
 
-    /* SLIM COMPACT STANDARD CHAR MOBILE NAVIGATION BAR */
+    /* SLIM MOBILE NAVIGATION BAR CONFIG */
     .mobile-nav {
         display: flex;
         position: fixed;
@@ -751,8 +749,8 @@ body{
         color: var(--purple);
     }
     .mobile-nav-icon {
-        font-size: 20px;
-        line-height: 1;
+        font-size: 19px;
+        line-height: 1.1;
     }
 }
 </style>
@@ -863,7 +861,7 @@ body{
         <span>Albums</span>
     </a>
     <a href="artists.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon">👤</span>
+        <span class="mobile-nav-icon">웃</span>
         <span>Artists</span>
     </a>
     <a href="favorites.html" class="mobile-nav-item">
