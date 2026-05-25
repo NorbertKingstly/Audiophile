@@ -1,4 +1,3 @@
-<!-- Albums -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +49,7 @@ body.theme-musicred{
 body{
     background:var(--bg);
     color:var(--text);
-    overflow:hidden;
+    overflow-x:hidden;
 }
 
 .app{
@@ -486,6 +485,38 @@ body{
 
 .volume input{width:130px;}
 
+/* Mobile Navigation Bar (Hidden on Desktop) */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    bottom: 80px; /* Sits right above the player on mobile */
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    z-index: 98;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.mobile-nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 12px;
+}
+
+.mobile-nav a.active {
+    background: linear-gradient(90deg,
+    color-mix(in srgb,var(--cyan) 16%,transparent),
+    color-mix(in srgb,var(--purple) 16%,transparent));
+    color: var(--text);
+}
+
 .music-card-overlay{
     position:fixed;
     inset:0;
@@ -586,18 +617,144 @@ body{
     margin-top:10px;
 }
 
+/* RESPONSIVE MEDIA QUERIES */
 @media(max-width:900px){
-    .app{grid-template-columns:1fr;}
+    body {
+        overflow: auto;
+    }
+    .app{
+        grid-template-columns:1fr;
+        height: auto;
+    }
     .sidebar{display:none;}
-    .main{padding:24px 18px 180px;}
-    .page-title{flex-direction:column;align-items:flex-start;}
-    .album-hero-cover{width:130px;height:130px;}
+    .mobile-nav { display: flex; } /* Show custom bottom bar on smaller screens */
+    
+    .main{
+        padding:20px 16px 240px; /* Added extra padding to clear both bottom bars */
+        height: auto;
+        overflow-y: visible;
+    }
+    .topbar {
+        margin-bottom: 20px;
+    }
+    .page-title{
+        flex-direction:column;
+        align-items:center;
+        text-align: center;
+        padding: 24px;
+        gap: 16px;
+        border-radius: 24px;
+    }
+    .page-title h1 {
+        font-size: 32px;
+    }
+    .album-hero-cover{
+        width:120px;
+        height:120px;
+        border-radius: 20px;
+    }
+    .album-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 14px;
+    }
+    .album-card {
+        border-radius: 20px;
+        padding: 12px;
+    }
+    .album-cover {
+        height: 140px;
+        border-radius: 16px;
+    }
+    .album-card h3 {
+        font-size: 16px;
+    }
+    
     .list-head{display:none !important;}
-    .song-row{grid-template-columns:40px 62px 1fr;}
-    .song-artist{display:none;}
-    .song-actions{grid-column:3;justify-content:flex-start;}
-    .player{left:0;grid-template-columns:1fr;height:auto;}
-    .volume{display:none;}
+    
+    .song-list {
+        gap: 10px;
+    }
+    .song-row{
+        grid-template-columns: 50px 1fr auto;
+        gap:12px;
+        padding: 10px 14px;
+        border-radius: 16px;
+    }
+    .song-no { display: none; } /* Hide song number to save horizontal space */
+    .song-cover {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+    }
+    .song-title h3 {
+        font-size: 16px;
+    }
+    .song-artist{
+        grid-column: 2;
+        font-size:13px;
+        margin-top: 2px;
+    }
+    .song-actions{
+        grid-column: 3;
+        grid-row: 1 / span 2;
+        align-items: center;
+        gap: 6px;
+    }
+    .song-actions button {
+        padding: 8px 12px;
+        border-radius: 12px;
+    }
+    
+    /* Compact Bottom Player UI for Mobile Phones */
+    .player{
+        left:0;
+        grid-template-columns: 1fr auto;
+        height: 80px;
+        padding: 10px 20px;
+        gap: 10px;
+    }
+    .player-info {
+        max-width: 200px;
+    }
+    .player-cover {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+    }
+    .player-info h4 {
+        font-size: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .controls {
+        grid-column: 2;
+    }
+    .buttons button:not(.play) {
+        display: none; /* Hide Prev/Next on bottom minimal bar to keep it tidy */
+    }
+    .buttons {
+        margin-bottom: 0;
+    }
+    .progress, .time, .volume {
+        display: none !important; /* Hide seeker & volumes on minimal bar, handled inside big music card */
+    }
+}
+
+@media(max-width: 400px) {
+    .album-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+    .song-row {
+        grid-template-columns: 42px 1fr auto;
+    }
+    .song-cover {
+        width: 42px;
+        height: 42px;
+    }
+    .play-small {
+        font-size: 11px;
+    }
 }
 </style>
 </head>
@@ -665,6 +822,14 @@ body{
     </main>
 
 </div>
+
+<nav class="mobile-nav">
+    <a href="home.html">Home</a>
+    <a href="songs.html">Songs</a>
+    <a href="albums.html" class="active">Albums</a>
+    <a href="artists.html">Artists</a>
+    <a href="favorites.html">Favs</a>
+</nav>
 
 <div class="player">
 
