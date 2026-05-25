@@ -2,13 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Audiophile</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
 
 :root{
     --bg:#f5f5f7;
@@ -49,19 +55,23 @@ body.theme-musicred{
 body{
     background:var(--bg);
     color:var(--text);
-    overflow-x:hidden;
+    overflow:hidden;
+    height: 100vh;
+    height: 100dvh;
 }
 
 .app{
     display:grid;
     grid-template-columns:250px 1fr;
     height:100vh;
+    height:100dvh;
 }
 
 .sidebar{
     background:var(--card);
     border-right:1px solid var(--border);
     padding:28px 20px;
+    overflow-y:auto;
 }
 
 .logo{
@@ -69,6 +79,7 @@ body{
     font-weight:900;
     margin-bottom:34px;
     cursor:pointer;
+    color:var(--text);
 }
 
 .logo span{
@@ -92,20 +103,20 @@ body{
     border-radius:18px;
     font-size:16px;
     font-weight:700;
+    transition:0.3s;
 }
 
-.menu a.active,
-.menu a:hover{
-    background:linear-gradient(90deg,
-    color-mix(in srgb,var(--cyan) 16%,transparent),
-    color-mix(in srgb,var(--purple) 16%,transparent));
+.menu a.active, .menu a:hover{
+    background:linear-gradient(90deg, color-mix(in srgb,var(--cyan) 16%,transparent), color-mix(in srgb,var(--purple) 16%,transparent));
     color:var(--text);
 }
 
 .main{
     height:100vh;
+    height:100dvh;
     overflow-y:auto;
-    padding:30px 34px 150px;
+    -webkit-overflow-scrolling: touch;
+    padding:30px 34px 170px;
 }
 
 .topbar{
@@ -116,7 +127,9 @@ body{
     margin-bottom:28px;
 }
 
-.search-box{width:100%;}
+.search-box{
+    width:70%;
+}
 
 .search-box input{
     width:100%;
@@ -142,7 +155,6 @@ body{
     cursor:pointer;
     color:white;
     overflow:hidden;
-    flex-shrink:0;
 }
 
 .profile img{
@@ -152,233 +164,94 @@ body{
     display:none;
 }
 
-.page-title{
-    background:linear-gradient(135deg,
-    color-mix(in srgb,var(--cyan) 10%,white),
-    color-mix(in srgb,var(--purple) 10%,white));
-    border:1px solid var(--border);
-    border-radius:34px;
-    padding:34px;
-    margin-bottom:24px;
-    display:flex;
-    align-items:center;
-    gap:28px;
-}
-
-.album-hero-cover{
-    width:160px;
-    height:160px;
-    border-radius:26px;
-    background:var(--card2);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    color:white;
-    font-size:52px;
-    font-weight:900;
-    overflow:hidden;
-    flex-shrink:0;
-}
-
-.album-hero-cover img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    object-position:center;
-    background:var(--card2);
-    display:block;
-}
-
-.page-title small{
-    color:var(--cyan);
-    font-weight:900;
-    letter-spacing:1px;
-}
-
-.page-title h1{
-    font-size:48px;
-    margin:10px 0;
-}
-
-.page-title p{color:var(--muted);}
-
-.back-albums{
-    display:none;
-    border:none;
-    padding:13px 22px;
-    border-radius:22px;
-    background:var(--card);
-    border:1px solid var(--border);
-    color:var(--text);
-    font-weight:900;
-    cursor:pointer;
+/* ALBUMS CONTENT STYLES */
+h2{
+    font-size:28px;
+    font-weight:800;
     margin-bottom:20px;
 }
 
-.album-grid{
+.grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
-    gap:18px;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    gap:24px;
 }
 
-.album-card{
+.card{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:28px;
-    padding:16px;
+    border-radius:24px;
+    padding:18px;
     cursor:pointer;
     transition:0.3s;
 }
 
-.album-card:hover{
-    transform:translateY(-5px);
-    border-color:var(--cyan);
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 30px rgba(0,0,0,0.05);
 }
 
-.album-cover{
-    height:180px;
-    border-radius:22px;
+.cover{
+    width:100%;
+    aspect-ratio:1;
     background:var(--card2);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
-    font-size:54px;
-    font-weight:900;
+    border-radius:18px;
     margin-bottom:14px;
-    overflow:hidden;
-}
-
-.album-cover img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    object-position:center;
-    background:var(--card2);
-    display:block;
-}
-
-.album-card h3{
-    font-size:18px;
-    margin-bottom:6px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.album-card p{
-    color:var(--muted);
-    font-size:14px;
-}
-
-.list-head{
-    display:none;
-    grid-template-columns:55px 70px 1.5fr 1fr 150px;
-    gap:16px;
-    padding:0 20px 12px;
-    color:var(--muted);
-    font-size:13px;
-    font-weight:900;
-}
-
-.song-list{
-    display:none;
-    flex-direction:column;
-    gap:12px;
-}
-
-.song-row{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:14px 18px;
-    display:grid;
-    grid-template-columns:55px 70px 1.5fr 1fr 150px;
-    gap:16px;
-    align-items:center;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.song-row:hover{
-    transform:translateY(-3px);
-    border-color:var(--cyan);
-}
-
-.song-no{
-    color:var(--muted);
-    font-weight:900;
-}
-
-.song-cover{
-    width:62px;
-    height:62px;
-    border-radius:16px;
-    background:var(--card2);
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
+    font-size:48px;
     font-weight:900;
+    color:white;
     overflow:hidden;
-    flex-shrink:0;
 }
 
-.song-cover img{
+.cover img{
     width:100%;
     height:100%;
-    object-fit:contain;
-    object-position:center;
-    background:var(--card2);
-    display:block;
+    object-fit:cover;
 }
 
-.song-title h3{
-    font-size:18px;
+.card h3{
+    font-size:16px;
+    font-weight:700;
+    margin-bottom:4px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
 }
 
-.song-artist{
-    color:var(--muted);
+.card p{
     font-size:14px;
+    color:var(--muted);
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
 }
 
-.song-actions{
-    display:flex;
+/* BACK BUTTON FOR SONGS VIEW */
+.back-btn{
+    background:var(--card2);
+    color:var(--text);
+    border:none;
+    padding:12px 24px;
+    border-radius:14px;
+    font-weight:700;
+    font-size:15px;
+    cursor:pointer;
+    margin-bottom:20px;
+    display:inline-flex;
+    align-items:center;
     gap:8px;
 }
 
-.song-actions button{
-    border:none;
-    padding:10px 13px;
-    border-radius:15px;
-    font-weight:900;
-    cursor:pointer;
-    font-size:13px;
-}
-
-.play-small{
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
-    color:white;
-}
-
-.fav-small{
-    background:var(--card2);
-    color:#f59e0b;
-    font-size:18px;
-}
-
+/* PLAYER STYLES */
 .player{
     position:fixed;
     left:250px;
     right:0;
     bottom:0;
-    height:118px;
+    height:128px;
     background:var(--card);
     border-top:1px solid var(--border);
     display:grid;
@@ -386,7 +259,7 @@ body{
     align-items:center;
     gap:18px;
     padding:16px 34px;
-    z-index:99;
+    z-index:999;
 }
 
 .player-info{
@@ -394,128 +267,123 @@ body{
     align-items:center;
     gap:14px;
     cursor:pointer;
+    min-width: 0;
+    width: 100%;
+}
+
+.player-details{
+    min-width: 0;
+    flex: 1;
+}
+
+.player-details h4{
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2px;
+}
+
+.player-details p{
+    font-size: 14px;
+    color:var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .player-cover{
     width:64px;
     height:64px;
     border-radius:18px;
-    background:var(--card2);
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
+    font-size:24px;
     font-weight:900;
+    color:white;
     overflow:hidden;
+    background:var(--card2);
+    flex-shrink: 0;
 }
 
 .player-cover img{
     width:100%;
     height:100%;
     object-fit:contain;
-    object-position:center;
-    background:var(--card2);
     display:block;
 }
 
-.player-info h4{font-size:17px;}
-.player-info p{color:var(--muted);font-size:14px;}
-
-.controls{text-align:center;}
+.controls{
+    text-align:center;
+}
 
 .buttons{
     display:flex;
     justify-content:center;
+    align-items:center;
     gap:14px;
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
 .buttons button{
-    width:42px;
-    height:42px;
+    width:46px;
+    height:46px;
     border:none;
     border-radius:50%;
     background:var(--card2);
     color:var(--text);
-    font-size:16px;
     cursor:pointer;
+    font-size:16px;
 }
 
 .buttons .play{
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    width:58px;
+    height:58px;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
     color:white;
 }
 
-.progress,
-.card-progress{
-    height:7px;
+.progress, .card-progress{
+    height:6px;
     background:var(--card2);
     border-radius:20px;
     overflow:hidden;
     cursor:pointer;
 }
 
-.progress-fill,
-.card-progress-fill{
-    width:0%;
+.progress-fill, .card-progress-fill{
     height:100%;
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    width:0%;
+    background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
 }
 
-.time,
-.card-time{
+.time, .card-time{
     display:flex;
     justify-content:space-between;
     color:var(--muted);
-    font-size:12px;
+    font-size:13px;
     margin-top:6px;
 }
 
 .volume{
     display:flex;
-    align-items:center;
-    gap:12px;
     justify-content:flex-end;
+    align-items:center;
+    gap:14px;
 }
 
-.volume h3{
-    font-size:14px;
-    color:var(--muted);
+.volume input{
+    accent-color:var(--cyan);
 }
 
-.volume input{width:130px;}
-
+/* MOBILE NAVIGATION */
 .mobile-nav {
     display: none;
-    position: fixed;
-    bottom: 80px; 
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: var(--card);
-    border-top: 1px solid var(--border);
-    z-index: 98;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0 10px;
 }
 
-.mobile-nav a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 8px 12px;
-    border-radius: 12px;
-}
-
-.mobile-nav a.active {
-    background: linear-gradient(90deg,
-    color-mix(in srgb,var(--cyan) 16%,transparent),
-    color-mix(in srgb,var(--purple) 16%,transparent));
-    color: var(--text);
-}
-
+/* MUSIC POPUP OVERLAY */
 .music-card-overlay{
     position:fixed;
     inset:0;
@@ -528,7 +396,9 @@ body{
     padding:20px;
 }
 
-.music-card-overlay.show{display:flex;}
+.music-card-overlay.show{
+    display:flex;
+}
 
 .music-card{
     width:100%;
@@ -544,7 +414,6 @@ body{
     width:100%;
     height:310px;
     border-radius:28px;
-    background:var(--card2);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -553,26 +422,30 @@ body{
     font-weight:900;
     overflow:hidden;
     margin-bottom:22px;
+    background:var(--card2);
 }
 
 .big-cover img{
     width:100%;
     height:100%;
     object-fit:contain;
-    object-position:center;
-    background:var(--card2);
     display:block;
 }
 
-.music-card h2{
-    font-size:28px;
-    margin-bottom:6px;
+.music-card h2, .music-card p {
     text-align:center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.music-card p{
+.music-card h2 {
+    font-size:26px;
+    margin-bottom:6px;
+}
+
+.music-card p {
     color:var(--muted);
-    text-align:center;
     margin-bottom:20px;
 }
 
@@ -603,7 +476,9 @@ body{
     font-size:24px;
 }
 
-.card-volume{margin-top:20px;}
+.card-volume{
+    margin-top:20px;
+}
 
 .card-volume span{
     color:var(--muted);
@@ -617,154 +492,156 @@ body{
 }
 
 @media(max-width:900px){
-    body {
-        overflow: auto;
-    }
     .app{
         grid-template-columns:1fr;
-        height: auto;
     }
-    .sidebar{display:none;}
-    .mobile-nav { display: flex; } 
-    
+    .sidebar{
+        display:none;
+    }
     .main{
-        padding:20px 16px 240px; 
-        height: auto;
-        overflow-y: visible;
+        padding: 20px 16px 200px !important;
     }
-    .topbar {
+    .topbar{
+        gap: 12px;
         margin-bottom: 20px;
     }
-    .page-title{
-        flex-direction:column;
-        align-items:center;
-        text-align: center;
-        padding: 24px;
-        gap: 16px;
-        border-radius: 24px;
+    .search-box{
+        width:calc(100% - 64px);
     }
-    .page-title h1 {
-        font-size: 32px;
+    .search-box input{
+        padding: 14px 20px;
+        font-size: 14px;
     }
-    .album-hero-cover{
-        width:120px;
-        height:120px;
-        border-radius: 20px;
+    .profile{
+        width: 52px;
+        height: 52px;
     }
-    .album-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 14px;
-    }
-    .album-card {
-        border-radius: 20px;
-        padding: 12px;
-    }
-    .album-cover {
-        height: 140px;
-        border-radius: 16px;
-    }
-    .album-card h3 {
-        font-size: 16px;
-    }
-    
-    .list-head{display:none !important;}
-    
-    .song-list {
-        gap: 10px;
-    }
-    .song-row{
-        grid-template-columns: 50px 1fr auto;
-        gap:12px;
-        padding: 10px 14px;
-        border-radius: 16px;
-    }
-    .song-no { display: none; } 
-    .song-cover {
-        width: 50px;
-        height: 50px;
-        border-radius: 12px;
-    }
-    .song-title h3 {
-        font-size: 16px;
-    }
-    .song-artist{
-        grid-column: 2;
-        font-size:13px;
-        margin-top: 2px;
-    }
-    .song-actions{
-        grid-column: 3;
-        grid-row: 1 / span 2;
-        align-items: center;
-        gap: 6px;
-    }
-    .song-actions button {
-        padding: 8px 12px;
-        border-radius: 12px;
-    }
-    
     .player{
-        left:0;
-        grid-template-columns: 1fr auto;
-        height: 80px;
-        padding: 10px 20px;
+        left:0 !important;
+        right:0 !important;
+        bottom:64px !important;
+        grid-template-columns: 1.2fr 1fr;
+        height: 68px !important;
+        padding: 8px 16px !important;
+        box-shadow: 0 -6px 20px rgba(0,0,0,0.06);
         gap: 10px;
+        background: var(--card) !important;
+        border-top: 1px solid var(--border);
+        align-items: center;
     }
     .player-info {
-        max-width: 200px;
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        gap: 10px;
+    }
+    .player-details {
+        min-width: 0 !important;
+        flex: 1 !important;
+    }
+    .player-details h4, .player-details p {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    .player-details h4 {
+        font-size: 14px !important;
+    }
+    .player-details p {
+        font-size: 12px !important;
     }
     .player-cover {
-        width: 50px;
-        height: 50px;
-        border-radius: 12px;
-    }
-    .player-info h4 {
-        font-size: 15px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 8px !important;
+        font-size: 18px !important;
     }
     .controls {
-        grid-column: 2;
-    }
-    .buttons button:not(.play) {
-        display: none; 
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
     }
     .buttons {
-        margin-bottom: 0;
+        gap: 12px !important;
+        margin-bottom: 0px !important;
+    }
+    .buttons button {
+        display: none;
+    }
+    .buttons button.play {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        width: 42px !important;
+        height: 42px !important;
+        font-size: 14px !important;
     }
     .progress, .time, .volume {
-        display: none !important; 
+        display: none !important;
     }
-}
-
-@media(max-width: 400px) {
-    .album-grid {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    .mobile-nav {
+        display: flex;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 64px;
+        background: var(--card);
+        border-top: 1px solid var(--border);
+        z-index: 1000;
+        justify-content: space-around;
+        align-items: center;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
     }
-    .song-row {
-        grid-template-columns: 42px 1fr auto;
+    .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 600;
+        gap: 4px;
+        width: 16%;
+        text-align: center;
     }
-    .song-cover {
-        width: 42px;
-        height: 42px;
+    .mobile-nav-item.active {
+        color: var(--purple);
     }
-    .play-small {
-        font-size: 11px;
+    .mobile-nav-icon {
+        font-size: 18px;
+        line-height: 1;
+    }
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 16px;
+    }
+    .card {
+        padding: 12px;
+        border-radius: 18px;
+    }
+    .cover {
+        border-radius: 12px;
+        font-size: 36px;
+    }
+    .card h3 {
+        font-size: 14px;
+    }
+    .card p {
+        font-size: 12px;
     }
 }
 </style>
 </head>
-
-<body>
+<body class="theme-white">
 
 <div class="app">
-
     <aside class="sidebar">
         <div class="logo" onclick="window.location.href='home.html'">
             Audio<span>phile</span>
         </div>
-
         <nav class="menu">
             <a href="home.html">Home</a>
             <a href="songs.html">Songs</a>
@@ -778,396 +655,255 @@ body{
     <main class="main">
         <div class="topbar">
             <div class="search-box">
-                <input id="searchInput" type="text" placeholder="Search albums, songs, artists...">
+                <input id="searchInput" type="text" placeholder="Search albums or songs...">
             </div>
-
             <div class="profile" onclick="window.location.href='settings.html'">
                 <span id="homeProfileInitial">L</span>
-                <img id="homeProfileImage" src="">
+                <img id="homeProfileImage" src="" alt="Profile">
             </div>
         </div>
 
-        <section class="page-title">
-            <div class="album-hero-cover" id="albumHeroCover"></div>
-
-            <div>
-                <small id="pageSmall">ALBUM FOLDERS</small>
-                <h1 id="pageHeading">Albums</h1>
-                <p id="pageText">Album folder click panna andha movie oda songs open agum.</p>
-            </div>
-        </section>
-
-        <button class="back-albums" id="backAlbums" onclick="showAlbums()">
-            ← Back to Albums
-        </button>
-
-        <div class="album-grid" id="albumGrid"></div>
-
-        <div class="list-head" id="listHead">
-            <span>#</span>
-            <span>Poster</span>
-            <span>Title</span>
-            <span>Artist</span>
-            <span>Action</span>
+        <div id="albumTitleContainer">
+            <h2>Albums</h2>
         </div>
 
-        <div class="song-list" id="songList"></div>
+        <div id="backBtnContainer" style="display:none;">
+            <button class="back-btn" onclick="showAlbumsGrid()"><i class="fa-solid fa-arrow-left"></i> Back to Albums</button>
+        </div>
+
+        <div id="albumGrid" class="grid"></div>
     </main>
-
 </div>
 
-<nav class="mobile-nav">
-    <a href="home.html">Home</a>
-    <a href="songs.html">Songs</a>
-    <a href="albums.html" class="active">Albums</a>
-    <a href="artists.html">Artists</a>
-    <a href="favorites.html">Favs</a>
-</nav>
-
 <div class="player">
-
     <div class="player-info" onclick="openMusicCard()">
         <div class="player-cover" id="playerCover">A</div>
-
-        <div>
+        <div class="player-details">
             <h4 id="playerTitle">Select a song</h4>
             <p id="playerArtist">Audiophile</p>
         </div>
     </div>
-
     <div class="controls">
         <div class="buttons">
             <button onclick="prevSong()">⏮</button>
             <button class="play" id="playBtn" onclick="togglePlay()">▶</button>
             <button onclick="nextSong()">⏭</button>
         </div>
-
         <div class="progress" onclick="setProgress(event)">
             <div class="progress-fill" id="progressFill"></div>
         </div>
-
         <div class="time">
             <span id="currentTime">0:00</span>
             <span id="durationTime">0:00</span>
         </div>
     </div>
-
     <div class="volume">
         <h3>Volume</h3>
-        <input id="volumeRange" type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+        <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
     </div>
-
 </div>
 
-<div class="music-card-overlay" id="musicCardOverlay">
+<nav class="mobile-nav">
+    <a href="home.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-house"></i></span><span>Home</span>
+    </a>
+    <a href="songs.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-music"></i></span><span>Songs</span>
+    </a>
+    <a href="albums.html" class="mobile-nav-item active">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-compact-disc"></i></span><span>Albums</span>
+    </a>
+    <a href="artists.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-user-astronaut"></i></span><span>Artists</span>
+    </a>
+    <a href="favorites.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-heart"></i></span><span>Favorites</span>
+    </a>
+    <a href="settings.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-gear"></i></span><span>Settings</span>
+    </a>
+</nav>
 
+<div class="music-card-overlay" id="musicCardOverlay">
     <div class="music-card">
         <div class="big-cover" id="bigCover">A</div>
-
         <h2 id="cardSongTitle">Select a song</h2>
         <p id="cardSongArtist">Audiophile</p>
-
         <div class="card-buttons">
             <button onclick="prevSong()">⏮</button>
             <button class="big-play" id="cardPlayBtn" onclick="togglePlay()">▶</button>
             <button onclick="nextSong()">⏭</button>
         </div>
-
         <div class="card-progress" onclick="setCardProgress(event)">
             <div class="card-progress-fill" id="cardProgressFill"></div>
         </div>
-
         <div class="card-time">
             <span id="cardCurrentTime">0:00</span>
             <span id="cardDurationTime">0:00</span>
         </div>
-
         <div class="card-volume">
             <span>Volume</span>
-            <input id="cardVolumeRange" type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+            <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
         </div>
     </div>
-
 </div>
 
 <audio id="audio"></audio>
 
 <script src="songs.js"></script>
-
 <script>
+/* GLOBAL AUDIO INSTANCE LOGIC WITH COOKIES STATE PRESERVATION */
 let currentSongIndex = parseInt(localStorage.getItem("currentSongIndex")) || 0;
-let isPlaying = localStorage.getItem("globalIsPlaying") === "true"; // LocalStorage state fixed!
-let currentAlbumSongs = [];
-
-let audio = document.getElementById("audio");
-let albumGrid = document.getElementById("albumGrid");
-let songList = document.getElementById("songList");
-let albumHeroCover = document.getElementById("albumHeroCover");
-let homeProfileInitial = document.getElementById("homeProfileInitial");
-let homeProfileImage = document.getElementById("homeProfileImage");
-let playBtn = document.getElementById("playBtn");
-let cardPlayBtn = document.getElementById("cardPlayBtn");
-let playerTitle = document.getElementById("playerTitle");
-let playerArtist = document.getElementById("playerArtist");
-let cardSongTitle = document.getElementById("cardSongTitle");
-let cardSongArtist = document.getElementById("cardSongArtist");
-let playerCover = document.getElementById("playerCover");
-let bigCover = document.getElementById("bigCover");
-let progressFill = document.getElementById("progressFill");
-let cardProgressFill = document.getElementById("cardProgressFill");
-let currentTime = document.getElementById("currentTime");
-let durationTime = document.getElementById("durationTime");
-let cardCurrentTime = document.getElementById("cardCurrentTime");
-let cardDurationTime = document.getElementById("cardDurationTime");
-let searchInput = document.getElementById("searchInput");
-let listHead = document.getElementById("listHead");
-let backAlbums = document.getElementById("backAlbums");
-let pageSmall = document.getElementById("pageSmall");
-let pageHeading = document.getElementById("pageHeading");
-let pageText = document.getElementById("pageText");
-let musicCardOverlay = document.getElementById("musicCardOverlay");
-
+let isPlaying = localStorage.getItem("globalIsPlaying") === "true";
 let savedSrc = localStorage.getItem("globalAudioSrc");
 let savedTime = parseFloat(localStorage.getItem("globalAudioTime")) || 0;
 
-if(savedSrc){
+let audio = window.globalAudio || document.getElementById("audio");
+window.globalAudio = audio;
+
+if(savedSrc && !audio.src){
     audio.src = savedSrc;
     audio.currentTime = savedTime;
 }
 
-function applySavedTheme(){
-    let theme = localStorage.getItem("audiophile_theme") || "white";
-    document.body.classList.remove("theme-white","theme-musicred");
-    document.body.classList.add("theme-" + theme);
-}
-
-function loadHomeProfile(){
-    let currentUser = localStorage.getItem("audiophile_currentUser") || "Guest User";
-    let profileImage = localStorage.getItem("audiophile_profileImage") || "";
-
-    homeProfileInitial.innerText = currentUser.charAt(0).toUpperCase();
-
-    if(profileImage){
-        homeProfileImage.src = profileImage;
-        homeProfileImage.style.display = "block";
-        homeProfileInitial.style.display = "none";
-    }else{
-        homeProfileImage.style.display = "none";
-        homeProfileInitial.style.display = "block";
-    }
-}
+let albumGrid = document.getElementById("albumGrid");
+let albumTitleContainer = document.getElementById("albumTitleContainer");
+let backBtnContainer = document.getElementById("backBtnContainer");
+let currentAlbumSongs = [];
 
 function getSongs(){
-    return (typeof songs !== "undefined" && Array.isArray(songs)) ? songs : [];
+    if(typeof songs !== "undefined" && Array.isArray(songs) && songs.length > 0){
+        return songs;
+    }
+    return [];
 }
 
 function getAlbums(){
-    let albumMap = {};
-
-    getSongs().forEach(function(song){
-        let albumName = song.album || song.movie || "Unknown Album";
-
-        if(!albumMap[albumName]){
-            albumMap[albumName] = {
-                name: albumName,
-                artist: song.artist,
-                cover: song.cover,
-                songs: []
-            };
+    let allSongs = getSongs();
+    let albumsMap = {};
+    allSongs.forEach(function(song){
+        if(song.album){
+            if(!albumsMap[song.album]){
+                albumsMap[song.album] = {
+                    name: song.album,
+                    artist: song.artist || "Unknown Artist",
+                    cover: song.cover || ""
+                };
+            }
         }
-
-        albumMap[albumName].songs.push(song);
     });
-
-    return Object.values(albumMap);
+    return Object.values(albumsMap);
 }
 
-function getFavorites(){
-    return JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
-}
-
-function toggleFavorite(index,event){
-    if(event) event.stopPropagation();
-
-    let favorites = getFavorites();
-
-    if(favorites.includes(index)){
-        favorites = favorites.filter(item => item !== index);
-    }else{
-        favorites.push(index);
-    }
-
-    localStorage.setItem("audiophile_favorites",JSON.stringify(favorites));
-    renderAlbumSongs(currentAlbumSongs);
-}
-
-function renderAlbums(albumArray){
-    if(albumArray.length === 0){
-        albumGrid.innerHTML = "<p style='padding:20px; color:var(--muted);'>No albums available</p>";
+function renderAlbums(albumsList){
+    albumTitleContainer.innerHTML = "<h2>Albums</h2>";
+    backBtnContainer.style.display = "none";
+    
+    if(albumsList.length === 0){
+        albumGrid.innerHTML = "<p style='padding:20px; color:var(--muted);'>No albums found.</p>";
         return;
     }
-    albumGrid.innerHTML = albumArray.map(function(album){
+
+    albumGrid.innerHTML = albumsList.map(function(album){
+        let fallbackLetter = album.name.charAt(0).toUpperCase();
+        let coverContent = album.cover ? `<img src="${album.cover}" alt="">` : fallbackLetter;
         return `
-        <div class="album-card" onclick="openAlbum('${encodeURIComponent(album.name)}')">
-            <div class="album-cover">
-                ${
-                    album.cover
-                    ? `<img src="${album.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${album.name.charAt(0)}';">`
-                    : album.name.charAt(0)
-                }
-            </div>
+        <div class="card" onclick="openAlbum('${album.name.replace(/'/g, "\\'")}')">
+            <div class="cover">${coverContent}</div>
             <h3>${album.name}</h3>
-            <p>${album.songs.length} Songs • ${album.artist}</p>
-        </div>`;
-    }).join("");
+            <p>${album.artist}</p>
+        </div>
+        `;
+    }).join('');
 }
 
-function openAlbum(albumNameEncoded){
-    let albumName = decodeURIComponent(albumNameEncoded);
+function openAlbum(albumName){
+    let allSongs = getSongs();
+    currentAlbumSongs = allSongs.filter(function(song){
+        return song.album === albumName;
+    });
 
-    let album = getAlbums().find(item => item.name === albumName);
-    if(!album) return;
+    albumTitleContainer.innerHTML = `<h2>${albumName}</h2>`;
+    backBtnContainer.style.display = "block";
 
-    currentAlbumSongs = album.songs;
-
-    pageSmall.innerText = "ALBUM SONGS";
-    pageHeading.innerText = album.name;
-    pageText.innerText = album.songs.length + " songs available in this album.";
-
-    albumHeroCover.style.display = "flex";
-
-    if(album.cover){
-        albumHeroCover.innerHTML = `<img src="${album.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${album.name.charAt(0)}';">`;
-    }else{
-        albumHeroCover.innerHTML = album.name.charAt(0);
+    if(currentAlbumSongs.length === 0){
+        albumGrid.innerHTML = "<p style='padding:20px; color:var(--muted);'>No songs in this album.</p>";
+        return;
     }
 
-    backAlbums.style.display = "inline-block";
-    albumGrid.style.display = "none";
-    listHead.style.display = "grid";
-    songList.style.display = "flex";
-
-    renderAlbumSongs(album.songs);
+    albumGrid.innerHTML = currentAlbumSongs.map(function(song){
+        let allSongsIndex = allSongs.indexOf(song);
+        let fallbackLetter = song.title ? song.title.charAt(0).toUpperCase() : "S";
+        let coverContent = song.cover ? `<img src="${song.cover}" alt="">` : fallbackLetter;
+        return `
+        <div class="card" onclick="playSong(${allSongsIndex})">
+            <div class="cover">${coverContent}</div>
+            <h3>${song.title || 'Untitled'}</h3>
+            <p>${song.artist || 'Unknown Artist'}</p>
+        </div>
+        `;
+    }).join('');
 }
 
-function showAlbums(){
-    currentAlbumSongs = [];
-
-    pageSmall.innerText = "ALBUM FOLDERS";
-    pageHeading.innerText = "Albums";
-    pageText.innerText = "Album folder click panna andha movie oda songs open agum.";
-
-    albumHeroCover.style.display = "none";
-    albumHeroCover.innerHTML = "";
-
-    backAlbums.style.display = "none";
-    albumGrid.style.display = "grid";
-    listHead.style.display = "none";
-    songList.style.display = "none";
-    songList.innerHTML = "";
-
-    searchInput.value = "";
+function showAlbumsGrid(){
+    document.getElementById("searchInput").value = "";
     renderAlbums(getAlbums());
 }
 
-function renderAlbumSongs(songArray){
-    let allSongs = getSongs();
-    let favorites = getFavorites();
-
-    if(songArray.length === 0){
-        songList.innerHTML = "<p style='padding:20px; color:var(--muted);'>No songs found</p>";
-        return;
-    }
-
-    songList.innerHTML = songArray.map(function(song,displayIndex){
-        let realIndex = allSongs.indexOf(song);
-        let isFav = favorites.includes(realIndex);
-
-        return `
-        <div class="song-row" onclick="playSong(${realIndex})">
-            <div class="song-no">${displayIndex + 1}</div>
-
-            <div class="song-cover">
-                ${
-                    song.cover
-                    ? `<img src="${song.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${song.title.charAt(0)}';">`
-                    : song.title.charAt(0)
-                }
-            </div>
-
-            <div class="song-title">
-                <h3>${song.title}</h3>
-            </div>
-
-            <div class="song-artist">${song.artist}</div>
-
-            <div class="song-actions">
-                <button class="play-small" onclick="playSong(${realIndex}); event.stopPropagation();">▶ Play</button>
-                <button class="fav-small" onclick="toggleFavorite(${realIndex},event)">
-                    ${isFav ? "★" : "☆"}
-                </button>
-            </div>
-        </div>`;
-    }).join("");
-}
-
 function updatePlayerUI(song){
-    playBtn.innerText = isPlaying ? "⏸" : "▶";
-    cardPlayBtn.innerText = isPlaying ? "⏸" : "▶";
+    let playBtn = document.getElementById("playBtn");
+    let cardPlayBtn = document.getElementById("cardPlayBtn");
+    
+    if(isPlaying){
+        playBtn.innerText = "⏸";
+        cardPlayBtn.innerText = "⏸";
+    } else {
+        playBtn.innerText = "▶";
+        cardPlayBtn.innerText = "▶";
+    }
 
-    if(!song) {
-        playerTitle.innerText = "Select a song";
-        playerArtist.innerText = "Audiophile";
-        cardSongTitle.innerText = "Select a song";
-        cardSongArtist.innerText = "Audiophile";
-        playerCover.innerText = "A";
-        bigCover.innerText = "A";
+    if(!song){
+        document.getElementById("playerTitle").innerText = "Select a song";
+        document.getElementById("playerArtist").innerText = "Audiophile";
+        document.getElementById("cardSongTitle").innerText = "Select a song";
+        document.getElementById("cardSongArtist").innerText = "Audiophile";
+        document.getElementById("playerCover").innerText = "A";
+        document.getElementById("bigCover").innerText = "A";
         return;
     }
 
-    playerTitle.innerText = song.title;
-    playerArtist.innerText = song.artist;
+    document.getElementById("playerTitle").innerText = song.title || "Untitled Track";
+    let subStr = (song.artist || "Unknown Artist") + (song.album ? " • " + song.album : "");
+    document.getElementById("playerArtist").innerText = subStr;
 
-    cardSongTitle.innerText = song.title;
-    cardSongArtist.innerText = song.artist + " • " + (song.album || song.movie || "");
+    document.getElementById("cardSongTitle").innerText = song.title || "Untitled Track";
+    document.getElementById("cardSongArtist").innerText = subStr;
 
     if(song.cover){
-        playerCover.innerHTML = `<img src="${song.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${song.title.charAt(0)}';">`;
-        bigCover.innerHTML = `<img src="${song.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${song.title.charAt(0)}';">`;
-    }else{
-        playerCover.innerText = song.title.charAt(0);
-        bigCover.innerText = song.title.charAt(0);
+        document.getElementById("playerCover").innerHTML = `<img src="${song.cover}" alt="">`;
+        document.getElementById("bigCover").innerHTML = `<img src="${song.cover}" alt="">`;
+    } else {
+        let fallback = song.title ? song.title.charAt(0).toUpperCase() : "S";
+        document.getElementById("playerCover").innerText = fallback;
+        document.getElementById("bigCover").innerText = fallback;
     }
-}
-
-function savePlayerState(){
-    localStorage.setItem("currentSongIndex",currentSongIndex);
-    localStorage.setItem("globalAudioSrc",audio.src || "");
-    localStorage.setItem("globalAudioTime",audio.currentTime || 0);
-    localStorage.setItem("globalIsPlaying",isPlaying ? "true" : "false");
 }
 
 function playSong(index){
     let allSongs = getSongs();
-    if(allSongs.length === 0 || !allSongs[index]) return;
-
-    if(!allSongs[index].audio){
-        alert("Song audio URL missing in songs.js");
-        return;
-    }
+    if(index < 0 || index >= allSongs.length) return;
 
     currentSongIndex = index;
-    let song = allSongs[currentSongIndex];
-
+    let song = allSongs[index];
     audio.src = song.audio;
-
+    
     audio.play().then(function(){
         isPlaying = true;
         savePlayerState();
         updatePlayerUI(song);
-    }).catch(function(){
+    }).catch(function(err){
+        console.log("Playback error:", err);
         isPlaying = false;
-        savePlayerState();
         updatePlayerUI(song);
     });
 }
@@ -1176,27 +912,21 @@ function togglePlay(){
     let allSongs = getSongs();
     if(allSongs.length === 0) return;
 
-    if(!audio.src){
-        playSong(currentSongIndex);
-        return;
-    }
-
     if(isPlaying){
         audio.pause();
         isPlaying = false;
-    }else{
+    } else {
+        if(!audio.src && allSongs[currentSongIndex]){
+            audio.src = allSongs[currentSongIndex].audio;
+        }
         audio.play().then(function(){
             isPlaying = true;
-            savePlayerState(); // State save immediate fix
-            updatePlayerUI(allSongs[currentSongIndex]);
-        }).catch(function(){
-            isPlaying = false;
             savePlayerState();
             updatePlayerUI(allSongs[currentSongIndex]);
+        }).catch(function(e){
+            console.log(e);
         });
-        return;
     }
-
     savePlayerState();
     updatePlayerUI(allSongs[currentSongIndex]);
 }
@@ -1204,143 +934,149 @@ function togglePlay(){
 function nextSong(){
     let allSongs = getSongs();
     if(allSongs.length === 0) return;
-
-    currentSongIndex++;
-
-    if(currentSongIndex >= allSongs.length){
-        currentSongIndex = 0;
-    }
-
+    currentSongIndex = (currentSongIndex + 1) >= allSongs.length ? 0 : currentSongIndex + 1;
     playSong(currentSongIndex);
 }
 
 function prevSong(){
     let allSongs = getSongs();
     if(allSongs.length === 0) return;
-
-    currentSongIndex--;
-
-    if(currentSongIndex < 0){
-        currentSongIndex = allSongs.length - 1;
-    }
-
+    currentSongIndex = (currentSongIndex - 1) < 0 ? allSongs.length - 1 : currentSongIndex - 1;
     playSong(currentSongIndex);
 }
 
-function changeVolume(value){
-    audio.volume = value;
-    localStorage.setItem("globalVolume",value);
+function changeVolume(val){
+    audio.volume = val;
+    localStorage.setItem("globalVolume", val);
+    let ranges = document.querySelectorAll("input[type='range']");
+    ranges.forEach(function(r){ r.value = val; });
+}
+
+function formatTime(secs){
+    if(isNaN(secs) || !isFinite(secs)) return "0:00";
+    let m = Math.floor(secs / 60);
+    let s = Math.floor(secs % 60);
+    return m + ":" + (s < 10 ? "0" + s : s);
+}
+
+function savePlayerState(){
+    localStorage.setItem("currentSongIndex", currentSongIndex);
+    localStorage.setItem("globalIsPlaying", isPlaying ? "true" : "false");
+    if(audio.src) {
+        localStorage.setItem("globalAudioSrc", audio.src);
+        localStorage.setItem("globalAudioTime", audio.currentTime);
+    }
+}
+
+audio.addEventListener("timeupdate", function(){
+    if(!audio.duration) return;
+    localStorage.setItem("globalAudioTime", audio.currentTime);
+    let pct = (audio.currentTime / audio.duration) * 100;
     
-    let volRange = document.getElementById("volumeRange");
-    let cardVolRange = document.getElementById("cardVolumeRange");
-    if(volRange) volRange.value = value;
-    if(cardVolRange) cardVolRange.value = value;
-}
+    document.getElementById("progressFill").style.width = pct + "%";
+    document.getElementById("cardProgressFill").style.width = pct + "%";
 
-function formatTime(seconds){
-    if(isNaN(seconds)) return "0:00";
+    let curFormat = formatTime(audio.currentTime);
+    let durFormat = formatTime(audio.duration);
 
-    let min = Math.floor(seconds / 60);
-    let sec = Math.floor(seconds % 60);
-
-    if(sec < 10) sec = "0" + sec;
-
-    return min + ":" + sec;
-}
-
-audio.addEventListener("timeupdate",function(){
-    localStorage.setItem("globalAudioTime",audio.currentTime || 0);
-
-    let percent = (audio.currentTime / audio.duration) * 100;
-    if(isNaN(percent)) percent = 0;
-
-    progressFill.style.width = percent + "%";
-    cardProgressFill.style.width = percent + "%";
-
-    currentTime.innerText = formatTime(audio.currentTime);
-    durationTime.innerText = formatTime(audio.duration);
-
-    cardCurrentTime.innerText = formatTime(audio.currentTime);
-    cardDurationTime.innerText = formatTime(audio.duration);
+    document.getElementById("currentTime").innerText = curFormat;
+    document.getElementById("durationTime").innerText = durFormat;
+    document.getElementById("cardCurrentTime").innerText = curFormat;
+    document.getElementById("cardDurationTime").innerText = durFormat;
 });
 
-audio.addEventListener("play", function(){
-    isPlaying = true;
-    savePlayerState();
-    let allSongs = getSongs();
-    if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
-});
-
-audio.addEventListener("pause", function(){
-    isPlaying = false;
-    savePlayerState();
-    let allSongs = getSongs();
-    if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
-});
-
-audio.addEventListener("ended",function(){
+audio.addEventListener("ended", function(){
     nextSong();
 });
 
-function setProgress(event){
+function setProgress(e){
     if(!audio.duration) return;
-
-    let width = event.currentTarget.clientWidth;
-    let clickX = event.offsetX;
-
-    audio.currentTime = (clickX / width) * audio.duration;
-    savePlayerState();
+    let w = e.currentTarget.clientWidth;
+    audio.currentTime = (e.offsetX / w) * audio.duration;
 }
 
-function setCardProgress(event){
+function setCardProgress(e){
     if(!audio.duration) return;
-
-    let width = event.currentTarget.clientWidth;
-    let clickX = event.offsetX;
-
-    audio.currentTime = (clickX / width) * audio.duration;
-    savePlayerState();
+    let w = e.currentTarget.clientWidth;
+    audio.currentTime = (e.offsetX / w) * audio.duration;
 }
 
 function openMusicCard(){
     if(!audio.src) return;
-    musicCardOverlay.classList.add("show");
+    document.getElementById("musicCardOverlay").classList.add("show");
 }
 
 function closeMusicCard(){
-    musicCardOverlay.classList.remove("show");
+    document.getElementById("musicCardOverlay").classList.remove("show");
 }
 
-musicCardOverlay.addEventListener("click",function(e){
+document.getElementById("musicCardOverlay").addEventListener("click", function(e){
     if(e.target.id === "musicCardOverlay"){
         closeMusicCard();
     }
 });
 
-searchInput.addEventListener("input",function(){
+function applySavedTheme(){
+    let theme = localStorage.getItem("audiophile_theme") || "white";
+    document.body.classList.remove("theme-white", "theme-musicred");
+    document.body.classList.add("theme-" + theme);
+}
+
+function loadHomeProfile(){
+    let user = localStorage.getItem("audiophile_currentUser") || "Liyo Clevert";
+    let imgData = localStorage.getItem("audiophile_profileImage") || "";
+    document.getElementById("homeProfileInitial").innerText = user.charAt(0).toUpperCase();
+    
+    let pImg = document.getElementById("homeProfileImage");
+    let pInit = document.getElementById("homeProfileInitial");
+    if(imgData !== ""){
+        pImg.src = imgData;
+        pImg.style.display = "block";
+        pInit.style.display = "none";
+    } else {
+        pImg.style.display = "none";
+        pInit.style.display = "block";
+    }
+}
+
+document.getElementById("searchInput").addEventListener("input", function(){
     let value = this.value.toLowerCase();
 
-    if(albumGrid.style.display !== "none"){
+    if(albumGrid.style.display !== "none" && backBtnContainer.style.display === "none"){
         let filteredAlbums = getAlbums().filter(function(album){
-            return album.name.toLowerCase().includes(value)
-            || album.artist.toLowerCase().includes(value);
+            return album.name.toLowerCase().includes(value) || album.artist.toLowerCase().includes(value);
         });
-
         renderAlbums(filteredAlbums);
-    }else{
+    } else {
         let filteredSongs = currentAlbumSongs.filter(function(song){
-            return song.title.toLowerCase().includes(value)
-            || song.artist.toLowerCase().includes(value);
+            return (song.title && song.title.toLowerCase().includes(value)) || (song.artist && song.artist.toLowerCase().includes(value));
         });
-
-        renderAlbumSongs(filteredSongs);
+        
+        if(filteredSongs.length === 0){
+            albumGrid.innerHTML = "<p style='padding:20px; color:var(--muted);'>No matching songs found.</p>";
+            return;
+        }
+        let allSongs = getSongs();
+        albumGrid.innerHTML = filteredSongs.map(function(song){
+            let allSongsIndex = allSongs.indexOf(song);
+            let fallbackLetter = song.title ? song.title.charAt(0).toUpperCase() : "S";
+            let coverContent = song.cover ? `<img src="${song.cover}" alt="">` : fallbackLetter;
+            return `
+            <div class="card" onclick="playSong(${allSongsIndex})">
+                <div class="cover">${coverContent}</div>
+                <h3>${song.title || 'Untitled'}</h3>
+                <p>${song.artist || 'Unknown Artist'}</p>
+            </div>
+            `;
+        }).join('');
     }
 });
 
-window.addEventListener("beforeunload",function(){
+window.addEventListener("beforeunload", function(){
     savePlayerState();
 });
 
+// App Initialization
 applySavedTheme();
 loadHomeProfile();
 renderAlbums(getAlbums());
@@ -1364,9 +1100,8 @@ if(savedSrc && isPlaying && globalSongsList.length > 0){
             isPlaying = false;
             updatePlayerUI(globalSongsList[currentSongIndex]);
         });
-    },300);
+    }, 300);
 }
 </script>
-
 </body>
 </html>
