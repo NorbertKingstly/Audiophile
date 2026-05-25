@@ -3,27 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Favorites - Audiophile</title>
+<title>Audiophile - Favorites</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Outfit',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
 
-/* ================= THEME ================= */
 :root{
     --bg:#f5f5f7;
-    --card:#fff;
+    --card:#ffffff;
     --card2:#eef0f4;
     --text:#111827;
     --muted:#64748b;
+    --cyan:#111827;
+    --purple:#6366f1;
+    --pink:#22d3ee;
     --border:rgba(0,0,0,0.08);
-    --accent:#6366f1;
+}
+
+/* THEME FIX (from settings) */
+body.theme-white{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --card2:#eef0f4;
+    --text:#111827;
+    --muted:#64748b;
 }
 
 body.theme-musicred{
@@ -32,8 +37,6 @@ body.theme-musicred{
     --card2:#eeeeef;
     --text:#1d1d1f;
     --muted:#6e6e73;
-    --border:rgba(0,0,0,0.08);
-    --accent:#ff2d55;
 }
 
 body{
@@ -42,35 +45,34 @@ body{
     overflow:hidden;
 }
 
-/* ================= APP ================= */
 .app{
     display:grid;
     grid-template-columns:250px 1fr;
     height:100vh;
 }
 
-/* sidebar */
 .sidebar{
     background:var(--card);
     border-right:1px solid var(--border);
-    padding:25px;
+    padding:28px 20px;
 }
 
 .logo{
-    font-size:30px;
+    font-size:32px;
     font-weight:900;
-    margin-bottom:25px;
+    margin-bottom:34px;
 }
 
-.logo span{color:var(--accent);}
+.logo span{
+    color:var(--purple);
+}
 
 .menu a{
     display:block;
-    padding:12px;
-    margin:6px 0;
+    padding:14px;
     text-decoration:none;
     color:var(--muted);
-    border-radius:10px;
+    border-radius:12px;
 }
 
 .menu a.active,
@@ -79,22 +81,21 @@ body{
     color:var(--text);
 }
 
-/* main */
 .main{
-    padding:20px;
+    padding:25px;
     overflow-y:auto;
     padding-bottom:140px;
 }
 
-.top{
+.topbar{
     display:flex;
+    justify-content:space-between;
     gap:10px;
-    align-items:center;
 }
 
-.top input{
+.topbar input{
     flex:1;
-    padding:12px 16px;
+    padding:14px;
     border-radius:20px;
     border:1px solid var(--border);
     outline:none;
@@ -104,30 +105,20 @@ body{
     width:40px;
     height:40px;
     border-radius:50%;
-    background:var(--accent);
+    background:var(--purple);
     color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-weight:800;
 }
 
-/* title */
-.title{
-    margin:20px 0;
-    padding:20px;
-    background:var(--card);
-    border-radius:15px;
-    border:1px solid var(--border);
-}
-
-/* songs */
+/* SONG CARD FIX */
 .song{
     display:flex;
     align-items:center;
     gap:12px;
     padding:12px;
-    margin-bottom:10px;
+    margin:10px 0;
     background:var(--card);
     border:1px solid var(--border);
     border-radius:12px;
@@ -135,55 +126,54 @@ body{
 }
 
 .song img{
-    width:50px;
-    height:50px;
+    width:55px;
+    height:55px;
     border-radius:10px;
+    object-fit:cover;
 }
 
-.song h4{font-size:14px;}
-.song p{font-size:12px;color:var(--muted);}
+.song p{
+    font-size:12px;
+    color:var(--muted);
+}
 
-/* ================= PLAYER ================= */
+/* PLAYER FIX */
 .player{
     position:fixed;
-    bottom:0;
-    left:250px;
+    bottom:60px;
+    left:0;
     right:0;
-    height:80px;
     background:var(--card);
     border-top:1px solid var(--border);
     display:flex;
-    align-items:center;
     justify-content:space-between;
     padding:10px 20px;
 }
 
 .controls button{
-    background:var(--card2);
     border:none;
     padding:10px;
     border-radius:50%;
-    cursor:pointer;
+    background:var(--card2);
 }
 
 .play{
-    background:var(--accent);
+    background:var(--purple);
     color:#fff;
 }
 
-/* ================= BOTTOM NAV (FIXED) ================= */
+/* BOTTOM NAV (RESTORED EXACT STYLE) */
 .bottom-nav{
     position:fixed;
     bottom:0;
     left:0;
     right:0;
-    height:70px;
+    height:60px;
     background:var(--card);
     border-top:1px solid var(--border);
     display:flex;
     justify-content:space-around;
     align-items:center;
-    z-index:999;
 }
 
 .bottom-nav a{
@@ -194,14 +184,7 @@ body{
 }
 
 .bottom-nav a.active{
-    color:var(--accent);
-    font-weight:700;
-}
-
-@media(max-width:900px){
-    .app{grid-template-columns:1fr;}
-    .sidebar{display:none;}
-    .player{left:0;}
+    color:var(--purple);
 }
 </style>
 </head>
@@ -210,7 +193,6 @@ body{
 
 <div class="app">
 
-<!-- SIDEBAR -->
 <div class="sidebar">
     <div class="logo">Audio<span>phile</span></div>
     <div class="menu">
@@ -223,27 +205,24 @@ body{
     </div>
 </div>
 
-<!-- MAIN -->
 <div class="main">
 
-<div class="top">
+<div class="topbar">
     <input id="searchInput" placeholder="Search favorites...">
     <div class="profile">F</div>
 </div>
 
-<div class="title">
-    <h2>Favorites</h2>
-</div>
+<h2 style="margin:15px 0;">Favorites</h2>
 
 <div id="list"></div>
 
 </div>
 </div>
 
-<!-- PLAYER -->
+<!-- PLAYER (FIXED + SYNC) -->
 <div class="player">
     <div>
-        <h4 id="title">Select song</h4>
+        <h4 id="title">Select Song</h4>
         <p id="artist">---</p>
     </div>
 
@@ -254,7 +233,7 @@ body{
     </div>
 </div>
 
-<!-- BOTTOM NAV -->
+<!-- BOTTOM NAV (ICONS FIXED EXACT SAME AS YOUR ORIGIN) -->
 <div class="bottom-nav">
     <a href="home.html">🏠<br>Home</a>
     <a href="songs.html">🎵<br>Songs</a>
@@ -273,15 +252,19 @@ let audio=document.getElementById("audio");
 let list=document.getElementById("list");
 
 function getSongs(){return songs||[];}
-
-function getFav(){
-    return JSON.parse(localStorage.getItem("audiophile_favorites"))||[];
-}
+function getFav(){return JSON.parse(localStorage.getItem("audiophile_favorites"))||[];}
 
 /* THEME FIX */
 function applyTheme(){
     let t=localStorage.getItem("audiophile_theme")||"white";
     document.body.classList.add("theme-"+t);
+}
+
+/* IMAGE FIX */
+function safeImg(src,title){
+    return src
+    ? `<img src="${src}" onerror="this.style.display='none'">`
+    : title.charAt(0);
 }
 
 /* RENDER */
@@ -290,7 +273,7 @@ function render(){
     let all=getSongs();
 
     if(fav.length==0){
-        list.innerHTML="No favorites";
+        list.innerHTML="No Favorites";
         return;
     }
 
@@ -299,7 +282,7 @@ function render(){
         if(!s) return "";
         return `
         <div class="song" onclick="playSong(${i})">
-            <img src="${s.cover||''}">
+            ${safeImg(s.cover,s.title)}
             <div>
                 <h4>${s.title}</h4>
                 <p>${s.artist}</p>
@@ -308,22 +291,20 @@ function render(){
     }).join("");
 }
 
-/* PLAY FIX */
-let current=0;
-
+/* 🔥 FIX: BACKGROUND SYNC (IMPORTANT) */
 function playSong(i){
     let s=getSongs()[i];
     if(!s) return;
 
-    current=i;
     audio.src=s.audio;
     audio.play();
 
     document.getElementById("title").innerText=s.title;
     document.getElementById("artist").innerText=s.artist;
 
-    localStorage.setItem("globalAudioSrc",audio.src);
+    localStorage.setItem("globalAudioSrc",s.audio);
     localStorage.setItem("currentSongIndex",i);
+    localStorage.setItem("globalIsPlaying","true");
 }
 
 /* CONTROLS */
@@ -334,28 +315,30 @@ function toggle(){
 
 function next(){
     let all=getSongs();
-    current=(current+1)%all.length;
-    playSong(current);
+    let i=parseInt(localStorage.getItem("currentSongIndex")||0);
+    i=(i+1)%all.length;
+    playSong(i);
 }
 
 function prev(){
     let all=getSongs();
-    current=(current-1+all.length)%all.length;
-    playSong(current);
+    let i=parseInt(localStorage.getItem("currentSongIndex")||0);
+    i=(i-1+all.length)%all.length;
+    playSong(i);
 }
 
 /* SEARCH FIX */
-document.getElementById("searchInput").addEventListener("input",function(e){
-    let val=e.target.value.toLowerCase();
+searchInput.addEventListener("input",function(e){
+    let v=e.target.value.toLowerCase();
     let fav=getFav();
     let all=getSongs();
 
     list.innerHTML=fav
     .map(i=>({s:all[i],i}))
-    .filter(x=>x.s && x.s.title.toLowerCase().includes(val))
+    .filter(x=>x.s && x.s.title.toLowerCase().includes(v))
     .map(x=>`
         <div class="song" onclick="playSong(${x.i})">
-            <img src="${x.s.cover||''}">
+            ${safeImg(x.s.cover,x.s.title)}
             <div>
                 <h4>${x.s.title}</h4>
                 <p>${x.s.artist}</p>
