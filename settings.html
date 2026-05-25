@@ -1,10 +1,9 @@
-<!-- settings.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audiophile</title>
+<title>Audiophile - Settings</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -85,6 +84,12 @@ body{
     border-radius:28px;
     font-weight:700;
     font-size:14px;
+    transition: 0.2s;
+}
+
+.back-btn:hover{
+    box-shadow: 0 4px 12px var(--border);
+    transform: translateY(-1px);
 }
 
 .settings-box{
@@ -124,7 +129,8 @@ body{
 
 .profile-card:hover{
     transform:translateY(-3px);
-    border-color:var(--accent1);
+    border-color:var(--accent2);
+    box-shadow: 0 8px 24px var(--border);
 }
 
 .profile-circle{
@@ -223,11 +229,13 @@ body{
     cursor:pointer;
     font-size:14px;
     text-decoration:none;
+    transition: 0.2s;
 }
 
 .option-btn.active{
     background:linear-gradient(90deg,var(--accent1),var(--accent2));
     color:white;
+    border-color: transparent;
 }
 
 .logout-box{
@@ -244,19 +252,24 @@ body{
     font-size:15px;
     font-weight:800;
     cursor:pointer;
+    transition: 0.2s;
+}
+
+.logout-btn:hover{
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
 }
 
 @media(max-width:800px){
     body{padding:18px;}
-
     .title,
     .setting-row{
         flex-direction:column;
         align-items:flex-start;
     }
-
     .option-group{
         justify-content:flex-start;
+        margin-top: 10px;
     }
 }
 </style>
@@ -268,14 +281,12 @@ body{
     <a href="home.html" class="logo">
         Audio<span>phile</span>
     </a>
-
     <a href="home.html" class="back-btn">
         ← Back Home
     </a>
 </div>
 
 <div class="settings-box">
-
     <div class="title">
         <h1>Settings</h1>
         <span>Account & Music Preferences</span>
@@ -283,12 +294,12 @@ body{
 
     <div class="profile-card" onclick="window.location.href='profile.html'">
         <div class="profile-circle">
-            <span id="profileInitial">L</span>
-            <img id="settingsProfileImage" src="">
+            <span id="profileInitial">G</span>
+            <img id="settingsProfileImage" src="" alt="Avatar View">
         </div>
 
         <div class="profile-info">
-            <h2 id="profileName">Liyo clevert</h2>
+            <h2 id="profileName">Guest User</h2>
             <p>View and edit profile details</p>
         </div>
 
@@ -330,8 +341,7 @@ body{
             <h3>Music Player</h3>
             <p>Background playback enabled. No player bar on this page.</p>
         </div>
-
-        <button class="option-btn active">Enabled</button>
+        <button class="option-btn active" style="cursor:default;">Enabled</button>
     </div>
 
     <div class="section-title">
@@ -366,7 +376,6 @@ body{
     <div class="logout-box">
         <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
-
 </div>
 
 <audio id="backgroundAudio"></audio>
@@ -375,25 +384,24 @@ body{
 let bgAudio = document.getElementById("backgroundAudio");
 
 function loadProfile(){
-    let currentUser =
-    localStorage.getItem("audiophile_currentUser") || "Liyo clevert";
-
-    let profileImage =
-    localStorage.getItem("audiophile_profileImage") || "";
+    // Dynamic user tracking with absolute fallbacks to secure multi-tenant identity integrity
+    let currentUser = localStorage.getItem("audiophile_currentUser") || "Guest User";
+    let profileImage = localStorage.getItem("audiophile_profileImage") || "";
 
     document.getElementById("profileName").innerText = currentUser;
-    document.getElementById("profileInitial").innerText =
-    currentUser.charAt(0).toUpperCase();
+    document.getElementById("profileInitial").innerText = currentUser.charAt(0).toUpperCase();
+
+    let imgEl = document.getElementById("settingsProfileImage");
+    let initEl = document.getElementById("profileInitial");
 
     if(profileImage !== ""){
-        document.getElementById("settingsProfileImage").src = profileImage;
-        document.getElementById("settingsProfileImage").style.display = "block";
-        document.getElementById("profileInitial").style.display = "none";
-    }
-    else{
-        document.getElementById("settingsProfileImage").src = "";
-        document.getElementById("settingsProfileImage").style.display = "none";
-        document.getElementById("profileInitial").style.display = "block";
+        imgEl.src = profileImage;
+        imgEl.style.display = "block";
+        initEl.style.display = "none";
+    } else {
+        imgEl.src = "";
+        imgEl.style.display = "none";
+        initEl.style.display = "block";
     }
 }
 
@@ -409,19 +417,15 @@ function applyTheme(){
     document.body.classList.add("theme-" + theme);
 
     ["white","musicred"].forEach(function(item){
-        document.getElementById(item + "Btn").classList.remove("active");
+        let btn = document.getElementById(item + "Btn");
+        if(btn) btn.classList.remove("active");
     });
 
-    document.getElementById(theme + "Btn").classList.add("active");
+    let activeBtn = document.getElementById(theme + "Btn");
+    if(activeBtn) activeBtn.classList.add("active");
 
-    let themeName = "White Combo";
-
-    if(theme === "musicred"){
-        themeName = "Music Red";
-    }
-
-    document.getElementById("themeText").innerText =
-    "Current theme: " + themeName;
+    let themeName = (theme === "musicred") ? "Music Red" : "White Combo";
+    document.getElementById("themeText").innerText = "Current theme: " + themeName;
 }
 
 function setQuality(quality){
@@ -431,23 +435,16 @@ function setQuality(quality){
 
 function applyQuality(){
     let quality = localStorage.getItem("audiophile_quality") || "High";
+    document.getElementById("qualityText").innerText = "Current quality: " + quality;
 
-    document.getElementById("qualityText").innerText =
-    "Current quality: " + quality;
+    ["lowBtn", "mediumBtn", "highBtn"].forEach(id => {
+        let el = document.getElementById(id);
+        if(el) el.classList.remove("active");
+    });
 
-    document.getElementById("lowBtn").classList.remove("active");
-    document.getElementById("mediumBtn").classList.remove("active");
-    document.getElementById("highBtn").classList.remove("active");
-
-    if(quality === "Low"){
-        document.getElementById("lowBtn").classList.add("active");
-    }
-    else if(quality === "Medium"){
-        document.getElementById("mediumBtn").classList.add("active");
-    }
-    else{
-        document.getElementById("highBtn").classList.add("active");
-    }
+    let activeId = quality.toLowerCase() + "Btn";
+    let activeEl = document.getElementById(activeId);
+    if(activeEl) activeEl.classList.add("active");
 }
 
 function startBackgroundMusic(){
@@ -456,45 +453,50 @@ function startBackgroundMusic(){
     let savedPlaying = localStorage.getItem("globalIsPlaying");
     let savedVolume = localStorage.getItem("globalVolume") || 0.8;
 
-    if(!savedSrc){
-        return;
-    }
+    if(!savedSrc) return;
 
     bgAudio.src = savedSrc;
     bgAudio.volume = savedVolume;
 
-    bgAudio.addEventListener("loadedmetadata",function(){
+    bgAudio.addEventListener("loadedmetadata", function(){
         if(savedTime && savedTime < bgAudio.duration){
             bgAudio.currentTime = savedTime;
         }
-
         if(savedPlaying === "true"){
             bgAudio.play().catch(function(){
-                console.log("Autoplay blocked. User interaction needed.");
+                console.log("Context policy block handled.");
             });
         }
     });
 }
 
-bgAudio.addEventListener("timeupdate",function(){
-    localStorage.setItem("globalAudioTime",bgAudio.currentTime || 0);
+bgAudio.addEventListener("timeupdate", function(){
+    if(!bgAudio.paused) {
+        localStorage.setItem("globalAudioTime", bgAudio.currentTime || 0);
+    }
 });
 
-bgAudio.addEventListener("play",function(){
-    localStorage.setItem("globalIsPlaying","true");
+bgAudio.addEventListener("play", function(){
+    localStorage.setItem("globalIsPlaying", "true");
 });
 
-bgAudio.addEventListener("pause",function(){
-    localStorage.setItem("globalIsPlaying","false");
+bgAudio.addEventListener("pause", function(){
+    localStorage.setItem("globalIsPlaying", "false");
 });
 
-window.addEventListener("beforeunload",function(){
-    localStorage.setItem("globalAudioSrc",bgAudio.src || localStorage.getItem("globalAudioSrc") || "");
-    localStorage.setItem("globalAudioTime",bgAudio.currentTime || localStorage.getItem("globalAudioTime") || 0);
+window.addEventListener("beforeunload", function(){
+    if (bgAudio.src) {
+        localStorage.setItem("globalAudioSrc", bgAudio.src);
+        localStorage.setItem("globalAudioTime", bgAudio.currentTime || 0);
+    }
 });
 
 function logout(){
+    // Explicit clean-wipe termination sequence
     localStorage.removeItem("audiophile_loggedIn");
+    localStorage.removeItem("audiophile_currentUser");
+    localStorage.removeItem("audiophile_userEmail");
+    localStorage.removeItem("audiophile_profileImage");
     window.location.href = "index.html";
 }
 
