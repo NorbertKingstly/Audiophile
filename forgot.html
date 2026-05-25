@@ -1,4 +1,3 @@
-<!-- Forgot Password -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -31,12 +29,10 @@
 
 body{
     min-height:100vh;
-
     background:
     radial-gradient(circle at top left, rgba(34,211,238,0.18), transparent 35%),
     radial-gradient(circle at bottom right, rgba(139,92,246,0.18), transparent 35%),
     var(--bg);
-
     display:flex;
     justify-content:center;
     align-items:center;
@@ -70,20 +66,13 @@ body{
 .forgot-box{
     position:relative;
     z-index:2;
-
     width:100%;
     max-width:430px;
-
     background:rgba(17,17,17,0.88);
-
     border:1px solid var(--border);
-
     border-radius:30px;
-
     padding:40px;
-
     backdrop-filter:blur(18px);
-
     box-shadow:0 0 40px rgba(34,211,238,0.12);
 }
 
@@ -100,10 +89,8 @@ body{
 
 .logo span{
     background:linear-gradient(90deg,var(--cyan),var(--purple));
-
     background-clip:text;
     -webkit-background-clip:text;
-
     color:transparent;
     -webkit-text-fill-color:transparent;
 }
@@ -187,17 +174,13 @@ body{
 }
 
 @media(max-width:480px){
-
     .forgot-box{
         padding:30px 22px;
     }
-
     .logo h1{
         font-size:34px;
     }
-
 }
-
 </style>
 </head>
 
@@ -209,32 +192,26 @@ body{
 <div class="forgot-box">
 
     <div class="logo">
-
         <h1>Audio<span>phile</span></h1>
-
-        <p>
-            Enter your registered email address to reset your password
+        <p id="instructionText">
+            Enter your registered email address to verify your account
         </p>
-
     </div>
 
-    <form onsubmit="resetPassword(event)">
+    <form id="forgotForm" onsubmit="handleEmailVerification(event)">
 
-        <div class="form-group">
-
-            <label>Email Address</label>
-
+        <div class="form-group" id="inputContainer">
+            <label id="inputLabel">Email Address</label>
             <input 
                 type="email"
                 id="email"
                 placeholder="Enter your registered email"
                 required
             >
-
         </div>
 
-        <button type="submit" class="reset-btn">
-            Send Reset Link
+        <button type="submit" class="reset-btn" id="actionBtn">
+            Verify Email
         </button>
 
         <p class="message" id="message"></p>
@@ -242,61 +219,97 @@ body{
     </form>
 
     <div class="bottom">
-
-        Back to
-
-        <a href="index.html">
-            Login
-        </a>
-
+        Back to <a href="index.html">Login</a>
     </div>
 
 </div>
 
 <script>
+// Keep global reference trackers
+let verifiedEmail = "";
+let usersList = [];
 
-function resetPassword(event){
-
+function handleEmailVerification(event){
     event.preventDefault();
 
-    let email = document.getElementById("email").value.trim();
-
+    let emailInput = document.getElementById("email");
     let message = document.getElementById("message");
+    let instructionText = document.getElementById("instructionText");
+    let inputLabel = document.getElementById("inputLabel");
+    let actionBtn = document.getElementById("actionBtn");
 
-    let users = JSON.parse(
-        localStorage.getItem("audiophile_users")
-    ) || [];
+    let enteredEmail = emailInput.value.trim();
 
-    let existingUser = users.find(user =>
+    usersList = JSON.parse(localStorage.getItem("audiophile_users")) || [];
 
-        user.email.toLowerCase() === email.toLowerCase()
+    // Find if user exists
+    let userIndex = usersList.findIndex(user => user.email.toLowerCase() === enteredEmail.toLowerCase());
 
-    );
+    if(userIndex !== -1){
+        // Save the verified context email globally
+        verifiedEmail = enteredEmail;
 
-    if(existingUser){
+        // Clean message field
+        message.style.display = "none";
 
-        message.style.display = "block";
+        // Mutate form fields dynamically to allow entering a new password on screen
+        instructionText.innerText = "Email verified! Choose a strong new password for your account below.";
+        inputLabel.innerText = "New Password";
+        
+        emailInput.type = "password";
+        emailInput.id = "newPassword";
+        emailInput.value = "";
+        emailInput.placeholder = "Enter your new password";
+        
+        actionBtn.innerText = "Update Password";
 
-        message.style.color = "#22d3ee";
-
-        message.innerText =
-        "Password reset link sent successfully!";
-
+        // Swap the form submission action over to update phase
+        document.getElementById("forgotForm").setAttribute("onsubmit", "handlePasswordUpdate(event)");
     }
-
     else{
-
         message.style.display = "block";
-
         message.style.color = "#ff4d4d";
-
-        message.innerText =
-        "No account found with this email address!";
-
+        message.innerText = "No account found with this email address!";
     }
-
 }
 
+function handlePasswordUpdate(event){
+    event.preventDefault();
+
+    let newPassword = document.getElementById("newPassword").value;
+    let message = document.getElementById("message");
+
+    if(newPassword.length < 4){
+        message.style.display = "block";
+        message.style.color = "#ff4d4d";
+        message.innerText = "Password must be at least 4 characters long!";
+        return;
+    }
+
+    // Double check mutations safe guard matching array references
+    let userIndex = usersList.findIndex(user => user.email.toLowerCase() === verifiedEmail.toLowerCase());
+
+    if(userIndex !== -1){
+        // Update user properties
+        usersList[userIndex].password = newPassword;
+        
+        // Save updated list cleanly back to local store
+        localStorage.setItem("audiophile_users", JSON.stringify(usersList));
+
+        message.style.display = "block";
+        message.style.color = "#22d3ee";
+        message.innerText = "Password updated successfully! Redirecting to login...";
+
+        // Redirect back safely after 2 seconds
+        setTimeout(functionName => {
+            window.location.href = "index.html";
+        }, 2000);
+    } else {
+        message.style.display = "block";
+        message.style.color = "#ff4d4d";
+        message.innerText = "Something went wrong. Please refresh and try again.";
+    }
+}
 </script>
 
 </body>
