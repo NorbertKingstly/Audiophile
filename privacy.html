@@ -1,16 +1,14 @@
-<!-- privacy.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Audiophile</title>
+<title>Audiophile - Privacy Policy</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -18,16 +16,40 @@
     font-family:'Outfit',sans-serif;
 }
 
+/* Default Theme Tokens (White Theme) */
 :root{
     --bg:#f5f5f7;
     --card:#ffffff;
+    --card2:#eef0f4;
     --text:#111827;
     --muted:#64748b;
+    --accent1:#111827;
+    --accent2:#6366f1;
+    --accent3:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
 
+body.theme-white{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --card2:#eef0f4;
+    --text:#111827;
+    --muted:#64748b;
+    --accent1:#111827;
+    --accent2:#6366f1;
+    --accent3:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
+
+body.theme-musicred{
+    --bg:#ffffff;
+    --card:#f7f7f8;
+    --card2:#eeeeef;
+    --text:#1d1d1f;
+    --muted:#6e6e73;
     --accent1:#e60023;
     --accent2:#ff2d55;
     --accent3:#ff7b92;
-
     --border:rgba(0,0,0,0.08);
 }
 
@@ -35,6 +57,7 @@ body{
     background:var(--bg);
     color:var(--text);
     padding:30px;
+    transition: background 0.3s, color 0.3s;
 }
 
 .topbar{
@@ -52,16 +75,9 @@ body{
 }
 
 .logo span{
-    background:linear-gradient(
-    90deg,
-    var(--accent1),
-    var(--accent2),
-    var(--accent3)
-    );
-
+    background:linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
     background-clip:text;
     -webkit-background-clip:text;
-
     color:transparent;
     -webkit-text-fill-color:transparent;
 }
@@ -69,18 +85,16 @@ body{
 .back-btn{
     text-decoration:none;
     color:white;
-
-    background:linear-gradient(
-    90deg,
-    var(--accent1),
-    var(--accent2)
-    );
-
+    background:linear-gradient(90deg, var(--accent1), var(--accent2));
     padding:12px 22px;
-
     border-radius:30px;
-
     font-weight:800;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .container{
@@ -90,11 +104,8 @@ body{
 
 .card{
     background:var(--card);
-
     border:1px solid var(--border);
-
     border-radius:30px;
-
     padding:34px;
 }
 
@@ -120,16 +131,14 @@ body{
 
 .music-box{
     margin-top:24px;
-
     padding:22px;
-
     border-radius:24px;
-
     background:linear-gradient(
     135deg,
-    color-mix(in srgb,var(--accent1) 12%,white),
-    color-mix(in srgb,var(--accent2) 10%,white)
+    color-mix(in srgb, var(--accent1) 12%, var(--card)),
+    color-mix(in srgb, var(--accent2) 10%, var(--card))
     );
+    border: 1px solid var(--border);
 }
 
 .music-box h3{
@@ -139,125 +148,75 @@ body{
 .music-box p{
     margin:0;
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="topbar">
-
     <a href="home.html" class="logo">
         Audio<span>phile</span>
     </a>
-
     <a href="settings.html" class="back-btn">
         ← Back
     </a>
-
 </div>
 
 <div class="container">
-
     <div class="card">
-
-        <h1>
-            Privacy Policy
-        </h1>
-
+        <h1>Privacy Policy</h1>
         <p>
             Audiophile respects your privacy and protects your personal music experience.
             We only store the details required for login, playback preferences and personalization.
         </p>
 
         <div class="section">
-
-            <h2>
-                Music Preferences
-            </h2>
-
+            <h2>Music Preferences</h2>
             <p>
                 Your favorite songs, audio quality settings, playlists and recently played tracks
                 are securely stored locally for a smoother listening experience.
             </p>
-
         </div>
 
         <div class="section">
-
-            <h2>
-                Account Information
-            </h2>
-
+            <h2>Account Information</h2>
             <p>
                 Your profile name and email are used only for account access and personalization.
                 Audiophile never sells your data to third-party advertisers.
             </p>
-
         </div>
 
         <div class="section">
-
-            <h2>
-                Playback Security
-            </h2>
-
+            <h2>Playback Security</h2>
             <p>
                 Streaming activity, player settings and music recommendations are protected
                 to ensure a secure premium listening environment.
             </p>
-
         </div>
 
         <div class="music-box">
-
-            <h3>
-                🎵 Premium Listening Experience
-            </h3>
-
+            <h3>🎵 Premium Listening Experience</h3>
             <p>
                 Audiophile is designed to deliver smooth, modern and secure music streaming
                 inspired by premium music platforms.
             </p>
-
         </div>
-
     </div>
-
 </div>
 
 <script>
-
 function applyTheme(){
+    let theme = localStorage.getItem("audiophile_theme") || "white";
 
-    let theme =
-    localStorage.getItem(
-    "audiophile_theme"
-    ) || "white";
+    // Completely strip any old active layout classes 
+    document.body.classList.remove("theme-white", "theme-musicred");
 
-    if(theme === "musicred"){
-
-        document.documentElement.style.setProperty(
-        "--accent1",
-        "#e60023"
-        );
-
-        document.documentElement.style.setProperty(
-        "--accent2",
-        "#ff2d55"
-        );
-
-        document.documentElement.style.setProperty(
-        "--accent3",
-        "#ff7b92"
-        );
-
-    }
-
+    // Seamlessly apply the stored layout state token
+    document.body.classList.add("theme-" + theme);
 }
 
+// Instantly fire styling maps prior to paint layout sweeps
 applyTheme();
-
 </script>
 
 </body>
