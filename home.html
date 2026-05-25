@@ -8,6 +8,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 <style>
 *{
     margin:0;
@@ -741,7 +743,7 @@ body{
         color: var(--muted);
         font-size: 10px;
         font-weight: 600;
-        gap: 1px;
+        gap: 4px; /* Balanced spacing for icons */
         width: 16%;
         text-align: center;
     }
@@ -749,7 +751,7 @@ body{
         color: var(--purple);
     }
     .mobile-nav-icon {
-        font-size: 21px; /* Uniform classic alignment size */
+        font-size: 18px; /* Clean standard icon layout size */
         line-height: 1;
     }
 }
@@ -849,27 +851,27 @@ body{
 
 <nav class="mobile-nav">
     <a href="home.html" class="mobile-nav-item active">
-        <span class="mobile-nav-icon">⌂</span>
+        <span class="mobile-nav-icon"><i class="fa-solid fa-house"></i></span>
         <span>Home</span>
     </a>
     <a href="songs.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon">♫</span>
+        <span class="mobile-nav-icon"><i class="fa-solid fa-music"></i></span>
         <span>Songs</span>
     </a>
     <a href="albums.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon">◎</span>
+        <span class="mobile-nav-icon"><i class="fa-solid fa-compact-disc"></i></span>
         <span>Albums</span>
     </a>
     <a href="artists.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon" style="font-family: sans-serif; font-weight: normal;">👤</span>
+        <span class="mobile-nav-icon"><i class="fa-solid fa-alien"></i></span>
         <span>Artists</span>
     </a>
     <a href="favorites.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon">♥</span>
+        <span class="mobile-nav-icon"><i class="fa-solid fa-heart"></i></span>
         <span>Favorites</span>
     </a>
     <a href="settings.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon">⚙</span>
+        <span class="mobile-nav-icon"><i class="fa-solid fa-gear"></i></span>
         <span>Settings</span>
     </a>
 </nav>
