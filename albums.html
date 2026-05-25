@@ -837,9 +837,9 @@ body{
 
     <div class="controls">
         <div class="buttons">
-            <button onclick="prevSong()">\u23ee</button>
-            <button class="play" id="playBtn" onclick="togglePlay()">\u25b6</button>
-            <button onclick="nextSong()">\u23ed</button>
+            <button onclick="prevSong()">⏮</button>
+            <button class="play" id="playBtn" onclick="togglePlay()">▶</button>
+            <button onclick="nextSong()">⏭</button>
         </div>
 
         <div class="progress" onclick="setProgress(event)">
@@ -854,7 +854,7 @@ body{
 
     <div class="volume">
         <h3>Volume</h3>
-        <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+        <input id="volumeRange" type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
     </div>
 
 </div>
@@ -868,9 +868,9 @@ body{
         <p id="cardSongArtist">Audiophile</p>
 
         <div class="card-buttons">
-            <button onclick="prevSong()">\u23ee</button>
-            <button class="big-play" id="cardPlayBtn" onclick="togglePlay()">\u25b6</button>
-            <button onclick="nextSong()">\u23ed</button>
+            <button onclick="prevSong()">⏮</button>
+            <button class="big-play" id="cardPlayBtn" onclick="togglePlay()">▶</button>
+            <button onclick="nextSong()">⏭</button>
         </div>
 
         <div class="card-progress" onclick="setCardProgress(event)">
@@ -884,7 +884,7 @@ body{
 
         <div class="card-volume">
             <span>Volume</span>
-            <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+            <input id="cardVolumeRange" type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
         </div>
     </div>
 
@@ -942,7 +942,7 @@ function applySavedTheme(){
 }
 
 function loadHomeProfile(){
-    let currentUser = localStorage.getItem("audiophile_currentUser") || "Liyo Clevert";
+    let currentUser = localStorage.getItem("audiophile_currentUser") || "Guest User";
     let profileImage = localStorage.getItem("audiophile_profileImage") || "";
 
     homeProfileInitial.innerText = currentUser.charAt(0).toUpperCase();
@@ -986,7 +986,6 @@ function getFavorites(){
     return JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
 }
 
-// Fixed target signature issue
 function toggleFavorite(index,event){
     if(event) event.stopPropagation();
 
@@ -1103,9 +1102,9 @@ function renderAlbumSongs(songArray){
             <div class="song-artist">${song.artist}</div>
 
             <div class="song-actions">
-                <button class="play-small" onclick="playSong(${realIndex}); event.stopPropagation();">\u25b6 Play</button>
+                <button class="play-small" onclick="playSong(${realIndex}); event.stopPropagation();">▶ Play</button>
                 <button class="fav-small" onclick="toggleFavorite(${realIndex},event)">
-                    ${isFav ? "\u2605" : "\u2606"}
+                    ${isFav ? "★" : "☆"}
                 </button>
             </div>
         </div>`;
@@ -1113,8 +1112,8 @@ function renderAlbumSongs(songArray){
 }
 
 function updatePlayerUI(song){
-    playBtn.innerText = isPlaying ? "\u23f8" : "\u25b6";
-    cardPlayBtn.innerText = isPlaying ? "\u23f8" : "\u25b6";
+    playBtn.innerText = isPlaying ? "⏸" : "▶";
+    cardPlayBtn.innerText = isPlaying ? "⏸" : "▶";
 
     if(!song) {
         playerTitle.innerText = "Select a song";
@@ -1130,7 +1129,7 @@ function updatePlayerUI(song){
     playerArtist.innerText = song.artist;
 
     cardSongTitle.innerText = song.title;
-    cardSongArtist.innerText = song.artist + " \u2022 " + (song.album || song.movie || "");
+    cardSongArtist.innerText = song.artist + " • " + (song.album || song.movie || "");
 
     if(song.cover){
         playerCover.innerHTML = `<img src="${song.cover}" onerror="this.style.display='none';this.parentElement.innerHTML='${song.title.charAt(0)}';">`;
@@ -1226,6 +1225,11 @@ function prevSong(){
 function changeVolume(value){
     audio.volume = value;
     localStorage.setItem("globalVolume",value);
+    
+    let volRange = document.getElementById("volumeRange");
+    let cardVolRange = document.getElementById("cardVolumeRange");
+    if(volRange) volRange.value = value;
+    if(cardVolRange) cardVolRange.value = value;
 }
 
 function formatTime(seconds){
@@ -1253,6 +1257,20 @@ audio.addEventListener("timeupdate",function(){
 
     cardCurrentTime.innerText = formatTime(audio.currentTime);
     cardDurationTime.innerText = formatTime(audio.duration);
+});
+
+audio.addEventListener("play", function(){
+    isPlaying = true;
+    savePlayerState();
+    let allSongs = getSongs();
+    if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
+});
+
+audio.addEventListener("pause", function(){
+    isPlaying = false;
+    savePlayerState();
+    let allSongs = getSongs();
+    if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
 });
 
 audio.addEventListener("ended",function(){
@@ -1318,7 +1336,6 @@ window.addEventListener("beforeunload",function(){
     savePlayerState();
 });
 
-// Safeguarded Boot sequence
 applySavedTheme();
 loadHomeProfile();
 renderAlbums(getAlbums());
@@ -1326,7 +1343,6 @@ renderAlbums(getAlbums());
 let savedVolume = localStorage.getItem("globalVolume") || 0.8;
 changeVolume(savedVolume);
 
-// Check if songs exist array-level safely before passing UI setup
 let globalSongsList = getSongs();
 if(globalSongsList.length > 0 && globalSongsList[currentSongIndex]) {
     updatePlayerUI(globalSongsList[currentSongIndex]);
