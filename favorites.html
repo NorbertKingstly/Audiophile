@@ -4,7 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
 
 <title>Audiophile - Favorites</title>
 
@@ -31,6 +34,30 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     --cyan:#111827;
     --purple:#6366f1;
     --pink:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
+
+body.theme-white{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --card2:#eef0f4;
+    --text:#111827;
+    --muted:#64748b;
+    --cyan:#111827;
+    --purple:#6366f1;
+    --pink:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
+
+body.theme-musicred{
+    --bg:#ffffff;
+    --card:#f7f7f8;
+    --card2:#eeeeef;
+    --text:#1d1d1f;
+    --muted:#6e6e73;
+    --cyan:#e60023;
+    --purple:#ff2d55;
+    --pink:#ff7b92;
     --border:rgba(0,0,0,0.08);
 }
 
@@ -62,6 +89,7 @@ body{
     font-size:32px;
     font-weight:900;
     margin-bottom:34px;
+    cursor:pointer;
 }
 
 .logo span{
@@ -92,8 +120,8 @@ body{
 .menu a.active,
 .menu a:hover{
     background:linear-gradient(90deg,
-    rgba(99,102,241,.12),
-    rgba(34,211,238,.12));
+    color-mix(in srgb,var(--cyan) 16%,transparent),
+    color-mix(in srgb,var(--purple) 16%,transparent));
     color:var(--text);
 }
 
@@ -139,14 +167,24 @@ body{
     color:white;
     font-size:20px;
     font-weight:900;
+    overflow:hidden;
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+.profile img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
 }
 
 /* TITLE */
 
 .page-title{
     background:linear-gradient(135deg,
-    rgba(99,102,241,.10),
-    rgba(34,211,238,.10));
+    color-mix(in srgb,var(--cyan) 10%,white),
+    color-mix(in srgb,var(--purple) 10%,white));
     border:1px solid var(--border);
     border-radius:34px;
     padding:34px;
@@ -185,10 +223,13 @@ body{
     gap:14px;
     align-items:center;
     overflow:hidden;
+    cursor:pointer;
+    transition:.3s;
 }
 
 .song-row:hover{
     border-color:var(--purple);
+    transform:translateY(-3px);
 }
 
 .song-no{
@@ -202,7 +243,11 @@ body{
     border-radius:16px;
     overflow:hidden;
     background:var(--card2);
-    flex-shrink:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:900;
+    font-size:22px;
 }
 
 .song-cover img{
@@ -265,13 +310,14 @@ body{
     left:250px;
     right:0;
     bottom:0;
-    height:110px;
+    height:128px;
     background:var(--card);
     border-top:1px solid var(--border);
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
+    grid-template-columns:1fr 1.5fr 1fr;
     align-items:center;
-    padding:16px 30px;
+    gap:18px;
+    padding:16px 34px;
     z-index:999;
 }
 
@@ -292,6 +338,8 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    font-size:24px;
+    font-weight:900;
     flex-shrink:0;
 }
 
@@ -324,55 +372,63 @@ body{
 .buttons{
     display:flex;
     justify-content:center;
+    align-items:center;
     gap:14px;
+    margin-bottom:8px;
 }
 
 .buttons button{
-    width:48px;
-    height:48px;
+    width:46px;
+    height:46px;
     border:none;
     border-radius:50%;
     cursor:pointer;
     background:var(--card2);
-    font-size:18px;
+    color:var(--text);
+    font-size:16px;
 }
 
 .buttons .play{
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    width:58px;
+    height:58px;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
     color:white;
 }
 
-.progress{
-    width:100%;
+.progress,
+.card-progress{
     height:6px;
     background:var(--card2);
-    border-radius:999px;
-    margin-top:14px;
-    cursor:pointer;
+    border-radius:20px;
     overflow:hidden;
+    cursor:pointer;
 }
 
-.progress-fill{
+.progress-fill,
+.card-progress-fill{
     height:100%;
     width:0%;
-    background:linear-gradient(90deg,var(--purple),var(--pink));
+    background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
 }
 
-.time{
+.time,
+.card-time{
     display:flex;
     justify-content:space-between;
-    font-size:12px;
-    margin-top:8px;
     color:var(--muted);
+    font-size:13px;
+    margin-top:6px;
 }
 
 .volume{
     display:flex;
     justify-content:flex-end;
+    align-items:center;
+    gap:14px;
 }
 
 .volume input{
-    width:130px;
+    accent-color:var(--purple);
 }
 
 /* POPUP */
@@ -408,6 +464,11 @@ body{
     overflow:hidden;
     background:var(--card2);
     margin-bottom:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:90px;
+    font-weight:900;
 }
 
 .popup-cover img{
@@ -421,19 +482,25 @@ body{
     font-size:26px;
     font-weight:800;
     margin-bottom:6px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .popup-artist{
     text-align:center;
     color:var(--muted);
     margin-bottom:24px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .popup-controls{
     display:flex;
     justify-content:center;
     gap:16px;
-    margin-bottom:24px;
+    margin:22px 0;
 }
 
 .popup-controls button{
@@ -443,7 +510,7 @@ body{
     border-radius:50%;
     cursor:pointer;
     background:var(--card2);
-    font-size:20px;
+    font-size:18px;
 }
 
 .popup-play{
@@ -453,38 +520,19 @@ body{
     color:white;
 }
 
-.popup-progress{
-    width:100%;
-    height:7px;
-    background:var(--card2);
-    border-radius:999px;
-    overflow:hidden;
-    cursor:pointer;
-    margin-bottom:10px;
+.card-volume{
+    margin-top:20px;
 }
 
-.popup-progress-fill{
-    width:0%;
-    height:100%;
-    background:linear-gradient(90deg,var(--purple),var(--pink));
-}
-
-.popup-time{
-    display:flex;
-    justify-content:space-between;
+.card-volume span{
     color:var(--muted);
-    font-size:13px;
-    margin-bottom:20px;
+    font-weight:800;
+    font-size:14px;
 }
 
-.popup-volume{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-.popup-volume input{
+.card-volume input{
     width:100%;
+    margin-top:10px;
 }
 
 /* MOBILE */
@@ -504,7 +552,7 @@ body{
     }
 
     .main{
-        padding:20px 16px 180px;
+        padding:20px 16px 200px;
     }
 
     .page-title{
@@ -558,13 +606,14 @@ body{
     .player{
         left:0;
         bottom:64px;
-        height:auto;
+        height:70px;
         grid-template-columns:1fr auto;
-        gap:10px;
-        padding:10px 16px;
+        padding:8px 16px;
     }
 
-    .volume{
+    .volume,
+    .progress,
+    .time{
         display:none;
     }
 
@@ -592,11 +641,6 @@ body{
 
     .player-details p{
         font-size:11px;
-    }
-
-    .progress,
-    .time{
-        grid-column:1/3;
     }
 
     .mobile-nav{
@@ -641,7 +685,8 @@ body{
 
 <aside class="sidebar">
 
-    <div class="logo">
+    <div class="logo"
+    onclick="window.location.href='home.html'">
         Audio<span>phile</span>
     </div>
 
@@ -661,12 +706,20 @@ body{
     <div class="topbar">
 
         <div class="search-box">
-            <input id="searchInput" type="text"
+            <input id="searchInput"
+            type="text"
             placeholder="Search favorite songs...">
         </div>
 
-        <div class="profile">
-            A
+        <div class="profile"
+        onclick="window.location.href='settings.html'">
+
+            <span id="profileInitial">A</span>
+
+            <img id="profileImage"
+            src=""
+            alt="Profile">
+
         </div>
 
     </div>
@@ -677,7 +730,8 @@ body{
         <p>Your saved favorite songs will appear here.</p>
     </section>
 
-    <div class="song-list" id="favoriteList"></div>
+    <div class="song-list"
+    id="favoriteList"></div>
 
 </main>
 
@@ -687,15 +741,22 @@ body{
 
 <div class="player">
 
-    <div class="player-info" onclick="openPopup()">
+    <div class="player-info"
+    onclick="openPopup()">
 
-        <div class="player-cover" id="playerCover">
-            ♪
-        </div>
+        <div class="player-cover"
+        id="playerCover">♪</div>
 
         <div class="player-details">
-            <h4 id="playerTitle">Select a song</h4>
-            <p id="playerArtist">Audiophile</p>
+
+            <h4 id="playerTitle">
+                Select a song
+            </h4>
+
+            <p id="playerArtist">
+                Audiophile
+            </p>
+
         </div>
 
     </div>
@@ -704,35 +765,56 @@ body{
 
         <div class="buttons">
 
-            <button onclick="prevSong()">⏮</button>
+            <button onclick="prevSong()">
+                ⏮
+            </button>
 
             <button class="play"
             id="playBtn"
-            onclick="togglePlay()">▶</button>
+            onclick="togglePlay()">
+                ▶
+            </button>
 
-            <button onclick="nextSong()">⏭</button>
+            <button onclick="nextSong()">
+                ⏭
+            </button>
 
         </div>
 
-        <div class="progress" onclick="setProgress(event)">
+        <div class="progress"
+        onclick="setProgress(event)">
+
             <div class="progress-fill"
             id="progressFill"></div>
+
         </div>
 
         <div class="time">
-            <span id="currentTime">0:00</span>
-            <span id="durationTime">0:00</span>
+
+            <span id="currentTime">
+                0:00
+            </span>
+
+            <span id="durationTime">
+                0:00
+            </span>
+
         </div>
 
     </div>
 
     <div class="volume">
-        <input id="volumeSlider"
+
+        <h3>Volume</h3>
+
+        <input id="globalVolumeSlider"
         type="range"
         min="0"
         max="1"
         step="0.01"
-        value="1">
+        value="0.8"
+        oninput="changeVolume(this.value)">
+
     </div>
 
 </div>
@@ -741,32 +823,48 @@ body{
 
 <nav class="mobile-nav">
 
-    <a href="home.html" class="mobile-nav-item">
+    <a href="home.html"
+    class="mobile-nav-item">
+
         <span class="mobile-nav-icon">
             <i class="fa-solid fa-house"></i>
         </span>
+
         <span>Home</span>
+
     </a>
 
-    <a href="songs.html" class="mobile-nav-item">
+    <a href="songs.html"
+    class="mobile-nav-item">
+
         <span class="mobile-nav-icon">
             <i class="fa-solid fa-music"></i>
         </span>
+
         <span>Songs</span>
+
     </a>
 
-    <a href="albums.html" class="mobile-nav-item">
+    <a href="albums.html"
+    class="mobile-nav-item">
+
         <span class="mobile-nav-icon">
             <i class="fa-solid fa-compact-disc"></i>
         </span>
+
         <span>Albums</span>
+
     </a>
 
-    <a href="artists.html" class="mobile-nav-item">
+    <a href="artists.html"
+    class="mobile-nav-item">
+
         <span class="mobile-nav-icon">
             <i class="fa-solid fa-user-astronaut"></i>
         </span>
+
         <span>Artists</span>
+
     </a>
 
     <a href="favorites.html"
@@ -780,23 +878,30 @@ body{
 
     </a>
 
-    <a href="settings.html" class="mobile-nav-item">
+    <a href="settings.html"
+    class="mobile-nav-item">
+
         <span class="mobile-nav-icon">
             <i class="fa-solid fa-gear"></i>
         </span>
+
         <span>Settings</span>
+
     </a>
 
 </nav>
 
 <!-- POPUP -->
 
-<div class="music-popup" id="musicPopup">
+<div class="music-popup"
+id="musicPopup">
 
     <div class="popup-card">
 
         <div class="popup-cover"
-        id="popupCover"></div>
+        id="popupCover">
+            ♪
+        </div>
 
         <div class="popup-title"
         id="popupTitle">
@@ -826,26 +931,38 @@ body{
 
         </div>
 
-        <div class="popup-progress"
-        onclick="setPopupProgress(event)">
-            <div class="popup-progress-fill"
-            id="popupProgressFill"></div>
+        <div class="card-progress"
+        onclick="setCardProgress(event)">
+
+            <div class="card-progress-fill"
+            id="cardProgressFill"></div>
+
         </div>
 
-        <div class="popup-time">
-            <span id="popupCurrentTime">0:00</span>
-            <span id="popupDurationTime">0:00</span>
+        <div class="card-time">
+
+            <span id="cardCurrentTime">
+                0:00
+            </span>
+
+            <span id="cardDurationTime">
+                0:00
+            </span>
+
         </div>
 
-        <div class="popup-volume">
-            <i class="fa-solid fa-volume-high"></i>
+        <div class="card-volume">
+
+            <span>Volume</span>
 
             <input id="popupVolumeSlider"
             type="range"
             min="0"
             max="1"
             step="0.01"
-            value="1">
+            value="0.8"
+            oninput="changeVolume(this.value)">
+
         </div>
 
     </div>
@@ -858,7 +975,8 @@ body{
 
 <script>
 
-let audio = document.getElementById("audio");
+let audio =
+document.getElementById("audio");
 
 let favoriteList =
 document.getElementById("favoriteList");
@@ -872,44 +990,84 @@ parseInt(localStorage.getItem("currentSongIndex")) || 0;
 let isPlaying =
 localStorage.getItem("globalIsPlaying") === "true";
 
-let volumeSlider =
-document.getElementById("volumeSlider");
+/* THEME */
 
-let popupVolumeSlider =
-document.getElementById("popupVolumeSlider");
+function applySavedTheme(){
 
-audio.volume = 1;
+    let theme =
+    localStorage.getItem("audiophile_theme")
+    || "white";
 
-/* RESTORE SONG */
+    document.body.classList.remove(
+        "theme-white",
+        "theme-musicred"
+    );
+
+    document.body.classList.add(
+        "theme-" + theme
+    );
+}
+
+/* PROFILE */
+
+function loadProfile(){
+
+    let user =
+    localStorage.getItem(
+        "audiophile_currentUser"
+    ) || "A";
+
+    let image =
+    localStorage.getItem(
+        "audiophile_profileImage"
+    ) || "";
+
+    let initial =
+    document.getElementById(
+        "profileInitial"
+    );
+
+    let img =
+    document.getElementById(
+        "profileImage"
+    );
+
+    initial.innerText =
+    user.charAt(0).toUpperCase();
+
+    if(image){
+
+        img.src = image;
+
+        img.style.display = "block";
+
+        initial.style.display = "none";
+
+    }else{
+
+        img.style.display = "none";
+
+        initial.style.display = "block";
+    }
+}
+
+/* RESTORE */
 
 let savedSrc =
 localStorage.getItem("globalAudioSrc");
 
 let savedTime =
-parseFloat(localStorage.getItem("globalAudioTime")) || 0;
+parseFloat(
+    localStorage.getItem(
+        "globalAudioTime"
+    )
+) || 0;
 
 if(savedSrc){
 
     audio.src = savedSrc;
 
-    audio.addEventListener("loadedmetadata",()=>{
-
-        if(savedTime < audio.duration){
-
-            audio.currentTime = savedTime;
-        }
-
-        updateProgress();
-    });
-
-    if(isPlaying){
-
-        setTimeout(()=>{
-
-            audio.play().catch(()=>{});
-
-        },300);
-    }
+    audio.currentTime = savedTime;
 }
 
 /* HELPERS */
@@ -923,7 +1081,9 @@ function getSongs(){
 function getFavorites(){
 
     return JSON.parse(
-        localStorage.getItem("audiophile_favorites")
+        localStorage.getItem(
+            "audiophile_favorites"
+        )
     ) || [];
 }
 
@@ -933,17 +1093,6 @@ function saveFavorites(favs){
         "audiophile_favorites",
         JSON.stringify(favs)
     );
-}
-
-function formatTime(time){
-
-    if(isNaN(time)) return "0:00";
-
-    let mins = Math.floor(time / 60);
-
-    let secs = Math.floor(time % 60);
-
-    return `${mins}:${secs < 10 ? "0"+secs : secs}`;
 }
 
 function getCurrentlyRenderedFavs(){
@@ -1009,7 +1158,9 @@ function renderFavorites(){
 
             ${item.song.cover
 
-            ? `<img src="${item.song.cover}">`
+            ? `<img src="${item.song.cover}"
+            onerror="this.style.display='none';
+            this.parentElement.innerHTML='${item.song.title.charAt(0)}';">`
 
             : item.song.title.charAt(0)}
 
@@ -1085,14 +1236,27 @@ function playSong(index,event){
 
     audio.src = song.audio;
 
-    audio.play();
+    audio.play().then(()=>{
 
-    isPlaying = true;
+        isPlaying = true;
 
-    localStorage.setItem(
-        "globalAudioSrc",
-        audio.src
-    );
+        savePlayerState();
+
+        updateUI(song);
+
+    }).catch(()=>{
+
+        isPlaying = false;
+
+        savePlayerState();
+
+        updateUI(song);
+    });
+}
+
+/* SAVE */
+
+function savePlayerState(){
 
     localStorage.setItem(
         "currentSongIndex",
@@ -1100,16 +1264,26 @@ function playSong(index,event){
     );
 
     localStorage.setItem(
-        "globalIsPlaying",
-        "true"
+        "globalAudioSrc",
+        audio.src
     );
 
-    updateUI(song);
+    localStorage.setItem(
+        "globalAudioTime",
+        audio.currentTime
+    );
+
+    localStorage.setItem(
+        "globalIsPlaying",
+        isPlaying
+    );
 }
 
 /* UPDATE UI */
 
 function updateUI(song){
+
+    if(!song) return;
 
     document.getElementById("playBtn")
     .innerText = isPlaying ? "⏸" : "▶";
@@ -1127,7 +1301,10 @@ function updateUI(song){
     .innerText = song.title;
 
     document.getElementById("popupArtist")
-    .innerText = song.artist || "Unknown";
+    .innerText =
+    (song.artist || "Unknown")
+    + " • " +
+    (song.album || "Single");
 
     if(song.cover){
 
@@ -1138,6 +1315,16 @@ function updateUI(song){
         document.getElementById("popupCover")
         .innerHTML =
         `<img src="${song.cover}">`;
+
+    }else{
+
+        document.getElementById("playerCover")
+        .innerText =
+        song.title.charAt(0);
+
+        document.getElementById("popupCover")
+        .innerText =
+        song.title.charAt(0);
     }
 }
 
@@ -1165,16 +1352,11 @@ function togglePlay(){
         isPlaying = true;
     }
 
-    localStorage.setItem(
-        "globalIsPlaying",
-        isPlaying
+    savePlayerState();
+
+    updateUI(
+        getSongs()[currentSongIndex]
     );
-
-    document.getElementById("playBtn")
-    .innerText = isPlaying ? "⏸" : "▶";
-
-    document.getElementById("popupPlayBtn")
-    .innerText = isPlaying ? "⏸" : "▶";
 }
 
 /* NEXT */
@@ -1215,85 +1397,23 @@ function prevSong(){
     );
 }
 
-/* PROGRESS */
+/* TIME */
 
-function updateProgress(){
+function formatTime(seconds){
 
-    let percent =
-    (audio.currentTime / audio.duration) * 100 || 0;
+    if(isNaN(seconds))
+    return "0:00";
 
-    document.getElementById("progressFill")
-    .style.width = percent + "%";
+    let min =
+    Math.floor(seconds / 60);
 
-    document.getElementById("popupProgressFill")
-    .style.width = percent + "%";
+    let sec =
+    Math.floor(seconds % 60);
 
-    document.getElementById("currentTime")
-    .innerText =
-    formatTime(audio.currentTime);
+    if(sec < 10) sec = "0" + sec;
 
-    document.getElementById("durationTime")
-    .innerText =
-    formatTime(audio.duration);
-
-    document.getElementById("popupCurrentTime")
-    .innerText =
-    formatTime(audio.currentTime);
-
-    document.getElementById("popupDurationTime")
-    .innerText =
-    formatTime(audio.duration);
+    return min + ":" + sec;
 }
-
-audio.addEventListener(
-    "timeupdate",
-    updateProgress
-);
-
-function setProgress(e){
-
-    let width =
-    e.currentTarget.clientWidth;
-
-    let clickX =
-    e.offsetX;
-
-    audio.currentTime =
-    (clickX / width) * audio.duration;
-}
-
-function setPopupProgress(e){
-
-    let width =
-    e.currentTarget.clientWidth;
-
-    let clickX =
-    e.offsetX;
-
-    audio.currentTime =
-    (clickX / width) * audio.duration;
-}
-
-/* VOLUME */
-
-volumeSlider.addEventListener("input",()=>{
-
-    audio.volume = volumeSlider.value;
-
-    popupVolumeSlider.value =
-    volumeSlider.value;
-});
-
-popupVolumeSlider.addEventListener("input",()=>{
-
-    audio.volume =
-    popupVolumeSlider.value;
-
-    volumeSlider.value =
-    popupVolumeSlider.value;
-});
-
-/* SAVE TIME */
 
 audio.addEventListener("timeupdate",()=>{
 
@@ -1301,7 +1421,105 @@ audio.addEventListener("timeupdate",()=>{
         "globalAudioTime",
         audio.currentTime
     );
+
+    let percent =
+    (audio.currentTime /
+    audio.duration) * 100;
+
+    if(isNaN(percent))
+    percent = 0;
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+    percent + "%";
+
+    document.getElementById(
+        "cardProgressFill"
+    ).style.width =
+    percent + "%";
+
+    document.getElementById(
+        "currentTime"
+    ).innerText =
+    formatTime(audio.currentTime);
+
+    document.getElementById(
+        "durationTime"
+    ).innerText =
+    formatTime(audio.duration);
+
+    document.getElementById(
+        "cardCurrentTime"
+    ).innerText =
+    formatTime(audio.currentTime);
+
+    document.getElementById(
+        "cardDurationTime"
+    ).innerText =
+    formatTime(audio.duration);
 });
+
+audio.addEventListener("ended",()=>{
+
+    nextSong();
+});
+
+/* PROGRESS */
+
+function setProgress(event){
+
+    if(!audio.duration) return;
+
+    let width =
+    event.currentTarget.clientWidth;
+
+    let clickX =
+    event.offsetX;
+
+    audio.currentTime =
+    (clickX / width)
+    * audio.duration;
+
+    savePlayerState();
+}
+
+function setCardProgress(event){
+
+    if(!audio.duration) return;
+
+    let width =
+    event.currentTarget.clientWidth;
+
+    let clickX =
+    event.offsetX;
+
+    audio.currentTime =
+    (clickX / width)
+    * audio.duration;
+
+    savePlayerState();
+}
+
+/* VOLUME */
+
+function changeVolume(value){
+
+    audio.volume = value;
+
+    localStorage.setItem(
+        "globalVolume",
+        value
+    );
+
+    document.getElementById(
+        "globalVolumeSlider"
+    ).value = value;
+
+    document.getElementById(
+        "popupVolumeSlider"
+    ).value = value;
+}
 
 /* POPUP */
 
@@ -1323,13 +1541,6 @@ popup.addEventListener("click",(e)=>{
     }
 });
 
-/* SONG END */
-
-audio.addEventListener("ended",()=>{
-
-    nextSong();
-});
-
 /* SEARCH */
 
 searchInput.addEventListener(
@@ -1339,15 +1550,54 @@ searchInput.addEventListener(
 
 /* INIT */
 
+applySavedTheme();
+
+loadProfile();
+
 renderFavorites();
 
 let allSongs = getSongs();
+
+let savedVolume =
+localStorage.getItem(
+    "globalVolume"
+) || 0.8;
+
+changeVolume(savedVolume);
 
 if(allSongs[currentSongIndex]){
 
     updateUI(
         allSongs[currentSongIndex]
     );
+}
+
+if(savedSrc && isPlaying){
+
+    setTimeout(()=>{
+
+        audio.play().then(()=>{
+
+            isPlaying = true;
+
+            savePlayerState();
+
+            updateUI(
+                getSongs()[currentSongIndex]
+            );
+
+        }).catch(()=>{
+
+            isPlaying = false;
+
+            savePlayerState();
+
+            updateUI(
+                getSongs()[currentSongIndex]
+            );
+        });
+
+    },300);
 }
 
 </script>
