@@ -89,9 +89,14 @@ body{
 .menu a.active,
 .menu a:hover{
     background:linear-gradient(90deg,
-    color-mix(in srgb,var(--cyan) 16%,transparent),
-    color-mix(in srgb,var(--purple) 16%,transparent));
+        color-mix(in srgb,var(--cyan) 16%,transparent),
+        color-mix(in srgb,var(--purple) 16%,transparent));
     color:var(--text);
+}
+
+/* MOBILE NAV */
+.mobile-nav{
+    display:none;
 }
 
 /* MAIN */
@@ -99,6 +104,7 @@ body{
     height:100vh;
     height:100dvh;
     overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
     padding:30px 34px 170px;
 }
 
@@ -140,73 +146,76 @@ body{
     flex-shrink:0;
 }
 
-/* HEADER */
+/* PAGE TITLE */
 .page-title{
     background:linear-gradient(135deg,
-    color-mix(in srgb,var(--cyan) 10%,white),
-    color-mix(in srgb,var(--purple) 10%,white));
+        color-mix(in srgb,var(--cyan) 10%,white),
+        color-mix(in srgb,var(--purple) 10%,white));
     border:1px solid var(--border);
-    border-radius:32px;
-    padding:30px;
-    margin-bottom:26px;
+    border-radius:34px;
+    padding:34px;
+    margin-bottom:24px;
 }
 
 .page-title small{
     color:var(--purple);
-    font-weight:800;
+    font-weight:900;
     letter-spacing:1px;
 }
 
 .page-title h1{
-    font-size:44px;
-    margin-top:8px;
-    margin-bottom:10px;
+    font-size:48px;
+    margin:10px 0;
 }
 
 .page-title p{
     color:var(--muted);
-    font-size:15px;
 }
 
 /* SONG LIST */
 .song-list{
     display:flex;
     flex-direction:column;
-    gap:16px;
+    gap:12px;
 }
 
 .song-row{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:24px;
-    padding:16px 18px;
+    border-radius:22px;
+    padding:14px 18px;
     display:grid;
-    grid-template-columns:70px 1fr auto;
-    gap:18px;
+    grid-template-columns:55px 70px 1.5fr 1fr 140px;
+    gap:16px;
     align-items:center;
+    cursor:pointer;
     transition:0.3s;
 }
 
 .song-row:hover{
-    transform:translateY(-4px);
+    transform:translateY(-3px);
     border-color:var(--purple);
-    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+    box-shadow:0 6px 20px var(--border);
 }
 
-.song-left{
-    display:flex;
-    align-items:center;
-    gap:16px;
-    min-width:0;
+.song-no{
+    color:var(--muted);
+    font-weight:900;
+    font-size:16px;
 }
 
 .song-cover{
-    width:68px;
-    height:68px;
-    border-radius:18px;
-    overflow:hidden;
+    width:62px;
+    height:62px;
+    border-radius:16px;
     background:var(--card2);
-    flex-shrink:0;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:var(--muted);
+    font-weight:900;
+    font-size:20px;
 }
 
 .song-cover img{
@@ -215,58 +224,55 @@ body{
     object-fit:cover;
 }
 
-.song-info{
-    min-width:0;
-}
-
-.song-info h3{
-    font-size:18px;
-    margin-bottom:4px;
+.song-title h3{
+    font-size:17px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+    margin-bottom:3px;
 }
 
-.song-info p{
+.song-title p,
+.song-artist{
     color:var(--muted);
-    font-size:14px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    font-size:13px;
 }
 
 .song-actions{
     display:flex;
-    align-items:center;
-    gap:10px;
+    gap:8px;
+    justify-content:flex-end;
 }
 
 .song-actions button{
     border:none;
+    padding:10px 14px;
+    border-radius:14px;
+    font-weight:900;
     cursor:pointer;
-    transition:0.2s;
+    font-size:13px;
 }
 
-.play-btn{
-    width:46px;
-    height:46px;
-    border-radius:50%;
-    background:linear-gradient(135deg,var(--cyan),var(--purple));
+.play-small{
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
     color:white;
-    font-size:15px;
 }
 
-.star-btn{
-    width:46px;
-    height:46px;
-    border-radius:50%;
+.unfav-btn{
     background:var(--card2);
     color:#f59e0b;
     font-size:18px;
 }
 
-.song-actions button:hover{
-    transform:scale(1.08);
+.empty{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:50px 34px;
+    color:var(--muted);
+    text-align:center;
+    font-weight:800;
+    font-size:18px;
 }
 
 /* PLAYER */
@@ -296,8 +302,8 @@ body{
     width:64px;
     height:64px;
     border-radius:18px;
-    overflow:hidden;
     background:var(--card2);
+    overflow:hidden;
 }
 
 .player-cover img{
@@ -307,13 +313,12 @@ body{
 }
 
 .player-details h4{
-    font-size:16px;
-    margin-bottom:4px;
+    font-size:17px;
 }
 
 .player-details p{
-    font-size:13px;
     color:var(--muted);
+    font-size:14px;
 }
 
 .controls{
@@ -328,52 +333,56 @@ body{
 }
 
 .buttons button{
-    width:44px;
-    height:44px;
+    width:42px;
+    height:42px;
     border:none;
     border-radius:50%;
     background:var(--card2);
     color:var(--text);
-    cursor:pointer;
     font-size:16px;
+    cursor:pointer;
 }
 
 .buttons .play{
-    width:54px;
-    height:54px;
+    width:52px;
+    height:52px;
     background:linear-gradient(90deg,var(--cyan),var(--purple));
     color:white;
 }
 
 .progress{
-    height:6px;
+    height:7px;
     background:var(--card2);
     border-radius:20px;
     overflow:hidden;
 }
 
 .progress-fill{
-    width:45%;
+    width:0%;
     height:100%;
     background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
 }
 
+.time{
+    display:flex;
+    justify-content:space-between;
+    color:var(--muted);
+    font-size:12px;
+    margin-top:6px;
+}
+
 .volume{
     display:flex;
-    justify-content:flex-end;
     align-items:center;
-    gap:14px;
+    gap:12px;
+    justify-content:flex-end;
 }
 
 .volume input{
-    accent-color:var(--purple);
+    width:130px;
 }
 
 /* MOBILE */
-.mobile-nav{
-    display:none;
-}
-
 @media(max-width:900px){
 
     .app{
@@ -385,7 +394,7 @@ body{
     }
 
     .main{
-        padding:20px 16px 180px;
+        padding:20px 16px 200px;
     }
 
     .page-title{
@@ -398,47 +407,40 @@ body{
     }
 
     .song-row{
-        grid-template-columns:1fr;
-        gap:14px;
-        padding:14px;
-        border-radius:20px;
+        grid-template-columns:36px 56px 1fr auto;
+        gap:10px;
+        padding:12px 14px;
+        border-radius:18px;
     }
 
-    .song-left{
-        gap:12px;
-    }
-
-    .song-cover{
-        width:60px;
-        height:60px;
-        border-radius:14px;
-    }
-
-    .song-info h3{
-        font-size:15px;
-    }
-
-    .song-info p{
-        font-size:12px;
+    .song-artist{
+        display:none;
     }
 
     .song-actions{
-        justify-content:flex-end;
+        flex-direction:column;
+        gap:6px;
+    }
+
+    .song-cover{
+        width:56px;
+        height:56px;
+        border-radius:12px;
     }
 
     .player{
         left:0;
         bottom:64px;
+        grid-template-columns:1.2fr 1fr;
         height:68px;
-        grid-template-columns:1fr auto;
         padding:8px 16px;
     }
 
-    .buttons button{
+    .controls .buttons button{
         display:none;
     }
 
-    .buttons .play{
+    .controls .buttons .play{
         display:flex;
         justify-content:center;
         align-items:center;
@@ -447,6 +449,7 @@ body{
     }
 
     .progress,
+    .time,
     .volume{
         display:none;
     }
@@ -458,7 +461,7 @@ body{
     }
 
     .player-details h4{
-        font-size:14px;
+        font-size:13px;
     }
 
     .player-details p{
@@ -474,26 +477,28 @@ body{
         height:64px;
         background:var(--card);
         border-top:1px solid var(--border);
+        z-index:1000;
         justify-content:space-around;
         align-items:center;
-        z-index:999;
     }
 
-    .mobile-nav a{
-        text-decoration:none;
-        color:var(--muted);
-        font-size:11px;
+    .mobile-nav-item{
         display:flex;
         flex-direction:column;
         align-items:center;
-        gap:4px;
+        text-decoration:none;
+        color:var(--muted);
+        font-size:10px;
+        font-weight:600;
+        gap:3px;
+        width:16%;
     }
 
-    .mobile-nav a.active{
+    .mobile-nav-item.active{
         color:var(--purple);
     }
 
-    .mobile-nav i{
+    .mobile-nav-icon{
         font-size:18px;
     }
 }
@@ -504,176 +509,330 @@ body{
 
 <div class="app">
 
-    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="logo">
             Audio<span>phile</span>
         </div>
 
-        <div class="menu">
+        <nav class="menu">
             <a href="home.html"><i class="fa-solid fa-house"></i> Home</a>
             <a href="songs.html"><i class="fa-solid fa-music"></i> Songs</a>
-            <a href="albums.html"><i class="fa-solid fa-compact-disc"></i> Albums</a>
-            <a href="favorites.html" class="active"><i class="fa-solid fa-star"></i> Favorites</a>
+            <a href="albums.html"><i class="fa-solid fa-record-vinyl"></i> Albums</a>
+            <a href="artists.html"><i class="fa-solid fa-microphone"></i> Artists</a>
+            <a href="favorites.html" class="active"><i class="fa-solid fa-heart"></i> Favorites</a>
             <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
-        </div>
+        </nav>
     </aside>
 
-    <!-- MAIN -->
     <main class="main">
 
         <div class="topbar">
             <div class="search-box">
-                <input type="text" placeholder="Search favorite songs...">
+                <input id="searchInput" type="text" placeholder="Search favorite songs...">
             </div>
 
             <div class="profile">
-                G
+                A
             </div>
         </div>
 
-        <div class="page-title">
-            <small>YOUR COLLECTION</small>
-            <h1>Favorite Songs</h1>
-            <p>All your saved songs in one place.</p>
-        </div>
+        <section class="page-title">
+            <small>YOUR LIKED SONGS</small>
+            <h1>❤️ Favorites</h1>
+            <p>Your saved favorite songs will appear here.</p>
+        </section>
 
-        <!-- SONGS -->
-        <div class="song-list">
+        <div class="song-list" id="favoriteList"></div>
 
-            <div class="song-row">
-                <div class="song-left">
-                    <div class="song-cover">
-                        <img src="images/song1.jpg">
-                    </div>
-
-                    <div class="song-info">
-                        <h3>Blinding Lights</h3>
-                        <p>The Weeknd</p>
-                    </div>
-                </div>
-
-                <div class="song-actions">
-                    <button class="play-btn">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                    <button class="star-btn">
-                        <i class="fa-solid fa-star"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="song-row">
-                <div class="song-left">
-                    <div class="song-cover">
-                        <img src="images/song2.jpg">
-                    </div>
-
-                    <div class="song-info">
-                        <h3>Starboy</h3>
-                        <p>The Weeknd</p>
-                    </div>
-                </div>
-
-                <div class="song-actions">
-                    <button class="play-btn">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                    <button class="star-btn">
-                        <i class="fa-solid fa-star"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="song-row">
-                <div class="song-left">
-                    <div class="song-cover">
-                        <img src="images/song3.jpg">
-                    </div>
-
-                    <div class="song-info">
-                        <h3>Levitating</h3>
-                        <p>Dua Lipa</p>
-                    </div>
-                </div>
-
-                <div class="song-actions">
-                    <button class="play-btn">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                    <button class="star-btn">
-                        <i class="fa-solid fa-star"></i>
-                    </button>
-                </div>
-            </div>
-
-        </div>
     </main>
+
 </div>
 
 <!-- PLAYER -->
 <div class="player">
 
     <div class="player-info">
-        <div class="player-cover">
-            <img src="images/song1.jpg">
-        </div>
+        <div class="player-cover" id="playerCover">♪</div>
 
         <div class="player-details">
-            <h4>Blinding Lights</h4>
-            <p>The Weeknd</p>
+            <h4 id="playerTitle">Select a song</h4>
+            <p id="playerArtist">Audiophile</p>
         </div>
     </div>
 
     <div class="controls">
         <div class="buttons">
-            <button><i class="fa-solid fa-backward"></i></button>
-            <button class="play"><i class="fa-solid fa-play"></i></button>
-            <button><i class="fa-solid fa-forward"></i></button>
+            <button onclick="prevSong()">⏮</button>
+            <button class="play" id="playBtn" onclick="togglePlay()">▶</button>
+            <button onclick="nextSong()">⏭</button>
         </div>
 
         <div class="progress">
-            <div class="progress-fill"></div>
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="time">
+            <span id="currentTime">0:00</span>
+            <span id="durationTime">0:00</span>
         </div>
     </div>
 
     <div class="volume">
-        <i class="fa-solid fa-volume-high"></i>
-        <input type="range">
+        <input id="volumeRange" type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
     </div>
 
 </div>
 
 <!-- MOBILE NAV -->
-<div class="mobile-nav">
-    <a href="home.html">
-        <i class="fa-solid fa-house"></i>
+<nav class="mobile-nav">
+    <a href="home.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-house"></i></span>
         <span>Home</span>
     </a>
 
-    <a href="songs.html">
-        <i class="fa-solid fa-music"></i>
+    <a href="songs.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-music"></i></span>
         <span>Songs</span>
     </a>
 
-    <a href="albums.html">
-        <i class="fa-solid fa-compact-disc"></i>
+    <a href="albums.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-compact-disc"></i></span>
         <span>Albums</span>
     </a>
 
-    <a href="favorites.html" class="active">
-        <i class="fa-solid fa-star"></i>
+    <a href="artists.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-user-astronaut"></i></span>
+        <span>Artists</span>
+    </a>
+
+    <a href="favorites.html" class="mobile-nav-item active">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-heart"></i></span>
         <span>Favorites</span>
     </a>
 
-    <a href="settings.html">
-        <i class="fa-solid fa-gear"></i>
+    <a href="settings.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-gear"></i></span>
         <span>Settings</span>
     </a>
-</div>
+</nav>
+
+<audio id="audio"></audio>
+
+<script src="songs.js"></script>
+
+<script>
+
+let audio = document.getElementById("audio");
+let favoriteList = document.getElementById("favoriteList");
+let searchInput = document.getElementById("searchInput");
+
+let currentSongIndex = 0;
+let isPlaying = false;
+
+function getSongs(){
+    return typeof songs !== "undefined" ? songs : [];
+}
+
+function getFavorites(){
+    return JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
+}
+
+function saveFavorites(favs){
+    localStorage.setItem("audiophile_favorites", JSON.stringify(favs));
+}
+
+function getCurrentlyRenderedFavs(){
+
+    let allSongs = getSongs();
+    let value = searchInput.value.toLowerCase();
+
+    return getFavorites()
+        .map(index => ({
+            song: allSongs[index],
+            index: index
+        }))
+        .filter(item => item.song)
+        .filter(item =>
+            item.song.title.toLowerCase().includes(value) ||
+            (item.song.artist || "").toLowerCase().includes(value)
+        );
+}
+
+function renderFavorites(){
+
+    let favSongs = getCurrentlyRenderedFavs();
+
+    if(favSongs.length === 0){
+
+        favoriteList.innerHTML = `
+            <div class="empty">
+                💔 <br><br>
+                No favorite songs yet
+            </div>
+        `;
+
+        return;
+    }
+
+    favoriteList.innerHTML = favSongs.map((item, displayIndex) => `
+
+        <div class="song-row" onclick="playSong(${item.index}, event)">
+
+            <div class="song-no">
+                ${displayIndex + 1}
+            </div>
+
+            <div class="song-cover">
+
+                ${item.song.cover
+
+                    ? `<img src="${item.song.cover}">`
+
+                    : item.song.title.charAt(0)
+
+                }
+
+            </div>
+
+            <div class="song-title">
+
+                <h3>
+                    ${item.song.title}
+                </h3>
+
+                <p>
+                    ${item.song.album || "Single"}
+                </p>
+
+            </div>
+
+            <div class="song-artist">
+                ${item.song.artist || ""}
+            </div>
+
+            <div class="song-actions">
+
+                <button
+                    class="play-small"
+                    onclick="playSong(${item.index}, event)"
+                >
+                    ▶ Play
+                </button>
+
+                <button
+                    class="unfav-btn"
+                    onclick="removeFav(${item.index}, event)"
+                >
+                    ${true ? "★" : "☆"}
+                </button>
+
+            </div>
+
+        </div>
+
+    `).join("");
+}
+
+function removeFav(index, event){
+
+    event.stopPropagation();
+
+    let favs = getFavorites().filter(i => i !== index);
+
+    saveFavorites(favs);
+
+    renderFavorites();
+}
+
+function playSong(index, event){
+
+    if(event) event.stopPropagation();
+
+    let allSongs = getSongs();
+
+    if(!allSongs[index]) return;
+
+    currentSongIndex = index;
+
+    let song = allSongs[currentSongIndex];
+
+    audio.src = song.audio;
+
+    audio.play();
+
+    isPlaying = true;
+
+    document.getElementById("playBtn").innerText = "⏸";
+
+    document.getElementById("playerTitle").innerText = song.title;
+    document.getElementById("playerArtist").innerText = song.artist || "Unknown";
+
+    if(song.cover){
+
+        document.getElementById("playerCover").innerHTML =
+            `<img src="${song.cover}">`;
+
+    }
+}
+
+function togglePlay(){
+
+    if(!audio.src){
+
+        playSong(currentSongIndex);
+
+        return;
+    }
+
+    if(isPlaying){
+
+        audio.pause();
+
+        isPlaying = false;
+
+        document.getElementById("playBtn").innerText = "▶";
+
+    }else{
+
+        audio.play();
+
+        isPlaying = true;
+
+        document.getElementById("playBtn").innerText = "⏸";
+    }
+}
+
+function nextSong(){
+
+    let favs = getCurrentlyRenderedFavs();
+
+    if(favs.length === 0) return;
+
+    let i = favs.findIndex(f => f.index === currentSongIndex);
+
+    playSong(favs[(i + 1) % favs.length].index);
+}
+
+function prevSong(){
+
+    let favs = getCurrentlyRenderedFavs();
+
+    if(favs.length === 0) return;
+
+    let i = favs.findIndex(f => f.index === currentSongIndex);
+
+    playSong(favs[(i - 1 + favs.length) % favs.length].index);
+}
+
+function changeVolume(value){
+    audio.volume = value;
+}
+
+searchInput.addEventListener("input", renderFavorites);
+
+renderFavorites();
+
+</script>
 
 </body>
 </html>
