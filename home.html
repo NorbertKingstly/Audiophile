@@ -1030,24 +1030,53 @@ function updatePlayerUI(song){
 function playSong(index){
     let allSongs = getSongs();
     if(index < 0 || index >= allSongs.length) return;
-
     currentSongIndex = index;
-    let song = allSongs[index];
 
+    let song = allSongs[index];
     audio.src = song.audio;
-    
+
+    /* FIXED PLAY BUTTON BUG */
+
+    isPlaying = true;
+    localStorage.setItem(
+        "globalIsPlaying",
+        "true"
+    );
+    updatePlayerUI(song);
     audio.play().then(() => {
         isPlaying = true;
-        localStorage.setItem("globalIsPlaying", "true");
+        localStorage.setItem(
+            "globalIsPlaying",
+            "true"
+        );
         updatePlayerUI(song);
     }).catch(err => {
-        console.log("Autoplay context deferred:", err);
+        console.log(
+            "Playback failed:",
+            err
+        );
+
         isPlaying = false;
+
+        localStorage.setItem(
+            "globalIsPlaying",
+            "false"
+        );
+
         updatePlayerUI(song);
+
     });
 
-    localStorage.setItem("currentSongIndex", currentSongIndex);
-    localStorage.setItem("globalAudioSrc", song.audio);
+    localStorage.setItem(
+        "currentSongIndex",
+        currentSongIndex
+    );
+
+    localStorage.setItem(
+        "globalAudioSrc",
+        song.audio
+    );
+
 }
 
 function togglePlay(){
