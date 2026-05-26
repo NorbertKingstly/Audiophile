@@ -587,9 +587,6 @@ body{
     margin-top:10px;
 }
 
-.popup-volume{margin-top:4px;}
-.popup-volume span{color:var(--muted);font-weight:800;font-size:13px;}
-.popup-volume input{width:100%;margin-top:8px;}
 
 /* ===== MOBILE ===== */
 @media(max-width:900px){
@@ -762,7 +759,7 @@ body{
 
 <!-- PLAYER BAR -->
 <div class="player">
-    <div class="player-info" onclick="openPopup()">
+    <div class="player-info" onclick="openMusicCard()">
         <div class="player-cover" id="playerCover">♪</div>
         <div class="player-details">
             <h4 id="playerTitle">Select a song</h4>
@@ -812,32 +809,32 @@ body{
         <span class="mobile-nav-icon"><i class="fa-solid fa-gear"></i></span><span>Settings</span>
     </a>
 </nav>
-</nav>
 
-<!-- MUSIC POPUP -->
-<div class="music-popup" id="musicPopup">
-    <div class="popup-card">
-        <div class="popup-cover" id="popupCover">♪</div>
-        <h2 id="popupTitle">Select a song</h2>
-        <p id="popupArtist">Audiophile</p>
+<!-- MUSIC CARD OVERLAY -->
+<div class="music-card-overlay" id="musicCardOverlay">
+    <div class="music-card">
+        <div class="big-cover" id="bigCover">♪</div>
+        <h2 id="cardSongTitle">Select a song</h2>
+        <p id="cardSongArtist">Audiophile</p>
 
-        <div class="popup-buttons">
+        <div class="card-buttons">
             <button onclick="prevSong()">⏮</button>
-            <button class="popup-play" id="popupPlayBtn" onclick="togglePlay()">▶</button>
+            <button class="big-play" id="cardPlayBtn" onclick="togglePlay()">▶</button>
             <button onclick="nextSong()">⏭</button>
         </div>
 
-        <div class="popup-progress" onclick="setPopupProgress(event)">
-            <div class="popup-progress-fill" id="popupProgressFill"></div>
-        </div>
-        <div class="popup-time">
-            <span id="popupCurrentTime">0:00</span>
-            <span id="popupDurationTime">0:00</span>
+        <div class="card-progress" onclick="setCardProgress(event)">
+            <div class="card-progress-fill" id="cardProgressFill"></div>
         </div>
 
-        <div class="popup-volume">
-            <span>🔊 Volume</span>
-            <input id="popupVolumeRange" type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+        <div class="card-time">
+            <span id="cardCurrentTime">0:00</span>
+            <span id="cardDurationTime">0:00</span>
+        </div>
+
+        <div class="card-volume">
+            <span>Volume</span>
+            <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
         </div>
     </div>
 </div>
@@ -853,22 +850,20 @@ let audio        = document.getElementById("audio");
 let favoriteList = document.getElementById("favoriteList");
 let searchInput  = document.getElementById("searchInput");
 let playBtn      = document.getElementById("playBtn");
-let popupPlayBtn = document.getElementById("popupPlayBtn");
+let cardPlayBtn  = document.getElementById("cardPlayBtn");
 let playerCover  = document.getElementById("playerCover");
 let playerTitle  = document.getElementById("playerTitle");
 let playerArtist = document.getElementById("playerArtist");
-let popupCover   = document.getElementById("popupCover");
-let popupTitle   = document.getElementById("popupTitle");
-let popupArtist  = document.getElementById("popupArtist");
+let bigCover     = document.getElementById("bigCover");
+let cardSongTitle  = document.getElementById("cardSongTitle");
+let cardSongArtist = document.getElementById("cardSongArtist");
 let progressFill      = document.getElementById("progressFill");
-let popupProgressFill = document.getElementById("popupProgressFill");
+let cardProgressFill  = document.getElementById("cardProgressFill");
 let currentTime  = document.getElementById("currentTime");
 let durationTime = document.getElementById("durationTime");
-let popupCurrentTime  = document.getElementById("popupCurrentTime");
-let popupDurationTime = document.getElementById("popupDurationTime");
-let volumeRange      = document.getElementById("volumeRange");
-let popupVolumeRange = document.getElementById("popupVolumeRange");
-let musicPopup   = document.getElementById("musicPopup");
+let cardCurrentTime  = document.getElementById("cardCurrentTime");
+let cardDurationTime = document.getElementById("cardDurationTime");
+let volumeRange  = document.getElementById("volumeRange");
 
 // ── State ──
 let currentSongIndex = parseInt(localStorage.getItem("currentSongIndex")) || 0;
@@ -985,19 +980,19 @@ function savePlayerState(){
 
 function updatePlayerUI(song){
     if(!song) return;
-    playBtn.innerText     = isPlaying ? "⏸" : "▶";
-    popupPlayBtn.innerText = isPlaying ? "⏸" : "▶";
-    playerTitle.innerText = song.title;
+    playBtn.innerText    = isPlaying ? "⏸" : "▶";
+    cardPlayBtn.innerText = isPlaying ? "⏸" : "▶";
+    playerTitle.innerText  = song.title;
     playerArtist.innerText = song.artist || "Unknown";
-    popupTitle.innerText  = song.title;
-    popupArtist.innerText = (song.artist || "Unknown") + " • " + (song.album || "Single");
+    cardSongTitle.innerText  = song.title;
+    cardSongArtist.innerText = (song.artist || "Unknown") + " • " + (song.album || "Single");
 
     if(song.cover){
         playerCover.innerHTML = `<img src="${song.cover}">`;
-        popupCover.innerHTML  = `<img src="${song.cover}">`;
+        bigCover.innerHTML    = `<img src="${song.cover}">`;
     } else {
         playerCover.innerText = song.title.charAt(0);
-        popupCover.innerText  = song.title.charAt(0);
+        bigCover.innerText    = song.title.charAt(0);
     }
 }
 
@@ -1052,7 +1047,6 @@ function prevSong(){
 function changeVolume(value){
     audio.volume = value;
     volumeRange.value = value;
-    popupVolumeRange.value = value;
     localStorage.setItem("globalVolume", value);
 }
 
@@ -1070,20 +1064,24 @@ function setProgress(event){
     savePlayerState();
 }
 
-function setPopupProgress(event){
+function setCardProgress(event){
     if(!audio.duration) return;
     audio.currentTime = (event.offsetX / event.currentTarget.clientWidth) * audio.duration;
     savePlayerState();
 }
 
-// ── Popup ──
-function openPopup(){
+// ── Card Overlay ──
+function openMusicCard(){
     if(!audio.src) return;
-    musicPopup.classList.add("show");
+    document.getElementById("musicCardOverlay").classList.add("show");
 }
 
-musicPopup.addEventListener("click", function(e){
-    if(e.target.id === "musicPopup") musicPopup.classList.remove("show");
+function closeMusicCard(){
+    document.getElementById("musicCardOverlay").classList.remove("show");
+}
+
+document.getElementById("musicCardOverlay").addEventListener("click", function(e){
+    if(e.target.id === "musicCardOverlay") closeMusicCard();
 });
 
 // ── Audio events ──
@@ -1091,12 +1089,12 @@ audio.addEventListener("timeupdate", function(){
     localStorage.setItem("globalAudioTime", audio.currentTime || 0);
     let pct = (audio.currentTime / audio.duration) * 100;
     if(isNaN(pct)) pct = 0;
-    progressFill.style.width      = pct + "%";
-    popupProgressFill.style.width = pct + "%";
-    currentTime.innerText      = formatTime(audio.currentTime);
-    durationTime.innerText     = formatTime(audio.duration);
-    popupCurrentTime.innerText = formatTime(audio.currentTime);
-    popupDurationTime.innerText= formatTime(audio.duration);
+    progressFill.style.width     = pct + "%";
+    cardProgressFill.style.width = pct + "%";
+    currentTime.innerText     = formatTime(audio.currentTime);
+    durationTime.innerText    = formatTime(audio.duration);
+    cardCurrentTime.innerText  = formatTime(audio.currentTime);
+    cardDurationTime.innerText = formatTime(audio.duration);
 });
 
 audio.addEventListener("ended", nextSong);
