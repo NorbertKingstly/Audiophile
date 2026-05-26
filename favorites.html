@@ -7,18 +7,17 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+<!-- Font Awesome (IMPORTANT for icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
 
 :root{
     --bg:#f5f5f7;
     --card:#ffffff;
-    --card2:#eef0f4;
     --text:#111827;
     --muted:#64748b;
-    --cyan:#111827;
-    --purple:#6366f1;
-    --pink:#22d3ee;
     --border:rgba(0,0,0,0.08);
 }
 
@@ -26,174 +25,123 @@
 body.theme-white{
     --bg:#f5f5f7;
     --card:#ffffff;
-    --card2:#eef0f4;
     --text:#111827;
-    --muted:#64748b;
-    --border:rgba(0,0,0,0.08);
 }
 
 body.theme-musicred{
     --bg:#ffffff;
     --card:#f7f7f8;
-    --card2:#eeeeef;
     --text:#1d1d1f;
-    --muted:#6e6e73;
-    --border:rgba(0,0,0,0.08);
 }
 
 body{
     background:var(--bg);
     color:var(--text);
-    overflow:hidden;
 }
 
-/* APP LAYOUT */
+/* APP */
 .app{
     display:grid;
     grid-template-columns:250px 1fr;
     height:100vh;
 }
 
-/* SIDEBAR (FIXED MENU BAR) */
+/* SIDEBAR */
 .sidebar{
     background:var(--card);
     border-right:1px solid var(--border);
-    padding:28px 20px;
-}
-
-.logo{
-    font-size:32px;
-    font-weight:900;
-    margin-bottom:34px;
-    cursor:pointer;
-}
-
-.logo span{
-    background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-.menu{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
+    padding:20px;
 }
 
 .menu a{
+    display:block;
+    padding:12px;
     text-decoration:none;
     color:var(--muted);
-    padding:14px 16px;
-    border-radius:14px;
     font-weight:700;
-}
-
-.menu a:hover{
-    background:rgba(99,102,241,0.1);
-    color:var(--text);
 }
 
 /* MAIN */
 .main{
-    overflow-y:auto;
-    padding:24px 28px 140px;
+    padding:20px;
 }
 
-/* TOP */
-.topbar{
-    display:flex;
-    gap:16px;
-    align-items:center;
-}
-
-.search-box{
-    flex:1;
-}
-
-.search-box input{
-    width:100%;
-    padding:14px 20px;
-    border-radius:30px;
-    border:1px solid var(--border);
-    outline:none;
-}
-
-/* SONG LIST */
-.song-list{
-    margin-top:20px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.song-row{
+/* SONG ROW */
+.song{
     background:var(--card);
-    border:1px solid var(--border);
-    padding:14px;
-    border-radius:18px;
-    display:grid;
-    grid-template-columns:50px 60px 1fr 120px;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:10px;
+    display:flex;
+    justify-content:space-between;
     align-items:center;
+}
+
+/* BUTTONS */
+button{
+    padding:8px 12px;
+    border:none;
+    border-radius:10px;
     cursor:pointer;
 }
 
-.song-cover{
-    width:55px;
-    height:55px;
-    border-radius:12px;
-    background:var(--card2);
-    overflow:hidden;
-}
-
-.song-cover img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+/* ❤️ */
+.fav-btn{
+    background:#ff3b5c;
+    color:white;
 }
 
 /* PLAYER */
 .player{
     position:fixed;
+    bottom:0;
     left:250px;
     right:0;
-    bottom:0;
-    height:110px;
     background:var(--card);
     border-top:1px solid var(--border);
+    padding:10px;
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    padding:12px 20px;
-    z-index:10;
 }
 
-/* POPUP */
-.music-card-overlay{
+/* MOBILE NAV (ADDED) */
+.mobile-nav{
     position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.5);
+    bottom:0;
+    left:0;
+    right:0;
     display:none;
-    align-items:center;
-    justify-content:center;
-}
-
-.music-card-overlay.show{
-    display:flex;
-}
-
-.music-card{
     background:var(--card);
-    padding:20px;
-    border-radius:20px;
-    width:320px;
+    border-top:1px solid var(--border);
+    justify-content:space-around;
+    padding:10px 0;
 }
 
+.mobile-nav-item{
+    text-decoration:none;
+    color:var(--muted);
+    font-size:12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:3px;
+}
+
+.mobile-nav-item.active{
+    color:#6366f1;
+}
+
+.mobile-nav-icon{
+    font-size:18px;
+}
+
+/* RESPONSIVE */
 @media(max-width:900px){
     .app{grid-template-columns:1fr;}
     .sidebar{display:none;}
     .player{left:0;}
+    .mobile-nav{display:flex;}
 }
-
 </style>
 </head>
 
@@ -201,12 +149,7 @@ body{
 
 <div class="app">
 
-    <!-- SIDEBAR FIXED -->
     <aside class="sidebar">
-        <div class="logo" onclick="location.href='home.html'">
-            Audio<span>phile</span>
-        </div>
-
         <div class="menu">
             <a href="home.html">Home</a>
             <a href="songs.html">Songs</a>
@@ -219,29 +162,41 @@ body{
 
     <main class="main">
 
-        <div class="topbar">
-            <div class="search-box">
-                <input id="searchInput" placeholder="Search songs...">
-            </div>
-        </div>
+        <h2>Songs</h2>
 
-        <div class="song-list" id="favoriteList"></div>
+        <div id="songList"></div>
 
     </main>
+
 </div>
 
 <!-- PLAYER -->
 <div class="player">
-    <div id="nowPlaying">Select Song</div>
+    <div id="now">No song</div>
     <button onclick="togglePlay()">Play</button>
 </div>
 
-<!-- POPUP -->
-<div class="music-card-overlay" id="musicCardOverlay">
-    <div class="music-card">
-        <h3 id="popupTitle">Song</h3>
-    </div>
-</div>
+<!-- MOBILE NAV (ADDED EXACT YOUR CODE) -->
+<nav class="mobile-nav">
+    <a href="home.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-house"></i></span><span>Home</span>
+    </a>
+    <a href="songs.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-music"></i></span><span>Songs</span>
+    </a>
+    <a href="albums.html" class="mobile-nav-item active">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-compact-disc"></i></span><span>Albums</span>
+    </a>
+    <a href="artists.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-user-astronaut"></i></span><span>Artists</span>
+    </a>
+    <a href="favorites.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-heart"></i></span><span>Favorites</span>
+    </a>
+    <a href="settings.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon"><i class="fa-solid fa-gear"></i></span><span>Settings</span>
+    </a>
+</nav>
 
 <audio id="audio"></audio>
 
@@ -249,49 +204,60 @@ body{
 
 <script>
 
-/* ===== THEME FIX ===== */
-function applyTheme(){
-    let t = localStorage.getItem("audiophile_theme") || "white";
-    document.body.classList.remove("theme-white","theme-musicred");
-    document.body.classList.add("theme-"+t);
-}
-applyTheme();
-
-window.addEventListener("storage",(e)=>{
-    if(e.key==="audiophile_theme") applyTheme();
-});
-
-/* ===== SONG FIX ===== */
 let audio = document.getElementById("audio");
-let favoriteList = document.getElementById("favoriteList");
 
+/* ===== SONGS ===== */
 function getSongs(){
     return window.songs || [];
 }
 
+/* ===== FAVORITES FIX (IMPORTANT) ===== */
 function getFavs(){
     return JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
 }
 
+function saveFavs(arr){
+    localStorage.setItem("audiophile_favorites", JSON.stringify(arr));
+}
+
+/* ADD / REMOVE FAVORITE */
+function toggleFav(index){
+    let favs = getFavs();
+
+    if(favs.includes(index)){
+        favs = favs.filter(i => i !== index);
+    } else {
+        favs.push(index);
+    }
+
+    saveFavs(favs);
+    render();
+}
+
+/* ===== RENDER SONGS ===== */
 function render(){
     let songs = getSongs();
     let favs = getFavs();
 
-    favoriteList.innerHTML = favs.map(i=>{
-        let s = songs[i];
-        if(!s) return "";
-        return `
-        <div class="song-row" onclick="playSong(${i})">
-            <div>${i+1}</div>
-            <div class="song-cover">
-                <img src="${s.cover || ''}">
+    document.getElementById("songList").innerHTML =
+    songs.map((s,i)=>`
+        <div class="song">
+            <div>
+                <b>${s.title}</b><br>
+                <small>${s.artist}</small>
             </div>
-            <div>${s.title}</div>
-            <div>${s.artist}</div>
-        </div>`;
-    }).join("");
+
+            <div>
+                <button onclick="playSong(${i})">▶</button>
+                <button class="fav-btn" onclick="toggleFav(${i})">
+                    ${favs.includes(i) ? "♥" : "♡"}
+                </button>
+            </div>
+        </div>
+    `).join("");
 }
 
+/* ===== PLAY FIX (BACKGROUND AUDIO ALSO FIXED) ===== */
 let current = 0;
 
 function playSong(i){
@@ -300,9 +266,12 @@ function playSong(i){
 
     current = i;
     audio.src = s.audio;
-    audio.play();
 
-    document.getElementById("nowPlaying").innerText = s.title;
+    audio.play().then(()=>{
+        localStorage.setItem("globalAudioSrc", s.audio);
+        localStorage.setItem("globalIsPlaying", "true");
+        document.getElementById("now").innerText = s.title;
+    });
 }
 
 function togglePlay(){
@@ -310,7 +279,20 @@ function togglePlay(){
     else audio.pause();
 }
 
-render();
+/* AUTO RESUME BG MUSIC */
+window.addEventListener("load",()=>{
+    let src = localStorage.getItem("globalAudioSrc");
+    let play = localStorage.getItem("globalIsPlaying");
+
+    if(src){
+        audio.src = src;
+        if(play === "true"){
+            audio.play();
+        }
+    }
+
+    render();
+});
 
 </script>
 
