@@ -1,3 +1,4 @@
+<!-- FAVORITES PAGE -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
 
 :root{
     --bg:#f5f5f7;
@@ -20,30 +26,6 @@
     --cyan:#111827;
     --purple:#6366f1;
     --pink:#22d3ee;
-    --border:rgba(0,0,0,0.08);
-}
-
-body.theme-white{
-    --bg:#f5f5f7;
-    --card:#ffffff;
-    --card2:#eef0f4;
-    --text:#111827;
-    --muted:#64748b;
-    --cyan:#111827;
-    --purple:#6366f1;
-    --pink:#22d3ee;
-    --border:rgba(0,0,0,0.08);
-}
-
-body.theme-musicred{
-    --bg:#ffffff;
-    --card:#f7f7f8;
-    --card2:#eeeeef;
-    --text:#1d1d1f;
-    --muted:#6e6e73;
-    --cyan:#e60023;
-    --purple:#ff2d55;
-    --pink:#ff7b92;
     --border:rgba(0,0,0,0.08);
 }
 
@@ -107,14 +89,9 @@ body{
 .menu a.active,
 .menu a:hover{
     background:linear-gradient(90deg,
-        color-mix(in srgb,var(--cyan) 16%,transparent),
-        color-mix(in srgb,var(--purple) 16%,transparent));
+    color-mix(in srgb,var(--cyan) 16%,transparent),
+    color-mix(in srgb,var(--purple) 16%,transparent));
     color:var(--text);
-}
-
-/* MOBILE NAV */
-.mobile-nav{
-    display:none;
 }
 
 /* MAIN */
@@ -122,7 +99,6 @@ body{
     height:100vh;
     height:100dvh;
     overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
     padding:30px 34px 170px;
 }
 
@@ -134,7 +110,9 @@ body{
     margin-bottom:28px;
 }
 
-.search-box{width:100%;}
+.search-box{
+    width:100%;
+}
 
 .search-box input{
     width:100%;
@@ -145,12 +123,6 @@ body{
     background:var(--card);
     color:var(--text);
     font-size:15px;
-    transition:0.3s;
-}
-
-.search-box input:focus{
-    border-color:var(--purple);
-    box-shadow:0 0 0 3px color-mix(in srgb,var(--purple) 12%,transparent);
 }
 
 .profile{
@@ -163,111 +135,101 @@ body{
     align-items:center;
     font-size:20px;
     font-weight:900;
-    cursor:pointer;
     color:white;
     overflow:hidden;
     flex-shrink:0;
 }
 
-.profile img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:none;
-}
-
-/* PAGE TITLE */
+/* HEADER */
 .page-title{
     background:linear-gradient(135deg,
-        color-mix(in srgb,var(--cyan) 10%,white),
-        color-mix(in srgb,var(--purple) 10%,white));
+    color-mix(in srgb,var(--cyan) 10%,white),
+    color-mix(in srgb,var(--purple) 10%,white));
     border:1px solid var(--border);
-    border-radius:34px;
-    padding:34px;
-    margin-bottom:24px;
+    border-radius:32px;
+    padding:30px;
+    margin-bottom:26px;
 }
 
 .page-title small{
     color:var(--purple);
-    font-weight:900;
+    font-weight:800;
     letter-spacing:1px;
 }
 
 .page-title h1{
-    font-size:48px;
-    margin:10px 0;
+    font-size:44px;
+    margin-top:8px;
+    margin-bottom:10px;
 }
 
 .page-title p{
     color:var(--muted);
+    font-size:15px;
 }
 
 /* SONG LIST */
 .song-list{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:16px;
 }
 
 .song-row{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:22px;
-    padding:14px 18px;
+    border-radius:24px;
+    padding:16px 18px;
     display:grid;
-    grid-template-columns:55px 70px 1.5fr 1fr 140px;
-    gap:16px;
+    grid-template-columns:70px 1fr auto;
+    gap:18px;
     align-items:center;
-    cursor:pointer;
     transition:0.3s;
 }
 
 .song-row:hover{
-    transform:translateY(-3px);
+    transform:translateY(-4px);
     border-color:var(--purple);
-    box-shadow:0 6px 20px var(--border);
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
 }
 
-.song-no{
-    color:var(--muted);
-    font-weight:900;
-    font-size:16px;
+.song-left{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    min-width:0;
 }
 
 .song-cover{
-    width:62px;
-    height:62px;
-    border-radius:16px;
-    background:var(--card2);
+    width:68px;
+    height:68px;
+    border-radius:18px;
     overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:var(--muted);
-    font-weight:900;
-    font-size:20px;
+    background:var(--card2);
+    flex-shrink:0;
 }
 
 .song-cover img{
     width:100%;
     height:100%;
     object-fit:cover;
-    object-position:center;
-    display:block;
 }
 
-.song-title h3{
-    font-size:17px;
+.song-info{
+    min-width:0;
+}
+
+.song-info h3{
+    font-size:18px;
+    margin-bottom:4px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
-    margin-bottom:3px;
 }
 
-.song-title p,
-.song-artist{
+.song-info p{
     color:var(--muted);
-    font-size:13px;
+    font-size:14px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -275,50 +237,36 @@ body{
 
 .song-actions{
     display:flex;
-    gap:8px;
-    justify-content:flex-end;
+    align-items:center;
+    gap:10px;
 }
 
 .song-actions button{
     border:none;
-    padding:10px 14px;
-    border-radius:14px;
-    font-weight:900;
     cursor:pointer;
-    font-size:13px;
     transition:0.2s;
 }
 
-.play-small{
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
+.play-btn{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
     color:white;
+    font-size:15px;
 }
 
-.play-small:hover{
-    transform:scale(1.05);
-}
-
-.unfav-btn{
+.star-btn{
+    width:46px;
+    height:46px;
+    border-radius:50%;
     background:var(--card2);
     color:#f59e0b;
-    font-size:16px;
-}
-
-.empty{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:28px;
-    padding:50px 34px;
-    color:var(--muted);
-    text-align:center;
-    font-weight:800;
     font-size:18px;
 }
 
-.empty span{
-    display:block;
-    font-size:48px;
-    margin-bottom:12px;
+.song-actions button:hover{
+    transform:scale(1.08);
 }
 
 /* PLAYER */
@@ -342,49 +290,35 @@ body{
     display:flex;
     align-items:center;
     gap:14px;
-    cursor:pointer;
-    min-width:0;
 }
 
 .player-cover{
     width:64px;
     height:64px;
     border-radius:18px;
-    background:var(--card2);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:var(--muted);
-    font-weight:900;
-    font-size:22px;
     overflow:hidden;
-    flex-shrink:0;
+    background:var(--card2);
 }
 
 .player-cover img{
     width:100%;
     height:100%;
     object-fit:cover;
-    object-position:center;
-    display:block;
 }
 
-.player-details{min-width:0;flex:1;}
 .player-details h4{
-    font-size:17px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-.player-details p{
-    color:var(--muted);
-    font-size:14px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    font-size:16px;
+    margin-bottom:4px;
 }
 
-.controls{text-align:center;}
+.player-details p{
+    font-size:13px;
+    color:var(--muted);
+}
+
+.controls{
+    text-align:center;
+}
 
 .buttons{
     display:flex;
@@ -394,210 +328,64 @@ body{
 }
 
 .buttons button{
-    width:42px;
-    height:42px;
+    width:44px;
+    height:44px;
     border:none;
     border-radius:50%;
     background:var(--card2);
     color:var(--text);
-    font-size:16px;
     cursor:pointer;
-    transition:0.2s;
+    font-size:16px;
 }
 
-.buttons button:hover{transform:scale(1.1);}
-
 .buttons .play{
-    width:52px;
-    height:52px;
+    width:54px;
+    height:54px;
     background:linear-gradient(90deg,var(--cyan),var(--purple));
     color:white;
-    font-size:18px;
 }
 
 .progress{
-    height:7px;
-    background:var(--card2);
-    border-radius:20px;
-    overflow:hidden;
-    cursor:pointer;
-}
-
-.progress-fill{
-    width:0%;
-    height:100%;
-    background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
-    transition:width 0.1s linear;
-}
-
-.time{
-    display:flex;
-    justify-content:space-between;
-    color:var(--muted);
-    font-size:12px;
-    margin-top:6px;
-}
-
-.volume{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    justify-content:flex-end;
-}
-
-.volume h3{
-    font-size:14px;
-    color:var(--muted);
-    white-space:nowrap;
-}
-
-.volume input{width:130px;}
-
-/* MUSIC CARD OVERLAY */
-.music-card-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.45);
-    backdrop-filter:blur(14px);
-    z-index:9999;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-}
-
-.music-card-overlay.show{
-    display:flex;
-}
-
-.music-card{
-    width:100%;
-    max-width:430px;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:34px;
-    padding:24px;
-    box-shadow:0 30px 80px rgba(0,0,0,0.25);
-}
-
-.big-cover{
-    width:100%;
-    height:310px;
-    border-radius:28px;
-    background:linear-gradient(135deg,var(--cyan),var(--purple));
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
-    font-size:90px;
-    font-weight:900;
-    overflow:hidden;
-    margin-bottom:22px;
-}
-
-.big-cover img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center;
-    display:block;
-}
-
-.music-card h2{
-    font-size:26px;
-    margin-bottom:6px;
-    text-align:center;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.music-card p{
-    color:var(--muted);
-    text-align:center;
-    margin-bottom:20px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.card-buttons{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:18px;
-    margin:22px 0;
-}
-
-.card-buttons button{
-    width:54px;
-    height:54px;
-    border:none;
-    border-radius:50%;
-    background:var(--card2);
-    color:var(--text);
-    font-size:18px;
-    cursor:pointer;
-}
-
-.card-buttons .big-play{
-    width:70px;
-    height:70px;
-    background:linear-gradient(90deg,var(--cyan),var(--purple));
-    color:white;
-    font-size:24px;
-}
-
-.card-progress{
     height:6px;
     background:var(--card2);
     border-radius:20px;
     overflow:hidden;
-    cursor:pointer;
 }
 
-.card-progress-fill{
+.progress-fill{
+    width:45%;
     height:100%;
-    width:0%;
     background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
 }
 
-.card-time{
+.volume{
     display:flex;
-    justify-content:space-between;
-    color:var(--muted);
-    font-size:13px;
-    margin-top:6px;
-    margin-bottom:16px;
+    justify-content:flex-end;
+    align-items:center;
+    gap:14px;
 }
 
-.card-volume{
-    margin-top:4px;
+.volume input{
+    accent-color:var(--purple);
 }
 
-.card-volume span{
-    color:var(--muted);
-    font-weight:800;
-    font-size:14px;
+/* MOBILE */
+.mobile-nav{
+    display:none;
 }
 
-.card-volume input{
-    width:100%;
-    margin-top:10px;
-}
-
-
-/* ===== MOBILE ===== */
 @media(max-width:900px){
 
     .app{
         grid-template-columns:1fr;
     }
 
-    .sidebar{display:none;}
+    .sidebar{
+        display:none;
+    }
 
     .main{
-        padding:20px 16px 200px;
+        padding:20px 16px 180px;
     }
 
     .page-title{
@@ -609,73 +397,74 @@ body{
         font-size:34px;
     }
 
-    /* Song rows - mobile */
     .song-row{
-        grid-template-columns:36px 56px 1fr auto;
-        gap:10px;
-        padding:12px 14px;
-        border-radius:18px;
+        grid-template-columns:1fr;
+        gap:14px;
+        padding:14px;
+        border-radius:20px;
     }
 
-    .song-artist{display:none;}
-
-    .song-actions{
-        display:flex;
-        flex-direction:column;
-        gap:6px;
-        justify-content:center;
-    }
-
-    .song-actions button{
-        padding:8px 10px;
-        font-size:12px;
+    .song-left{
+        gap:12px;
     }
 
     .song-cover{
-        width:56px;
-        height:56px;
-        border-radius:12px;
+        width:60px;
+        height:60px;
+        border-radius:14px;
     }
 
-    .song-title h3{font-size:14px;}
-    .song-title p{font-size:12px;}
-    .song-no{font-size:13px;}
+    .song-info h3{
+        font-size:15px;
+    }
 
-    /* MOBILE PLAYER */
+    .song-info p{
+        font-size:12px;
+    }
+
+    .song-actions{
+        justify-content:flex-end;
+    }
+
     .player{
-        left:0 !important;
-        right:0 !important;
-        bottom:64px !important;
-        grid-template-columns:1.2fr 1fr;
-        height:68px !important;
-        padding:8px 16px !important;
-        gap:10px;
+        left:0;
+        bottom:64px;
+        height:68px;
+        grid-template-columns:1fr auto;
+        padding:8px 16px;
+    }
+
+    .buttons button{
+        display:none;
+    }
+
+    .buttons .play{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:42px;
+        height:42px;
+    }
+
+    .progress,
+    .volume{
+        display:none;
     }
 
     .player-cover{
         width:44px;
         height:44px;
         border-radius:10px;
-        font-size:16px;
     }
 
-    .player-details h4{font-size:13px;}
-    .player-details p{font-size:11px;}
-
-    .controls .buttons button{display:none;}
-
-    .controls .buttons button.play{
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        width:42px;
-        height:42px;
-        font-size:15px;
+    .player-details h4{
+        font-size:14px;
     }
 
-    .progress,.time,.volume{display:none;}
+    .player-details p{
+        font-size:11px;
+    }
 
-    /* MOBILE NAV */
     .mobile-nav{
         display:flex;
         position:fixed;
@@ -685,29 +474,26 @@ body{
         height:64px;
         background:var(--card);
         border-top:1px solid var(--border);
-        z-index:1000;
         justify-content:space-around;
         align-items:center;
+        z-index:999;
     }
 
-    .mobile-nav-item{
+    .mobile-nav a{
+        text-decoration:none;
+        color:var(--muted);
+        font-size:11px;
         display:flex;
         flex-direction:column;
         align-items:center;
-        text-decoration:none;
-        color:var(--muted);
-        font-size:10px;
-        font-weight:600;
-        gap:3px;
-        width:16%;
-        transition:0.2s;
+        gap:4px;
     }
 
-    .mobile-nav-item.active{
+    .mobile-nav a.active{
         color:var(--purple);
     }
 
-    .mobile-nav-icon{
+    .mobile-nav i{
         font-size:18px;
     }
 }
@@ -718,413 +504,176 @@ body{
 
 <div class="app">
 
+    <!-- SIDEBAR -->
     <aside class="sidebar">
-        <div class="logo" onclick="window.location.href='home.html'">
+        <div class="logo">
             Audio<span>phile</span>
         </div>
-        <nav class="menu">
+
+        <div class="menu">
             <a href="home.html"><i class="fa-solid fa-house"></i> Home</a>
             <a href="songs.html"><i class="fa-solid fa-music"></i> Songs</a>
-            <a href="albums.html"><i class="fa-solid fa-record-vinyl"></i> Albums</a>
-            <a href="artists.html"><i class="fa-solid fa-microphone"></i> Artists</a>
-            <a href="favorites.html" class="active"><i class="fa-solid fa-heart"></i> Favorites</a>
+            <a href="albums.html"><i class="fa-solid fa-compact-disc"></i> Albums</a>
+            <a href="favorites.html" class="active"><i class="fa-solid fa-star"></i> Favorites</a>
             <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
-        </nav>
+        </div>
     </aside>
 
+    <!-- MAIN -->
     <main class="main">
 
         <div class="topbar">
             <div class="search-box">
-                <input id="searchInput" type="text" placeholder="Search favorite songs...">
+                <input type="text" placeholder="Search favorite songs...">
             </div>
-            <div class="profile" id="profileBtn" onclick="window.location.href='settings.html'">
-                <span id="profileInitial">A</span>
-                <img id="profileImage" src="" alt="">
+
+            <div class="profile">
+                G
             </div>
         </div>
 
-        <section class="page-title">
-            <small>YOUR LIKED SONGS</small>
-            <h1>❤️ Favorites</h1>
-            <p>Unga favorite songs ellam inga irukum. Song-a click panna play aagum.</p>
-        </section>
+        <div class="page-title">
+            <small>YOUR COLLECTION</small>
+            <h1>Favorite Songs</h1>
+            <p>All your saved songs in one place.</p>
+        </div>
 
-        <div class="song-list" id="favoriteList"></div>
+        <!-- SONGS -->
+        <div class="song-list">
 
+            <div class="song-row">
+                <div class="song-left">
+                    <div class="song-cover">
+                        <img src="images/song1.jpg">
+                    </div>
+
+                    <div class="song-info">
+                        <h3>Blinding Lights</h3>
+                        <p>The Weeknd</p>
+                    </div>
+                </div>
+
+                <div class="song-actions">
+                    <button class="play-btn">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+
+                    <button class="star-btn">
+                        <i class="fa-solid fa-star"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="song-row">
+                <div class="song-left">
+                    <div class="song-cover">
+                        <img src="images/song2.jpg">
+                    </div>
+
+                    <div class="song-info">
+                        <h3>Starboy</h3>
+                        <p>The Weeknd</p>
+                    </div>
+                </div>
+
+                <div class="song-actions">
+                    <button class="play-btn">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+
+                    <button class="star-btn">
+                        <i class="fa-solid fa-star"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="song-row">
+                <div class="song-left">
+                    <div class="song-cover">
+                        <img src="images/song3.jpg">
+                    </div>
+
+                    <div class="song-info">
+                        <h3>Levitating</h3>
+                        <p>Dua Lipa</p>
+                    </div>
+                </div>
+
+                <div class="song-actions">
+                    <button class="play-btn">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+
+                    <button class="star-btn">
+                        <i class="fa-solid fa-star"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
     </main>
-
 </div>
 
-<!-- PLAYER BAR -->
+<!-- PLAYER -->
 <div class="player">
-    <div class="player-info" onclick="openMusicCard()">
-        <div class="player-cover" id="playerCover">♪</div>
+
+    <div class="player-info">
+        <div class="player-cover">
+            <img src="images/song1.jpg">
+        </div>
+
         <div class="player-details">
-            <h4 id="playerTitle">Select a song</h4>
-            <p id="playerArtist">Audiophile</p>
+            <h4>Blinding Lights</h4>
+            <p>The Weeknd</p>
         </div>
     </div>
 
     <div class="controls">
         <div class="buttons">
-            <button onclick="prevSong()">⏮</button>
-            <button class="play" id="playBtn" onclick="togglePlay()">▶</button>
-            <button onclick="nextSong()">⏭</button>
+            <button><i class="fa-solid fa-backward"></i></button>
+            <button class="play"><i class="fa-solid fa-play"></i></button>
+            <button><i class="fa-solid fa-forward"></i></button>
         </div>
-        <div class="progress" onclick="setProgress(event)">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <div class="time">
-            <span id="currentTime">0:00</span>
-            <span id="durationTime">0:00</span>
+
+        <div class="progress">
+            <div class="progress-fill"></div>
         </div>
     </div>
 
     <div class="volume">
-        <h3>🔊 Volume</h3>
-        <input id="volumeRange" type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
+        <i class="fa-solid fa-volume-high"></i>
+        <input type="range">
     </div>
+
 </div>
 
 <!-- MOBILE NAV -->
-<nav class="mobile-nav">
-    <a href="home.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon"><i class="fa-solid fa-house"></i></span><span>Home</span>
+<div class="mobile-nav">
+    <a href="home.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
     </a>
-    <a href="songs.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon"><i class="fa-solid fa-music"></i></span><span>Songs</span>
-    </a>
-    <a href="albums.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon"><i class="fa-solid fa-compact-disc"></i></span><span>Albums</span>
-    </a>
-    <a href="artists.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon"><i class="fa-solid fa-user-astronaut"></i></span><span>Artists</span>
-    </a>
-    <a href="favorites.html" class="mobile-nav-item active">
-        <span class="mobile-nav-icon"><i class="fa-solid fa-heart"></i></span><span>Favorites</span>
-    </a>
-    <a href="settings.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon"><i class="fa-solid fa-gear"></i></span><span>Settings</span>
-    </a>
-</nav>
 
-<!-- MUSIC CARD OVERLAY -->
-<div class="music-card-overlay" id="musicCardOverlay">
-    <div class="music-card">
-        <div class="big-cover" id="bigCover">♪</div>
-        <h2 id="cardSongTitle">Select a song</h2>
-        <p id="cardSongArtist">Audiophile</p>
+    <a href="songs.html">
+        <i class="fa-solid fa-music"></i>
+        <span>Songs</span>
+    </a>
 
-        <div class="card-buttons">
-            <button onclick="prevSong()">⏮</button>
-            <button class="big-play" id="cardPlayBtn" onclick="togglePlay()">▶</button>
-            <button onclick="nextSong()">⏭</button>
-        </div>
+    <a href="albums.html">
+        <i class="fa-solid fa-compact-disc"></i>
+        <span>Albums</span>
+    </a>
 
-        <div class="card-progress" onclick="setCardProgress(event)">
-            <div class="card-progress-fill" id="cardProgressFill"></div>
-        </div>
+    <a href="favorites.html" class="active">
+        <i class="fa-solid fa-star"></i>
+        <span>Favorites</span>
+    </a>
 
-        <div class="card-time">
-            <span id="cardCurrentTime">0:00</span>
-            <span id="cardDurationTime">0:00</span>
-        </div>
-
-        <div class="card-volume">
-            <span>Volume</span>
-            <input type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)">
-        </div>
-    </div>
+    <a href="settings.html">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+    </a>
 </div>
-
-<audio id="audio"></audio>
-
-<script src="songs.js"></script>
-
-<script>
-
-// ── DOM refs ──
-let audio        = document.getElementById("audio");
-let favoriteList = document.getElementById("favoriteList");
-let searchInput  = document.getElementById("searchInput");
-let playBtn      = document.getElementById("playBtn");
-let cardPlayBtn  = document.getElementById("cardPlayBtn");
-let playerCover  = document.getElementById("playerCover");
-let playerTitle  = document.getElementById("playerTitle");
-let playerArtist = document.getElementById("playerArtist");
-let bigCover     = document.getElementById("bigCover");
-let cardSongTitle  = document.getElementById("cardSongTitle");
-let cardSongArtist = document.getElementById("cardSongArtist");
-let progressFill      = document.getElementById("progressFill");
-let cardProgressFill  = document.getElementById("cardProgressFill");
-let currentTime  = document.getElementById("currentTime");
-let durationTime = document.getElementById("durationTime");
-let cardCurrentTime  = document.getElementById("cardCurrentTime");
-let cardDurationTime = document.getElementById("cardDurationTime");
-let volumeRange  = document.getElementById("volumeRange");
-
-// ── State ──
-let currentSongIndex = parseInt(localStorage.getItem("currentSongIndex")) || 0;
-let isPlaying = localStorage.getItem("globalIsPlaying") === "true";
-
-let savedSrc  = localStorage.getItem("globalAudioSrc");
-let savedTime = parseFloat(localStorage.getItem("globalAudioTime")) || 0;
-
-if(savedSrc){
-    audio.src = savedSrc;
-    audio.addEventListener("loadedmetadata", function(){
-        if(savedTime < audio.duration) audio.currentTime = savedTime;
-    }, {once:true});
-}
-
-// ── Theme ──
-function applyTheme(){
-    let theme = localStorage.getItem("audiophile_theme") || "white";
-    document.body.classList.remove("theme-white","theme-musicred");
-    document.body.classList.add("theme-" + theme);
-}
-
-// ── Profile ──
-function loadProfile(){
-    let name  = localStorage.getItem("audiophile_currentUser") || "A";
-    let image = localStorage.getItem("audiophile_profileImage") || "";
-    let initEl  = document.getElementById("profileInitial");
-    let imgEl   = document.getElementById("profileImage");
-
-    initEl.innerText = name.charAt(0).toUpperCase();
-
-    if(image){
-        imgEl.src = image;
-        imgEl.style.display = "block";
-        initEl.style.display = "none";
-    } else {
-        imgEl.style.display = "none";
-        initEl.style.display = "block";
-    }
-}
-
-// ── Helpers ──
-function getSongs(){
-    return typeof songs !== "undefined" && Array.isArray(songs) ? songs : [];
-}
-
-function getFavorites(){
-    return JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
-}
-
-function saveFavorites(favs){
-    localStorage.setItem("audiophile_favorites", JSON.stringify(favs));
-}
-
-function getCurrentlyRenderedFavs(){
-    let allSongs = getSongs();
-    let value = searchInput.value.toLowerCase();
-    return getFavorites()
-        .map(index => ({song: allSongs[index], index: index}))
-        .filter(item => item.song)
-        .filter(item =>
-            item.song.title.toLowerCase().includes(value) ||
-            (item.song.artist || "").toLowerCase().includes(value) ||
-            (item.song.album  || "").toLowerCase().includes(value)
-        );
-}
-
-// ── Render ──
-function renderFavorites(){
-    let favSongs = getCurrentlyRenderedFavs();
-
-    if(favSongs.length === 0){
-        favoriteList.innerHTML =
-            `<div class="empty"><span>💔</span>No favorite songs yet.<br>Star a song from Songs page!</div>`;
-        return;
-    }
-
-    favoriteList.innerHTML = favSongs.map((item, displayIndex) => `
-        <div class="song-row" onclick="playSong(${item.index}, event)">
-            <div class="song-no">${displayIndex + 1}</div>
-            <div class="song-cover">
-                ${item.song.cover
-                    ? `<img src="${item.song.cover}" onerror="this.style.display='none';this.parentElement.innerText='${item.song.title.charAt(0)}';">`
-                    : item.song.title.charAt(0)
-                }
-            </div>
-            <div class="song-title">
-                <h3>${item.song.title}</h3>
-                <p>${item.song.album || "Single"}</p>
-            </div>
-            <div class="song-artist">${item.song.artist || ""}</div>
-            <div class="song-actions">
-                <button class="play-small" onclick="playSong(${item.index}, event)">▶ Play</button>
-                <button class="unfav-btn" onclick="removeFav(${item.index}, event)" title="Remove">♥</button>
-            </div>
-        </div>
-    `).join("");
-}
-
-function removeFav(index, event){
-    event.stopPropagation();
-    let favs = getFavorites().filter(i => i !== index);
-    saveFavorites(favs);
-    renderFavorites();
-}
-
-// ── Player State ──
-function savePlayerState(){
-    localStorage.setItem("currentSongIndex", currentSongIndex);
-    if(audio.src) localStorage.setItem("globalAudioSrc", audio.src);
-    localStorage.setItem("globalAudioTime", audio.currentTime || 0);
-    localStorage.setItem("globalIsPlaying", isPlaying ? "true" : "false");
-}
-
-function updatePlayerUI(song){
-    if(!song) return;
-    playBtn.innerText    = isPlaying ? "⏸" : "▶";
-    cardPlayBtn.innerText = isPlaying ? "⏸" : "▶";
-    playerTitle.innerText  = song.title;
-    playerArtist.innerText = song.artist || "Unknown";
-    cardSongTitle.innerText  = song.title;
-    cardSongArtist.innerText = (song.artist || "Unknown") + " • " + (song.album || "Single");
-
-    if(song.cover){
-        playerCover.innerHTML = `<img src="${song.cover}">`;
-        bigCover.innerHTML    = `<img src="${song.cover}">`;
-    } else {
-        playerCover.innerText = song.title.charAt(0);
-        bigCover.innerText    = song.title.charAt(0);
-    }
-}
-
-function playSong(index, event){
-    if(event) event.stopPropagation();
-    let allSongs = getSongs();
-    if(!allSongs[index]) return;
-    currentSongIndex = index;
-    let song = allSongs[currentSongIndex];
-    audio.src = song.audio;
-    audio.play().then(function(){
-        isPlaying = true;
-        savePlayerState();
-        updatePlayerUI(song);
-    }).catch(function(){
-        isPlaying = false;
-        savePlayerState();
-        updatePlayerUI(song);
-    });
-}
-
-function togglePlay(){
-    if(!audio.src){ playSong(currentSongIndex); return; }
-    if(isPlaying){
-        audio.pause();
-        isPlaying = false;
-        savePlayerState();
-        updatePlayerUI(getSongs()[currentSongIndex]);
-    } else {
-        audio.play().then(()=>{
-            isPlaying = true;
-            savePlayerState();
-            updatePlayerUI(getSongs()[currentSongIndex]);
-        }).catch(()=>{ isPlaying = false; });
-    }
-}
-
-function nextSong(){
-    let favs = getCurrentlyRenderedFavs();
-    if(favs.length === 0) return;
-    let i = favs.findIndex(f => f.index === currentSongIndex);
-    playSong(favs[(i + 1) % favs.length].index);
-}
-
-function prevSong(){
-    let favs = getCurrentlyRenderedFavs();
-    if(favs.length === 0) return;
-    let i = favs.findIndex(f => f.index === currentSongIndex);
-    playSong(favs[(i - 1 + favs.length) % favs.length].index);
-}
-
-function changeVolume(value){
-    audio.volume = value;
-    volumeRange.value = value;
-    localStorage.setItem("globalVolume", value);
-}
-
-function formatTime(s){
-    if(isNaN(s)) return "0:00";
-    let m = Math.floor(s / 60);
-    let sec = Math.floor(s % 60);
-    return m + ":" + (sec < 10 ? "0" + sec : sec);
-}
-
-// ── Progress ──
-function setProgress(event){
-    if(!audio.duration) return;
-    audio.currentTime = (event.offsetX / event.currentTarget.clientWidth) * audio.duration;
-    savePlayerState();
-}
-
-function setCardProgress(event){
-    if(!audio.duration) return;
-    audio.currentTime = (event.offsetX / event.currentTarget.clientWidth) * audio.duration;
-    savePlayerState();
-}
-
-// ── Card Overlay ──
-function openMusicCard(){
-    if(!audio.src) return;
-    document.getElementById("musicCardOverlay").classList.add("show");
-}
-
-function closeMusicCard(){
-    document.getElementById("musicCardOverlay").classList.remove("show");
-}
-
-document.getElementById("musicCardOverlay").addEventListener("click", function(e){
-    if(e.target.id === "musicCardOverlay") closeMusicCard();
-});
-
-// ── Audio events ──
-audio.addEventListener("timeupdate", function(){
-    localStorage.setItem("globalAudioTime", audio.currentTime || 0);
-    let pct = (audio.currentTime / audio.duration) * 100;
-    if(isNaN(pct)) pct = 0;
-    progressFill.style.width     = pct + "%";
-    cardProgressFill.style.width = pct + "%";
-    currentTime.innerText     = formatTime(audio.currentTime);
-    durationTime.innerText    = formatTime(audio.duration);
-    cardCurrentTime.innerText  = formatTime(audio.currentTime);
-    cardDurationTime.innerText = formatTime(audio.duration);
-});
-
-audio.addEventListener("ended", nextSong);
-
-window.addEventListener("beforeunload", savePlayerState);
-
-searchInput.addEventListener("input", renderFavorites);
-
-// ── Init ──
-applyTheme();
-loadProfile();
-renderFavorites();
-
-let savedVolume = localStorage.getItem("globalVolume") || 0.8;
-changeVolume(savedVolume);
-
-updatePlayerUI(getSongs()[currentSongIndex]);
-
-if(savedSrc && isPlaying){
-    setTimeout(function(){
-        audio.play().then(function(){
-            isPlaying = true;
-            updatePlayerUI(getSongs()[currentSongIndex]);
-        }).catch(function(){
-            isPlaying = false;
-            updatePlayerUI(getSongs()[currentSongIndex]);
-        });
-    }, 300);
-}
-
-</script>
 
 </body>
 </html>
