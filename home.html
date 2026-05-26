@@ -914,147 +914,291 @@ let isPlaying = false;
 let currentSlide = 0;
 let carouselTimer = null;
 
-let audio = new Audio();
+let audio = document.getElementById("audio");
+
 window.globalAudio = audio;
 
 let savedAudio = localStorage.getItem("globalAudioSrc");
+
 if(savedAudio){
     audio.src = savedAudio;
 }
 
-audio.currentTime = parseFloat(localStorage.getItem("globalAudioTime")) || 0;
+audio.currentTime =
+parseFloat(localStorage.getItem("globalAudioTime")) || 0;
 
-function startCarouselRoutine() {
+function startCarouselRoutine(){
+
     stopCarouselRoutine();
-    carouselTimer = setInterval(nextSlide, 5000);
+
+    carouselTimer = setInterval(()=>{
+        nextSlide();
+    },5000);
+
 }
 
-function stopCarouselRoutine() {
-    if(carouselTimer) clearInterval(carouselTimer);
+function stopCarouselRoutine(){
+
+    if(carouselTimer){
+        clearInterval(carouselTimer);
+    }
+
 }
 
 function showSlide(index){
-    let slides = document.querySelectorAll(".slide");
-    let dots = document.querySelectorAll(".dots span");
+
+    let slides =
+    document.querySelectorAll(".slide");
+
+    let dots =
+    document.querySelectorAll(".dots span");
+
     if(slides.length === 0) return;
 
     if(index >= slides.length){
+
         currentSlide = 0;
-    }
-    else if(index < 0){
+
+    }else if(index < 0){
+
         currentSlide = slides.length - 1;
-    }
-    else{
+
+    }else{
+
         currentSlide = index;
+
     }
 
-    slides.forEach(slide => slide.classList.remove("active"));
-    dots.forEach(dot => dot.classList.remove("active"));
+    slides.forEach(slide=>{
+        slide.classList.remove("active");
+    });
+
+    dots.forEach(dot=>{
+        dot.classList.remove("active");
+    });
 
     slides[currentSlide].classList.add("active");
-    if(dots[currentSlide]) dots[currentSlide].classList.add("active");
+
+    if(dots[currentSlide]){
+        dots[currentSlide].classList.add("active");
+    }
+
 }
 
 function nextSlide(){
+
     showSlide(currentSlide + 1);
+
 }
 
 function prevSlide(){
+
     stopCarouselRoutine();
+
     showSlide(currentSlide - 1);
+
     startCarouselRoutine();
+
 }
 
-function manualSlide(index) {
+function manualSlide(index){
+
     stopCarouselRoutine();
+
     showSlide(index);
+
     startCarouselRoutine();
+
 }
 
 function getSongs(){
-    if(typeof songs !== "undefined" && Array.isArray(songs) && songs.length > 0){
+
+    if(
+        typeof songs !== "undefined"
+        &&
+        Array.isArray(songs)
+        &&
+        songs.length > 0
+    ){
         return songs;
     }
+
     return [];
+
 }
 
 function renderSongs(){
-    let songGrid = document.getElementById("songGrid");
+
+    let songGrid =
+    document.getElementById("songGrid");
+
     if(!songGrid) return;
+
     let allSongs = getSongs();
 
-    if(allSongs.length === 0) {
-        songGrid.innerHTML = `<p style="padding: 20px; color: var(--muted);">No songs found inside database array.</p>`;
+    if(allSongs.length === 0){
+
+        songGrid.innerHTML = `
+        <p style="padding:20px;color:var(--muted);">
+        No songs found.
+        </p>
+        `;
+
         return;
+
     }
 
-    songGrid.innerHTML = allSongs.slice(0,10).map((song, index) => {
-        let artistDisplay = song.artist || "Unknown Artist";
+    songGrid.innerHTML =
+    allSongs.slice(0,10).map((song,index)=>{
+
         return `
-        <div class="card" onclick="playSong(${index})">
+
+        <div class="card"
+        onclick="playSong(${index})">
+
             <div class="cover">
-                ${song.cover ? `<img src="${song.cover}" alt="">` : (song.title ? song.title.charAt(0) : 'S')}
+
+                ${
+                    song.cover
+                    ?
+                    `<img src="${song.cover}" alt="">`
+                    :
+                    song.title.charAt(0)
+                }
+
             </div>
-            <h3>${song.title || "Untitled Track"}</h3>
-            <p>${artistDisplay}</p>
+
+            <h3>${song.title}</h3>
+
+            <p>${song.artist || "Unknown Artist"}</p>
+
         </div>
+
         `;
+
     }).join("");
+
 }
 
 function updatePlayerUI(song){
+
     if(!song) return;
 
-    document.getElementById("playBtn").innerText = isPlaying ? "⏸" : "▶";
-    document.getElementById("cardPlayBtn").innerText = isPlaying ? "⏸" : "▶";
-    document.getElementById("playerTitle").innerText = song.title || "Untitled Track";
-    
-    let artistStr = song.artist || "Unknown Artist";
-    let albumStr = song.album ? " • " + song.album : "";
-    let fullSubtitle = artistStr + albumStr;
+    document.getElementById("playBtn").innerText =
+    isPlaying ? "⏸" : "▶";
 
-    document.getElementById("playerArtist").innerText = fullSubtitle;
-    document.getElementById("cardSongTitle").innerText = song.title || "Untitled Track";
-    document.getElementById("cardSongArtist").innerText = fullSubtitle;
+    document.getElementById("cardPlayBtn").innerText =
+    isPlaying ? "⏸" : "▶";
+
+    document.getElementById("playerTitle").innerText =
+    song.title || "Untitled Track";
+
+    let subtitle =
+    (song.artist || "Unknown Artist")
+    +
+    (song.album ? " • " + song.album : "");
+
+    document.getElementById("playerArtist").innerText =
+    subtitle;
+
+    document.getElementById("cardSongTitle").innerText =
+    song.title || "Untitled Track";
+
+    document.getElementById("cardSongArtist").innerText =
+    subtitle;
 
     if(song.cover){
-        document.getElementById("playerCover").innerHTML = `<img src="${song.cover}" alt="">`;
-        document.getElementById("bigCover").innerHTML = `<img src="${song.cover}" alt="">`;
-    } else {
-        let fallbackLetter = song.title ? song.title.charAt(0) : "A";
-        document.getElementById("playerCover").innerText = fallbackLetter;
-        document.getElementById("bigCover").innerText = fallbackLetter;
+
+        document.getElementById("playerCover").innerHTML =
+        `<img src="${song.cover}" alt="">`;
+
+        document.getElementById("bigCover").innerHTML =
+        `<img src="${song.cover}" alt="">`;
+
+    }else{
+
+        let fallback =
+        song.title
+        ? song.title.charAt(0)
+        : "A";
+
+        document.getElementById("playerCover").innerText =
+        fallback;
+
+        document.getElementById("bigCover").innerText =
+        fallback;
+
     }
+
 }
 
 function playSong(index){
+
     let allSongs = getSongs();
-    if(index < 0 || index >= allSongs.length) return;
+
+    if(index < 0 || index >= allSongs.length){
+        return;
+    }
+
     currentSongIndex = index;
 
     let song = allSongs[index];
+
     audio.src = song.audio;
 
-    /* FIXED PLAY BUTTON BUG */
+    audio.play().then(()=>{
 
-    isPlaying = true;
-    localStorage.setItem(
-        "globalIsPlaying",
-        "true"
-    );
-    updatePlayerUI(song);
-    audio.play().then(() => {
         isPlaying = true;
+
         localStorage.setItem(
             "globalIsPlaying",
             "true"
         );
-        updatePlayerUI(song);
-    }).catch(err => {
-        console.log(
-            "Playback failed:",
-            err
+
+        localStorage.setItem(
+            "currentSongIndex",
+            currentSongIndex
         );
+
+        localStorage.setItem(
+            "globalAudioSrc",
+            song.audio
+        );
+
+        updatePlayerUI(song);
+
+    }).catch((err)=>{
+
+        console.log(err);
+
+        isPlaying = false;
+
+        updatePlayerUI(song);
+
+    });
+
+}
+
+function togglePlay(){
+
+    let allSongs = getSongs();
+
+    if(allSongs.length === 0) return;
+
+    if(!audio.src){
+
+        if(allSongs[currentSongIndex]){
+
+            audio.src =
+            allSongs[currentSongIndex].audio;
+
+        }
+
+    }
+
+    if(isPlaying){
+
+        audio.pause();
 
         isPlaying = false;
 
@@ -1063,197 +1207,420 @@ function playSong(index){
             "false"
         );
 
-        updatePlayerUI(song);
+        updatePlayerUI(
+            allSongs[currentSongIndex]
+        );
 
-    });
+    }else{
 
-    localStorage.setItem(
-        "currentSongIndex",
-        currentSongIndex
-    );
+        audio.play().then(()=>{
 
-    localStorage.setItem(
-        "globalAudioSrc",
-        song.audio
-    );
-
-}
-
-function togglePlay(){
-    let allSongs = getSongs();
-    if(allSongs.length === 0) return;
-
-    if(isPlaying){
-        audio.pause();
-        isPlaying = false;
-        localStorage.setItem("globalIsPlaying", "false");
-    }
-    else{
-        if(!audio.src && allSongs[currentSongIndex]) {
-            audio.src = allSongs[currentSongIndex].audio;
-        }
-        audio.play().then(() => {
             isPlaying = true;
-            localStorage.setItem("globalIsPlaying", "true");
-        }).catch(err => console.log("Playback error:", err));
+
+            localStorage.setItem(
+                "globalIsPlaying",
+                "true"
+            );
+
+            updatePlayerUI(
+                allSongs[currentSongIndex]
+            );
+
+        }).catch((err)=>{
+
+            console.log(
+                "Playback error:",
+                err
+            );
+
+            isPlaying = false;
+
+            updatePlayerUI(
+                allSongs[currentSongIndex]
+            );
+
+        });
+
     }
 
-    updatePlayerUI(allSongs[currentSongIndex]);
 }
 
 function nextSong(){
+
     let allSongs = getSongs();
+
     if(allSongs.length === 0) return;
-    currentSongIndex = (currentSongIndex + 1) >= allSongs.length ? 0 : currentSongIndex + 1;
+
+    currentSongIndex++;
+
+    if(currentSongIndex >= allSongs.length){
+        currentSongIndex = 0;
+    }
+
     playSong(currentSongIndex);
+
 }
 
 function prevSong(){
+
     let allSongs = getSongs();
+
     if(allSongs.length === 0) return;
-    currentSongIndex = (currentSongIndex - 1) < 0 ? allSongs.length - 1 : currentSongIndex - 1;
+
+    currentSongIndex--;
+
+    if(currentSongIndex < 0){
+        currentSongIndex =
+        allSongs.length - 1;
+    }
+
     playSong(currentSongIndex);
+
 }
 
 function changeVolume(value){
+
     audio.volume = value;
+
 }
 
 function formatTime(seconds){
+
     if(isNaN(seconds) || !isFinite(seconds)){
+
         return "0:00";
+
     }
-    let min = Math.floor(seconds / 60);
-    let sec = Math.floor(seconds % 60);
-    return min + ":" + (sec < 10 ? "0" + sec : sec);
+
+    let min =
+    Math.floor(seconds / 60);
+
+    let sec =
+    Math.floor(seconds % 60);
+
+    return min + ":" +
+    (sec < 10 ? "0" + sec : sec);
+
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded",()=>{
+
     applySavedTheme();
+
     loadHomeProfile();
+
     renderSongs();
+
     changeVolume(0.8);
+
     startCarouselRoutine();
 
     let allSongs = getSongs();
-    if(allSongs.length > 0 && allSongs[currentSongIndex]) {
-        updatePlayerUI(allSongs[currentSongIndex]);
+
+    if(
+        allSongs.length > 0
+        &&
+        allSongs[currentSongIndex]
+    ){
+
+        updatePlayerUI(
+            allSongs[currentSongIndex]
+        );
+
     }
 
-    let savedPlaying = localStorage.getItem("globalIsPlaying");
+    let savedPlaying =
+    localStorage.getItem("globalIsPlaying");
+
     if(savedPlaying === "true"){
-        setTimeout(() => {
-            audio.play().then(() => {
+
+        setTimeout(()=>{
+
+            audio.play().then(()=>{
+
                 isPlaying = true;
-                if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
-            }).catch(e => {
+
+                updatePlayerUI(
+                    allSongs[currentSongIndex]
+                );
+
+            }).catch(()=>{
+
                 isPlaying = false;
-                localStorage.setItem("globalIsPlaying", "false");
-                if(allSongs[currentSongIndex]) updatePlayerUI(allSongs[currentSongIndex]);
+
+                localStorage.setItem(
+                    "globalIsPlaying",
+                    "false"
+                );
+
+                updatePlayerUI(
+                    allSongs[currentSongIndex]
+                );
+
             });
-        }, 300);
+
+        },300);
+
     }
+
 });
 
 function applySavedTheme(){
-    let theme = localStorage.getItem("audiophile_theme") || "white";
-    document.body.classList.remove("theme-white", "theme-musicred");
-    document.body.classList.add("theme-" + theme);
+
+    let theme =
+    localStorage.getItem("audiophile_theme")
+    || "white";
+
+    document.body.classList.remove(
+        "theme-white",
+        "theme-musicred"
+    );
+
+    document.body.classList.add(
+        "theme-" + theme
+    );
+
 }
 
 function loadHomeProfile(){
-    let currentUser = localStorage.getItem("audiophile_currentUser") || "Liyo Clevert";
-    let profileImage = localStorage.getItem("audiophile_profileImage") || "";
 
-    document.getElementById("homeProfileInitial").innerText = currentUser.charAt(0).toUpperCase();
+    let currentUser =
+    localStorage.getItem(
+        "audiophile_currentUser"
+    ) || "Audiophile";
 
-    if(profileImage !== ""){
-        document.getElementById("homeProfileImage").src = profileImage;
-        document.getElementById("homeProfileImage").style.display = "block";
-        document.getElementById("homeProfileInitial").style.display = "none";
+    let profileImage =
+    localStorage.getItem(
+        "audiophile_profileImage"
+    ) || "";
+
+    document.getElementById(
+        "homeProfileInitial"
+    ).innerText =
+    currentUser.charAt(0).toUpperCase();
+
+    if(profileImage){
+
+        document.getElementById(
+            "homeProfileImage"
+        ).src = profileImage;
+
+        document.getElementById(
+            "homeProfileImage"
+        ).style.display = "block";
+
+        document.getElementById(
+            "homeProfileInitial"
+        ).style.display = "none";
+
+    }else{
+
+        document.getElementById(
+            "homeProfileImage"
+        ).style.display = "none";
+
+        document.getElementById(
+            "homeProfileInitial"
+        ).style.display = "block";
+
     }
-    else{
-        document.getElementById("homeProfileImage").style.display = "none";
-        document.getElementById("homeProfileInitial").style.display = "block";
-    }
+
 }
 
-audio.addEventListener("timeupdate", function(){
+audio.addEventListener("timeupdate",()=>{
+
     if(!audio.duration) return;
-    localStorage.setItem("globalAudioTime", audio.currentTime);
 
-    let percent = (audio.currentTime / audio.duration) * 100;
-    if(isNaN(percent)) percent = 0;
+    localStorage.setItem(
+        "globalAudioTime",
+        audio.currentTime
+    );
 
-    document.getElementById("progressFill").style.width = percent + "%";
-    document.getElementById("cardProgressFill").style.width = percent + "%";
+    let percent =
+    (audio.currentTime / audio.duration)
+    * 100;
 
-    let currentFormatted = formatTime(audio.currentTime);
-    let durationFormatted = formatTime(audio.duration);
+    if(isNaN(percent)){
+        percent = 0;
+    }
 
-    document.getElementById("currentTime").innerText = currentFormatted;
-    document.getElementById("durationTime").innerText = durationFormatted;
-    document.getElementById("cardCurrentTime").innerText = currentFormatted;
-    document.getElementById("cardDurationTime").innerText = durationFormatted;
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+    percent + "%";
+
+    document.getElementById(
+        "cardProgressFill"
+    ).style.width =
+    percent + "%";
+
+    let currentFormatted =
+    formatTime(audio.currentTime);
+
+    let durationFormatted =
+    formatTime(audio.duration);
+
+    document.getElementById(
+        "currentTime"
+    ).innerText =
+    currentFormatted;
+
+    document.getElementById(
+        "durationTime"
+    ).innerText =
+    durationFormatted;
+
+    document.getElementById(
+        "cardCurrentTime"
+    ).innerText =
+    currentFormatted;
+
+    document.getElementById(
+        "cardDurationTime"
+    ).innerText =
+    durationFormatted;
+
 });
 
-audio.addEventListener("ended", function(){
+audio.addEventListener("ended",()=>{
+
     nextSong();
+
 });
 
 function setProgress(event){
+
     if(!audio.duration) return;
-    let width = event.currentTarget.clientWidth;
-    let clickX = event.offsetX;
-    audio.currentTime = (clickX / width) * audio.duration;
+
+    let width =
+    event.currentTarget.clientWidth;
+
+    let clickX =
+    event.offsetX;
+
+    audio.currentTime =
+    (clickX / width)
+    * audio.duration;
+
 }
 
 function setCardProgress(event){
+
     if(!audio.duration) return;
-    let width = event.currentTarget.clientWidth;
-    let clickX = event.offsetX;
-    audio.currentTime = (clickX / width) * audio.duration;
+
+    let width =
+    event.currentTarget.clientWidth;
+
+    let clickX =
+    event.offsetX;
+
+    audio.currentTime =
+    (clickX / width)
+    * audio.duration;
+
 }
 
 function openMusicCard(){
+
     if(!audio.src) return;
-    document.getElementById("musicCardOverlay").classList.add("show");
+
+    document.getElementById(
+        "musicCardOverlay"
+    ).classList.add("show");
+
 }
 
 function closeMusicCard(){
-    document.getElementById("musicCardOverlay").classList.remove("show");
+
+    document.getElementById(
+        "musicCardOverlay"
+    ).classList.remove("show");
+
 }
 
-document.getElementById("musicCardOverlay").addEventListener("click", function(e){
+document.getElementById(
+    "musicCardOverlay"
+).addEventListener("click",(e)=>{
+
     if(e.target.id === "musicCardOverlay"){
+
         closeMusicCard();
+
     }
+
 });
 
-document.getElementById("searchInput").addEventListener("input", function(){
-    let value = this.value.toLowerCase();
-    let allSongs = getSongs();
-    let songGrid = document.getElementById("songGrid");
+document.getElementById(
+    "searchInput"
+).addEventListener("input",function(){
 
-    let filtered = allSongs.filter(song => {
-        return (song.title && song.title.toLowerCase().includes(value)) ||
-               (song.artist && song.artist.toLowerCase().includes(value)) ||
-               (song.album && song.album.toLowerCase().includes(value));
+    let value =
+    this.value.toLowerCase();
+
+    let allSongs = getSongs();
+
+    let songGrid =
+    document.getElementById("songGrid");
+
+    let filtered =
+    allSongs.filter(song=>{
+
+        return (
+            song.title
+            &&
+            song.title.toLowerCase()
+            .includes(value)
+        )
+        ||
+        (
+            song.artist
+            &&
+            song.artist.toLowerCase()
+            .includes(value)
+        )
+        ||
+        (
+            song.album
+            &&
+            song.album.toLowerCase()
+            .includes(value)
+        );
+
     });
 
-    songGrid.innerHTML = filtered.map(song => {
-        let realIndex = allSongs.indexOf(song);
-        let artistDisplay = song.artist || "Unknown Artist";
+    songGrid.innerHTML =
+    filtered.map(song=>{
+
+        let realIndex =
+        allSongs.indexOf(song);
+
         return `
-        <div class="card" onclick="playSong(${realIndex})">
+
+        <div class="card"
+        onclick="playSong(${realIndex})">
+
             <div class="cover">
-                ${song.cover ? `<img src="${song.cover}" alt="">` : (song.title ? song.title.charAt(0) : 'S')}
+
+                ${
+                    song.cover
+                    ?
+                    `<img src="${song.cover}" alt="">`
+                    :
+                    song.title.charAt(0)
+                }
+
             </div>
-            <h3>${song.title || "Untitled Track"}</h3>
-            <p>${artistDisplay}</p>
+
+            <h3>${song.title}</h3>
+
+            <p>${song.artist || "Unknown Artist"}</p>
+
         </div>
+
         `;
+
     }).join("");
+
 });
 </script>
 
