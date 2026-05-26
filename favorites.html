@@ -3,83 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audiophile - Favorites</title>
+<title>Audiophile</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
-    :root{--bg:#f5f5f7;--card:#ffffff;--text:#111827;--purple:#6366f1;--border:rgba(0,0,0,0.08);}
-    body{background:var(--bg);color:var(--text);height:100vh;display:grid;grid-template-columns:250px 1fr;}
-    .sidebar{background:var(--card);border-right:1px solid var(--border);padding:28px;}
-    .main{padding:40px;overflow-y:auto;padding-bottom:150px;}
-    .song-row{background:var(--card);border:1px solid var(--border);padding:15px;border-radius:20px;display:grid;grid-template-columns:50px 60px 1fr 100px 100px;align-items:center;margin-bottom:10px;gap:20px;}
-    .star-btn{cursor:pointer;font-size:24px;background:none;border:none;color:gold;}
-    .play-btn{padding:10px 20px;border-radius:15px;border:none;background:var(--purple);color:white;cursor:pointer;}
-    .player{position:fixed;bottom:0;left:250px;right:0;background:white;padding:20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
+
+:root{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --card2:#eef0f4;
+    --text:#111827;
+    --muted:#64748b;
+    --cyan:#111827;
+    --purple:#6366f1;
+    --pink:#22d3ee;
+    --border:rgba(0,0,0,0.08);
+}
+
+body{background:var(--bg);color:var(--text);overflow:hidden;}
+
+.app{display:grid;grid-template-columns:250px 1fr;height:100vh;}
+.sidebar{background:var(--card);border-right:1px solid var(--border);padding:28px 20px;}
+.logo{font-size:32px;font-weight:900;margin-bottom:34px;cursor:pointer;}
+.logo span{background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.menu{display:flex;flex-direction:column;gap:14px;}
+.menu a{color:var(--muted);text-decoration:none;padding:15px 18px;border-radius:18px;font-size:16px;font-weight:700;}
+.menu a.active, .menu a:hover{background:linear-gradient(90deg,rgba(99,102,241,0.12),rgba(34,211,238,0.12));color:var(--text);}
+.main{height:100vh;overflow-y:auto;padding:30px 34px 150px;}
+
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:28px;}
+.search-box{width:100%;}
+.search-box input{width:100%;padding:17px 24px;border-radius:40px;border:1px solid var(--border);outline:none;background:var(--card);color:var(--text);font-size:15px;}
+.profile{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--purple));display:flex;justify-content:center;align-items:center;color:white;font-weight:900;cursor:pointer;}
+
+.page-title{background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(34,211,238,0.08));border:1px solid var(--border);border-radius:34px;padding:34px;margin-bottom:24px;}
+.song-list{display:flex;flex-direction:column;gap:12px;}
+
+.song-row{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:14px 18px;display:grid;grid-template-columns:55px 70px 1.5fr 1fr 120px;gap:16px;align-items:center;cursor:pointer;transition:0.3s;}
+.song-row:hover{transform:translateY(-3px);border-color:var(--purple);}
+
+.song-cover{width:62px;height:62px;border-radius:16px;background:var(--card2);display:flex;justify-content:center;align-items:center;}
+.song-cover img{width:100%;height:100%;object-fit:cover;}
+.song-actions{display:flex;gap:10px;align-items:center;}
+.star-btn{background:none;border:none;cursor:pointer;font-size:20px;color:gold;}
+.play-small{background:linear-gradient(90deg,var(--cyan),var(--purple));color:white;border:none;padding:10px 13px;border-radius:15px;cursor:pointer;}
+
+@media(max-width:900px){
+    .app{grid-template-columns:1fr;}
+    .sidebar{display:none;}
+    .main{padding:24px 18px 180px;}
+    .song-row{grid-template-columns:40px 62px 1fr 60px;}
+    .song-artist{display:none;}
+}
 </style>
 </head>
 <body>
 
-<aside class="sidebar">
-    <div class="logo" style="font-size:24px; font-weight:900; margin-bottom:30px;">Audio<span>phile</span></div>
-    <nav><a href="home.html">Home</a><br><a href="favorites.html">Favorites</a></nav>
-</aside>
-
-<main class="main">
-    <h1>Favorites</h1>
-    <div id="favoriteList"></div>
-</main>
-
-<div class="player">
-    <div id="playerInfo">Select a song</div>
-    <div class="controls">
-        <button onclick="togglePlay()" id="playBtn">▶</button>
-    </div>
+<div class="app">
+    <aside class="sidebar">
+        <div class="logo" onclick="window.location.href='home.html'">Audio<span>phile</span></div>
+        <nav class="menu">
+            <a href="home.html">Home</a>
+            <a href="favorites.html" class="active">Favorites</a>
+        </nav>
+    </aside>
+    <main class="main">
+        <div class="topbar">
+            <div class="search-box"><input id="searchInput" type="text" placeholder="Search favorites..."></div>
+        </div>
+        <section class="page-title">
+            <h1>Favorites</h1>
+        </section>
+        <div class="song-list" id="favoriteList"></div>
+    </main>
 </div>
 
 <script src="songs.js"></script>
 <script>
-    let favoriteList = document.getElementById("favoriteList");
+let favoriteList = document.getElementById("favoriteList");
+let searchInput = document.getElementById("searchInput");
 
-    function renderFavorites() {
-        let favorites = JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
-        if(favorites.length === 0) {
-            favoriteList.innerHTML = "<p>No favorites yet.</p>";
-            return;
-        }
+function getFavorites(){ return JSON.parse(localStorage.getItem("audiophile_favorites")) || []; }
 
-        favoriteList.innerHTML = favorites.map(index => {
-            let song = songs[index];
-            let isFav = favorites.includes(index);
-            return `
-            <div class="song-row">
-                <div>#</div>
-                <div style="width:50px;height:50px;background:#eee;border-radius:10px;"></div>
-                <div>${song.title}</div>
-                <button class="star-btn" onclick="toggleFavorite(${index})">
-                    ${isFav ? "★" : "☆"}
-                </button>
-                <button class="play-btn" onclick="playSong(${index})">Play</button>
-            </div>`;
-        }).join("");
+function renderFavorites(){
+    let allSongs = getSongs();
+    let favs = getFavorites();
+    let value = searchInput.value.toLowerCase();
+
+    let filtered = favs.map(index => ({song: allSongs[index], index: index}))
+                       .filter(item => item.song && (item.song.title.toLowerCase().includes(value)));
+
+    if(filtered.length === 0){
+        favoriteList.innerHTML = `<div class="empty">No favorite songs found.</div>`;
+        return;
     }
 
-    function toggleFavorite(index) {
-        let favs = JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
-        if(favs.includes(index)) {
-            favs = favs.filter(i => i !== index);
-        } else {
-            favs.push(index);
-        }
-        localStorage.setItem("audiophile_favorites", JSON.stringify(favs));
-        renderFavorites();
-    }
+    favoriteList.innerHTML = filtered.map((item, i) => `
+        <div class="song-row">
+            <div class="song-no">${i + 1}</div>
+            <div class="song-cover">${item.song.cover ? `<img src="${item.song.cover}">` : item.song.title.charAt(0)}</div>
+            <div class="song-title"><h3>${item.song.title}</h3></div>
+            <div class="song-artist">${item.song.artist}</div>
+            <div class="song-actions">
+                <button class="star-btn" onclick="toggleFavorite(${item.index})">★</button>
+                <button class="play-small" onclick="playSong(${item.index})">Play</button>
+            </div>
+        </div>
+    `).join("");
+}
 
-    function playSong(index) {
-        // பிளேயர் செயல்பாட்டிற்கான உங்கள் தற்போதைய லாஜிக்
-        console.log("Playing:", songs[index].title);
+function toggleFavorite(index){
+    let favs = getFavorites();
+    if(favs.includes(index)){
+        favs = favs.filter(i => i !== index);
+    } else {
+        favs.push(index);
     }
-
+    localStorage.setItem("audiophile_favorites", JSON.stringify(favs));
     renderFavorites();
+}
+
+function playSong(index){
+    localStorage.setItem("currentSongIndex", index);
+    window.location.href = "home.html?play=" + index;
+}
+
+searchInput.addEventListener("input", renderFavorites);
+renderFavorites();
 </script>
 </body>
 </html>
