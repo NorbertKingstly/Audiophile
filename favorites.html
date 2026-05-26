@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Audiophile - Favorites</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<style>
-/* CSS styles remain same as your original, just added star color */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
-:root{--bg:#f5f5f7;--card:#ffffff;--card2:#eef0f4;--text:#111827;--muted:#64748b;--cyan:#111827;--purple:#6366f1;--pink:#22d3ee;--border:rgba(0,0,0,0.08);}
-body{background:var(--bg);color:var(--text);height:100vh;overflow:hidden;}
-.app{display:grid;grid-template-columns:250px 1fr;height:100vh;}
-.sidebar{background:var(--card);border-right:1px solid var(--border);padding:28px 20px;}
-.menu a{color:var(--muted);text-decoration:none;padding:15px;display:flex;align-items:center;gap:10px;font-weight:700;}
-.menu a.active{color:var(--purple);}
-.main{padding:30px;overflow-y:auto;}
-.song-row{background:var(--card);border:1px solid var(--border);padding:14px;display:grid;grid-template-columns:50px 60px 1fr 100px;align-items:center;gap:15px;border-radius:18px;margin-bottom:10px;}
-.star-btn{cursor:pointer;font-size:20px;color:#f59e0b;border:none;background:transparent;}
-@media(max-width:900px){.app{grid-template-columns:1fr;}.sidebar{display:none;}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Audiophile - Favorites</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* முந்தைய ஸ்டைல்கள் அப்படியே இருக்கும், Mobile Player மற்றும் Overlay சரி செய்யப்பட்டுள்ளது */
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
+        :root{--bg:#f5f5f7;--card:#ffffff;--text:#111827;--purple:#6366f1;--muted:#64748b;}
+        body{background:var(--bg);color:var(--text);height:100vh;overflow:hidden;}
+        .app{display:grid;grid-template-columns:250px 1fr;height:100vh;}
+        .main{padding:30px;overflow-y:auto;height:100vh;padding-bottom:150px;}
+        .song-row{background:var(--card);padding:15px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:15px;border-radius:18px;margin-bottom:10px;cursor:pointer;}
+        .star-btn{cursor:pointer;font-size:20px;color:#f59e0b;border:none;background:transparent;padding:10px;}
+        
+        /* Mobile Player */
+        .player{position:fixed;left:250px;right:0;bottom:0;background:white;border-top:1px solid #eee;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:999;}
+        .music-card-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:9999;}
+        .music-card-overlay.show{display:flex;}
+        .music-card{background:white;padding:30px;border-radius:30px;width:90%;max-width:400px;text-align:center;}
+        
+        @media(max-width:900px){
+            .app{grid-template-columns:1fr;}
+            .sidebar{display:none;}
+            .player{left:0;bottom:64px;}
+            .mobile-nav{display:flex;position:fixed;bottom:0;width:100%;background:white;padding:10px;justify-content:space-around;border-top:1px solid #eee;z-index:1000;}
+        }
+    </style>
 </head>
 <body>
 
 <div class="app">
     <aside class="sidebar">
-        <div class="logo">Audio<span>phile</span></div>
-        <nav class="menu">
-            <a href="home.html"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="favorites.html" class="active"><i class="fa-solid fa-heart"></i> Favorites</a>
+        <div class="logo" style="padding:20px;font-weight:900;font-size:24px;">Audio<span>phile</span></div>
+        <nav class="menu" style="padding:0 20px;">
+            <a href="home.html">Home</a>
+            <a href="favorites.html" style="color:var(--purple);">Favorites</a>
         </nav>
     </aside>
 
@@ -38,45 +47,65 @@ body{background:var(--bg);color:var(--text);height:100vh;overflow:hidden;}
     </main>
 </div>
 
-<script src="songs.js"></script>
+<div class="player" onclick="openMusicCard()">
+    <div id="playerTitle">Select a song</div>
+    <div>▶ Play</div>
+</div>
+
+<div class="music-card-overlay" id="musicCardOverlay">
+    <div class="music-card">
+        <h2>Playing Now</h2>
+        <h3 id="cardSongTitle">Song Name</h3>
+        <button onclick="closeMusicCard()" style="margin-top:20px;">Close</button>
+    </div>
+</div>
+
+<nav class="mobile-nav">
+    <a href="home.html" class="mobile-nav-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a href="favorites.html" class="mobile-nav-item active"><i class="fa-solid fa-heart"></i><span>Favorites</span></a>
+    <a href="settings.html" class="mobile-nav-item"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+</nav>
+
 <script>
-function renderFavorites(){
-    let favIndices = JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
-    let allSongs = typeof songs !== "undefined" ? songs : [];
-    let list = document.getElementById("favoriteList");
+    function renderFavorites(){
+        let favIndices = JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
+        let allSongs = typeof songs !== "undefined" ? songs : [];
+        let list = document.getElementById("favoriteList");
 
-    if(favIndices.length === 0){
-        list.innerHTML = "<p>No favorites yet!</p>";
-        return;
+        if(favIndices.length === 0){
+            list.innerHTML = "<p>No favorites yet!</p>";
+            return;
+        }
+
+        list.innerHTML = favIndices.map(index => {
+            let song = allSongs[index];
+            let isFav = favIndices.includes(index);
+            return `
+                <div class="song-row">
+                    <div>${song.title}</div>
+                    <div>${song.artist}</div>
+                    <button class="star-btn" onclick="toggleFav(${index}, event)">${isFav ? "★" : "☆"}</button>
+                </div>
+            `;
+        }).join("");
     }
 
-    list.innerHTML = favIndices.map(index => {
-        let song = allSongs[index];
-        if(!song) return "";
-        // Indha area-la dhaan star logic iruku
-        return `
-            <div class="song-row">
-                <div class="song-no">${index + 1}</div>
-                <div>${song.title}</div>
-                <div>${song.artist || "Unknown"}</div>
-                <button class="star-btn" onclick="toggleFav(${index})">★</button>
-            </div>
-        `;
-    }).join("");
-}
-
-function toggleFav(index){
-    let favs = JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
-    if(favs.includes(index)){
-        favs = favs.filter(i => i !== index);
-    } else {
-        favs.push(index);
+    function toggleFav(index, event){
+        event.stopPropagation();
+        let favs = JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
+        if(favs.includes(index)){
+            favs = favs.filter(i => i !== index);
+        } else {
+            favs.push(index);
+        }
+        localStorage.setItem("audiophile_favorites", JSON.stringify(favs));
+        renderFavorites();
     }
-    localStorage.setItem("audiophile_favorites", JSON.stringify(favs));
+
+    function openMusicCard(){ document.getElementById("musicCardOverlay").classList.add("show"); }
+    function closeMusicCard(){ document.getElementById("musicCardOverlay").classList.remove("show"); }
+
     renderFavorites();
-}
-
-renderFavorites();
 </script>
 </body>
 </html>
