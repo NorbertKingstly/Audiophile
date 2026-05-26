@@ -1,300 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audiophile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audiophile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg:#f5f5f7; --card:#ffffff; --card2:#eef0f4; --text:#111827; --muted:#64748b; --accent1:#111827; --accent2:#6366f1; --accent3:#22d3ee; --border:rgba(0,0,0,0.08); }
+        body.theme-musicred { --bg:#ffffff; --card:#f7f7f8; --card2:#eeeeef; --text:#1d1d1f; --muted:#6e6e73; --accent1:#e60023; --accent2:#ff2d55; --accent3:#ff7b92; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Outfit',sans-serif; }
+        body { background:var(--bg); color:var(--text); }
 
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<!-- Font Awesome (IMPORTANT for icons) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif;}
-
-:root{
-    --bg:#f5f5f7;
-    --card:#ffffff;
-    --text:#111827;
-    --muted:#64748b;
-    --border:rgba(0,0,0,0.08);
-}
-
-/* THEME */
-body.theme-white{
-    --bg:#f5f5f7;
-    --card:#ffffff;
-    --text:#111827;
-}
-
-body.theme-musicred{
-    --bg:#ffffff;
-    --card:#f7f7f8;
-    --text:#1d1d1f;
-}
-
-body{
-    background:var(--bg);
-    color:var(--text);
-}
-
-/* APP */
-.app{
-    display:grid;
-    grid-template-columns:250px 1fr;
-    height:100vh;
-}
-
-/* SIDEBAR */
-.sidebar{
-    background:var(--card);
-    border-right:1px solid var(--border);
-    padding:20px;
-}
-
-.menu a{
-    display:block;
-    padding:12px;
-    text-decoration:none;
-    color:var(--muted);
-    font-weight:700;
-}
-
-/* MAIN */
-.main{
-    padding:20px;
-}
-
-/* SONG ROW */
-.song{
-    background:var(--card);
-    padding:12px;
-    border-radius:12px;
-    margin-bottom:10px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-/* BUTTONS */
-button{
-    padding:8px 12px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-/* ❤️ */
-.fav-btn{
-    background:#ff3b5c;
-    color:white;
-}
-
-/* PLAYER */
-.player{
-    position:fixed;
-    bottom:0;
-    left:250px;
-    right:0;
-    background:var(--card);
-    border-top:1px solid var(--border);
-    padding:10px;
-    display:flex;
-    justify-content:space-between;
-}
-
-/* MOBILE NAV (ADDED) */
-.mobile-nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    display:none;
-    background:var(--card);
-    border-top:1px solid var(--border);
-    justify-content:space-around;
-    padding:10px 0;
-}
-
-.mobile-nav-item{
-    text-decoration:none;
-    color:var(--muted);
-    font-size:12px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:3px;
-}
-
-.mobile-nav-item.active{
-    color:#6366f1;
-}
-
-.mobile-nav-icon{
-    font-size:18px;
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-    .app{grid-template-columns:1fr;}
-    .sidebar{display:none;}
-    .player{left:0;}
-    .mobile-nav{display:flex;}
-}
-</style>
+        /* Fix: Ensure the row click doesn't trigger the album link */
+        .song-row { display: grid; grid-template-columns: 50px 1fr 100px; align-items: center; padding: 15px; background: var(--card); border-radius: 15px; margin-bottom: 10px; cursor: pointer; }
+        
+        /* Mobile Nav */
+        .mobile-nav { display: none; position: fixed; bottom: 0; width: 100%; background: var(--card); padding: 15px; justify-content: space-around; border-top: 1px solid var(--border); z-index: 1000; }
+        @media(max-width:900px) { .mobile-nav { display: flex; } }
+    </style>
 </head>
-
 <body>
 
-<div class="app">
-
-    <aside class="sidebar">
-        <div class="menu">
-            <a href="home.html">Home</a>
-            <a href="songs.html">Songs</a>
-            <a href="albums.html">Albums</a>
-            <a href="artists.html">Artists</a>
-            <a href="favorites.html">Favorites</a>
-            <a href="settings.html">Settings</a>
+    <div class="song-list">
+        <div class="song-row" onclick="playMySong('song_url_here')">
+            <span>1</span>
+            <h3>Song Title</h3>
+            <button onclick="event.stopPropagation(); console.log('Play clicked')">Play</button>
         </div>
-    </aside>
+    </div>
 
-    <main class="main">
+    <div class="mobile-nav">
+        <a href="home.html">Home</a>
+        <a href="songs.html">Songs</a>
+        <a href="settings.html">Settings</a>
+    </div>
 
-        <h2>Songs</h2>
-
-        <div id="songList"></div>
-
-    </main>
-
-</div>
-
-<!-- PLAYER -->
-<div class="player">
-    <div id="now">No song</div>
-    <button onclick="togglePlay()">Play</button>
-</div>
-
-<!-- MOBILE NAV (ADDED EXACT YOUR CODE) -->
-<nav class="mobile-nav">
-    <a href="home.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon"><i class="fa-solid fa-house"></i></span><span>Home</span>
-    </a>
-    <a href="songs.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon"><i class="fa-solid fa-music"></i></span><span>Songs</span>
-    </a>
-    <a href="albums.html" class="mobile-nav-item active">
-        <span class="mobile-nav-icon"><i class="fa-solid fa-compact-disc"></i></span><span>Albums</span>
-    </a>
-    <a href="artists.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon"><i class="fa-solid fa-user-astronaut"></i></span><span>Artists</span>
-    </a>
-    <a href="favorites.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon"><i class="fa-solid fa-heart"></i></span><span>Favorites</span>
-    </a>
-    <a href="settings.html" class="mobile-nav-item">
-        <span class="mobile-nav-icon"><i class="fa-solid fa-gear"></i></span><span>Settings</span>
-    </a>
-</nav>
-
-<audio id="audio"></audio>
-
-<script src="songs.js"></script>
-
-<script>
-
-let audio = document.getElementById("audio");
-
-/* ===== SONGS ===== */
-function getSongs(){
-    return window.songs || [];
-}
-
-/* ===== FAVORITES FIX (IMPORTANT) ===== */
-function getFavs(){
-    return JSON.parse(localStorage.getItem("audiophile_favorites")) || [];
-}
-
-function saveFavs(arr){
-    localStorage.setItem("audiophile_favorites", JSON.stringify(arr));
-}
-
-/* ADD / REMOVE FAVORITE */
-function toggleFav(index){
-    let favs = getFavs();
-
-    if(favs.includes(index)){
-        favs = favs.filter(i => i !== index);
-    } else {
-        favs.push(index);
-    }
-
-    saveFavs(favs);
-    render();
-}
-
-/* ===== RENDER SONGS ===== */
-function render(){
-    let songs = getSongs();
-    let favs = getFavs();
-
-    document.getElementById("songList").innerHTML =
-    songs.map((s,i)=>`
-        <div class="song">
-            <div>
-                <b>${s.title}</b><br>
-                <small>${s.artist}</small>
-            </div>
-
-            <div>
-                <button onclick="playSong(${i})">▶</button>
-                <button class="fav-btn" onclick="toggleFav(${i})">
-                    ${favs.includes(i) ? "♥" : "♡"}
-                </button>
-            </div>
-        </div>
-    `).join("");
-}
-
-/* ===== PLAY FIX (BACKGROUND AUDIO ALSO FIXED) ===== */
-let current = 0;
-
-function playSong(i){
-    let s = getSongs()[i];
-    if(!s) return;
-
-    current = i;
-    audio.src = s.audio;
-
-    audio.play().then(()=>{
-        localStorage.setItem("globalAudioSrc", s.audio);
-        localStorage.setItem("globalIsPlaying", "true");
-        document.getElementById("now").innerText = s.title;
-    });
-}
-
-function togglePlay(){
-    if(audio.paused) audio.play();
-    else audio.pause();
-}
-
-/* AUTO RESUME BG MUSIC */
-window.addEventListener("load",()=>{
-    let src = localStorage.getItem("globalAudioSrc");
-    let play = localStorage.getItem("globalIsPlaying");
-
-    if(src){
-        audio.src = src;
-        if(play === "true"){
-            audio.play();
+    <script>
+        // 1. Theme Logic
+        function applyTheme() {
+            const theme = localStorage.getItem("audiophile_theme") || "white";
+            document.body.className = "theme-" + theme;
         }
-    }
 
-    render();
-});
+        // 2. Play logic (Fixed: No auto-navigation)
+        function playMySong(url) {
+            const audio = document.getElementById("globalAudio");
+            audio.src = url;
+            audio.play();
+            localStorage.setItem("globalAudioSrc", url);
+            localStorage.setItem("globalIsPlaying", "true");
+        }
 
-</script>
-
+        // 3. Initialize
+        applyTheme();
+    </script>
+    <audio id="globalAudio"></audio>
 </body>
 </html>
